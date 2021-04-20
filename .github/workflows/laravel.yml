@@ -1,0 +1,53 @@
+on: [push, pull_request]
+name: CI
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    container:
+      image: kirschbaumdevelopment/laravel-test-runner:7.4
+
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ouredu_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Install composer dependencies
+        working-directory: ./core
+
+        run: |
+          composer install --no-scripts
+
+      - name: Prepare Laravel Application
+        working-directory: ./core
+
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+
+      - name: Run Testsuite
+        working-directory: ./core
+
+        run: vendor/bin/phpunit tests/
+#
+      - name: check-style
+        working-directory: ./core
+
+        run:  composer check-style
+
+      - name: psalm
+        working-directory: ./core
+        run:  ./vendor/bin/psalm
+
+      - name: code sniffer
+        working-directory: ./core
+        run: ./vendor/bin/phpcs

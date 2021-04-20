@@ -1,0 +1,15 @@
+compiled.php
+config.php
+down
+events.scanned.php
+maintenance.php
+routes.php
+routes.scanned.php
+schedule-*
+services.json
+/storage/db-data
+/storage/zookeeper
+/storage/kafka
+/vendor
+/storage/*.key
+/public/hot

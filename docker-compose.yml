@@ -1,0 +1,33 @@
+version: '3.5'
+
+services:
+  app-name:
+    build: .
+    volumes:
+      - ./core:/var/www
+    working_dir: /var/www
+    container_name: app-name
+    networks:
+      - ouredu-service-app
+
+  app-nginx:
+    build: ./.docker/nginx
+    restart: always
+    ports:
+      - "8777:80"
+    volumes:
+      - ./core:/var/www
+    depends_on:
+      - app-name
+    environment:
+      - NGINX_HOST=oureducation.test
+      - NGINX_PORT=80
+    networks:
+      ouredu-service-app:
+        aliases:
+          - app-nginx
+
+networks:
+  ouredu-service-app:
+    external: true
+    driver: bridge
