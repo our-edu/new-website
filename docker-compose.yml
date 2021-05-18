@@ -10,7 +10,7 @@ services:
     networks:
       - ouredu-service-app
 
-  app-nginx:
+  payment-nginx:
     build: ./.docker/nginx
     restart: always
     ports:
