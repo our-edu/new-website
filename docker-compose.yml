@@ -1,12 +1,12 @@
 version: '3.5'
 
 services:
-  app-name:
+  payment:
     build: .
     volumes:
       - ./core:/var/www
     working_dir: /var/www
-    container_name: app-name
+    container_name: payment
     networks:
       - ouredu-service-app
 
@@ -14,11 +14,11 @@ services:
     build: ./.docker/nginx
     restart: always
     ports:
-      - "8777:80"
+      - "8877:80"
     volumes:
       - ./core:/var/www
     depends_on:
-      - app-name
+      - payment
     environment:
       - NGINX_HOST=oureducation.test
       - NGINX_PORT=80
