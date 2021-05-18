@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\UseCases\CrudUseCases;
 
 class DeleteUseCase implements DeleteUseCaseInterface
@@ -11,10 +13,10 @@ class DeleteUseCase implements DeleteUseCaseInterface
     {
         $thisObject = $this->repository->find($id);
         $delete = $this->repository->delete($id);
-        foreach ($this->deleteRelated as $related){
+        foreach ($this->deleteRelated as $related) {
             $valuesArray = explode('.', $related['id']);
             $result = $thisObject;
-            foreach ($valuesArray as $value){
+            foreach ($valuesArray as $value) {
                 $result = $result[$value];
             }
             $detailId = $result;

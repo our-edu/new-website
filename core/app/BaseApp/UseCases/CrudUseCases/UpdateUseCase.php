@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\UseCases\CrudUseCases;
 
 class UpdateUseCase implements UpdateUseCaseInterface
@@ -16,7 +18,7 @@ class UpdateUseCase implements UpdateUseCaseInterface
         foreach ($this->requestDetails as $name => $detail) {
             $valuesArray = explode('.', $detail['id']);
             $result = $thisObject;
-            foreach ($valuesArray as $value){
+            foreach ($valuesArray as $value) {
                 $result = $result[$value];
             }
             $detailId = $result;
@@ -33,7 +35,7 @@ class UpdateUseCase implements UpdateUseCaseInterface
                 foreach ($detail['data_from_request'] as $key => $values) {
                     $valuesArray = explode('.', $values);
                     $result = $request->data['attributes'];
-                    foreach ($valuesArray as $value){
+                    foreach ($valuesArray as $value) {
                         $result = $result[$value];
                     }
                     $data[$key] = $result;
@@ -51,8 +53,8 @@ class UpdateUseCase implements UpdateUseCaseInterface
                 }
             }
             if ($detail['repository'] != null) {
-                $this->requestDetails[$name]['created_data'] = $db->update($data,$detailId);
-            }else{
+                $this->requestDetails[$name]['created_data'] = $db->update($data, $detailId);
+            } else {
                 $data->save();
                 $this->requestDetails[$name]['created_data'] = $data;
             }

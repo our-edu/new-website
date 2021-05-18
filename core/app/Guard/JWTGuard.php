@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Guard;
 
 use App\BaseApp\Models\User;
@@ -24,7 +26,7 @@ class JWTGuard extends \Tymon\JWTAuth\JWTGuard implements Guard
             $id = $this->jwt->payload()->get('sub');
             $this->user = new User();
             $this->user->id = $id;
-            $this->user= User::where('uuid',$id)->first();
+            $this->user= User::where('uuid', $id)->first();
             return $this->user;
         }
         return null;

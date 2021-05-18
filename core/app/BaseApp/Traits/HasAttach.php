@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\OurEdu\BaseApp\Traits;
 
 use File;
@@ -89,7 +91,8 @@ trait HasAttach
 //                dd('succeded');
 //            }
             $this->validationFactory()->make(
-                [$fieldName => $file], [$fieldName => $rules]
+                [$fieldName => $file],
+                [$fieldName => $rules]
             )->validate();
         }
     }
@@ -108,7 +111,6 @@ trait HasAttach
         $directories = $this->exploreDirectory($path);
         if ($directories) {
             if (file_exists($path . $file_name)) {
-
                 @unlink($path . $file_name);
             }
             foreach ($directories as $dir) {
@@ -153,5 +155,4 @@ trait HasAttach
 //            }
 //        }
     }
-
 }

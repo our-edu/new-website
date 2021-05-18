@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Traits;
 
 use App\BaseApp\Models\User;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Enums;
 
 abstract class ProducerMessagesEnums
@@ -8,5 +10,4 @@ abstract class ProducerMessagesEnums
 
     const FLUSH_ERROR_MESSAGE = 'librdkafka unable to perform flush, messages might be lost';
     const PUBLISH_ERROR_MESSAGE = 'Publish message to kafka failed';
-
 }

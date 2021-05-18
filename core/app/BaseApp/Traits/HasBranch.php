@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Traits;
 
 use App\BaseApp\Observers\ModelObserver;
@@ -11,8 +13,5 @@ trait HasBranch
 
     public static function bootHasBranch()
     {
-
     }
-
-
 }

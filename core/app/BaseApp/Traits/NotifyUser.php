@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\OurEdu\BaseApp\Traits;
 
 use App\OurEdu\Notifications\Notification;
 
-trait NotifyUser {
+trait NotifyUser
+{
 
-    public static function bootNotifyUser() {
+    public static function bootNotifyUser()
+    {
         static::created(function ($model) {
             if (isset(static::$notificationFields)) {
                 $fields = static::$notificationFields;
                 $data=[];
                 foreach ($fields as $field => $value) {
-                    if($field == 'url'){
+                    if ($field == 'url') {
                         $data[$field]=$value.$model->id;
-                    }
-                    elseif($field == 'email_notify'){
+                    } elseif ($field == 'email_notify') {
                         $data[$field]=$value;
-                    }
-                    else{
+                    } else {
                         $data[$field]=$model->$value;
                     }
                 }
@@ -27,5 +29,4 @@ trait NotifyUser {
             }
         });
     }
-
 }

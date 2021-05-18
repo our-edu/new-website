@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Exceptions;
 
 use Exception;
@@ -17,7 +19,6 @@ class BaseErrorException extends Exception
     public function render($request)
     {
         if (env('APP_DEBUG') == true) {
-
             $line = $this->getLine();
             $title = $this->getMessage();
             $detail = $this->getTrace();
@@ -58,6 +59,5 @@ class BaseErrorException extends Exception
                     ]]
             ], $this->getCode());
         }
-
     }
 }

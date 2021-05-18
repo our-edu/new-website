@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types = 1);
 
 namespace App\BaseApp\Models;
-
 
 use App\BaseApp\BaseModel;
 use Astrotomic\Translatable\Translatable;
@@ -17,7 +17,8 @@ class Location extends BaseModel
         'address'
     ];
 
-    public function related(){
+    public function related()
+    {
         return $this->morphTo();
     }
 }

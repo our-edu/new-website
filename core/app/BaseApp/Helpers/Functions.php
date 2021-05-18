@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -203,7 +205,6 @@ if (!function_exists('unauthorizeWeb')) {
     function unauthorizeWeb()
     {
         return abort(403, 'Unauthorized action.');
-
     }
 }
 
@@ -225,10 +226,11 @@ if (!function_exists('unauthorize')) {
 }
 
 if (!function_exists('deleteMedia')) {
-    function deleteMedia($ids,
-                         object $model,
-                         string $storagePath = null)
-    {
+    function deleteMedia(
+        $ids,
+        object $model,
+        string $storagePath = null
+    ) {
         if (!is_array($ids)) {
             $ids = [$ids];
         }
@@ -431,7 +433,6 @@ if (!function_exists('getTitleFromSections')) {
     function getTitleFromSections($subjectFormatSubjects)
     {
         if ($subjectFormatSubjects->where('parent_subject_format_id', null)->count() >= 2) {
-
             return $subjectFormatSubjects->first()->subject->name;
         }
         $examTitle = '';
@@ -537,8 +538,9 @@ if (!function_exists('getBreadcrumbsIds')) {
     function getBreadcrumbsIds($subjectFormatSubject, $arr)
     {
         $arr[] = $subjectFormatSubject->id;
-        if (isset($subjectFormatSubject->parentSubjectFormatSubject))
+        if (isset($subjectFormatSubject->parentSubjectFormatSubject)) {
             return getBreadcrumbsIds($subjectFormatSubject->parentSubjectFormatSubject, $arr);
+        }
 
         //add subject id
         $arr[] = $subjectFormatSubject->subject->id;
@@ -564,7 +566,6 @@ if (!function_exists('getDynamicLink')) {
             $link = str_replace('{' . $key . '}', $value, $link);
         }
         return ($link);
-
     }
 }
 
@@ -604,5 +605,3 @@ if (!function_exists('truncateString')) {
         return ($text);
     }
 }
-
-

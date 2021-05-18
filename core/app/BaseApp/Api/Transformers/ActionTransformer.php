@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Api\Transformers;
 
 use Illuminate\Routing\Route;

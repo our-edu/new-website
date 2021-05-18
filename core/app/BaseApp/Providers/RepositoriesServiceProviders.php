@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Providers;
 
 use App\PrintingPressApp\Documents\Repository\DocumentRepository;
@@ -12,6 +14,5 @@ class RepositoriesServiceProviders extends ServiceProvider
 {
     public function register()
     {
-      
     }
 }

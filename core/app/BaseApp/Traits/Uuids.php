@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Traits;
 
 use Ramsey\Uuid\Uuid;
@@ -16,7 +18,7 @@ trait Uuids
     /**
      * Boot function from laravel.
      */
-    public static function bootUuids ()
+    public static function bootUuids()
     {
         static::creating(function ($model) {
 
@@ -48,11 +50,10 @@ trait Uuids
     {
         $model = static::where('uuid', '=', $uuid)->first();
 
-        if( is_null($model) ) {
+        if (is_null($model)) {
             return abort(404);
         } else {
             return $model;
         }
     }
-
 }

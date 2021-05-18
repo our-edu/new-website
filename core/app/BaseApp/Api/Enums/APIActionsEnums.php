@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Api\Enums;
 
 abstract class APIActionsEnums
@@ -49,7 +51,4 @@ abstract class APIActionsEnums
     public const DELETE_BRANCH = 'delete_branch';
     public const ASSIGN_LEADER = "assign_leader";
     public const UN_ASSIGN_LEADER = "un_assign_leader";
-
-
-
 }

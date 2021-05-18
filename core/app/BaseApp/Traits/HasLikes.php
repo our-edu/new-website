@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\OurEdu\BaseApp\Traits;
 
 use App\OurEdu\Users\User;

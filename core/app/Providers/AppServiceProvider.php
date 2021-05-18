@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Providers;
 
 use App\BaseApp\Helpers\LogToChannels;
@@ -14,7 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
     }
 
     /**

@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Api\Requests;
+
 use Czim\JsonApi\Http\Requests\JsonApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;

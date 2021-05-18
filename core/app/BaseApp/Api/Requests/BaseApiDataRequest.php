@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\OurEdu\BaseApp\Api\Requests;
 
 use App\BaseApp\Api\Requests\BaseApiRequest;

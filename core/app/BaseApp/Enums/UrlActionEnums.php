@@ -1,13 +1,17 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\OurEdu\BaseApp\Enums;
 
 class UrlActionEnums
 {
     public static function getExamResultUrl($examId)
     {
-        return  buildScopeRoute('api.parent.learningPerformance.get.examPerformance',
-            ['examId' => $examId]);
+        return  buildScopeRoute(
+            'api.parent.learningPerformance.get.examPerformance',
+            ['examId' => $examId]
+        );
     }
 
     public static function getUpdatedLiveSessionUrl($liveSession)
@@ -22,10 +26,9 @@ class UrlActionEnums
 
     public static function getSubjectProgressForParentUrl($studentId, $subjectId)
     {
-        return buildScopeRoute('api.parent.learningPerformance.get.studentSubjectPerformance',[
+        return buildScopeRoute('api.parent.learningPerformance.get.studentSubjectPerformance', [
             'studentId' => $studentId,
             'subjectId' => $subjectId,
         ]);
     }
-
 }

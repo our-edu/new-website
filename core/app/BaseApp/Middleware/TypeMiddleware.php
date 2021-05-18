@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\BaseApp\Middleware;
 
 use Closure;
@@ -26,7 +28,7 @@ class TypeMiddleware
 
         // case api request
         if ($request->wantsJson()) {
-           throw new HttpResponseException(response()->json([
+            throw new HttpResponseException(response()->json([
                 "errors" => [
                     [
                         'status' => 403,
@@ -37,7 +39,7 @@ class TypeMiddleware
             ], 403));
         }
 
-       session()->flash(trans('app.Models type is not authorized'));
+        session()->flash(trans('app.Models type is not authorized'));
         return redirect('/');
     }
 }

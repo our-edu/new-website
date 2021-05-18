@@ -1,7 +1,8 @@
 <?php
 
-namespace App\BaseApp\Scopes;
+declare(strict_types = 1);
 
+namespace App\BaseApp\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,5 @@ class BranchScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-      
     }
 }
