@@ -3,13 +3,8 @@
 declare(strict_types = 1);
 
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 if (!function_exists('urlLang')) {
     function urlLang($url, $fromlang, $toLang)
@@ -225,36 +220,6 @@ if (!function_exists('unauthorize')) {
     }
 }
 
-if (!function_exists('deleteMedia')) {
-    function deleteMedia(
-        $ids,
-        object $model,
-        string $storagePath = null
-    ) {
-        if (!is_array($ids)) {
-            $ids = [$ids];
-        }
-
-        $mediaData = $model->whereIn('id', $ids)->get();
-
-        foreach ($mediaData as $media) {
-            if (in_array($media->extension, getImageTypes())) {
-                if (is_null($storagePath)) {
-                    \File::delete(largePath() . '/' . $media->filename);
-                    \File::delete(smallPath() . '/' . $media->filename);
-                }
-                \File::delete(largePath() . '/' . $storagePath . '/' . $media->filename);
-                \File::delete(smallPath() . '/' . $storagePath . '/' . $media->filename);
-            } else {
-                if (is_null($storagePath)) {
-                    \File::delete(largePath() . '/' . $media->filename);
-                }
-                \File::delete(largePath() . '/' . $storagePath . '/' . $media->filename);
-            }
-        }
-        $model->whereIn('id', $ids)->delete();
-    }
-}
 if (!function_exists('getImageTypes')) {
     function getImageTypes()
     {
@@ -462,19 +427,6 @@ if (!function_exists('getTitleFromParentSections')) {
     }
 }
 
-if (!function_exists('deleteQuestionMedia')) {
-    function deleteQuestionMedia($media)
-    {
-        if (in_array($media->extension, getImageTypes())) {
-            \File::delete(largePath() . '/' . $media->filename);
-            \File::delete(smallPath() . '/' . $media->filename);
-        } else {
-            \File::delete(largePath() . '/' . $media->filename);
-        }
-        $media->delete();
-    }
-}
-
 if (!function_exists('allowedQuestionsCountForExam')) {
     function allowedQuestionsCountForExam()
     {
@@ -603,5 +555,148 @@ if (!function_exists('truncateString')) {
             $text = preg_replace("/^(.{1,$length})(\s.*|$)/s", '\\1...', $text);
         }
         return ($text);
+    }
+}
+
+
+if (!function_exists('buildCanteenUrl')) {
+    /**
+     * build Canteen url
+     * @param $imagePath
+     * @return string
+     */
+    function buildImageUrl($imagePath): string
+    {
+        return str_replace(":image", $imagePath, env("APP_URL_FOR_IMAGES"));
+    }
+}
+
+/**
+ * get enum image attribute from the enum class (if it the enum has one)
+ * @param $enumClassObject
+ * @param $enumKey
+ * @return string | null
+ */
+if (!function_exists('getEnumImageFromEnumClass')) {
+    function getEnumImageFromEnumClass($enumObject, $enumKey, $enumAttribute = 'image'): ?string
+    {
+
+        if (method_exists($enumObject, 'isEnumHasAttributes')) {
+            // if there is no images property in the class return null
+            if (!$enumObject->isEnumHasAttributes($enumKey)) {
+                return null;
+            }
+
+            $enumKeyAttributes = $enumObject->getEnumAttributes($enumKey);
+
+            if (array_key_exists($enumAttribute, $enumKeyAttributes)) {
+                return buildImageUrl($enumKeyAttributes[$enumAttribute]);
+            }
+        }
+        return null;
+    }
+}
+
+/**
+ * get All const from enums class and Map it to filter
+ * @param $slug
+ * @param $filterArrayData
+ * @return array
+ */
+if (!function_exists('mapFiltersArrayFromEnums')) {
+    function mapFiltersArrayFromEnums(string $slug, string $label, string $type, $enumObject, string $methodName = 'getAllEnums'): array
+    {
+        $filterObject = [
+            'label' => $label,
+            'input_type' => $type
+        ];
+        $enums = [];
+        if (method_exists($enumObject, $methodName)) {
+            $enums = $enumObject->$methodName();
+        }
+        $filtersValues = [];
+        foreach ($enums as $enum) {
+            $filtersValues[] = formatFilterValues(
+                $enum,
+                [
+                    'name' => trans("enums.$enum"),
+                    //                      'image' => getEnumImageFromEnumClass($enumObject, $enum),
+                ],
+                [
+                    'name',
+                    //                      'image'
+                ]
+            );
+        }
+        $filterObject['values'] = $filtersValues;
+        return [$slug => $filterObject];
+    }
+}
+
+
+if (!function_exists('mapFiltersArrayFromModels')) {
+    function mapFiltersArrayFromModels(string $slug, string $label, string $type, $data = [], $transformer = null): array
+    {
+        $filterObject = [
+            'label' => $label,
+            'input_type' => $type
+        ];
+        $filtersValues = [];
+        foreach ($data as $item) {
+            $filtersValues[] = formatFilterValues($item[$transformer->filter_key], $transformer->value($item), $transformer->value_keys());
+        }
+        $filterObject['values'] = $filtersValues;
+        return [$slug => $filterObject];
+    }
+}
+
+/**
+ * format the filter values
+ * @param $filter_key
+ * @param $value
+ * @param $value_keys
+ * @return array
+ */
+
+if (!function_exists('formatFilterValues')) {
+    function formatFilterValues(string $filter_key, array $value, array $value_keys): array
+    {
+        return [
+            'filter_key' => $filter_key,
+            'value' => $value,
+            'value_keys' => $value_keys
+        ];
+    }
+}
+
+if (!function_exists('filtersObject')) {
+    function filtersObject(array $filters): array
+    {
+        $object = [];
+        foreach ($filters as $filter) {
+            foreach ($filter as $key => $value) {
+                $object[$key] = $value;
+            }
+        }
+        return ['filters' => $object];
+    }
+}
+
+if (!function_exists('checkImageUpdate')) {
+
+    function checkImageUpdate(array $date, string $key) : array
+    {
+
+        if (key_exists($key, $date) && !Str::isUuid($date[$key])) {
+            unset($date[$key]);
+        }
+        return $date;
+    }
+}
+
+if (!function_exists('displayTranslatedEnum')) {
+    function displayTranslatedEnum($enum, $key)
+    {
+        return trans("$enum.$key");
     }
 }

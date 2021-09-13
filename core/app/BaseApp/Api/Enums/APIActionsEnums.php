@@ -11,9 +11,10 @@ abstract class APIActionsEnums
      *
      * Please not that the following keys should not be modified because it may break the mobile app
      */
+    public const PAYMENT_URL = 'payment_url';
     public const TEST_ACTION = 'test_action';
-    public const SHOW_ORDER = 'show_order';
-    public const PRINT_ORDER = 'print_order';
+    public const SHOW_APPLICATION = 'show_application';
+    public const REJECT_STATUS_APPLICATION = 'reject_status_application';
     public const STORE_PRINTING_PRESS = 'store_printing_press';
     public const LIST_BRANCH_EMPLOYEES = 'list_branch_employees';
     public const UPDATE_ORDER_STATUS = 'update_order_status';

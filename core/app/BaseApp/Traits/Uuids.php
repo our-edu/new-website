@@ -13,7 +13,7 @@ use Ramsey\Uuid\Uuid;
  */
 trait Uuids
 {
-    static $uuid;
+//    static $uuid;
 
     /**
      * Boot function from laravel.

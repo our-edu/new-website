@@ -1,9 +1,9 @@
-# ouredu-dashboardbe
+# ouredu-boilerplate
 
 
 ## To Run the project
 
-- docker network create ouredu-service-app `docker network create ouredu-service-app`
+- docker network create ouredu-service-app `docker network create ouredu-service-app-dev`
 - Copy the core/.env.example to core/.env
 - `docker-compose up` you may need to use `sudo`
 #### IF You are running multiple projects make sure to change the services ports in every project to avoid conflicts with others services running
@@ -11,8 +11,7 @@
 - `docker exec -it 'Container ID' bash` you may need to use `sudo`
 - run `composer install` maybe not
 - run this commands:
-  - chown -R www-data:www-data ./storage/framework/cache/ 
-  - chmod 777 -R ./storage
+  - `chown -R www-data:www-data ./storage/framework/cache/ && chmod 777 -R .`
 - do your work 
 
 ## Don't forget to compose up the ouredu-db project, since the project db is there.

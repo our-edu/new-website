@@ -33,6 +33,7 @@ docker-data
 
 .idea
 .docker-data
+.env
 composer.lock
 /.docker-data/
 node_modules
