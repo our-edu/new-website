@@ -8,7 +8,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10.8
+        image: postgis/postgis:latest
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -27,27 +27,29 @@ jobs:
         run: |
           composer install --no-scripts
 
-      - name: Prepare Laravel Application
+      - name: Prepare Laravel Applications
         working-directory: ./core
 
         run: |
           cp .env.ci .env
+          rm .env.testing
+          cp .env.ci .env.testing
           php artisan key:generate
 
       - name: Run Testsuite
         working-directory: ./core
 
         run: vendor/bin/phpunit tests/
-#
+      #
       - name: check-style
         working-directory: ./core
 
         run:  composer check-style
 
-      - name: psalm
-        working-directory: ./core
-        run:  ./vendor/bin/psalm
+      #      - name: psalm
+      #        working-directory: ./core
+      #        run:  ./vendor/bin/psalm
 
       - name: code sniffer
         working-directory: ./core
-        run: ./vendor/bin/phpcs
+        run: ./vendor/bin/phpcs --warning-severity=6

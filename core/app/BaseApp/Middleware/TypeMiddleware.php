@@ -22,7 +22,13 @@ class TypeMiddleware
         if ($user = Auth::user() ?? Auth::guard('api')->user()) {
             $allowedTypes = explode('|', $allowedTypes);
             if (in_array($user->type, $allowedTypes)) {
-                return $next($request);
+                if ($user->type == 'employee') {
+                    if (in_array($user->employee->branch_id, $user->employee->branches->pluck('uuid')->toArray())) {
+                        return $next($request);
+                    }
+                } else {
+                    return $next($request);
+                }
             }
         }
 
