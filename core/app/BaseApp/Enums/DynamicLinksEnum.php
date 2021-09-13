@@ -7,7 +7,7 @@ namespace App\OurEdu\BaseApp\Enums;
 class DynamicLinksEnum
 {
 
-    const studentFinishExam = '{portal_url}/ar/subject-activities/parent/exam-results/{examId}';
+    const STUDENT_FINISH_EXAM = '{portal_url}/ar/subject-activities/parent/exam-results/{examId}';
     const GENERALEXAM_PUBLISH = '{firebase_url}/?link={portal_url}/en/student/exams/general/{id}&apn=com.ouredu.students';
     const STUDENT_JOIN_COMPETITION = '{firebase_url}/?link={portal_url}/ar/student/competitions/join?competition_id={competition_id}&apn=com.ouredu.students';
     const INSTRUCTOR_JOIN_ROOM = '{portal_url}/#/home?osession={session_id}&otoken={token}&otype={type}';
