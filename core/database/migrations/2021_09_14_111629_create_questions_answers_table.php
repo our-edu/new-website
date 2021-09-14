@@ -23,6 +23,9 @@ class CreateQuestionsAnswersTable extends Migration
             $table->foreignUuid('parent_uuid')
                 ->references('uuid')
                 ->on('parent_users');
+            $table->foreignUuid('question_uuid')
+                ->references('uuid')
+                ->on('questions');
             $table->timestamps();
         });
     }

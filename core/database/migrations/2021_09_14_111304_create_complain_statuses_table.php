@@ -15,6 +15,7 @@ class CreateComplainStatusesTable extends Migration
     {
         Schema::create('complain_statuses', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
+            $table->string('name');
             $table->foreignUuid('complain_uuid')
                 ->references('uuid')
                 ->on('complains');

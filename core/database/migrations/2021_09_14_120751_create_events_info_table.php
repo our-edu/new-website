@@ -15,6 +15,10 @@ class CreateEventsInfoTable extends Migration
     {
         Schema::create('events_info', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('event_uuid')->references('uuid')
+                ->on('events');
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }
