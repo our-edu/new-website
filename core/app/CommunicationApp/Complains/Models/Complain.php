@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CommunicationApp\Models;
+namespace App\CommunicationApp\Complains\Models;
 
 use App\BaseApp\BaseModel;
 
