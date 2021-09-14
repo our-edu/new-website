@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  boilerplate:
+  communication:
     env_file: .env
     build: .
     volumes:
@@ -11,7 +11,7 @@ services:
     networks:
       - ouredu-service-app
 
-  boilerplate-nginx:
+  communication-nginx:
     env_file: .env
     build: ./.docker/nginx
     restart: always
