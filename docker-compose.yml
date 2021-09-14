@@ -21,7 +21,7 @@ services:
     volumes:
       - ./core:/var/www
     depends_on:
-      - boilerplate
+      - communication
     environment:
       - NGINX_HOST=oureducation.test
       - NGINX_PORT=80
