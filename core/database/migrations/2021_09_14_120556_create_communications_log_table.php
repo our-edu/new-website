@@ -15,6 +15,16 @@ class CreateCommunicationsLogTable extends Migration
     {
         Schema::create('communications_log', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
+            $table->string('reason');
+            $table->foreignUuid('parent_uuid')
+                ->references('uuid')
+                ->on('parent_users');
+            $table->date('date');
+            $table->string('procedure')->nullable();
+            $table->foreignUuid('branch_uuid')
+                ->references('uuid')
+                ->on('branches');
             $table->timestamps();
         });
     }

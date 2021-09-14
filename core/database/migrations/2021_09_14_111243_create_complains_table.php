@@ -22,7 +22,7 @@ class CreateComplainsTable extends Migration
 
             $table->foreignUuid('student_uuid')
                 ->references('uuid')
-                ->on('parent_users');
+                ->on('students');
             $table->text('body');
 
             $table->string('status');

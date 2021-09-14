@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnnouncementTranslationsTable extends Migration
+class CreateQuestionTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateAnnouncementTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcement_translations', function (Blueprint $table) {
+        Schema::create('question_translations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('body');
+            $table->string('body');
 
             $table->string('locale')->index();
 
-            $table->unique(['announcement_uuid','locale'] ,'announcement_uuid_trans_with_locale');
+            $table->unique(['question_uuid','locale'] ,'question_uuid_trans_with_locale');
 
-            $table->foreignUuid('announcement_uuid')->references('uuid')
-                ->on('announcements');
+            $table->foreignUuid('question_uuid')->references('uuid')
+                ->on('questions');
 
             $table->timestamps();
         });
@@ -36,6 +35,6 @@ class CreateAnnouncementTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcement_translations');
+        Schema::dropIfExists('question_translations');
     }
 }

@@ -17,8 +17,8 @@ class CreateAnnouncementsRolesTable extends Migration
             $table->id();
             $table->foreignUuid('announcement_uuid')->references('uuid')
                 ->on('announcements');
-            $table->foreignUuid('role_id')->references('id')
-                ->on('roles');
+            $table->foreignUuid('branch_uuid')->references('uuid')
+                ->on('branches');
             $table->timestamps();
         });
     }
