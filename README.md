@@ -1,4 +1,4 @@
-# ouredu-boilerplate
+# communication-be
 
 
 ## To Run the project
@@ -7,7 +7,7 @@
 - Copy the core/.env.example to core/.env
 - `docker-compose up` you may need to use `sudo`
 #### IF You are running multiple projects make sure to change the services ports in every project to avoid conflicts with others services running
-- in another terminal tab run `docker ps` and choose the Container ID for 'printing-pressbe_printing-pressbe'
+- in another terminal tab run `docker ps` and choose the Container ID for 'communication-be'
 - `docker exec -it 'Container ID' bash` you may need to use `sudo`
 - run `composer install` maybe not
 - run this commands:
@@ -16,7 +16,7 @@
 
 ## Don't forget to compose up the ouredu-db project, since the project db is there.
 
-### browse [http://localhost:8077](http://localhost:8777) for the app
+### browse [http://localhost:8077](http://localhost:8587) for the app
 
 ### when changing any configuration in the Dockerfile or docker-compose you have to run `sudo docker-compose build`
 
