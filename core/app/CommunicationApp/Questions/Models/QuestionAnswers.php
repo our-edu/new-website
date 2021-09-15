@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CommunicationApp\Complains\Models;
+namespace App\CommunicationApp\Questions\Models;
 
 use App\BaseApp\BaseModel;
 use Illuminate\Database\Eloquent\SoftDeletes;

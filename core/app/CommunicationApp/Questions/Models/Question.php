@@ -1,13 +1,13 @@
 <?php
+namespace App\CommunicationApp\Questions\Models;
 
-namespace App\CommunicationApp\Complains\Models;
 
 use App\BaseApp\BaseModel;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class   Questions extends BaseModel
+class   Question extends BaseModel
 {
     use SoftDeletes , Translatable;
 
