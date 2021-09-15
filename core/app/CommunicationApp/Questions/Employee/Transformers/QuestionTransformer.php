@@ -38,14 +38,14 @@ class QuestionTransformer extends TransformerAbstract
 
     public function includeActions(Question $question)
     {
-      $actions[] = [
+        $actions[] = [
         'endpoint_url' => buildScopeRoute('api.employee.questions.update', [
             'question' => $question->uuid,
         ]),
         'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTION),
         'method' => 'PUT',
         'key' => APIActionsEnums::UPDATE_QUESTION
-    ];
+        ];
         $actions[] = [
             'endpoint_url' => buildScopeRoute('api.employee.questions.destroy', [
                 'question' => $question->uuid,

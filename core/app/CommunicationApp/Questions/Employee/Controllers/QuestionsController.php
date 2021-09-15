@@ -35,7 +35,6 @@ class QuestionsController extends BaseApiController
     {
         $questions = $this->repository->paginate();
         return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType);
-
     }
 
     /**
@@ -59,23 +58,20 @@ class QuestionsController extends BaseApiController
             $data = $request->data['attributes'];
             $createdQuestion  = $this->repository->create($data);
 
-            return $this->transformDataModInclude($createdQuestion, '', new  QuestionTransformer(), $this->ResourceType,[
+            return $this->transformDataModInclude($createdQuestion, '', new  QuestionTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
-
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
-            ],400);
+            ], 400);
         }
-
-
     }
 
     /**
@@ -85,12 +81,12 @@ class QuestionsController extends BaseApiController
      */
     public function update($id, QuestionRequest $request)
     {
-        try{
+        try {
             $data = $request->data['attributes'];
             $question =  $this->repository->find($id);
             $question->update($data);
 
-            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType,[
+            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
                 ]
@@ -102,9 +98,8 @@ class QuestionsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
-            ],400);
+            ], 400);
         }
-
     }
 
     /**
@@ -120,15 +115,14 @@ class QuestionsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
-            ],400);
+            ], 400);
         }
-
     }
 }
