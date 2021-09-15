@@ -22,24 +22,17 @@ class TypeMiddleware
         if ($user = Auth::user() ?? Auth::guard('api')->user()) {
             $allowedTypes = explode('|', $allowedTypes);
             if (in_array($user->type, $allowedTypes)) {
-                if ($user->type == 'employee') {
-                    if (in_array($user->employee->branch_id, $user->employee->branches->pluck('uuid')->toArray())) {
-                        return $next($request);
-                    }
-                } else {
-                    return $next($request);
-                }
+                return $next($request);
             }
         }
 
-        // case api request
         if ($request->wantsJson()) {
             throw new HttpResponseException(response()->json([
                 "errors" => [
                     [
                         'status' => 403,
-                        'title' => 'unauthorized_action',
-                        'detail' => trans('app.Unauthorized action')
+                        'title' => trans('app.Unauthorized action'),
+                        'detail' => trans('app.check your user type privileges')
                     ]
                 ]
             ], 403));
