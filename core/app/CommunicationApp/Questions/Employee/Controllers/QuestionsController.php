@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Questions\Employee\Controllers;
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
+use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -24,6 +25,9 @@ class QuestionsController extends BaseApiController
 
     public function index()
     {
+        $questions = $this->repository->paginate();
+        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType);
+
     }
 
     /**

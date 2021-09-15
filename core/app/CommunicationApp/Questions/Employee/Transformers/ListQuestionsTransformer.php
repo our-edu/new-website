@@ -13,7 +13,7 @@ use League\Fractal\TransformerAbstract;
 class ListQuestionsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-       // 'actions',
+        'actions',
     ];
     protected $availableIncludes = [
     ];
@@ -38,14 +38,32 @@ class ListQuestionsTransformer extends TransformerAbstract
 
     public function includeActions(Question $question)
     {
-//        $actions[] = [
-//            'endpoint_url' => buildScopeRoute('api.admin.educational-systems.update', [
-//                'educational_system' => $educationalSystem->uuid,
-//            ]),
-//            'label' => trans('educational-systems.update-educational-systems'),
-//            'method' => 'PUT',
-//            'key' => APIActionsEnums::UPDATE_EDUCATIONAL_SYSTEM
-//        ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.questions.show', [
+                'question' => $question->uuid,
+            ]),
+            'label' => trans('questions.'.APIActionsEnums::SHOW_QUESTION),
+            'method' => 'GET',
+            'key' => APIActionsEnums::SHOW_QUESTION
+        ];
+
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.questions.update', [
+                'question' => $question->uuid,
+            ]),
+            'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTION),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_QUESTION
+        ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.questions.destroy', [
+                'question' => $question->uuid,
+                ]),
+            'label' => trans('questions.'.APIActionsEnums::DELETE_QUESTION),
+            'method' => 'DELETE',
+            'key' => APIActionsEnums::DELETE_QUESTION
+        ];
+
 
 
         if (count($actions)) {

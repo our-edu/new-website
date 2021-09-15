@@ -52,4 +52,7 @@ abstract class APIActionsEnums
     public const DELETE_BRANCH = 'delete_branch';
     public const ASSIGN_LEADER = "assign_leader";
     public const UN_ASSIGN_LEADER = "un_assign_leader";
+    const UPDATE_QUESTION = 'update_question';
+    const SHOW_QUESTION = 'show_question';
+    const DELETE_QUESTION = 'delete_question';
 }
