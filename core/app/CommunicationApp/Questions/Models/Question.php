@@ -18,10 +18,6 @@ class Question extends BaseModel
      */
     protected $table = 'questions';
 
-    /**
-     * @var bool
-     */
-    protected static $autoloadTranslations = true;
 
     /**
      * @var string[]

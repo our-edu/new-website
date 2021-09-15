@@ -8,6 +8,7 @@ use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 use Log;
 
 class QuestionsController extends BaseApiController
@@ -25,7 +26,11 @@ class QuestionsController extends BaseApiController
     {
     }
 
-    public function store(QuestionRequest $request)
+    /**
+     * @param QuestionRequest $request
+     * @return JsonResponse
+     */
+    public function store(QuestionRequest $request): JsonResponse
     {
 
         $data = $request->data['attributes'];
