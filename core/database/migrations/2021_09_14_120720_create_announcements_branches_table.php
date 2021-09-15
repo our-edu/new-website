@@ -31,6 +31,6 @@ class CreateAnnouncementsBranchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('announcements_roles');
+        Schema::dropIfExists('announcements_branches');
     }
 }

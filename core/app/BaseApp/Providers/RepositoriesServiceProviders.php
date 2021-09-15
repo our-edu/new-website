@@ -4,15 +4,17 @@ declare(strict_types = 1);
 
 namespace App\BaseApp\Providers;
 
-use App\PrintingPressApp\Documents\Repository\DocumentRepository;
-use App\PrintingPressApp\Documents\Repository\DocumentRepositoryInterface;
-use App\PrintingPressApp\Orders\Repository\OrderRepository;
-use App\PrintingPressApp\Orders\Repository\OrderRepositoryInterface;
+use App\CommunicationApp\Questions\Repository\QuestionRepository;
+use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProviders extends ServiceProvider
 {
     public function register()
     {
+        $this->app->bind(
+            QuestionRepositoryInterface::class,
+            QuestionRepository::class
+        );
     }
 }
