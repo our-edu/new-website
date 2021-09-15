@@ -8,7 +8,9 @@ use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
+use App\CommunicationApp\Questions\Employee\Transformers\QuestionTransformer;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
 
@@ -18,11 +20,17 @@ class QuestionsController extends BaseApiController
     protected string $ModelName = 'Question';
     protected string $ResourceType = ResourceTypesEnums::QUESTION;
 
-    public function __construct(QuestionRepositoryInterface  $repository)
+    /**
+     * @param QuestionRepositoryInterface $repository
+     */
+    public function __construct(QuestionRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
+    /**
+     * @return array|array[]|JsonResponse
+     */
     public function index()
     {
         $questions = $this->repository->paginate();
@@ -31,21 +39,33 @@ class QuestionsController extends BaseApiController
     }
 
     /**
-     * @param QuestionRequest $request
-     * @return JsonResponse
+     * @param $id
+     * @return array|array[]|JsonResponse
      */
-    public function store(QuestionRequest $request): JsonResponse
+    public function show($id)
+    {
+        $question = $this->repository->find($id);
+        return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType);
+    }
+
+    /**
+     * @param QuestionRequest $request
+     * @return array|array[]|JsonResponse
+     */
+    public function store(QuestionRequest $request)
     {
 
-        $data = $request->data['attributes'];
         try {
-            $this->repository->create($data);
-            return response()->json([
+            $data = $request->data['attributes'];
+            $createdQuestion  = $this->repository->create($data);
+
+            return $this->transformDataModInclude($createdQuestion, '', new  QuestionTransformer(), $this->ResourceType,[
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
-        }catch (\Exception $exception) {
+
+        }catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
@@ -57,10 +77,58 @@ class QuestionsController extends BaseApiController
 
 
     }
-    public function update()
+
+    /**
+     * @param $id
+     * @param QuestionRequest $request
+     * @return array|array[]|JsonResponse
+     */
+    public function update($id, QuestionRequest $request)
     {
+        try{
+            $data = $request->data['attributes'];
+            $question =  $this->repository->find($id);
+            $question->update($data);
+
+            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType,[
+                'meta' => [
+                    'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
+                ]
+            ]);
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return response()->json([
+                'meta' => [
+                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
+                    'error'=> $exception->getMessage()
+                ]
+            ],400);
+        }
+
     }
-    public function destroy()
+
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
+    public function destroy($id): JsonResponse
     {
+        try {
+            $this->repository->find($id)->delete();
+            return response()->json([
+                'meta' => [
+                    'message' => trans('questions.' . $this->ModelName . '  was deleted '),
+                ]
+            ]);
+        }catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return response()->json([
+                'meta' => [
+                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'error'=> $exception->getMessage()
+                ]
+            ],400);
+        }
+
     }
 }
