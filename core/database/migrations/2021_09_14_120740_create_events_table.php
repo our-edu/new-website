@@ -14,10 +14,11 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->foreignUuid('branch_uuid')->references('uuid')
                 ->on('branches');
             $table->tinyInteger('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

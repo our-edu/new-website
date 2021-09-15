@@ -14,11 +14,12 @@ class CreateAnnouncementsRolesTable extends Migration
     public function up()
     {
         Schema::create('announcements_roles', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->foreignUuid('announcement_uuid')->references('uuid')
                 ->on('announcements');
             $table->foreignUuid('role_id')->references('id')
                 ->on('roles');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

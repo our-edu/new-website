@@ -26,6 +26,7 @@ class CreateQuestionsAnswersTable extends Migration
             $table->foreignUuid('question_uuid')
                 ->references('uuid')
                 ->on('questions');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -14,11 +14,12 @@ class CreateEventsInfoTable extends Migration
     public function up()
     {
         Schema::create('events_info', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->foreignUuid('event_uuid')->references('uuid')
                 ->on('events');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

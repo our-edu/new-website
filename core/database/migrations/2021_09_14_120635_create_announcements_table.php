@@ -14,10 +14,11 @@ class CreateAnnouncementsTable extends Migration
     public function up()
     {
         Schema::create('announcements', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->date('from');
             $table->date('to');
             $table->tinyInteger('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

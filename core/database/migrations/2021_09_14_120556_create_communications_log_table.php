@@ -14,7 +14,7 @@ class CreateCommunicationsLogTable extends Migration
     public function up()
     {
         Schema::create('communications_log', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->string('type');
             $table->string('reason');
             $table->foreignUuid('parent_uuid')
@@ -25,6 +25,7 @@ class CreateCommunicationsLogTable extends Migration
             $table->foreignUuid('branch_uuid')
                 ->references('uuid')
                 ->on('branches');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

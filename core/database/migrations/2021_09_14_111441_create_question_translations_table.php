@@ -14,7 +14,7 @@ class CreateQuestionTranslationsTable extends Migration
     public function up()
     {
         Schema::create('question_translations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->string('body');
 
             $table->string('locale')->index();
@@ -23,7 +23,7 @@ class CreateQuestionTranslationsTable extends Migration
 
             $table->foreignUuid('question_uuid')->references('uuid')
                 ->on('questions');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

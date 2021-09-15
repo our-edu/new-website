@@ -14,7 +14,7 @@ class CreateAnnouncementTranslationsTable extends Migration
     public function up()
     {
         Schema::create('announcement_translations', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('uuid')->primary();
             $table->string('title');
             $table->text('body');
 
@@ -24,7 +24,7 @@ class CreateAnnouncementTranslationsTable extends Migration
 
             $table->foreignUuid('announcement_uuid')->references('uuid')
                 ->on('announcements');
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
