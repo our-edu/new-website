@@ -13,7 +13,7 @@ class CreateAnnouncementsBranchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('announcements_roles', function (Blueprint $table) {
+        Schema::create('announcements_branches', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->foreignUuid('announcement_uuid')->references('uuid')
                 ->on('announcements');
