@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Http;
 
 use App\BaseApp\Middleware\Locale;
+use App\BaseApp\Middleware\TypeMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -69,5 +70,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'Locale' => Locale::class,
+        'type' => TypeMiddleware::class,
+
     ];
 }
