@@ -1,13 +1,15 @@
 <?php
-namespace App\CommunicationApp\Questions\Models;
 
+declare(strict_types = 1);
+
+namespace App\CommunicationApp\Questions\Models;
 
 use App\BaseApp\BaseModel;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class   Question extends BaseModel
+class Question extends BaseModel
 {
     use SoftDeletes , Translatable;
 
@@ -45,8 +47,6 @@ class   Question extends BaseModel
      */
     public function answer(): HasOne
     {
-        return $this->hasOne(QuestionAnswers::class,'question_uuid','uuid');
+        return $this->hasOne(QuestionAnswers::class, 'question_uuid', 'uuid');
     }
-
-
 }

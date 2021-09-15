@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Questions\Models;
 
 use App\BaseApp\BaseModel;
@@ -23,7 +25,4 @@ class QuestionAnswers extends BaseModel
         'parent_uuid',
         'question_uuid'
         ];
-
-
-
 }

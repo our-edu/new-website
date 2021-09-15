@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
-            $table->boolean('active');
+            $table->boolean('active')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

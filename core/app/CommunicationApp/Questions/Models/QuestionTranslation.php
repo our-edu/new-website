@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Questions\Models;
 
 use App\BaseApp\BaseModel;
@@ -20,5 +22,4 @@ class QuestionTranslation extends BaseModel
     protected $fillable = [
         'body'
     ];
-
 }
