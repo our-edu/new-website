@@ -5,8 +5,8 @@ namespace App\CommunicationApp\Settings\Enums;
 Abstract class GeneralSettingsEnum
 {
     public const QUESTIONNAIRE_STATUS_KEY = "questionnaire_status";
-    public const QUESTIONNAIRE_ENABLE = "true";
-    public const QUESTIONNAIRE_DISABLE = "false";
+    public const QUESTIONNAIRE_ENABLE = true;
+    public const QUESTIONNAIRE_DISABLE = false;
 
     /**
      * @return string[][]

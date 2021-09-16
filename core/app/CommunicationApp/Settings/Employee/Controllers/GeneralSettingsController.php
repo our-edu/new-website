@@ -4,15 +4,16 @@ namespace App\CommunicationApp\Settings\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\Settings\Employee\Requests\QuestionnaireRequest;
 use App\CommunicationApp\Settings\Employee\Transformers\ListSettingsTransformer;
 use App\CommunicationApp\Settings\Employee\Transformers\SettingsTransformer;
 use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
 use App\CommunicationApp\Settings\model\GeneralSettings;
 use App\CommunicationApp\Settings\Repository\GeneralSettingsRepositoryInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Log;
 use PHPUnit\Exception;
-use Request;
 
 class GeneralSettingsController extends BaseApiController
 {
@@ -60,15 +61,9 @@ class GeneralSettingsController extends BaseApiController
      * @param Request $request
      * @return JsonResponse
      */
-    public function updateQuestionnaireStatus($id, Request $request): JsonResponse
+    public function updateQuestionnaireStatus($id, QuestionnaireRequest $request): JsonResponse
     {
         try{
-            $enable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['enable'];
-            $disable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['disable'];
-            $statusValueMapped = implode(',',[$enable,$disable]);
-            $request->validate([
-               'value' => 'required|bool|in:'.$statusValueMapped
-            ]);
             $questionnaire =  $this->repository->find($id);
             $questionnaire->update([
                 'value' => $request->data['attributes']['value']
