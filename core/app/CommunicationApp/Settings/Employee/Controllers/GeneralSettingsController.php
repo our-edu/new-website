@@ -4,7 +4,10 @@ namespace App\CommunicationApp\Settings\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\Settings\Employee\Transformers\ListSettingsTransformer;
+use App\CommunicationApp\Settings\Employee\Transformers\SettingsTransformer;
 use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
+use App\CommunicationApp\Settings\model\GeneralSettings;
 use App\CommunicationApp\Settings\Repository\GeneralSettingsRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -20,22 +23,26 @@ class GeneralSettingsController extends BaseApiController
     public function __construct(GeneralSettingsRepositoryInterface $generalSettingsRepository)
     {
         $this->repository = $generalSettingsRepository;
+
     }
 
     /**
-     *
+     * @return array|array[]|JsonResponse
      */
     public function index()
     {
-
+        $generalSettings = $this->repository->paginate();
+        return $this->transformDataModInclude($generalSettings, '', new  ListSettingsTransformer(), $this->ResourceType);
     }
 
     /**
      * @param $id
+     * @return array|array[]|JsonResponse
      */
     public function show($id)
     {
-
+        $generalSettings = $this->repository->find($id);
+        return $this->transformDataModInclude($generalSettings, '', new  SettingsTransformer(), $this->ResourceType);
     }
 
     /**
@@ -44,6 +51,7 @@ class GeneralSettingsController extends BaseApiController
      */
     public function update($id , Request $request)
     {
+        //TODO Implement the update
 
     }
 
@@ -59,9 +67,9 @@ class GeneralSettingsController extends BaseApiController
             $disable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['disable'];
             $statusValueMapped = implode(',',[$enable,$disable]);
             $request->validate([
-               'value' => 'bool|in:'.$statusValueMapped
+               'value' => 'required|bool|in:'.$statusValueMapped
             ]);
-            $questionnaire =  $this->repository->where('key',GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
+            $questionnaire =  $this->repository->find($id);
             $questionnaire->update([
                 'value' => $request->data['attributes']['value']
             ]);
