@@ -18,7 +18,7 @@ class CreateComplainsTable extends Migration
 
             $table->foreignUuid('parent_uuid')
                    ->references('uuid')
-                ->on('parent_users');
+                   ->on('parent_users');
 
             $table->foreignUuid('student_uuid')
                 ->references('uuid')

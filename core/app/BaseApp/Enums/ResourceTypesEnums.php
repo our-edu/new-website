@@ -17,4 +17,6 @@ abstract class ResourceTypesEnums
     const UPLOADED_MEDIA = 'uploaded_media';
     const PAYMENT_METHOD = 'payment_method';
     const QUESTION = 'question';
+    const COMPLAIN = 'complain';
+    const GENERAL_SETTING = 'general_settings';
 }

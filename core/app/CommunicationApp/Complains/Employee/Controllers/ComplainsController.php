@@ -2,35 +2,30 @@
 
 declare(strict_types = 1);
 
-namespace App\CommunicationApp\Questions\Employee\Controllers;
+namespace App\CommunicationApp\Complains\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
-use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
-use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
-use App\CommunicationApp\Questions\Employee\Transformers\QuestionTransformer;
-use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
-use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
-use App\CommunicationApp\Settings\model\GeneralSettings;
-use App\CommunicationApp\Settings\Repository\GeneralSettingsRepositoryInterface;
+use App\CommunicationApp\Complains\Employee\Requests\ComplainRequest;
+use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
+use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
+use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
 
-class QuestionsController extends BaseApiController
+class ComplainsController extends BaseApiController
 {
-    public QuestionRepositoryInterface  $repository;
-    public GeneralSettingsRepositoryInterface  $generalSettingsRepository;
-    protected string $ModelName = 'Question';
-    protected string $ResourceType = ResourceTypesEnums::QUESTION;
+    public ComplainRepositoryInterface  $repository;
+    protected string $ModelName = 'Complain';
+    protected string $ResourceType = ResourceTypesEnums::COMPLAIN;
 
     /**
-     * @param QuestionRepositoryInterface $repository
+     * @param ComplainRepositoryInterface $repository
      */
-    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository)
+    public function __construct(ComplainRepositoryInterface $repository)
     {
         $this->repository = $repository;
-        $this->generalSettingsRepository = $generalSettingsRepository;
     }
 
     /**
@@ -38,9 +33,8 @@ class QuestionsController extends BaseApiController
      */
     public function index()
     {
-        $questions = $this->repository->paginate();
-        $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
-        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(['$questionnaireStatus'=>$questionnaireStatus]), $this->ResourceType);
+        $complains = $this->repository->paginate();
+        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
     /**
@@ -50,21 +44,21 @@ class QuestionsController extends BaseApiController
     public function show($id)
     {
         $question = $this->repository->find($id);
-        return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($question, '', new  ComplainTransformer(), $this->ResourceType);
     }
 
     /**
-     * @param QuestionRequest $request
+     * @param ComplainRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function store(QuestionRequest $request)
+    public function store(ComplainRequest  $request)
     {
 
         try {
             $data = $request->data['attributes'];
-            $createdQuestion  = $this->repository->create($data);
+            $createdComplain  = $this->repository->create($data);
 
-            return $this->transformDataModInclude($createdQuestion, '', new  QuestionTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
                 ]
@@ -82,17 +76,17 @@ class QuestionsController extends BaseApiController
 
     /**
      * @param $id
-     * @param QuestionRequest $request
+     * @param ComplainRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function update($id, QuestionRequest $request)
+    public function update($id, ComplainRequest $request)
     {
         try {
             $data = $request->data['attributes'];
-            $question =  $this->repository->find($id);
-            $question->update($data);
+            $complain =  $this->repository->find($id);
+            $complain->update($data);
 
-            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
                 ]

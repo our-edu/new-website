@@ -8,12 +8,16 @@ use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
 use App\CommunicationApp\Questions\Models\Question;
+use App\CommunicationApp\Settings\Employee\Transformers\SettingsTransformer;
+use App\CommunicationApp\Settings\model\GeneralSettings;
+use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 
 class ListQuestionsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
+        'questionnaireSetting'
     ];
     protected $availableIncludes = [
     ];
@@ -66,8 +70,14 @@ class ListQuestionsTransformer extends TransformerAbstract
 
 
 
+
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
+    }
+
+    public function includeQuestionnaireSetting(): Item
+    {
+        return $this->item($this->params['$questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
     }
 }
