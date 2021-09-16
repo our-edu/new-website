@@ -47,9 +47,17 @@ class SettingsTransformer extends TransformerAbstract
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_SETTING
         ];
-
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.generalSettings.updateQuestionnaire', [
+                'generalSetting' => $generalSetting->uuid,
+            ]),
+            'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS
+        ];
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
+
     }
 }
