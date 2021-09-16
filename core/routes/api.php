@@ -27,6 +27,7 @@ Route::group(['as' => 'api.'], function () {
             'middleware' => 'type:employee'
         ], function () {
             require base_path('app/CommunicationApp/Questions/Employee/Routes/api.php');
+            require base_path('app/CommunicationApp/Settings/Employee/Routes/api.php');
         });
     });
 });
