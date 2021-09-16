@@ -73,7 +73,4 @@ class ComplainsController extends BaseApiController
             ], 400);
         }
     }
-
-
-
 }

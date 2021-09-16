@@ -58,6 +58,5 @@ class SettingsTransformer extends TransformerAbstract
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
-
     }
 }

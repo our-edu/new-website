@@ -31,7 +31,7 @@ class ComplainStatus extends BaseModel
      */
     public function complain(): BelongsTo
     {
-        return $this->belongsTo(Complain::class,'complain_uuid');
+        return $this->belongsTo(Complain::class, 'complain_uuid');
     }
 
     /**
@@ -39,8 +39,6 @@ class ComplainStatus extends BaseModel
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class,'user_uuid');
+        return $this->belongsTo(User::class, 'user_uuid');
     }
-
-
 }

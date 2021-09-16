@@ -78,6 +78,6 @@ class ListQuestionsTransformer extends TransformerAbstract
 
     public function includeQuestionnaireSetting(): Item
     {
-        return $this->item( $this->params['$questionnaireStatus'],new SettingsTransformer(),ResourceTypesEnums::GENERAL_SETTING);
+        return $this->item($this->params['$questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
     }
 }

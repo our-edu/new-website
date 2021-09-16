@@ -1,15 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Settings\Enums;
 
-Abstract class GeneralSettingsEnum
+abstract class GeneralSettingsEnum
 {
     public const QUESTIONNAIRE_STATUS_KEY = "questionnaire_status";
     public const QUESTIONNAIRE_ENABLE = true;
     public const QUESTIONNAIRE_DISABLE = false;
 
+
     /**
-     * @return string[][]
+     * @return array
      */
     public static function getQuestionnaireEnums(): array
     {
@@ -22,5 +25,4 @@ Abstract class GeneralSettingsEnum
                 ]
             ];
     }
-
 }

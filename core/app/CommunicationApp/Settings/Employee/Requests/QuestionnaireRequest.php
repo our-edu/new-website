@@ -13,7 +13,7 @@ class QuestionnaireRequest extends BaseApiRequest
     {
         $enable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['enable'];
         $disable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['disable'];
-        $statusValueMapped = implode(',',[$enable,$disable]);
+        $statusValueMapped = implode(',', [$enable,$disable]);
         return [
             'value' => 'required|bool|in:'.$statusValueMapped
         ];

@@ -31,9 +31,6 @@ class Complain extends BaseModel
      */
     public function statuses(): HasMany
     {
-        return $this->hasMany(ComplainStatus::class,'complain_uuid','uuid');
+        return $this->hasMany(ComplainStatus::class, 'complain_uuid', 'uuid');
     }
-
-
-
 }

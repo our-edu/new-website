@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Settings\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
@@ -9,7 +11,7 @@ class GeneralSettingsRepository extends RepositoryAlias implements GeneralSettin
 {
     public function model(): string
     {
-      return  GeneralSettings::class;
+        return  GeneralSettings::class;
     }
 
     public function find($id, $columns = ['*']): GeneralSettings

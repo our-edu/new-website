@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Settings\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
@@ -24,7 +26,6 @@ class GeneralSettingsController extends BaseApiController
     public function __construct(GeneralSettingsRepositoryInterface $generalSettingsRepository)
     {
         $this->repository = $generalSettingsRepository;
-
     }
 
     /**
@@ -50,10 +51,9 @@ class GeneralSettingsController extends BaseApiController
      * @param $id
      * @param Request $request
      */
-    public function update($id , Request $request)
+    public function update($id, Request $request)
     {
         //TODO Implement the update
-
     }
 
     /**
@@ -63,7 +63,7 @@ class GeneralSettingsController extends BaseApiController
      */
     public function updateQuestionnaireStatus($id, QuestionnaireRequest $request): JsonResponse
     {
-        try{
+        try {
             $questionnaire =  $this->repository->find($id);
             $questionnaire->update([
                 'value' => $request->data['attributes']['value']
@@ -73,7 +73,7 @@ class GeneralSettingsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  was   updated  successfully'),
                 ]
             ]);
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [

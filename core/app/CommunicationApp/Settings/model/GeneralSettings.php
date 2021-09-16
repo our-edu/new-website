@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Settings\model;
 
 use App\BaseApp\BaseModel;
@@ -19,6 +21,4 @@ class GeneralSettings extends BaseModel
         'key',
         'value'
     ];
-
-
 }

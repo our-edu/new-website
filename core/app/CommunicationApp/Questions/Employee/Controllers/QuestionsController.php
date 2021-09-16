@@ -27,7 +27,7 @@ class QuestionsController extends BaseApiController
     /**
      * @param QuestionRepositoryInterface $repository
      */
-    public function __construct(QuestionRepositoryInterface $repository,GeneralSettingsRepositoryInterface $generalSettingsRepository)
+    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository)
     {
         $this->repository = $repository;
         $this->generalSettingsRepository = $generalSettingsRepository;
@@ -39,7 +39,7 @@ class QuestionsController extends BaseApiController
     public function index()
     {
         $questions = $this->repository->paginate();
-        $questionnaireStatus = $this->generalSettingsRepository->where('key',GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
+        $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
         return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(['$questionnaireStatus'=>$questionnaireStatus]), $this->ResourceType);
     }
 

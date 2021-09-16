@@ -16,15 +16,14 @@ class GeneralSettingsSeeder extends Seeder
      */
     public function run()
     {
-        try{
+        try {
             $questionnaire = GeneralSettingsEnum::getQuestionnaireEnums();
             GeneralSettings::create([
                 'key'   => $questionnaire['key'],
                 'value' => $questionnaire['value']['disable']
             ]);
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             return $exception->getMessage();
         }
-
     }
 }
