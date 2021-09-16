@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types = 1);
+
 namespace App\CommunicationApp\Complains\Repository;
 
 use App\BaseApp\Repository\BaseRepositoryInterface;

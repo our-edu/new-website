@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types = 1);
+
 namespace App\CommunicationApp\Complains\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
@@ -23,6 +24,6 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
     }
     public function update(array $attributes, $id): Complain
     {
-        return  parent::update($attributes,$id);
+        return  parent::update($attributes, $id);
     }
 }

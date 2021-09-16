@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 //TODO uncomment this when permission applied
 //declare(strict_types = 1);
 //
