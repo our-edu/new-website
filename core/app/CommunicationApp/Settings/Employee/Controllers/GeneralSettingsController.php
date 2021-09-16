@@ -52,7 +52,7 @@ class GeneralSettingsController extends BaseApiController
      * @param Request $request
      * @return JsonResponse
      */
-    public function toggleQuestionnaireStatus($id, Request $request): JsonResponse
+    public function updateQuestionnaireStatus($id, Request $request): JsonResponse
     {
         try{
             $enable =  GeneralSettingsEnum::getQuestionnaireEnums()['value']['enable'];

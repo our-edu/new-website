@@ -7,6 +7,11 @@ use App\CommunicationApp\Settings\model\GeneralSettings;
 
 class GeneralSettingsRepository extends RepositoryAlias implements GeneralSettingsRepositoryInterface
 {
+    public function model(): string
+    {
+      return  GeneralSettings::class;
+    }
+
     public function find($id, $columns = ['*']): GeneralSettings
     {
         return parent::find($id, $columns);
