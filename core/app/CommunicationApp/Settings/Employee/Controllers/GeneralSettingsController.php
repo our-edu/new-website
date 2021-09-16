@@ -58,7 +58,7 @@ class GeneralSettingsController extends BaseApiController
 
     /**
      * @param $id
-     * @param Request $request
+     * @param QuestionnaireRequest $request
      * @return JsonResponse
      */
     public function updateQuestionnaireStatus($id, QuestionnaireRequest $request): JsonResponse
