@@ -63,6 +63,14 @@ class ListQuestionsTransformer extends TransformerAbstract
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_QUESTION
         ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.generalSettings.updateQuestionnaire', [
+                'generalSetting' => $this->params['$questionnaireStatus']->uuid,
+            ]),
+            'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS
+        ];
 
 
 
