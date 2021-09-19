@@ -33,7 +33,6 @@ class ListComplainsTransformer extends TransformerAbstract
         return [
             'id' => $complain->uuid,
             'title' => $complain->title,
-            'body' => $complain->body,
             'status' => $complain->status,
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name
@@ -46,7 +45,7 @@ class ListComplainsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.parent.complains.show', [
                 'complain' => $complain->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::SHOW_COMPLAIN),
+            'label' => trans('complains.'.APIActionsEnums::SHOW_COMPLAIN),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_COMPLAIN
         ];
