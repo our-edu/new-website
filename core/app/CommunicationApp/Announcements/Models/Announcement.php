@@ -25,7 +25,7 @@ class Announcement extends BaseModel
         'from',
         'to',
         'publisher_uuid',
-        'status'
+        'status',
     ];
 
     /**
