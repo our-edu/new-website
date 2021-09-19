@@ -59,4 +59,7 @@ abstract class APIActionsEnums
     const SHOW_SETTING = 'show_setting';
     const UPDATE_SETTING = 'update_setting';
     const UPDATE_QUESTIONNAIRE_STATUS = 'update_questionnaire_status';
+    const UPDATE_ANNOUNCEMENT = 'update_announcement';
+    const SHOW_ANNOUNCEMENT = 'show_announcement';
+    const DELETE_ANNOUNCEMENT = 'delete_announcement';
 }
