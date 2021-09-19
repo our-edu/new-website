@@ -137,7 +137,7 @@ class  AnnouncementControllerTest extends TestCase
 
             ]
         ];
-        $response = $this->postJson("/api/v1/en/employee/announcements/$announcementUuid", $data);
+        $response = $this->putJson("/api/v1/en/employee/announcements/$announcementUuid", $data);
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [
