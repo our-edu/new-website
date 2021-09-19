@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\Complains\Enums;
 
 abstract class ComplainStatusesEnum
@@ -8,7 +11,7 @@ abstract class ComplainStatusesEnum
     const RESOLVED_EN = 'resolved';
     const RESOLVED_AR = 'تم الحل';
 
-    public  static function getStatuses()
+    public static function getStatuses()
     {
         return [
             self::OPENED_EN =>
@@ -23,5 +26,4 @@ abstract class ComplainStatusesEnum
             ]
         ];
     }
-
 }
