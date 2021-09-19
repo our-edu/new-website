@@ -56,4 +56,7 @@ abstract class APIActionsEnums
     const SHOW_QUESTION = 'show_question';
     const DELETE_QUESTION = 'delete_question';
     const SHOW_COMPLAIN = 'show_complain';
+    const SHOW_SETTING = 'show_setting';
+    const UPDATE_SETTING = 'update_setting';
+    const UPDATE_QUESTIONNAIRE_STATUS = 'update_questionnaire_status';
 }

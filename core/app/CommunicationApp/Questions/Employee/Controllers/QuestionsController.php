@@ -10,6 +10,9 @@ use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
 use App\CommunicationApp\Questions\Employee\Transformers\QuestionTransformer;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
+use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
+use App\CommunicationApp\Settings\model\GeneralSettings;
+use App\CommunicationApp\Settings\Repository\GeneralSettingsRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -17,15 +20,17 @@ use Log;
 class QuestionsController extends BaseApiController
 {
     public QuestionRepositoryInterface  $repository;
+    public GeneralSettingsRepositoryInterface  $generalSettingsRepository;
     protected string $ModelName = 'Question';
     protected string $ResourceType = ResourceTypesEnums::QUESTION;
 
     /**
      * @param QuestionRepositoryInterface $repository
      */
-    public function __construct(QuestionRepositoryInterface $repository)
+    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository)
     {
         $this->repository = $repository;
+        $this->generalSettingsRepository = $generalSettingsRepository;
     }
 
     /**
@@ -34,7 +39,8 @@ class QuestionsController extends BaseApiController
     public function index()
     {
         $questions = $this->repository->paginate();
-        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType);
+        $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
+        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(['$questionnaireStatus'=>$questionnaireStatus]), $this->ResourceType);
     }
 
     /**

@@ -33,8 +33,8 @@ class ComplainsController extends BaseApiController
      */
     public function index()
     {
-        $questions = $this->repository->paginate();
-        return $this->transformDataModInclude($questions, '', new  ListComplainsTransformer(), $this->ResourceType);
+        $complains = $this->repository->paginate();
+        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
     /**
@@ -56,9 +56,9 @@ class ComplainsController extends BaseApiController
 
         try {
             $data = $request->data['attributes'];
-            $createdQuestion  = $this->repository->create($data);
+            $createdComplain  = $this->repository->create($data);
 
-            return $this->transformDataModInclude($createdQuestion, '', new  ComplainTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
                 ]
@@ -83,10 +83,10 @@ class ComplainsController extends BaseApiController
     {
         try {
             $data = $request->data['attributes'];
-            $question =  $this->repository->find($id);
-            $question->update($data);
+            $complain =  $this->repository->find($id);
+            $complain->update($data);
 
-            return $this->transformDataModInclude($question, '', new  ComplainTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
                 ]
