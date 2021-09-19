@@ -57,6 +57,7 @@ class AnnouncementsController extends BaseApiController
         try {
             $data = $request->data['attributes'];
             $data['status'] = 1;
+            $data['publisher_uuid'] = auth('api')->user()->uuid;
             $createdAnnouncement  = $this->repository->create($data);
             $createdAnnouncement->branches()->attach($data['branches']);
             $createdAnnouncement->roles()->attach($data['roles']);
