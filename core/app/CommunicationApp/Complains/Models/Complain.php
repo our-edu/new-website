@@ -44,14 +44,14 @@ class Complain extends BaseModel
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(ParentUser::class, 'parent_uuid','uuid');
+        return $this->belongsTo(ParentUser::class, 'parent_uuid', 'uuid');
     }
 
     /**
      * @return BelongsTo
      */
-    public  function student(): BelongsTo
+    public function student(): BelongsTo
     {
-        return $this->belongsTo(Student::class, 'student_uuid','uuid');
+        return $this->belongsTo(Student::class, 'student_uuid', 'uuid');
     }
 }
