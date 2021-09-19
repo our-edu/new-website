@@ -6,9 +6,11 @@ namespace App\BaseApp\Models;
 
 use App\BaseApp\Traits\CreatedBy;
 use App\BaseApp\Traits\Uuids;
+use App\CommunicationApp\Announcements\Models\Announcement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -65,6 +67,14 @@ class User extends Authenticatable implements JWTSubject
     public function getNameAttribute(): string
     {
         return "{$this->getAttributeValue('first_name')} {$this->getAttributeValue('last_name')}";
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function announcements() : HasMany
+    {
+        return $this->hasMany(Announcement::class, 'publisher_uuid');
     }
 
     /**
