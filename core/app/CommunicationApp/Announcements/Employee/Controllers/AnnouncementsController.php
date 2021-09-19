@@ -34,7 +34,7 @@ class AnnouncementsController extends BaseApiController
     public function index()
     {
         $announcements = $this->repository->paginate();
-        return $this->transformDataModInclude($announcements, '', new  ListQuestionsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($announcements, '', new  AnnouncementTransformer(), $this->ResourceType);
     }
 
     /**
@@ -44,7 +44,7 @@ class AnnouncementsController extends BaseApiController
     public function show($id)
     {
         $announcement = $this->repository->find($id);
-        return $this->transformDataModInclude($announcement, '', new  QuestionTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType);
     }
 
     /**
@@ -89,7 +89,7 @@ class AnnouncementsController extends BaseApiController
             $question =  $this->repository->find($id);
             $question->update($data);
 
-            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($question, '', new  AnnouncementTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
                 ]

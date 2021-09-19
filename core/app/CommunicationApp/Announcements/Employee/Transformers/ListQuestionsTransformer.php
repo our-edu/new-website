@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\CommunicationApp\Questions\Employee\Transformers;
+namespace App\CommunicationApp\Announcements\Employee\Transformers;
 
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
