@@ -643,7 +643,7 @@ if (!function_exists('mapFiltersArrayFromModels')) {
         ];
         $filtersValues = [];
         foreach ($data as $item) {
-            $filtersValues[] = formatFilterValues($item[$transformer->filter_key], $transformer->value($item), $transformer->value_keys());
+            $filtersValues[] = formatFilterValues($item[$transformer->filterKey], $transformer->value($item), $transformer->value_keys());
         }
         $filterObject['values'] = $filtersValues;
         return [$slug => $filterObject];

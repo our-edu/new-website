@@ -17,7 +17,7 @@ class EmployeesUsersFilterTransformer
         ];
     }
 
-    public function value_keys(): array
+    public function valueKeys(): array
     {
         return [
             'name'
