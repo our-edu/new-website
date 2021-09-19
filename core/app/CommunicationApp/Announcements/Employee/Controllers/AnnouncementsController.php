@@ -8,6 +8,7 @@ use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Announcements\Employee\Requests\AnnouncementRequest;
 use App\CommunicationApp\Announcements\Employee\Transformers\AnnouncementTransformer;
+use App\CommunicationApp\Announcements\Employee\Transformers\ListAnnouncementsTransformer;
 use App\CommunicationApp\Announcements\Repository\AnnouncementRepositoryInterface;
 use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use Exception;
@@ -33,8 +34,13 @@ class AnnouncementsController extends BaseApiController
      */
     public function index()
     {
-        $announcements = $this->repository->paginate();
-        return $this->transformDataModInclude($announcements, '', new  AnnouncementTransformer(), $this->ResourceType);
+        $announcements = $this->repository->with([
+            'branches',
+            'roles',
+            'publisher',
+            'translations',
+        ])->paginate();
+        return $this->transformDataModInclude($announcements, '', new  ListAnnouncementsTransformer(), $this->ResourceType);
     }
 
     /**
@@ -57,6 +63,7 @@ class AnnouncementsController extends BaseApiController
         try {
             $data = $request->data['attributes'];
             $data['status'] = 1;
+            $data['publisher_uuid'] = auth('api')->user()->uuid;
             $createdAnnouncement  = $this->repository->create($data);
             $createdAnnouncement->branches()->attach($data['branches']);
             $createdAnnouncement->roles()->attach($data['roles']);
