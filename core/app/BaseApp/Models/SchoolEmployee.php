@@ -7,8 +7,6 @@ namespace App\BaseApp\Models;
 ;
 
 use App\BaseApp\BaseModel;
-use App\BaseApp\Models\User;
-use App\RegistrationApp\Branches\Models\Branch;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -25,5 +23,21 @@ class SchoolEmployee extends BaseModel
     public function user() :BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function branch() :BelongsTo
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function branches() :BelongsToMany
+    {
+        return $this->belongsToMany(Branch::class, 'branches_employees', "employee_id", "branch_id");
     }
 }

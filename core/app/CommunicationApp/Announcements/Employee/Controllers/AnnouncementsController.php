@@ -5,12 +5,16 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Announcements\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\BaseApp\Enums\UserTypeEnum;
+use App\BaseApp\Models\User;
 use App\CommunicationApp\Announcements\Employee\Requests\AnnouncementRequest;
 use App\CommunicationApp\Announcements\Employee\Transformers\AnnouncementTransformer;
+use App\CommunicationApp\Announcements\Employee\Transformers\BranchesFilterTransformer;
+use App\CommunicationApp\Announcements\Employee\Transformers\EmployeesUsersFilterTransformer;
 use App\CommunicationApp\Announcements\Employee\Transformers\ListAnnouncementsTransformer;
 use App\CommunicationApp\Announcements\Repository\AnnouncementRepositoryInterface;
-use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -39,8 +43,51 @@ class AnnouncementsController extends BaseApiController
             'roles',
             'publisher',
             'translations',
-        ])->paginate();
-        return $this->transformDataModInclude($announcements, '', new  ListAnnouncementsTransformer(), $this->ResourceType);
+        ])->filterData()->paginate();
+        return $this->transformDataModInclude($announcements, '', new  ListAnnouncementsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+
+        $actions['create_employee'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.announcements.store'),
+            'label' => trans('app.create-school-employees'),
+            'method' => 'POST',
+            'key' => APIActionsEnums::CREATE_ANNOUNCEMENT
+        ];
+        $actions['filter'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.announcements.index.filters'),
+            'label' => trans('app.filter-announcement'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::FILTER_ANNOUNCEMENTS
+        ];
+        return ['default_actions' => $actions];
+    }
+
+    /***
+     * @return array|array[]|\Illuminate\Http\JsonResponse
+     */
+    public function indexFilters()
+    {
+        return response()->json([
+            'meta' => filtersObject([
+                mapFiltersArrayFromModels(
+                    'branch',
+                    trans('app.label.branches'),
+                    'dropdown',
+                    auth('api')->user()->schoolEmployee->branches()->with(['translations'])->get(),
+                    new BranchesFilterTransformer()
+                ),
+                mapFiltersArrayFromModels(
+                    'publisher',
+                    trans('app.label.publisher'),
+                    'dropdown',
+                    User::where('type', UserTypeEnum::EMPLOYEE)->get(),
+                    new EmployeesUsersFilterTransformer()
+                ),
+            ])
+        ]);
     }
 
     /**

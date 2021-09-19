@@ -101,6 +101,35 @@ class  AnnouncementControllerTest extends TestCase
     /**
      * @test
      */
+    public function announcement_list_filter()
+    {
+        dump('test_announcement_list_filter');
+        $this->apiSignIn($this->authEmployee());
+
+
+        $response = $this->getJson("/api/v1/en/employee/announcements/index/filters");
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'meta' => [
+                'filters' => [
+                    'branch' => [
+                        'label',
+                        'input_type',
+                        'values'
+                    ],
+                    'publisher' => [
+                        'label',
+                        'input_type',
+                        'values'
+                    ],
+                ]
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function announcement_store()
     {
         dump('test_announcement_store');
