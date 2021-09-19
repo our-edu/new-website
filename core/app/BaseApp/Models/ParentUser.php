@@ -1,6 +1,5 @@
 <?php
-
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\BaseApp\Models;
 
@@ -15,7 +14,7 @@ use MStaack\LaravelPostgis\Geometries\Point;
 
 class ParentUser extends BaseModel
 {
-    use Uuids, SoftDeletes ,PostgisTrait;
+    use Uuids, SoftDeletes;
 
     /***
      * @var string[]

@@ -6,6 +6,7 @@ namespace App\CommunicationApp\Complains\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
 use App\CommunicationApp\Complains\Models\Complain;
+use App\CommunicationApp\Questions\Models\QuestionAnswers;
 
 class ComplainRepository extends RepositoryAlias implements ComplainRepositoryInterface
 {
@@ -13,7 +14,23 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
     {
         return Complain::class;
     }
+    public function addQuestionnaireAnswers(Complain $complain,$answers)
+    {
+        try{
+            foreach ($answers as $answer){
+                QuestionAnswers::create([
+                    'value'         => $answer['answer'],
+                    'complain_uuid' => $complain->uuid ,
+                    'parent_uuid'   => auth('api')->user()->parent->uuid,
+                    'question_uuid' => $answer['question_uuid'],
+                ]);
+            }
+        }catch(\Exception $exception){
+            return  $exception->getMessage();
+        }
 
+
+    }
     public function find($id, $columns = ['*']): Complain
     {
         return parent::find($id, $columns);
