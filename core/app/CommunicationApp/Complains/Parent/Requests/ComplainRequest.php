@@ -14,9 +14,9 @@ class ComplainRequest extends BaseApiRequest
     public function rules(): array
     {
         return [
-            'parent_uuid' => 'required|exists:parent_users,uuid',
             'student_uuid' => 'required|exists:students,uuid',
             'body'         => 'required',
+            'title'         => 'required|string|min:10',
         ];
     }
 
@@ -27,6 +27,7 @@ class ComplainRequest extends BaseApiRequest
     {
         return [
             'body' => trans('complains.fields.body'),
+            'title' => trans('complains.fields.title'),
             'parent_uuid' => trans('complains.fields.parent_uuid'),
             'student_uuid' => trans('complains.fields.student_uuid')
         ];

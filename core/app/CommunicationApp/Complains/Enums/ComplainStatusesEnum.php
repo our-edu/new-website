@@ -1,4 +1,5 @@
 <?php
+namespace App\CommunicationApp\Complains\Enums;
 
 abstract class ComplainStatusesEnum
 {

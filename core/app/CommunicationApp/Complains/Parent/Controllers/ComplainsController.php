@@ -6,11 +6,11 @@ namespace App\CommunicationApp\Complains\Parent\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Parent\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
-use ComplainStatusesEnum;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -57,8 +57,8 @@ class ComplainsController extends BaseApiController
         try {
             $data = $request->data['attributes'];
             $data['status'] =  ComplainStatusesEnum::OPENED_EN;
+            $data['parent_uuid'] = auth('api')->user()->parent->uuid;
             $createdComplain  = $this->repository->create($data);
-
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('complains.' . $this->ModelName . '  was  created successfully')

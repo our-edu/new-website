@@ -7,6 +7,7 @@ namespace App\BaseApp\Models;
 use App\BaseApp\Traits\CreatedBy;
 use App\BaseApp\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -55,4 +56,18 @@ class User extends Authenticatable implements JWTSubject
     {
         return "{$this->first_name} {$this->last_name}";
     }
+    /**
+     * get User Parent Data
+     * @return HasOne
+     */
+
+    public function parent(): HasOne
+    {
+        return $this->hasOne(ParentUser::class, 'user_uuid');
+    }
+    public function student() :  HasOne
+    {
+        return $this->hasOne(Student::class, 'user_id');
+    }
+
 }
