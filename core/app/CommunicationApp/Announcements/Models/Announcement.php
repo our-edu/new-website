@@ -24,7 +24,8 @@ class Announcement extends BaseModel
     protected $fillable = [
         'from',
         'to',
-        'status'
+        'publisher_uuid',
+        'status',
     ];
 
     /**
