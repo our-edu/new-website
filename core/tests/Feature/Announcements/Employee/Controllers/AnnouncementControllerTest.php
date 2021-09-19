@@ -255,5 +255,22 @@ class  AnnouncementControllerTest extends TestCase
             ]
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function announcement_delete()
+    {
+        dump('test_announcement_delete');
+        $this->apiSignIn($this->authEmployee());
+
+        $response = $this->deleteJson("/api/v1/en/employee/announcements/".Announcement::factory()->create()->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'meta' => [
+                'message'
+            ]
+        ]);
+    }
 }
 

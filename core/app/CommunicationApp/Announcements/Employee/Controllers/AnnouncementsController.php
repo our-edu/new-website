@@ -114,17 +114,17 @@ class AnnouncementsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('announcements.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }
