@@ -96,7 +96,8 @@ class Branch extends BaseModel
         return $value ? $value->toPair() : "";
     }
 
-    public function roles() : HasMany {
+    public function roles() : HasMany
+    {
         return $this->hasMany(Role::class, 'branch_uuid');
     }
 

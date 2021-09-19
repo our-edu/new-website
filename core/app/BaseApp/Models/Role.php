@@ -51,12 +51,11 @@ class Role extends SpatieRole
     }
     public function setNameAttribute($value)
     {
-        if($this->branch_uuid){
+        if ($this->branch_uuid) {
             $this->attributes['name'] = $value . "_" . $this->branch_uuid;
-        }else{
+        } else {
             $this->attributes['name'] = $value;
         }
-
     }
 
     /**
@@ -66,6 +65,4 @@ class Role extends SpatieRole
     {
         return $this->belongsToMany(Announcement::class, 'announcements_roles', 'role_id', 'announcement_uuid');
     }
-
-
 }

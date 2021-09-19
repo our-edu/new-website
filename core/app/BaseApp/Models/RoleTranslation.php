@@ -6,7 +6,6 @@ namespace App\BaseApp\Models;
 
 use App\BaseApp\BaseModel;
 
-
 class RoleTranslation extends BaseModel
 {
     protected $fillable =[
