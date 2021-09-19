@@ -10,6 +10,7 @@ use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Parent\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
+use ComplainStatusesEnum;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
@@ -53,21 +54,21 @@ class ComplainsController extends BaseApiController
      */
     public function store(ComplainRequest  $request)
     {
-
         try {
             $data = $request->data['attributes'];
+            $data['status'] =  ComplainStatusesEnum::OPENED_EN;
             $createdComplain  = $this->repository->create($data);
 
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 400);
