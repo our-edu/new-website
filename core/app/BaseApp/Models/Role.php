@@ -41,7 +41,7 @@ class Role extends SpatieRole
 
     public function setNameAttribute($value)
     {
-        if ($this->attributes['branch_uuid']) {
+        if (isset($this->attributes['branch_uuid'])) {
             $this->attributes['name'] = $value . "_" . $this->attributes['branch_uuid'];
         } else {
             $this->attributes['name'] = $value;

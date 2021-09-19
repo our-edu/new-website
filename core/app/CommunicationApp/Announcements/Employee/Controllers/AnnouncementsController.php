@@ -62,17 +62,13 @@ class AnnouncementsController extends BaseApiController
             $createdAnnouncement->roles()->attach($data['roles']);
             $createdAnnouncement->loadMissing(['branches', 'roles', 'translations']);
             return $this->transformDataModInclude($createdAnnouncement, '', new  AnnouncementTransformer(), $this->ResourceType, [
-                'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
-                ]
+                'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
-                    'error'=> $exception->getMessage()
-                ]
+                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
+                'error' => $exception->getMessage()
             ], 500);
         }
     }
