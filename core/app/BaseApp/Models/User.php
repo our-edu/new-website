@@ -8,10 +8,10 @@ use App\BaseApp\Traits\CreatedBy;
 use App\BaseApp\Traits\Uuids;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -121,6 +121,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(ParentUser::class, 'user_uuid');
     }
+
     public function student() :  HasOne
     {
         return $this->hasOne(Student::class, 'user_id');
