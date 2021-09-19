@@ -14,7 +14,6 @@ class CreateAnnouncementsBranchesTable extends Migration
     public function up()
     {
         Schema::create('announcements_branches', function (Blueprint $table) {
-            $table->uuid('uuid')->primary();
             $table->foreignUuid('announcement_uuid')->references('uuid')
                 ->on('announcements');
             $table->foreignUuid('branch_uuid')->references('uuid')

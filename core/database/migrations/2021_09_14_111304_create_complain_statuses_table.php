@@ -35,6 +35,6 @@ class CreateComplainStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complain_translations');
+        Schema::dropIfExists('complain_statuses');
     }
 }
