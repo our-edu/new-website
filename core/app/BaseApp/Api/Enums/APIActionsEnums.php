@@ -62,4 +62,6 @@ abstract class APIActionsEnums
     const UPDATE_ANNOUNCEMENT = 'update_announcement';
     const SHOW_ANNOUNCEMENT = 'show_announcement';
     const DELETE_ANNOUNCEMENT = 'delete_announcement';
+    const CREATE_ANNOUNCEMENT = 'create_announcement';
+    const FILTER_ANNOUNCEMENTS = 'filter_announcements';
 }
