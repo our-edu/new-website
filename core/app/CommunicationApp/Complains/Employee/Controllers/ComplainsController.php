@@ -43,8 +43,8 @@ class ComplainsController extends BaseApiController
      */
     public function show($id)
     {
-        $question = $this->repository->find($id);
-        return $this->transformDataModInclude($question, '', new  ComplainTransformer(), $this->ResourceType);
+        $complain = $this->repository->find($id);
+        return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType);
     }
 
     /**
@@ -60,14 +60,14 @@ class ComplainsController extends BaseApiController
 
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 400);
@@ -88,14 +88,14 @@ class ComplainsController extends BaseApiController
 
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  updated successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
             ], 400);
@@ -112,14 +112,14 @@ class ComplainsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('complains.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
             ], 400);

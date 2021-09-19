@@ -6,6 +6,7 @@ namespace App\CommunicationApp\Complains\Parent\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Parent\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ListComplainsTransformer;
@@ -53,21 +54,21 @@ class ComplainsController extends BaseApiController
      */
     public function store(ComplainRequest  $request)
     {
-
         try {
             $data = $request->data['attributes'];
+            $data['status'] =  ComplainStatusesEnum::OPENED_EN;
+            $data['parent_uuid'] = auth('api')->user()->parent->uuid;
             $createdComplain  = $this->repository->create($data);
-
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 400);

@@ -7,9 +7,9 @@ namespace App\BaseApp\Models;
 use App\BaseApp\Traits\CreatedBy;
 use App\BaseApp\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -101,5 +101,19 @@ class User extends Authenticatable implements JWTSubject
     public function userRole() : MorphToMany
     {
         return $this->morphToMany(Role::class, 'model', 'model_has_roles', 'model_uuid');
+    }
+    /**
+     * get User Parent Data
+     * @return HasOne
+     */
+
+    public function parent(): HasOne
+    {
+        return $this->hasOne(ParentUser::class, 'user_uuid');
+    }
+  
+    public function student() :  HasOne
+    {
+        return $this->hasOne(Student::class, 'user_id');
     }
 }
