@@ -82,29 +82,25 @@ class AnnouncementsController extends BaseApiController
 
     /**
      * @param $id
-     * @param QuestionRequest $request
+     * @param AnnouncementRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function update($id, QuestionRequest $request)
+    public function update($id, AnnouncementRequest $request)
     {
         try {
             $data = $request->data['attributes'];
-            $question =  $this->repository->find($id);
-            $question->update($data);
+            $announcement =  $this->repository->find($id);
+            $announcement->update($data);
 
-            return $this->transformDataModInclude($question, '', new  AnnouncementTransformer(), $this->ResourceType, [
-                'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
-                ]
+            return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType, [
+                'message' => trans('announcements.' . $this->ModelName . '  was  updated successfully')
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
-                    'error'=> $exception->getMessage()
-                ]
-            ], 400);
+                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  updated '),
+                'error'=> $exception->getMessage()
+            ], 500);
         }
     }
 
