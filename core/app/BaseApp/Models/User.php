@@ -53,7 +53,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function getJWTCustomClaims(): array
+    public function getJWTCustomClaims()
     {
         return [];
     }
@@ -101,5 +101,18 @@ class User extends Authenticatable implements JWTSubject
     public function userRole() : MorphToMany
     {
         return $this->morphToMany(Role::class, 'model', 'model_has_roles', 'model_uuid');
+    }
+    /**
+     * get User Parent Data
+     * @return HasOne
+     */
+
+    public function parent(): HasOne
+    {
+        return $this->hasOne(ParentUser::class, 'user_uuid');
+    }
+    public function student() :  HasOne
+    {
+        return $this->hasOne(Student::class, 'user_id');
     }
 }

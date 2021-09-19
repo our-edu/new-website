@@ -15,7 +15,7 @@ use MStaack\LaravelPostgis\Geometries\Point;
 
 class Branch extends BaseModel
 {
-    use Translatable, SoftDeletes, PostgisTrait;
+    use Translatable, SoftDeletes,PostgisTrait;
 
 
     /**
