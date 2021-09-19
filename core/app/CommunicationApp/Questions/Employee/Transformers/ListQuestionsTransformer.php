@@ -37,6 +37,7 @@ class ListQuestionsTransformer extends TransformerAbstract
         return [
             'id' => $question->uuid,
             'body' => $question->body,
+            'active' => $question->active
         ];
     }
 
@@ -78,6 +79,6 @@ class ListQuestionsTransformer extends TransformerAbstract
 
     public function includeQuestionnaireSetting(): Item
     {
-        return $this->item($this->params['$questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
+        return $this->item($this->params['questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
     }
 }
