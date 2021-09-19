@@ -8,22 +8,27 @@ use App\BaseApp\Api\Requests\BaseApiRequest;
 
 class ComplainRequest extends BaseApiRequest
 {
-    public function rules()
+    /**
+     * @return string[]
+     */
+    public function rules(): array
     {
         return [
-            'ar.body' => 'required|min:10',
-            'en.body' => 'required|min:10',
-            'active' => 'bool'
-
+            'parent_uuid' => 'required|exists:parent_users,uuid',
+            'student_uuid' => 'required|exists:students,uuid',
+            'body'         => 'required',
         ];
     }
 
-    public function attributes()
+    /**
+     * @return array
+     */
+    public function attributes(): array
     {
         return [
-            'ar.body' => trans('questions.fields.body_ar'),
-            'en.body' => trans('questions.fields.body_en'),
-            'active' => trans('questions.fields.active')
+            'body' => trans('complains.fields.body'),
+            'parent_uuid' => trans('complains.fields.parent_uuid'),
+            'student_uuid' => trans('complains.fields.student_uuid')
         ];
     }
 }
