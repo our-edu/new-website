@@ -40,7 +40,7 @@ class AnnouncementTransformer extends TransformerAbstract
             'from' => $announcement->from,
             'to' => $announcement->to,
             'branches' => $announcement->branches->pluck('uuid'),
-            'roles' => $announcement->roles->pluck('uuid')
+            'roles' => $announcement->roles->pluck('id')
         ];
     }
 

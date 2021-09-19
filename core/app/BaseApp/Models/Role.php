@@ -4,19 +4,16 @@ declare(strict_types = 1);
 
 namespace App\BaseApp\Models;
 
-use App\BaseApp\Traits\Uuids;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Models\Role as SpatieRole;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 
 class Role extends SpatieRole
 {
 
-    use HasSlug ,Translatable;
+    use Translatable;
     protected $primaryKey = 'id';
     public $keyType = 'string';
     public $incrementing = false;
@@ -42,17 +39,10 @@ class Role extends SpatieRole
         });
     }
 
-    public function getSlugOptions() : SlugOptions
-    {
-        return SlugOptions::create()
-            ->generateSlugsFrom(['name', 'branch_uuid'])
-            ->saveSlugsTo('slug')
-            ->usingSeparator('_');
-    }
     public function setNameAttribute($value)
     {
-        if ($this->branch_uuid) {
-            $this->attributes['name'] = $value . "_" . $this->branch_uuid;
+        if (isset($this->attributes['branch_uuid'])) {
+            $this->attributes['name'] = $value . "_" . $this->attributes['branch_uuid'];
         } else {
             $this->attributes['name'] = $value;
         }

@@ -34,7 +34,7 @@ class AnnouncementsController extends BaseApiController
     public function index()
     {
         $announcements = $this->repository->paginate();
-        return $this->transformDataModInclude($announcements, '', new  ListQuestionsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($announcements, '', new  AnnouncementTransformer(), $this->ResourceType);
     }
 
     /**
@@ -44,7 +44,7 @@ class AnnouncementsController extends BaseApiController
     public function show($id)
     {
         $announcement = $this->repository->find($id);
-        return $this->transformDataModInclude($announcement, '', new  QuestionTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType);
     }
 
     /**
@@ -62,17 +62,13 @@ class AnnouncementsController extends BaseApiController
             $createdAnnouncement->roles()->attach($data['roles']);
             $createdAnnouncement->loadMissing(['branches', 'roles', 'translations']);
             return $this->transformDataModInclude($createdAnnouncement, '', new  AnnouncementTransformer(), $this->ResourceType, [
-                'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
-                ]
+                'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
-                    'error'=> $exception->getMessage()
-                ]
+                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
+                'error' => $exception->getMessage()
             ], 500);
         }
     }
@@ -89,7 +85,7 @@ class AnnouncementsController extends BaseApiController
             $question =  $this->repository->find($id);
             $question->update($data);
 
-            return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($question, '', new  AnnouncementTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
                 ]

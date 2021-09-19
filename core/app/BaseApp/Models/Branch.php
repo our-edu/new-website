@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
+use MStaack\LaravelPostgis\Geometries\Point;
 
 class Branch extends BaseModel
 {
@@ -79,9 +80,9 @@ class Branch extends BaseModel
      * @return BelongsToMany
      */
 
-    public function managers()
+    public function managers() : BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'branches_managers', 'branch_uuid', 'manager_uuid')->where("type", UserTypesEnum::MANAGER);
+        return $this->belongsToMany(User::class, 'branches_managers', 'branch_uuid', 'manager_uuid');
     }
 
 
