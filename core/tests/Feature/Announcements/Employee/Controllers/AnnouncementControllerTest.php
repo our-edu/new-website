@@ -5,6 +5,7 @@ namespace Tests\Feature\Announcements\Employee\Controllers;
 use App\BaseApp\Enums\UserTypeEnum;
 use App\BaseApp\Models\Branch;
 use App\BaseApp\Models\Role;
+use App\CommunicationApp\Announcements\Models\Announcement;
 use Carbon\Carbon;
 use Tests\TestCase;
 
@@ -83,6 +84,23 @@ class  AnnouncementControllerTest extends TestCase
                     ]
                 ]
             ],
+            'meta' => [
+                'message'
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function announcement_delete()
+    {
+        dump('test_announcement_delete');
+        $this->apiSignIn($this->authEmployee());
+
+        $response = $this->deleteJson("/api/v1/en/employee/announcements/".Announcement::factory()->create()->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
             'meta' => [
                 'message'
             ]
