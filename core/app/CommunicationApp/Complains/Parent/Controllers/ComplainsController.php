@@ -64,6 +64,10 @@ class ComplainsController extends BaseApiController
             $questionnaireStatus = GeneralSettings::where('key',GeneralSettingsEnum::QUESTIONNAIRE_STATUS_KEY)->first()->value;
             DB::beginTransaction();
             $createdComplain  = $this->repository->create($data);
+            $createdComplain->statuses()->create([
+                'name' => $data['status'],
+                'user_uuid'=> auth('api')->user()->uuid,
+            ]);
             if(isset($data['questions_answers']) && $questionnaireStatus != GeneralSettingsEnum::QUESTIONNAIRE_DISABLE){
                 $answers = $data['questions_answers'];
                 $this->repository->addQuestionnaireAnswers($createdComplain,$answers);
