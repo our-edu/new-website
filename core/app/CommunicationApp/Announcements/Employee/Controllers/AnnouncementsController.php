@@ -62,6 +62,12 @@ class AnnouncementsController extends BaseApiController
             'method' => 'GET',
             'key' => APIActionsEnums::FILTER_ANNOUNCEMENTS
         ];
+        $actions['export'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.announcements.index.export'),
+            'label' => trans('app.export-announcement'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_ANNOUNCEMENTS
+        ];
         return ['default_actions' => $actions];
     }
 
