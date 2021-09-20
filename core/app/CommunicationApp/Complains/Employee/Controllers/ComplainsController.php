@@ -10,6 +10,7 @@ use App\CommunicationApp\Complains\Employee\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -58,10 +59,15 @@ class ComplainsController extends BaseApiController
         try{
             $data = $request->data['attributes'];
             $complain = $this->repository->find($id);
+            $employee = auth('api')->user()->uuid;
             $complain->update($data);
+            $complain->statuses()->create([
+                'name' => ComplainStatusesEnum::RESOLVED_EN,
+                'user_uuid' => $employee
+            ]);
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  resolved successfully')
                 ]
             ]);
         }catch (Exception $exception) {
