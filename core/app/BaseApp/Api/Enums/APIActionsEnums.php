@@ -65,5 +65,5 @@ abstract class APIActionsEnums
     const CREATE_ANNOUNCEMENT = 'create_announcement';
     const FILTER_ANNOUNCEMENTS = 'filter_announcements';
     const CREATE_COMPLAIN = 'create_complain';
-
+    const RESOLVE_COMPLAIN = 'resolve_complain';
 }
