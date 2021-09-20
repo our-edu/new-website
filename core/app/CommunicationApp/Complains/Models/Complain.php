@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Complains\Models;
 use App\BaseApp\BaseModel;
 use App\BaseApp\Models\ParentUser;
 use App\BaseApp\Models\Student;
+use App\CommunicationApp\Questions\Models\QuestionAnswers;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -53,5 +54,13 @@ class Complain extends BaseModel
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class, 'student_uuid', 'uuid');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function questionsAnswers(): HasMany
+    {
+        return $this->hasMany(QuestionAnswers::class,'complain_uuid');
     }
 }
