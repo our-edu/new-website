@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Questions\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
@@ -40,7 +41,7 @@ class QuestionsController extends BaseApiController
     {
         $questions = $this->repository->paginate();
         $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
-        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(['questionnaireStatus'=>$questionnaireStatus]), $this->ResourceType);
+        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType,$this->defaultIncludes($questionnaireStatus));
     }
 
     /**
@@ -130,5 +131,18 @@ class QuestionsController extends BaseApiController
                 ]
             ], 500);
         }
+    }
+    private function defaultIncludes($model): array
+    {
+        $actions[APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS] = [
+            'endpoint_url' => buildScopeRoute('api.employee.generalSettings.updateQuestionnaire', [
+                'generalSetting' => $model->uuid,
+            ]),
+            'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS
+        ];
+        return ['default_actions' => $actions];
+
     }
 }
