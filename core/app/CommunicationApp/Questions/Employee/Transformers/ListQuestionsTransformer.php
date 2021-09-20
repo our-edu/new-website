@@ -17,7 +17,6 @@ class ListQuestionsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
-        'questionnaireSetting'
     ];
     protected $availableIncludes = [
     ];
@@ -77,8 +76,5 @@ class ListQuestionsTransformer extends TransformerAbstract
         }
     }
 
-    public function includeQuestionnaireSetting(): Item
-    {
-        return $this->item($this->params['questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
-    }
+
 }
