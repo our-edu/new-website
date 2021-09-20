@@ -34,7 +34,7 @@ class QuestionAnswers extends BaseModel
      */
     public function question(): BelongsTo
     {
-        return $this->belongsTo(Question::class,'question_uuid');
+        return $this->belongsTo(Question::class, 'question_uuid');
     }
 
     /**
@@ -42,7 +42,7 @@ class QuestionAnswers extends BaseModel
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(ParentUser::class,'parent_uuid');
+        return $this->belongsTo(ParentUser::class, 'parent_uuid');
     }
 
     /**
@@ -50,6 +50,6 @@ class QuestionAnswers extends BaseModel
      */
     public function complain(): BelongsTo
     {
-        return $this->belongsTo(Complain::class,'complain_uuid');
+        return $this->belongsTo(Complain::class, 'complain_uuid');
     }
 }

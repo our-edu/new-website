@@ -55,7 +55,7 @@ class ComplainsController extends BaseApiController
      */
     public function resolve($id, ResolveComplainRequest $request)
     {
-        try{
+        try {
             $data = $request->data['attributes'];
             $complain = $this->repository->find($id);
             $employee = auth('api')->user()->uuid;
@@ -69,7 +69,7 @@ class ComplainsController extends BaseApiController
                     'message' => trans('complains.' . $this->ModelName . '  was  resolved successfully')
                 ]
             ]);
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
             return response()->json([
                 'meta' => [
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  resolved '),
@@ -77,7 +77,5 @@ class ComplainsController extends BaseApiController
                 ]
             ], 500);
         }
-
     }
-
 }

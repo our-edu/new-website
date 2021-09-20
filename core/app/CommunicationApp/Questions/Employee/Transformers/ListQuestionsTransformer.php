@@ -75,6 +75,4 @@ class ListQuestionsTransformer extends TransformerAbstract
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
     }
-
-
 }

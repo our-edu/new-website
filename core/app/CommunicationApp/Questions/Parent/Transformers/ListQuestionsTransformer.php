@@ -35,7 +35,4 @@ class ListQuestionsTransformer extends TransformerAbstract
             'active' => $question->active
         ];
     }
-
-
-
 }

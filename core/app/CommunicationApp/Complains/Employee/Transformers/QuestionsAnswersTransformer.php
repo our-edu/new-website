@@ -37,5 +37,4 @@ class QuestionsAnswersTransformer extends TransformerAbstract
             'complain' => $questionAnswer->complain->title,
         ];
     }
-
-   }
+}

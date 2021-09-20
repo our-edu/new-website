@@ -17,9 +17,9 @@ class ComplainRequest extends BaseApiRequest
     {
 
         $questionnaireStatus = GeneralSettings::where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
-        if($questionnaireStatus->value == GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
+        if ($questionnaireStatus->value == GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
             $questionAnswerValidation = 'array';
-        }else{
+        } else {
             $questionAnswerValidation  = 'required|array';
         }
         return [

@@ -45,8 +45,7 @@ class ComplainTransformer extends TransformerAbstract
     public function includeActions(Complain $complain)
     {
         $actions = [];
-        if($complain->status != ComplainStatusesEnum::RESOLVED_EN){
-
+        if ($complain->status != ComplainStatusesEnum::RESOLVED_EN) {
             $actions[] = [
                 'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
                     'complain' => $complain->uuid,
@@ -66,7 +65,7 @@ class ComplainTransformer extends TransformerAbstract
     {
         $questionsAnswers = $complain->questionsAnswers;
         if (count($questionsAnswers) > 0) {
-            return $this->collection($questionsAnswers, new QuestionsAnswersTransformer() , ResourceTypesEnums::QUESTION_ANSWERS);
+            return $this->collection($questionsAnswers, new QuestionsAnswersTransformer(), ResourceTypesEnums::QUESTION_ANSWERS);
         }
     }
 }

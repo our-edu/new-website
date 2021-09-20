@@ -25,7 +25,7 @@ class QuestionsController extends BaseApiController
     /**
      * @param QuestionRepositoryInterface $repository
      */
-    public function __construct(QuestionRepositoryInterface $repository,GeneralSettingsRepositoryInterface $generalSettingsRepository)
+    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository)
     {
         $this->repository = $repository;
         $this->generalSettingsRepository = $generalSettingsRepository;
@@ -37,11 +37,11 @@ class QuestionsController extends BaseApiController
     public function index()
     {
         $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
-        if($questionnaireStatus->value == GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
-            return $this->transformDataModInclude([], '', new  ListQuestionsTransformer(), $this->ResourceType,$this->defaultIncludes());
+        if ($questionnaireStatus->value == GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
+            return $this->transformDataModInclude([], '', new  ListQuestionsTransformer(), $this->ResourceType, $this->defaultIncludes());
         }
         $questions = $this->repository->paginate();
-        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType,$this->defaultIncludes());
+        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType, $this->defaultIncludes());
     }
 
     /**
@@ -57,8 +57,5 @@ class QuestionsController extends BaseApiController
             'key' => APIActionsEnums::CREATE_COMPLAIN
         ];
         return ['default_actions' => $actions];
-
     }
-
-
 }

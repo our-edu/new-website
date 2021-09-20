@@ -38,7 +38,7 @@ class ComplainsController extends BaseApiController
     public function index()
     {
         $authenticatedParent = auth('api')->user()->parent->uuid;
-        $complains = $this->repository->where('parent_uuid',$authenticatedParent)->paginate();
+        $complains = $this->repository->where('parent_uuid', $authenticatedParent)->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
@@ -62,16 +62,16 @@ class ComplainsController extends BaseApiController
             $data = $request->data['attributes'];
             $data['status'] =  ComplainStatusesEnum::OPENED_EN;
             $data['parent_uuid'] = auth('api')->user()->parent->uuid;
-            $questionnaireStatus = GeneralSettings::where('key',GeneralSettingsEnum::QUESTIONNAIRE_STATUS_KEY)->first()->value;
+            $questionnaireStatus = GeneralSettings::where('key', GeneralSettingsEnum::QUESTIONNAIRE_STATUS_KEY)->first()->value;
             DB::beginTransaction();
             $createdComplain  = $this->repository->create($data);
             $createdComplain->statuses()->create([
                 'name' => $data['status'],
                 'user_uuid'=> auth('api')->user()->uuid,
             ]);
-            if(isset($data['questions_answers']) && $questionnaireStatus != GeneralSettingsEnum::QUESTIONNAIRE_DISABLE){
+            if (isset($data['questions_answers']) && $questionnaireStatus != GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
                 $answers = $data['questions_answers'];
-                $this->repository->addQuestionnaireAnswers($createdComplain,$answers);
+                $this->repository->addQuestionnaireAnswers($createdComplain, $answers);
             }
             DB::commit();
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [

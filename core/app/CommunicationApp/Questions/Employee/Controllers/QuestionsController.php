@@ -41,7 +41,7 @@ class QuestionsController extends BaseApiController
     {
         $questions = $this->repository->paginate();
         $questionnaireStatus = $this->generalSettingsRepository->where('key', GeneralSettingsEnum::getQuestionnaireEnums()['key'])->first();
-        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType,$this->defaultIncludes($questionnaireStatus));
+        return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType, $this->defaultIncludes($questionnaireStatus));
     }
 
     /**
@@ -143,6 +143,5 @@ class QuestionsController extends BaseApiController
             'key' => APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS
         ];
         return ['default_actions' => $actions];
-
     }
 }

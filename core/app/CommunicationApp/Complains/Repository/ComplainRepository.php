@@ -14,10 +14,10 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
     {
         return Complain::class;
     }
-    public function addQuestionnaireAnswers(Complain $complain,$answers)
+    public function addQuestionnaireAnswers(Complain $complain, $answers)
     {
-        try{
-            foreach ($answers as $answer){
+        try {
+            foreach ($answers as $answer) {
                 QuestionAnswers::create([
                     'value'         => $answer['answer'],
                     'complain_uuid' => $complain->uuid ,
@@ -25,11 +25,9 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
                     'question_uuid' => $answer['question_uuid'],
                 ]);
             }
-        }catch(\Exception $exception){
+        } catch (\Exception $exception) {
             return  $exception->getMessage();
         }
-
-
     }
     public function find($id, $columns = ['*']): Complain
     {
