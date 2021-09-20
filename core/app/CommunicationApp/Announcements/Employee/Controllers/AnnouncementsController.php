@@ -14,6 +14,7 @@ use App\CommunicationApp\Announcements\Employee\Transformers\AnnouncementTransfo
 use App\CommunicationApp\Announcements\Employee\Transformers\BranchesFilterTransformer;
 use App\CommunicationApp\Announcements\Employee\Transformers\EmployeesUsersFilterTransformer;
 use App\CommunicationApp\Announcements\Employee\Transformers\ListAnnouncementsTransformer;
+use App\CommunicationApp\Announcements\Employee\Transformers\ViewAnnouncementsTransformer;
 use App\CommunicationApp\Announcements\Repository\AnnouncementRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -113,10 +114,14 @@ class AnnouncementsController extends BaseApiController
      * @param $id
      * @return array|array[]|JsonResponse
      */
-    public function show($id)
+    public function show()
     {
-        $announcement = $this->repository->find($id);
-        return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType);
+        $role = auth('api')->user()->userRole()->where('branch_uuid', auth('api')->user()->schoolEmployee->branch_id)->first();
+        $announcements = [];
+        if ($role) {
+            $announcements = $role->announcements;
+        }
+        return $this->transformDataModInclude($announcements, '', new  ViewAnnouncementsTransformer(), $this->ResourceType);
     }
 
     /**

@@ -130,6 +130,45 @@ class  AnnouncementControllerTest extends TestCase
     /**
      * @test
      */
+    public function announcement_show_list()
+    {
+        dump('test_announcement_show_list');
+        $this->apiSignIn($this->authEmployee());
+
+        $branchUuid = Branch::all()->count() > 0 ? (Branch::all()->first()->uuid) : Branch::factory()->create()->uuid;
+        $roleName = \Faker\Factory::create()->name().'_'.$branchUuid;
+        $roleId = Role::where('branch_uuid', $branchUuid)->count() > 0 ? (Role::where('branch_uuid', $branchUuid)->first()->id) : Role::create([
+            'name' => $roleName,
+            'display_name:ar' => \Faker\Factory::create()->name(),
+            'display_name:en' => \Faker\Factory::create()->name(),
+            'user_type'=> UserTypeEnum::EMPLOYEE,
+            'slug'=> $roleName,
+            'guard_name' => 'api',
+            'branch_uuid' => $branchUuid,
+        ])->id;
+        $announcement = Announcement::factory()->create();
+        $announcement->branches()->attach([$branchUuid]);
+        $announcement->roles()->attach([$roleId]);
+
+        $response = $this->getJson("/api/v1/en/employee/announcements/show");
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                [
+                    'type',
+                    'id',
+                    'attributes' => [
+                        'title',
+                        'body'
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function announcement_store()
     {
         dump('test_announcement_store');
