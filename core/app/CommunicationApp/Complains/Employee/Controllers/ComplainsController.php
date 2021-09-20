@@ -70,7 +70,7 @@ class ComplainsController extends BaseApiController
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 
@@ -98,7 +98,7 @@ class ComplainsController extends BaseApiController
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 
@@ -122,7 +122,7 @@ class ComplainsController extends BaseApiController
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }
