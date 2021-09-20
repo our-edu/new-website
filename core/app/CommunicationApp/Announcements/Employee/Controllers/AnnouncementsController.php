@@ -91,6 +91,19 @@ class AnnouncementsController extends BaseApiController
     }
 
     /**
+     * @return array|array[]|JsonResponse
+     */
+    public function export()
+    {
+        return $this->repository->with([
+            'branches',
+            'roles',
+            'publisher',
+            'translations',
+        ])->export();
+    }
+
+    /**
      * @param $id
      * @return array|array[]|JsonResponse
      */
