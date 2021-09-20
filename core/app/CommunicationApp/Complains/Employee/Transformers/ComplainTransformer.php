@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Complains\Employee\Transformers;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
 use League\Fractal\TransformerAbstract;
 
@@ -42,15 +43,18 @@ class ComplainTransformer extends TransformerAbstract
 
     public function includeActions(Complain $complain)
     {
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
-                'complain' => $complain->uuid,
-            ]),
-            'label' => trans('questions.' . APIActionsEnums::RESOLVE_COMPLAIN),
-            'method' => 'PUT',
-            'key' => APIActionsEnums::RESOLVE_COMPLAIN
-        ];
+        $actions = [];
+        if($complain->status != ComplainStatusesEnum::RESOLVED_EN){
 
+            $actions[] = [
+                'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
+                    'complain' => $complain->uuid,
+                ]),
+                'label' => trans('questions.' . APIActionsEnums::RESOLVE_COMPLAIN),
+                'method' => 'PUT',
+                'key' => APIActionsEnums::RESOLVE_COMPLAIN
+            ];
+        }
 
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
