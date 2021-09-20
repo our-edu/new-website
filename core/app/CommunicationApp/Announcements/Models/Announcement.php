@@ -9,6 +9,7 @@ use App\BaseApp\Enums\AnnouncementStatuses;
 use App\BaseApp\Models\Branch;
 use App\BaseApp\Models\Role;
 use App\BaseApp\Models\User;
+use App\BaseApp\Traits\ExportTrait;
 use Astrotomic\Translatable\Translatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Announcement extends BaseModel
 {
-    use SoftDeletes , Translatable;
+    use SoftDeletes , Translatable, ExportTrait;
 
 
     /**
@@ -69,5 +70,37 @@ class Announcement extends BaseModel
             ($this->attributes['from'] <= Carbon::now() && $this->attributes['to'] >= Carbon::now() ?
                 trans('announcements.'.AnnouncementStatuses::ACTIVE) :
                 trans('announcements.'.AnnouncementStatuses::EXPIRED));
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    protected function exportedData($data)
+    {
+        $branchesName = '';
+        foreach ($data->branches as $index => $branch) {
+            if ($index != 0) {
+                $branchesName .= ', ';
+            }
+            $branchesName .= $branch->name;
+        }
+        $rolesName = '';
+        foreach ($data->roles as $index => $role) {
+            if ($index != 0) {
+                $rolesName .= ', ';
+            }
+            $rolesName .= $role->display_name;
+        }
+        return [
+            'Announcement Title' => $data->title,
+            'Publish At' => $data->from,
+            'End Publish At' => $data->to,
+            'school Branch' => $branchesName,
+            'Added at' => $data->created_at,
+            'Published by' => $data->publisher->name,
+            'Displayed to Types' => $rolesName,
+            'Status' => $data->getPublishStatus(),
+        ];
     }
 }
