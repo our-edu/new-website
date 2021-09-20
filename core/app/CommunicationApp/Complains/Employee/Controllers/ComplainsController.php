@@ -6,7 +6,6 @@ namespace App\CommunicationApp\Complains\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
-use App\CommunicationApp\Complains\Employee\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
@@ -35,7 +34,7 @@ class ComplainsController extends BaseApiController
      */
     public function index()
     {
-        $complains = $this->repository->paginate();
+        $complains = $this->repository->with('questionsAnswers')->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
