@@ -13,7 +13,7 @@ use League\Fractal\TransformerAbstract;
 class ComplainTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-        'actions',
+       // 'actions',
     ];
     protected $availableIncludes = [
     ];
@@ -32,6 +32,11 @@ class ComplainTransformer extends TransformerAbstract
     {
         return [
             'id' => $complain->uuid,
+            'title' => $complain->title,
+            'body' => $complain->body,
+            'status' => $complain->status,
+            'parent' => $complain->parent->user->name,
+            'student' => $complain->student->user->name
         ];
     }
 
