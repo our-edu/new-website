@@ -80,7 +80,7 @@ class GeneralSettingsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }

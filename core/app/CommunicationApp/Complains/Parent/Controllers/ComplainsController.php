@@ -86,7 +86,7 @@ class ComplainsController extends BaseApiController
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }
