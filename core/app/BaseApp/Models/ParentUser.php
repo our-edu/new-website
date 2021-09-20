@@ -12,9 +12,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use MStaack\LaravelPostgis\Eloquent\PostgisTrait;
 use MStaack\LaravelPostgis\Geometries\Point;
 
+
 class ParentUser extends BaseModel
 {
-    use Uuids, SoftDeletes;
+    use Uuids, SoftDeletes, PostgisTrait;
 
     /***
      * @var string[]
