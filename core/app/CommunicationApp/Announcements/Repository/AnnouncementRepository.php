@@ -6,10 +6,6 @@ namespace App\CommunicationApp\Announcements\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
 use App\CommunicationApp\Announcements\Models\Announcement;
-use App\CommunicationApp\Questions\Models\Question;
-use Carbon\Carbon;
-use Faker\Factory;
-use Illuminate\Database\Eloquent\Builder;
 
 class AnnouncementRepository extends RepositoryAlias implements AnnouncementRepositoryInterface
 {
