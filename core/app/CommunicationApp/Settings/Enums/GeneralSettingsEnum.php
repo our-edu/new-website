@@ -14,7 +14,7 @@ abstract class GeneralSettingsEnum
     /**
      * @return array
      */
-    public static function getQuyestionnaireEnums(): array
+    public static function getQuestionnaireEnums(): array
     {
         return [
                 'key' => self::QUESTIONNAIRE_STATUS_KEY,
