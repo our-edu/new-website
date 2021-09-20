@@ -15,6 +15,7 @@ class ComplainTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
+        'questionsAnswers'
     ];
     protected $availableIncludes = [
     ];
@@ -58,6 +59,14 @@ class ComplainTransformer extends TransformerAbstract
 
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
+        }
+    }
+
+    public function includeQuestionsAnswers(Complain $complain)
+    {
+        $questionsAnswers = $complain->questionsAnswers;
+        if (count($questionsAnswers) > 0) {
+            return $this->collection($questionsAnswers, new QuestionsAnswersTransformer() , ResourceTypesEnums::QUESTION_ANSWERS);
         }
     }
 }
