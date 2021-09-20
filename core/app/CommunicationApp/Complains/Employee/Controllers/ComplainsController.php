@@ -6,10 +6,8 @@ namespace App\CommunicationApp\Complains\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
-use App\CommunicationApp\Complains\Employee\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
-use App\CommunicationApp\Complains\Employee\Transformers\QuestionsAnswersTransformer;
 use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
