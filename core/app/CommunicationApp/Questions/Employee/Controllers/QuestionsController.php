@@ -76,7 +76,7 @@ class QuestionsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 
@@ -104,7 +104,7 @@ class QuestionsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 
@@ -128,7 +128,7 @@ class QuestionsController extends BaseApiController
                     'message' => trans('questions.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }
