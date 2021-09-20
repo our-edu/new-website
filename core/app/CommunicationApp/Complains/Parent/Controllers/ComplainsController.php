@@ -37,7 +37,8 @@ class ComplainsController extends BaseApiController
      */
     public function index()
     {
-        $complains = $this->repository->paginate();
+        $authenticatedParent = auth('api')->user()->parent->uuid;
+        $complains = $this->repository->where('parent_uuid',$authenticatedParent)->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
