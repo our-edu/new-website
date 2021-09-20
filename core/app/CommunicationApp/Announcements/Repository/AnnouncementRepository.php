@@ -7,6 +7,8 @@ namespace App\CommunicationApp\Announcements\Repository;
 use App\BaseApp\Repository\Repository as RepositoryAlias;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use App\CommunicationApp\Questions\Models\Question;
+use Carbon\Carbon;
+use Faker\Factory;
 use Illuminate\Database\Eloquent\Builder;
 
 class AnnouncementRepository extends RepositoryAlias implements AnnouncementRepositoryInterface
@@ -20,6 +22,7 @@ class AnnouncementRepository extends RepositoryAlias implements AnnouncementRepo
     {
         return parent::find($id, $columns);
     }
+
     public function filterData()
     {
         $query = $this;
@@ -32,5 +35,14 @@ class AnnouncementRepository extends RepositoryAlias implements AnnouncementRepo
             $query = $query->where('publisher_uuid', request()->get('publisher'));
         }
         return $query;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function export()
+    {
+        $data = $this->filterData()->get();
+        return app($this->model())->export($data, 'announcements');
     }
 }
