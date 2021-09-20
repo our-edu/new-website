@@ -13,7 +13,7 @@ use League\Fractal\TransformerAbstract;
 class ComplainTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-       // 'actions',
+        'actions',
     ];
     protected $availableIncludes = [
     ];
@@ -43,12 +43,12 @@ class ComplainTransformer extends TransformerAbstract
     public function includeActions(Complain $complain)
     {
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.complains.show', [
+            'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
                 'complain' => $complain->uuid,
             ]),
-            'label' => trans('questions.' . APIActionsEnums::SHOW_COMPLAIN),
-            'method' => 'GET',
-            'key' => APIActionsEnums::SHOW_COMPLAIN
+            'label' => trans('questions.' . APIActionsEnums::RESOLVE_COMPLAIN),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::RESOLVE_COMPLAIN
         ];
 
 
