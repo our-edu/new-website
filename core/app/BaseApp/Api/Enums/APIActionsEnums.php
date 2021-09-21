@@ -65,4 +65,10 @@ abstract class APIActionsEnums
     const CREATE_ANNOUNCEMENT = 'create_announcement';
     const FILTER_ANNOUNCEMENTS = 'filter_announcements';
     const EXPORT_ANNOUNCEMENTS = 'export_announcements';
+    const UPDATE_EVENT = 'update_event';
+    const SHOW_EVENT = 'show_event';
+    const DELETE_EVENT = 'delete_event';
+    const CREATE_EVENT = 'create_event';
+    const FILTER_EVENT = 'filter_event';
+    const EXPORT_EVENT = 'export_event';
 }
