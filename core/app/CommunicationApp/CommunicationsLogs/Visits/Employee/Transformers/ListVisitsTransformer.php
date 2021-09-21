@@ -49,6 +49,22 @@ class ListVisitsTransformer extends TransformerAbstract
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_VISIT
         ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.update', [
+                'visit' => $visit->uuid,
+            ]),
+            'label' => trans('visits.'.APIActionsEnums::UPDATE_VISIT),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_VISIT
+        ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.destroy', [
+                'visit' => $visit->uuid,
+            ]),
+            'label' => trans('visits.'.APIActionsEnums::DELETE_VISIT),
+            'method' => 'DELETE',
+            'key' => APIActionsEnums::DELETE_VISIT
+        ];
 
 
         if (count($actions)) {
