@@ -42,12 +42,20 @@ class VisitTransformer extends TransformerAbstract
     public function includeActions(CommunicationLog $visit)
     {
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.visits.show', [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.update', [
                 'visit' => $visit->uuid,
             ]),
-            'label' => trans('visits.'.APIActionsEnums::SHOW_VISIT),
-            'method' => 'GET',
-            'key' => APIActionsEnums::SHOW_VISIT
+            'label' => trans('visits.'.APIActionsEnums::UPDATE_VISIT),
+            'method' => 'PUT',
+            'key' => APIActionsEnums::UPDATE_VISIT
+        ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.destroy', [
+                'visit' => $visit->uuid,
+            ]),
+            'label' => trans('visits.'.APIActionsEnums::DELETE_VISIT),
+            'method' => 'DELETE',
+            'key' => APIActionsEnums::DELETE_VISIT
         ];
 
 

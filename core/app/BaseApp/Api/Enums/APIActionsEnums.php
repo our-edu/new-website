@@ -64,9 +64,12 @@ abstract class APIActionsEnums
     const DELETE_ANNOUNCEMENT = 'delete_announcement';
     const CREATE_ANNOUNCEMENT = 'create_announcement';
     const FILTER_ANNOUNCEMENTS = 'filter_announcements';
-    const CREATE_COMPLAIN = 'create_complain';
-    const RESOLVE_COMPLAIN = 'resolve_complain';
     const EXPORT_ANNOUNCEMENTS = 'export_announcements';
     const SHOW_VISIT = 'show_visit';
+    const UPDATE_VISIT = 'update_visit';
+    const DELETE_VISIT = 'delete_visit';
+    const CREATE_COMPLAIN = 'create_complain';
+    const RESOLVE_COMPLAIN = 'resolve_complain';
+
 
 }
