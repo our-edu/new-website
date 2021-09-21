@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\CommunicationsLogs\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
@@ -13,7 +15,7 @@ class CommunicationLogRepository extends RepositoryAlias implements Communicatio
      */
     public function model(): string
     {
-    return CommunicationLog::class;
+        return CommunicationLog::class;
     }
 
     /**
@@ -46,6 +48,4 @@ class CommunicationLogRepository extends RepositoryAlias implements Communicatio
     {
         return  parent::update($attributes, $id);
     }
-
-
 }

@@ -35,7 +35,7 @@ class VisitsController extends BaseApiController
     public function index()
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        $visits = $this->repository->where('type',CommunicationLogTypesEnums::VISITS)->where('branch_uuid',$currentEmployeeBranch)->paginate();
+        $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
         return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\CommunicationsLogs\Repository;
 
 use App\BaseApp\Repository\BaseRepositoryInterface;
