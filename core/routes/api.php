@@ -30,6 +30,7 @@ Route::group(['as' => 'api.'], function () {
             require base_path('app/CommunicationApp/Announcements/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/Questions/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/Complains/Employee/Routes/api.php');
+            require base_path('app/CommunicationApp/Events/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/Settings/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/CommunicationsLogs/Visits/Employee/Routes/api.php');
         });

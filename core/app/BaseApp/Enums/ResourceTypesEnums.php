@@ -24,4 +24,5 @@ abstract class ResourceTypesEnums
     const ANNOUNCEMENT = 'announcement';
     const QUESTION_ANSWERS = 'questions_answers';
     const VISITS = 'visit';
+    const EVENT = 'event';
 }

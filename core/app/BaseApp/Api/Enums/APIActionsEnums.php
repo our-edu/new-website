@@ -70,6 +70,10 @@ abstract class APIActionsEnums
     const DELETE_VISIT = 'delete_visit';
     const CREATE_COMPLAIN = 'create_complain';
     const RESOLVE_COMPLAIN = 'resolve_complain';
-
-
+    const UPDATE_EVENT = 'update_event';
+    const SHOW_EVENT = 'show_event';
+    const DELETE_EVENT = 'delete_event';
+    const CREATE_EVENT = 'create_event';
+    const FILTER_EVENT = 'filter_event';
+    const EXPORT_EVENT = 'export_event';
 }
