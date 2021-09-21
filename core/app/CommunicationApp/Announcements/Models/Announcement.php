@@ -5,9 +5,13 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Announcements\Models;
 
 use App\BaseApp\BaseModel;
+use App\BaseApp\Enums\AnnouncementStatuses;
 use App\BaseApp\Models\Branch;
 use App\BaseApp\Models\Role;
+use App\BaseApp\Models\User;
+use App\BaseApp\Traits\ExportTrait;
 use Astrotomic\Translatable\Translatable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -15,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Announcement extends BaseModel
 {
-    use SoftDeletes , Translatable;
+    use SoftDeletes , Translatable, ExportTrait;
 
 
     /**
@@ -24,7 +28,8 @@ class Announcement extends BaseModel
     protected $fillable = [
         'from',
         'to',
-        'status'
+        'publisher_uuid',
+        'status',
     ];
 
     /**
@@ -33,6 +38,14 @@ class Announcement extends BaseModel
     protected array $translatedAttributes = [
         'title', 'body'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function publisher() : BelongsTo
+    {
+        return $this->belongsTo(User::class, 'publisher_uuid');
+    }
 
     /**
      * @return BelongsToMany
@@ -48,5 +61,46 @@ class Announcement extends BaseModel
     public function roles() : BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'announcements_roles', 'announcement_uuid', 'role_id');
+    }
+
+    public function getPublishStatus()
+    {
+        return $this->attributes['from'] > Carbon::now() ?
+            trans('announcements.'.AnnouncementStatuses::PENDING) :
+            ($this->attributes['from'] <= Carbon::now() && $this->attributes['to'] >= Carbon::now() ?
+                trans('announcements.'.AnnouncementStatuses::ACTIVE) :
+                trans('announcements.'.AnnouncementStatuses::EXPIRED));
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    protected function exportedData($data)
+    {
+        $branchesName = '';
+        foreach ($data->branches as $index => $branch) {
+            if ($index != 0) {
+                $branchesName .= ', ';
+            }
+            $branchesName .= $branch->name;
+        }
+        $rolesName = '';
+        foreach ($data->roles as $index => $role) {
+            if ($index != 0) {
+                $rolesName .= ', ';
+            }
+            $rolesName .= $role->display_name;
+        }
+        return [
+            'Announcement Title' => $data->title,
+            'Publish At' => $data->from,
+            'End Publish At' => $data->to,
+            'school Branch' => $branchesName,
+            'Added at' => $data->created_at,
+            'Published by' => $data->publisher->name,
+            'Displayed to Types' => $rolesName,
+            'Status' => $data->getPublishStatus(),
+        ];
     }
 }

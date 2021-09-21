@@ -11,6 +11,8 @@ abstract class ResourceTypesEnums
     const APPLICATION = 'application';
     const BUS = 'bus';
     const SERVICE = 'service';
+    const BRANCH = 'branch';
+    const ROLE = 'role';
     const SCHOOL_EMPLOYEE = 'school_employee';
     const LIST_RELATED_ATTACHMENT = 'list_related_attachment';
     const ACTION = 'action';
@@ -20,4 +22,5 @@ abstract class ResourceTypesEnums
     const COMPLAIN = 'complain';
     const GENERAL_SETTING = 'general_settings';
     const ANNOUNCEMENT = 'announcement';
+    const VISITS = 'visit';
 }
