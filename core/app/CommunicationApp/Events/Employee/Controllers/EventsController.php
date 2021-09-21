@@ -18,6 +18,7 @@ use App\CommunicationApp\Announcements\Employee\Transformers\ListAnnouncementsTr
 use App\CommunicationApp\Announcements\Employee\Transformers\ViewAnnouncementsTransformer;
 use App\CommunicationApp\Events\Employee\Requests\EventRequest;
 use App\CommunicationApp\Events\Employee\Transformers\EventTransformer;
+use App\CommunicationApp\Events\Employee\Transformers\ListEventsTransformer;
 use App\CommunicationApp\Events\Repository\EventRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
@@ -36,6 +37,19 @@ class EventsController extends BaseApiController
     public function __construct(EventRepositoryInterface $repository)
     {
         $this->repository = $repository;
+    }
+
+    /**
+     * @return array|array[]|JsonResponse
+     */
+    public function index()
+    {
+        $events = $this->repository->with([
+            'branches',
+            'creator',
+            'translations',
+        ])->filterData()->paginate();
+        return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType);
     }
 
     /**

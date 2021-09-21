@@ -7,6 +7,8 @@ namespace App\CommunicationApp\Events\Repository;
 use App\BaseApp\Repository\Repository as RepositoryAlias;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use App\CommunicationApp\Events\Models\Event;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EventRepository extends RepositoryAlias implements EventRepositoryInterface
 {
@@ -23,13 +25,16 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
     public function filterData()
     {
         $query = $this;
-        if (request()->has('branch') && !empty(request()->get('branch'))) {
-            $query = $query->whereHas('branches', function ($q) {
-                $q->where('uuid', request()->get('branch'));
-            });
-        }
-        if (request()->has('publisher') && !empty(request()->get('publisher'))) {
-            $query = $query->where('publisher_uuid', request()->get('publisher'));
+        switch (request()->get('period')) {
+            case 'week':
+                $query = $query->whereBetween('start', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+                break;
+            case 'day':
+                $query = $query->whereDay('start', Carbon::now()->day);
+                break;
+            default:
+                $query = $query->whereMonth('start', Carbon::now()->month);
+                break;
         }
         return $query;
     }
