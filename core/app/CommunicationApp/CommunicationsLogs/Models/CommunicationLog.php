@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\CommunicationApp\CommunicationsLogs\Models;
 
 use App\BaseApp\Models\Branch;
@@ -29,7 +31,7 @@ class CommunicationLog extends \App\BaseApp\BaseModel
      */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(ParentUser::class , 'parent_uuid');
+        return $this->belongsTo(ParentUser::class, 'parent_uuid');
     }
 
     /**
@@ -37,7 +39,6 @@ class CommunicationLog extends \App\BaseApp\BaseModel
      */
     public function branch(): BelongsTo
     {
-        return $this->belongsTo(Branch::class,'branch_uuid');
+        return $this->belongsTo(Branch::class, 'branch_uuid');
     }
-
 }

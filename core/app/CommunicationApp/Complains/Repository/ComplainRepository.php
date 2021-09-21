@@ -15,7 +15,7 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
     {
         return Complain::class;
     }
-    public function addQuestionnaireAnswers(Complain $complain,$answers)
+    public function addQuestionnaireAnswers(Complain $complain, $answers)
     {
         try {
             foreach ($answers as $answer) {

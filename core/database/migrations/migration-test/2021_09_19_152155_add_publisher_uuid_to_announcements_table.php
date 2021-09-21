@@ -28,7 +28,8 @@ class AddPublisherUuidToAnnouncementsTable extends Migration
     public function down()
     {
         Schema::table('announcements', function (Blueprint $table) {
-            $table->dropColumn('application_id');
+            $table->dropForeign(['publisher_uuid']);
+            $table->dropColumn('publisher_uuid');
         });
     }
 }
