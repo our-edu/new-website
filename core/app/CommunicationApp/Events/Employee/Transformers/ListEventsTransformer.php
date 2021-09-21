@@ -8,14 +8,13 @@ use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
 use App\CommunicationApp\Announcements\Models\Announcement;
+use App\CommunicationApp\Events\Models\Event;
 use League\Fractal\TransformerAbstract;
 
 class ListEventsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
-        'branches',
-        'roles',
     ];
     protected $availableIncludes = [
     ];
@@ -30,66 +29,43 @@ class ListEventsTransformer extends TransformerAbstract
         $this->params = $params;
     }
 
-    public function transform(Announcement $announcement): array
+    public function transform(Event $event): array
     {
         return [
-            'id' => $announcement->uuid,
-            'title_ar' => $announcement->translate('ar')->title,
-            'title_en' => $announcement->translate('en')->title,
-            'body_ar' => $announcement->translate('ar')->body,
-            'body_en' => $announcement->translate('en')->body,
-            'from' => $announcement->from,
-            'to' => $announcement->to,
-            'created_at' => $announcement->created_at,
-            'publisher' => $announcement->publisher->name,
-            'status' => $announcement->getPublishStatus(),
+            'id' => $event->uuid,
+            'title_ar' => $event->translate('ar')->title,
+            'title_en' => $event->translate('en')->title,
+            'body_ar' => $event->translate('ar')->body,
+            'body_en' => $event->translate('en')->body,
+            'start' => $event->start,
+            'end' => $event->end,
         ];
     }
 
-    public function includeActions(Announcement $announcement)
+    public function includeActions(Event $event)
     {
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.announcements.update', [
-                'announcement' => $announcement->uuid,
+            'endpoint_url' => buildScopeRoute('api.employee.events.update', [
+                'event' => $event->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::UPDATE_ANNOUNCEMENT),
+            'label' => trans('questions.'.APIActionsEnums::UPDATE_EVENT),
             'method' => 'PUT',
-            'key' => APIActionsEnums::UPDATE_ANNOUNCEMENT
+            'key' => APIActionsEnums::UPDATE_EVENT
         ];
 
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.announcements.show', [
-                'announcement' => $announcement->uuid,
+            'endpoint_url' => buildScopeRoute('api.employee.events.destroy', [
+                'event' => $event->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::SHOW_ANNOUNCEMENT),
-            'method' => 'GET',
-            'key' => APIActionsEnums::SHOW_ANNOUNCEMENT
-        ];
-
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.announcements.destroy', [
-                'announcement' => $announcement->uuid,
-            ]),
-            'label' => trans('questions.'.APIActionsEnums::DELETE_ANNOUNCEMENT),
+            'label' => trans('questions.'.APIActionsEnums::DELETE_EVENT),
             'method' => 'DELETE',
-            'key' => APIActionsEnums::DELETE_ANNOUNCEMENT
+            'key' => APIActionsEnums::DELETE_EVENT
         ];
 
 
 
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
-        }
-    }
-
-    public function includeBranches(Announcement $announcement)
-    {
-        if (count($announcement->branches)) {
-            return $this->collection(
-                $announcement->branches,
-                new EventBranchesTransformer(),
-                ResourceTypesEnums::BRANCH
-            );
         }
     }
 }
