@@ -2,24 +2,24 @@
 
 declare(strict_types = 1);
 
-namespace App\CommunicationApp\CommunicationsLogs\Visits\Employee\Controllers;
+namespace App\CommunicationApp\CommunicationsLogs\Calls\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\CommunicationsLogs\Calls\Employee\Requests\CallRequest;
+use App\CommunicationApp\CommunicationsLogs\Calls\Employee\Transformers\CallTransformer;
+use App\CommunicationApp\CommunicationsLogs\Calls\Employee\Transformers\ListCallsTransformer;
 use App\CommunicationApp\CommunicationsLogs\Enums\CommunicationLogTypesEnums;
 use App\CommunicationApp\CommunicationsLogs\Repository\CommunicationLogRepositoryInterface;
-use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Requests\VisitRequest;
-use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Transformers\ListVisitsTransformer;
-use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Transformers\VisitTransformer;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Log;
 
-class VisitsController extends BaseApiController
+class CallsController extends BaseApiController
 {
     public CommunicationLogRepositoryInterface  $repository;
-    protected string $ModelName = 'Visit';
-    protected string $ResourceType = ResourceTypesEnums::VISITS;
+    protected string $ModelName = 'Call';
+    protected string $ResourceType = ResourceTypesEnums::CALLS;
 
     /**
      * @param CommunicationLogRepositoryInterface $repository
@@ -35,8 +35,8 @@ class VisitsController extends BaseApiController
     public function index()
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
-        return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType);
+        $calls = $this->repository->where('type',CommunicationLogTypesEnums::CALLS)->where('branch_uuid',$currentEmployeeBranch)->paginate();
+        return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
     }
 
     /**
@@ -45,32 +45,32 @@ class VisitsController extends BaseApiController
      */
     public function show($id)
     {
-        $visit = $this->repository->find($id);
-        return $this->transformDataModInclude($visit, '', new  VisitTransformer(), $this->ResourceType);
+        $call = $this->repository->find($id);
+        return $this->transformDataModInclude($call, '', new  CallTransformer(), $this->ResourceType);
     }
 
     /**
-     * @param VisitRequest $request
+     * @param CallRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function store(VisitRequest  $request)
+    public function store(CallRequest  $request)
     {
 
         try {
             $data = $request->data['attributes'];
-            $data['type'] = CommunicationLogTypesEnums::VISITS;
+            $data['type'] = CommunicationLogTypesEnums::CALLS;
             $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
-            $createdVisit  = $this->repository->create($data);
-            return $this->transformDataModInclude($createdVisit, '', new  VisitTransformer(), $this->ResourceType, [
+            $createdCall  = $this->repository->create($data);
+            return $this->transformDataModInclude($createdCall, '', new  CallTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('calls.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -79,26 +79,26 @@ class VisitsController extends BaseApiController
 
     /**
      * @param $id
-     * @param VisitRequest $request
+     * @param CallRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function update($id, VisitRequest $request)
+    public function update($id, CallRequest $request)
     {
         try {
             $data = $request->data['attributes'];
-            $visit =  $this->repository->find($id);
-            $visit->update($data);
+            $call=  $this->repository->find($id);
+            $call->update($data);
 
-            return $this->transformDataModInclude($visit, '', new  VisitTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($call, '', new  CallTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was  updated successfully')
+                    'message' => trans('calls.' . $this->ModelName . '  was  updated successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -115,14 +115,14 @@ class VisitsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('calls.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
