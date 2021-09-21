@@ -66,4 +66,6 @@ abstract class APIActionsEnums
     const FILTER_ANNOUNCEMENTS = 'filter_announcements';
     const EXPORT_ANNOUNCEMENTS = 'export_announcements';
     const SHOW_VISIT = 'show_visit';
+    const UPDATE_VISIT = 'update_visit';
+    const DELETE_VISIT = 'delete_visit';
 }
