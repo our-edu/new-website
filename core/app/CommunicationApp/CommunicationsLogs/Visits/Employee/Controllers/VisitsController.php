@@ -60,9 +60,7 @@ class VisitsController extends BaseApiController
             $data = $request->data['attributes'];
             $data['type'] = CommunicationLogTypesEnums::VISITS;
             $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
-//            dd($data['branch_uuid']);
             $createdVisit  = $this->repository->create($data);
-
             return $this->transformDataModInclude($createdVisit, '', new  VisitTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('visits.' . $this->ModelName . '  was  created successfully')
@@ -88,7 +86,6 @@ class VisitsController extends BaseApiController
     {
         try {
             $data = $request->data['attributes'];
-            $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
             $visit =  $this->repository->find($id);
             $visit->update($data);
 

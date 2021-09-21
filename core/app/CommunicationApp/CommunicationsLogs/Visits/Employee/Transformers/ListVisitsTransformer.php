@@ -32,16 +32,20 @@ class ListVisitsTransformer extends TransformerAbstract
     {
         return [
             'id' => $visit->uuid,
+            'reason' => $visit->reason,
+            'parent' => $visit->parent->user->name,
+            'date' => $visit->date,
+            'branch' => $visit->branch->name
         ];
     }
 
     public function includeActions(CommunicationLog $visit)
     {
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.complains.show', [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.show', [
                 'visit' => $visit->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::SHOW_VISIT),
+            'label' => trans('visits.'.APIActionsEnums::SHOW_VISIT),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_VISIT
         ];
