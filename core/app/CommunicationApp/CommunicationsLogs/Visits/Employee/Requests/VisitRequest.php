@@ -14,7 +14,7 @@ class VisitRequest extends BaseApiRequest
     public function rules(): array
     {
         return [
-            'parent_uuid'  => 'required|exists:parent_users,uuid',
+            'git '  => 'required|exists:parent_users,uuid',
             'reason'       => 'required|string',
             'date'         => 'required|date',
         ];

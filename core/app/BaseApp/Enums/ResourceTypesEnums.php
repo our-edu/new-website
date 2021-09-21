@@ -23,4 +23,6 @@ abstract class ResourceTypesEnums
     const GENERAL_SETTING = 'general_settings';
     const ANNOUNCEMENT = 'announcement';
     const VISITS = 'visit';
+    const EVENT = 'event';
+    const CALLS = 'call';
 }
