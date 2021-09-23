@@ -56,15 +56,6 @@ class AnnouncementTransformer extends TransformerAbstract
         ];
 
         $actions[] = [
-        'endpoint_url' => buildScopeRoute('api.employee.announcements.show', [
-            'announcement' => $announcement->uuid,
-        ]),
-        'label' => trans('questions.'.APIActionsEnums::SHOW_ANNOUNCEMENT),
-        'method' => 'GET',
-        'key' => APIActionsEnums::SHOW_ANNOUNCEMENT
-        ];
-
-        $actions[] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.destroy', [
                 'announcement' => $announcement->uuid,
             ]),
