@@ -700,3 +700,28 @@ if (!function_exists('displayTranslatedEnum')) {
         return trans("$enum.$key");
     }
 }
+
+/**
+ * get a link of an Endpoint from a specific external service/project
+ * @param string $endpoint
+ * @param array $params
+ * @return string
+ */
+if (!function_exists('getExternalEndpoint')) {
+    function getExternalEndpoint($endpoint, $params = []): string
+    {
+        $params = array_merge($params, ['lang' =>  lang()]);
+        foreach ($params as $key => $value) {
+            if (str_contains($endpoint, '{' . $key . '}')){
+                $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
+            }else {
+                if (str_contains($endpoint, '?')){
+                    $endpoint .= '&' . $key . '=' . $value;
+                }else {
+                    $endpoint .= '?' . $key . '=' . $value;
+                }
+            }
+        }
+        return (env('BASE_APP_URL').$endpoint);
+    }
+}

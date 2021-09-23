@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'api.'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
+        require base_path('app/CommunicationApp/LookUp/Routes/api.php');
         Route::group(['prefix' => 'parent', 'as' => 'parent.',
             'middleware' => 'type:parent'
         ], function () {
