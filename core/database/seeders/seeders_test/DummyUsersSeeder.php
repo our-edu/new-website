@@ -23,7 +23,7 @@ class DummyUsersSeeder extends Seeder
 
         $types = [
             'parent',   //   dont need them for now
-//            'student',
+            'student',
 //            'admin',
             'employee'
         ];
