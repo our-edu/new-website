@@ -72,6 +72,30 @@ class  EventsControllerTest extends TestCase
     /**
      * @test
      */
+    public function event_list_filter()
+    {
+        dump('test_event_list_filter');
+        $this->apiSignIn($this->authEmployee());
+
+
+        $response = $this->getJson("/api/v1/en/employee/events/index/filters");
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'meta' => [
+                'filters' => [
+                    'period' => [
+                        'label',
+                        'input_type',
+                        'values'
+                    ],
+                ]
+            ],
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function event_store()
     {
         dump('test_event_store');
