@@ -204,5 +204,22 @@ class  EventsControllerTest extends TestCase
             ]
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function event_delete()
+    {
+        dump('test_event_delete');
+        $this->apiSignIn($this->authEmployee());
+
+        $response = $this->deleteJson("/api/v1/en/employee/events/".Event::factory()->create()->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'meta' => [
+                'message'
+            ]
+        ]);
+    }
 }
 
