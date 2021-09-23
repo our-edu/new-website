@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\GeneralSettings\Employee\Controllers;
 
-use App\BaseApp\Enums\UserTypeEnum;
 use App\CommunicationApp\Settings\model\GeneralSettings;
 use Carbon\Carbon;
 use Tests\TestCase;
