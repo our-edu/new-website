@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Events\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Models\Branch;
 use App\CommunicationApp\Events\Employee\Requests\EventRequest;
