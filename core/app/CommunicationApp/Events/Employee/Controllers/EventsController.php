@@ -19,6 +19,7 @@ use App\CommunicationApp\Announcements\Employee\Transformers\ViewAnnouncementsTr
 use App\CommunicationApp\Events\Employee\Requests\EventRequest;
 use App\CommunicationApp\Events\Employee\Transformers\EventTransformer;
 use App\CommunicationApp\Events\Employee\Transformers\ListEventsTransformer;
+use App\CommunicationApp\Events\Employee\Transformers\PeriodsFilterTransformer;
 use App\CommunicationApp\Events\Repository\EventRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
@@ -49,7 +50,49 @@ class EventsController extends BaseApiController
             'creator',
             'translations',
         ])->filterData()->paginate();
-        return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['filter'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.events.index.filters'),
+            'label' => trans('app.filter-event'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::FILTER_EVENTS
+        ];
+        return ['default_actions' => $actions];
+    }
+
+    /***
+     * @return array|array[]|\Illuminate\Http\JsonResponse
+     */
+    public function indexFilters()
+    {
+        return response()->json([
+            'meta' => filtersObject([
+                mapFiltersArrayFromModels(
+                    'period',
+                    trans('app.label.period'),
+                    'dropdown',
+                    [
+                        [
+                            'key' => 'month',
+                            'name' => trans('events.periods.month')
+                        ],
+                        [
+                            'key' => 'week',
+                            'name' => trans('events.periods.week')
+                        ],
+                        [
+                            'key' => 'day',
+                            'name' => trans('events.periods.day')
+                        ],
+                    ],
+                    new PeriodsFilterTransformer()
+                ),
+            ])
+        ]);
     }
 
     /**
