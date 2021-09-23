@@ -105,4 +105,28 @@ class EventsController extends BaseApiController
             ], 500);
         }
     }
+
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
+    public function destroy($id): JsonResponse
+    {
+        try {
+            $this->repository->find($id)->delete();
+            return response()->json([
+                'meta' => [
+                    'message' => trans('events.' . $this->ModelName . '  was deleted '),
+                ]
+            ]);
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return response()->json([
+                'meta' => [
+                    'message' => trans('events.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'error'=> $exception->getMessage()
+                ]
+            ], 500);
+        }
+    }
 }
