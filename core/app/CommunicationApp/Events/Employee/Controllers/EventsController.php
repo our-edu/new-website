@@ -55,7 +55,7 @@ class EventsController extends BaseApiController
 
     public function includeDefault()
     {
-        $actions['create_employee'] = [
+        $actions['create_event'] = [
             'endpoint_url' => buildScopeRoute('api.employee.events.store'),
             'label' => trans('app.create-events'),
             'method' => 'POST',

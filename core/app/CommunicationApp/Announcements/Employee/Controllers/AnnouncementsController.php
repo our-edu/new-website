@@ -51,9 +51,9 @@ class AnnouncementsController extends BaseApiController
     public function includeDefault()
     {
 
-        $actions['create_employee'] = [
+        $actions['create_announcement'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.store'),
-            'label' => trans('app.create-school-employees'),
+            'label' => trans('app.create-announcement'),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_ANNOUNCEMENT
         ];
