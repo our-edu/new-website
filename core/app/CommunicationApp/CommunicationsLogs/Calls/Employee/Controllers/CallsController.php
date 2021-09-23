@@ -35,7 +35,7 @@ class CallsController extends BaseApiController
     public function index()
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        $calls = $this->repository->where('type',CommunicationLogTypesEnums::CALLS)->where('branch_uuid',$currentEmployeeBranch)->paginate();
+        $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
         return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
     }
 
