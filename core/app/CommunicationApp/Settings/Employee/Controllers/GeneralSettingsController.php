@@ -59,19 +59,17 @@ class GeneralSettingsController extends BaseApiController
     /**
      * @param $id
      * @param QuestionnaireRequest $request
-     * @return JsonResponse
+     * @return array|array[]|JsonResponse
      */
-    public function updateQuestionnaireStatus($id, QuestionnaireRequest $request): JsonResponse
+    public function updateQuestionnaireStatus($id, QuestionnaireRequest $request)
     {
         try {
             $questionnaire =  $this->repository->find($id);
             $questionnaire->update([
                 'value' => $request->data['attributes']['value']
             ]);
-            return response()->json([
-                'meta' => [
+            return $this->transformDataModInclude($questionnaire, '', new  SettingsTransformer(), $this->ResourceType,[
                     'message' => trans('questions.' . $this->ModelName . '  was   updated  successfully'),
-                ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
