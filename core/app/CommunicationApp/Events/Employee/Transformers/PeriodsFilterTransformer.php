@@ -4,16 +4,16 @@ declare(strict_types = 1);
 
 namespace App\CommunicationApp\Events\Employee\Transformers;
 
-use App\BaseApp\Models\User;
+use App\BaseApp\Models\Branch;
 
-class EmployeesUsersFilterTransformer
+class PeriodsFilterTransformer
 {
-    public $filter_key = 'uuid';
+    public $filter_key = 'key';
 
-    public function value(User $user): array
+    public function value($period): array
     {
         return [
-            'name' =>  (string) $user->name
+            'name' =>  (string) $period['name']
         ];
     }
 
