@@ -68,7 +68,7 @@ class GeneralSettingsController extends BaseApiController
             $questionnaire->update([
                 'value' => $request->data['attributes']['value']
             ]);
-            return $this->transformDataModInclude($questionnaire, '', new  SettingsTransformer(), $this->ResourceType,[
+            return $this->transformDataModInclude($questionnaire, '', new  SettingsTransformer(), $this->ResourceType, [
                     'message' => trans('questions.' . $this->ModelName . '  was   updated  successfully'),
             ]);
         } catch (Exception $exception) {
