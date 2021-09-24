@@ -66,9 +66,8 @@ class QuestionsController extends BaseApiController
             $createdQuestion  = $this->repository->create($data);
 
             return $this->transformDataModInclude($createdQuestion, '', new  QuestionTransformer(), $this->ResourceType, [
-                'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  created successfully')
-                ]
+
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
@@ -94,9 +93,8 @@ class QuestionsController extends BaseApiController
             $question->update($data);
 
             return $this->transformDataModInclude($question, '', new  QuestionTransformer(), $this->ResourceType, [
-                'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was  updated successfully')
-                ]
+
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
