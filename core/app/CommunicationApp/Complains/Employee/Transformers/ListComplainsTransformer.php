@@ -32,7 +32,11 @@ class ListComplainsTransformer extends TransformerAbstract
     {
         return [
             'id' => $complain->uuid,
-        ];
+            'title' => $complain->title,
+            'body' => $complain->body,
+            'status' => $complain->status,
+            'parent' => $complain->parent->user->name,
+            'student' => $complain->student->user->name        ];
     }
 
     public function includeActions(Complain $complain)

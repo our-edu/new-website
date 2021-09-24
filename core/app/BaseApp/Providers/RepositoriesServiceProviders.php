@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace App\BaseApp\Providers;
 
+use App\CommunicationApp\CommunicationsLogs\Repository\CommunicationLogRepository;
+use App\CommunicationApp\CommunicationsLogs\Repository\CommunicationLogRepositoryInterface;
 use App\CommunicationApp\Complains\Repository\ComplainRepository;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
 use App\CommunicationApp\Announcements\Repository\AnnouncementRepository;
@@ -35,6 +37,10 @@ class RepositoriesServiceProviders extends ServiceProvider
         $this->app->bind(
             AnnouncementRepositoryInterface::class,
             AnnouncementRepository::class
+        );
+        $this->app->bind(
+            CommunicationLogRepositoryInterface::class,
+            CommunicationLogRepository::class
         );
         $this->app->bind(
             EventRepositoryInterface::class,

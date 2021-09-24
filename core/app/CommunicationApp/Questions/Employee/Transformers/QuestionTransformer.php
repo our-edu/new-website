@@ -33,6 +33,8 @@ class QuestionTransformer extends TransformerAbstract
         return [
             'id' => $question->uuid,
             'body' => $question->body,
+            'active' => $question->active
+
         ];
     }
 

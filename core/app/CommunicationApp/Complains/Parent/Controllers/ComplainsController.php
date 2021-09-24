@@ -11,8 +11,11 @@ use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
 use App\CommunicationApp\Complains\Parent\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
+use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
+use App\CommunicationApp\Settings\model\GeneralSettings;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Log;
 
 class ComplainsController extends BaseApiController
@@ -34,7 +37,8 @@ class ComplainsController extends BaseApiController
      */
     public function index()
     {
-        $complains = $this->repository->paginate();
+        $authenticatedParent = auth('api')->user()->parent->uuid;
+        $complains = $this->repository->where('parent_uuid', $authenticatedParent)->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }
 
@@ -58,7 +62,18 @@ class ComplainsController extends BaseApiController
             $data = $request->data['attributes'];
             $data['status'] =  ComplainStatusesEnum::OPENED_EN;
             $data['parent_uuid'] = auth('api')->user()->parent->uuid;
+            $questionnaireStatus = GeneralSettings::where('key', GeneralSettingsEnum::QUESTIONNAIRE_STATUS_KEY)->first()->value;
+            DB::beginTransaction();
             $createdComplain  = $this->repository->create($data);
+            $createdComplain->statuses()->create([
+                'name' => $data['status'],
+                'user_uuid'=> auth('api')->user()->uuid,
+            ]);
+            if (isset($data['questions_answers']) && $questionnaireStatus != GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
+                $answers = $data['questions_answers'];
+                $this->repository->addQuestionnaireAnswers($createdComplain, $answers);
+            }
+            DB::commit();
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
                     'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
@@ -66,12 +81,13 @@ class ComplainsController extends BaseApiController
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
+            DB::rollBack();
             return response()->json([
                 'meta' => [
                     'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
+            ], 500);
         }
     }
 }
