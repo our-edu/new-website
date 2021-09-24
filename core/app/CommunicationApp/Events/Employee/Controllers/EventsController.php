@@ -7,18 +7,11 @@ namespace App\CommunicationApp\Events\Employee\Controllers;
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
-use App\BaseApp\Enums\UserTypeEnum;
 use App\BaseApp\Models\Branch;
-use App\BaseApp\Models\User;
-use App\CommunicationApp\Announcements\Employee\Requests\AnnouncementRequest;
-use App\CommunicationApp\Announcements\Employee\Transformers\AnnouncementTransformer;
-use App\CommunicationApp\Announcements\Employee\Transformers\BranchesFilterTransformer;
-use App\CommunicationApp\Announcements\Employee\Transformers\EmployeesUsersFilterTransformer;
-use App\CommunicationApp\Announcements\Employee\Transformers\ListAnnouncementsTransformer;
-use App\CommunicationApp\Announcements\Employee\Transformers\ViewAnnouncementsTransformer;
 use App\CommunicationApp\Events\Employee\Requests\EventRequest;
 use App\CommunicationApp\Events\Employee\Transformers\EventTransformer;
 use App\CommunicationApp\Events\Employee\Transformers\ListEventsTransformer;
+use App\CommunicationApp\Events\Employee\Transformers\PeriodsFilterTransformer;
 use App\CommunicationApp\Events\Repository\EventRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
@@ -49,7 +42,55 @@ class EventsController extends BaseApiController
             'creator',
             'translations',
         ])->filterData()->paginate();
-        return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['create_event'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.events.store'),
+            'label' => trans('app.create-events'),
+            'method' => 'POST',
+            'key' => APIActionsEnums::CREATE_EVENT
+        ];
+        $actions['filter'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.events.index.filters'),
+            'label' => trans('app.filter-event'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::FILTER_EVENTS
+        ];
+        return ['default_actions' => $actions];
+    }
+
+    /***
+     * @return array|array[]|\Illuminate\Http\JsonResponse
+     */
+    public function indexFilters()
+    {
+        return response()->json([
+            'meta' => filtersObject([
+                mapFiltersArrayFromModels(
+                    'period',
+                    trans('app.label.period'),
+                    'dropdown',
+                    [
+                        [
+                            'key' => 'month',
+                            'name' => trans('events.periods.month')
+                        ],
+                        [
+                            'key' => 'week',
+                            'name' => trans('events.periods.week')
+                        ],
+                        [
+                            'key' => 'day',
+                            'name' => trans('events.periods.day')
+                        ],
+                    ],
+                    new PeriodsFilterTransformer()
+                ),
+            ])
+        ]);
     }
 
     /**
@@ -80,6 +121,61 @@ class EventsController extends BaseApiController
             return response()->json([
                 'message' => trans('events.' . $this->ModelName . '  wasn\'t  created '),
                 'error' => $exception->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     * @param EventRequest $request
+     * @return array|array[]|JsonResponse
+     */
+    public function update($id, EventRequest $request)
+    {
+        try {
+            $data = $request->data['attributes'];
+            if ($data['full_day']) {
+                $data['end'] = Carbon::createFromFormat('Y-m-d H:i:s', $data['start'])->addDay()->format('Y-m-d 00:00:00');
+            }
+            if ($data['all_branches']) {
+                $data['branches'] = Branch::pluck('uuid')->toArray();
+            }
+            $event =  $this->repository->find($id);
+            $event->update($data);
+            $event->branches()->sync($data['branches']);
+
+            return $this->transformDataModInclude($event, '', new  EventTransformer(), $this->ResourceType, [
+                'message' => trans('events.' . $this->ModelName . '  was  updated successfully')
+            ]);
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return response()->json([
+                'message' => trans('events.' . $this->ModelName . '  wasn\'t  updated '),
+                'error'=> $exception->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     * @return JsonResponse
+     */
+    public function destroy($id): JsonResponse
+    {
+        try {
+            $this->repository->find($id)->delete();
+            return response()->json([
+                'meta' => [
+                    'message' => trans('events.' . $this->ModelName . '  was deleted '),
+                ]
+            ]);
+        } catch (Exception $exception) {
+            Log::error($exception->getMessage());
+            return response()->json([
+                'meta' => [
+                    'message' => trans('events.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'error'=> $exception->getMessage()
+                ]
             ], 500);
         }
     }

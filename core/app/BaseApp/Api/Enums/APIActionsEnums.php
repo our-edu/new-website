@@ -59,4 +59,5 @@ abstract class APIActionsEnums
     const SHOW_CALL    = 'show_call';
     const UPDATE_CALL = 'update_call';
     const DELETE_CALL = 'delete_call';
+    const FILTER_EVENTS = 'filter_events';
 }
