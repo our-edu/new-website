@@ -712,12 +712,12 @@ if (!function_exists('getExternalEndpoint')) {
     {
         $params = array_merge($params, ['lang' =>  lang()]);
         foreach ($params as $key => $value) {
-            if (str_contains($endpoint, '{' . $key . '}')){
+            if (str_contains($endpoint, '{' . $key . '}')) {
                 $endpoint = str_replace('{' . $key . '}', $value, $endpoint);
-            }else {
-                if (str_contains($endpoint, '?')){
+            } else {
+                if (str_contains($endpoint, '?')) {
                     $endpoint .= '&' . $key . '=' . $value;
-                }else {
+                } else {
                     $endpoint .= '?' . $key . '=' . $value;
                 }
             }
