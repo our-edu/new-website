@@ -26,4 +26,5 @@ abstract class ResourceTypesEnums
     const VISITS = 'visit';
     const EVENT = 'event';
     const CALLS = 'call';
+    const PARENT_ACTIVITY_REPORT = 'parent_activity_report';
 }
