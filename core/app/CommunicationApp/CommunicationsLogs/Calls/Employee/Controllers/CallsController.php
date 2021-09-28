@@ -61,8 +61,8 @@ class CallsController extends BaseApiController
         try {
             $data = $request->data['attributes'];
             $parent_national_id  = $data['parent_national_id'];
-            $parentUser = User::where('national_id',$parent_national_id)->where('type',UserTypeEnum::PARENT)->first();
-            if(!$parentUser){
+            $parentUser = User::where('national_id', $parent_national_id)->where('type', UserTypeEnum::PARENT)->first();
+            if (!$parentUser) {
                 $returnArr['status'] = 422;
                 $returnArr['detail'] = __('calls.parent national id is invalid  ');
                 $returnArr['title'] = 'invalid parent';
@@ -98,8 +98,8 @@ class CallsController extends BaseApiController
         try {
             $data = $request->data['attributes'];
             $parent_national_id  = $data['parent_national_id'];
-            $parentUser = User::where('national_id',$parent_national_id)->where('type',UserTypeEnum::PARENT)->first();
-            if(!$parentUser){
+            $parentUser = User::where('national_id', $parent_national_id)->where('type', UserTypeEnum::PARENT)->first();
+            if (!$parentUser) {
                 $returnArr['status'] = 422;
                 $returnArr['detail'] = __('calls.parent national id is invalid  ');
                 $returnArr['title'] = 'invalid parent';

@@ -119,7 +119,7 @@ class  VisitsControllerTest extends TestCase
                 "id" => "null",
                 "attributes" => [
                     "reason" => "test bodytest bodytest bodytest bodytest bodytest body",
-                    "parent_uuid" => ParentUser::factory()->create()->uuid,
+                    "parent_national_id" => ParentUser::factory()->create()->user->national_id,
                     "date" => "2021-12-22",
                 ]
             ]
@@ -170,7 +170,7 @@ class  VisitsControllerTest extends TestCase
                 "id" => "null",
                 "attributes" => [
                     "reason" => "test bodytest bodytest bodytest bodytest bodytest body",
-                    "parent_uuid" => ParentUser::factory()->create()->uuid,
+                    "parent_national_id" => ParentUser::factory()->create()->user->national_id,
                     "date" => "2021-12-22",
 
                 ]

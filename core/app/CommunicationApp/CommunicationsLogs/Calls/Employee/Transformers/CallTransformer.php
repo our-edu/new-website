@@ -34,6 +34,7 @@ class CallTransformer extends TransformerAbstract
             'id' => $call->uuid,
             'reason' => $call->reason,
             'parent' => $call->parent->user->name,
+            'parent_national_id' => $call->parent->user->national_id,
             'date' => $call->date,
             'procedure' => $call->procedure,
             'branch' => $call->branch->name
