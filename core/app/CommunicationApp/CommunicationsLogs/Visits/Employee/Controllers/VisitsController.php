@@ -6,6 +6,8 @@ namespace App\CommunicationApp\CommunicationsLogs\Visits\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\BaseApp\Enums\UserTypeEnum;
+use App\BaseApp\Models\User;
 use App\CommunicationApp\CommunicationsLogs\Enums\CommunicationLogTypesEnums;
 use App\CommunicationApp\CommunicationsLogs\Repository\CommunicationLogRepositoryInterface;
 use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Requests\VisitRequest;
@@ -58,6 +60,15 @@ class VisitsController extends BaseApiController
 
         try {
             $data = $request->data['attributes'];
+            $parent_national_id  = $data['parent_national_id'];
+            $parentUser = User::where('national_id', $parent_national_id)->where('type', UserTypeEnum::PARENT)->first();
+            if (!$parentUser) {
+                $returnArr['status'] = 422;
+                $returnArr['detail'] = __('visits.parent national id is invalid  ');
+                $returnArr['title'] = 'invalid parent';
+                return response()->json(["errors" => [$returnArr] ], 422);
+            }
+            $data['parent_uuid'] = $parentUser->parent->uuid;
             $data['type'] = CommunicationLogTypesEnums::VISITS;
             $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
             $createdVisit  = $this->repository->create($data);
@@ -86,6 +97,15 @@ class VisitsController extends BaseApiController
     {
         try {
             $data = $request->data['attributes'];
+            $parent_national_id  = $data['parent_national_id'];
+            $parentUser = User::where('national_id', $parent_national_id)->where('type', UserTypeEnum::PARENT)->first();
+            if (!$parentUser) {
+                $returnArr['status'] = 422;
+                $returnArr['detail'] = __('visits.parent national id is invalid  ');
+                $returnArr['title'] = 'invalid parent';
+                return response()->json(["errors" => [$returnArr] ], 422);
+            }
+            $data['parent_uuid'] = $parentUser->parent->uuid;
             $visit =  $this->repository->find($id);
             $visit->update($data);
 
