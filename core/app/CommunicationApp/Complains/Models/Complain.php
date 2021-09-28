@@ -7,6 +7,8 @@ namespace App\CommunicationApp\Complains\Models;
 use App\BaseApp\BaseModel;
 use App\BaseApp\Models\ParentUser;
 use App\BaseApp\Models\Student;
+use App\BaseApp\Traits\ExportTrait;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Questions\Models\QuestionAnswers;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Complain extends BaseModel
 {
-    use SoftDeletes;
+    use SoftDeletes, ExportTrait;
 
     /**
      * @var string
@@ -62,5 +64,19 @@ class Complain extends BaseModel
     public function questionsAnswers(): HasMany
     {
         return $this->hasMany(QuestionAnswers::class, 'complain_uuid');
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    protected function exportedData($data)
+    {
+        return [
+            'Child name' => $data->student->user->name,
+            'Status' => ComplainStatusesEnum::getStatuses()[$data->status][app()->getLocale()],
+            'Sent date and time' => $data->created_at,
+            'Receive date' => $data->created_at,
+        ];
     }
 }

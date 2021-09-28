@@ -12,4 +12,6 @@ interface CommunicationLogRepositoryInterface extends BaseRepositoryInterface
     public function find($id, $columns = ['*']) : CommunicationLog;
     public function create(array $attributes) : CommunicationLog;
     public function update(array $attributes, $id) : CommunicationLog;
+
+    public function export($logType, $branchUuid);
 }

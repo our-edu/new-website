@@ -42,6 +42,15 @@ class CallsController extends BaseApiController
     }
 
     /**
+     * @return array|array[]|JsonResponse
+     */
+    public function export()
+    {
+        $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
+        return $this->repository->export(CommunicationLogTypesEnums::CALLS, $currentEmployeeBranch);
+    }
+
+    /**
      * @param $id
      * @return array|array[]|JsonResponse
      */
@@ -71,6 +80,7 @@ class CallsController extends BaseApiController
             $data['parent_uuid'] = $parentUser->parent->uuid;
             $data['type'] = CommunicationLogTypesEnums::CALLS;
             $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
+            $data['creator_uuid']  = auth('api')->user()->uuid;
             $createdCall  = $this->repository->create($data);
             return $this->transformDataModInclude($createdCall, '', new  CallTransformer(), $this->ResourceType, [
                 'meta' => [
