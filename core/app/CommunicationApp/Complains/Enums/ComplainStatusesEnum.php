@@ -16,12 +16,12 @@ abstract class ComplainStatusesEnum
         return [
             self::OPENED_EN =>
                 [
-                    'english' => self::OPENED_EN,
-                    'arabic' => self::OPENED_AR
+                    'en' => self::OPENED_EN,
+                    'ar' => self::OPENED_AR
                 ],
             self::RESOLVED_EN => [
-                'english' => self::RESOLVED_EN,
-                'arabic' => self::RESOLVED_AR
+                'en' => self::RESOLVED_EN,
+                'ar' => self::RESOLVED_AR
 
             ]
         ];

@@ -42,6 +42,15 @@ class VisitsController extends BaseApiController
     }
 
     /**
+     * @return array|array[]|JsonResponse
+     */
+    public function export()
+    {
+        $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
+        return $this->repository->export(CommunicationLogTypesEnums::VISITS, $currentEmployeeBranch);
+    }
+
+    /**
      * @param $id
      * @return array|array[]|JsonResponse
      */
@@ -71,6 +80,7 @@ class VisitsController extends BaseApiController
             $data['parent_uuid'] = $parentUser->parent->uuid;
             $data['type'] = CommunicationLogTypesEnums::VISITS;
             $data['branch_uuid']  = auth('api')->user()->schoolEmployee->branch_id;
+            $data['creator_uuid']  = auth('api')->user()->uuid;
             $createdVisit  = $this->repository->create($data);
             return $this->transformDataModInclude($createdVisit, '', new  VisitTransformer(), $this->ResourceType, [
                 'meta' => [
