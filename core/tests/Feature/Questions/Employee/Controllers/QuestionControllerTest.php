@@ -26,7 +26,8 @@ class  QuestionControllerTest extends TestCase
                     'type',
                     'id',
                     'attributes' => [
-                        'body',
+                        'body_en',
+                        'body_ar',
                         'active'
                     ],
                     "relationships" => [
@@ -77,7 +78,8 @@ class  QuestionControllerTest extends TestCase
                     'type',
                     'id',
                     'attributes' => [
-                        'body',
+                        'body_en',
+                        'body_ar',
                         'active'
                     ],
                     "relationships" => [
@@ -125,7 +127,8 @@ class  QuestionControllerTest extends TestCase
                     'type',
                     'id',
                     'attributes' => [
-                        'body',
+                        'body_en',
+                        'body_ar',
                         'active'
                     ],
                     "relationships" => [
@@ -157,7 +160,7 @@ class  QuestionControllerTest extends TestCase
         $question = Question::factory()->create();
         $data =  [
             "data" => [
-                "type" => "page",
+                "type" => "question",
                 "id" => "null",
                 "attributes" => [
                     "ar" => [
@@ -178,7 +181,8 @@ class  QuestionControllerTest extends TestCase
                     'type',
                     'id',
                     'attributes' => [
-                        'body',
+                        'body_en',
+                        'body_ar',
                         'active'
                     ],
                     "relationships" => [
