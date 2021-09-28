@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Questions\Parent\Controllers;
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\BaseApp\ExternalAPIs\GatewayAPIEnums;
 use App\CommunicationApp\Questions\Parent\Transformers\ListQuestionsTransformer;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
 use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
@@ -55,6 +56,12 @@ class QuestionsController extends BaseApiController
             'label' => trans('complains.'.APIActionsEnums::CREATE_COMPLAIN),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_COMPLAIN
+        ];
+        $actions[APIActionsEnums::CHILDREN_LOOKUPS] = [
+            'endpoint_url' => getExternalEndpoint(GatewayAPIEnums::PARENT_CHILDREN),
+            'label' => trans('app.children-lookups'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::CHILDREN_LOOKUPS
         ];
         return ['default_actions' => $actions];
     }
