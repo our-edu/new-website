@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\CommunicationsLogs\Repository;
 
 use App\BaseApp\Repository\Repository as RepositoryAlias;
+use App\CommunicationApp\CommunicationsLogs\Enums\CommunicationLogTypesEnums;
 use App\CommunicationApp\CommunicationsLogs\Models\CommunicationLog;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -47,5 +48,14 @@ class CommunicationLogRepository extends RepositoryAlias implements Communicatio
     public function update(array $attributes, $id): CommunicationLog
     {
         return  parent::update($attributes, $id);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function export($logType, $branchUuid)
+    {
+        $data = $this->where('type', $logType)->where('branch_uuid', $branchUuid)->get();
+        return app($this->model())->export($data, $logType);
     }
 }

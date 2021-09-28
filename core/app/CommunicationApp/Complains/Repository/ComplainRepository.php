@@ -61,4 +61,13 @@ class ComplainRepository extends RepositoryAlias implements ComplainRepositoryIn
     {
         return  parent::update($attributes, $id);
     }
+
+    /**
+     * @return mixed
+     */
+    public function export()
+    {
+        $data = $this->get();
+        return app($this->model())->export($data, 'complains');
+    }
 }
