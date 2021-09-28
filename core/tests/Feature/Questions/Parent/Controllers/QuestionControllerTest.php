@@ -18,7 +18,7 @@ class  QuestionControllerTest extends TestCase
         dump('test_question_list_questionnaire_enabled');
         $this->apiSignIn($this->authParent());
         $generalSetting = GeneralSettings::factory()->create(['value'=>true]);
-        $questions = Question::factory(10)->create();
+        $questions = Question::factory(10)->create(['active'=>true]);
         $response = $this->getJson("/api/v1/en/parent/questions");
         $response->assertOk();
         $response->assertJsonStructure([

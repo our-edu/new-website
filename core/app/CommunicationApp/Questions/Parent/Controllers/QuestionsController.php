@@ -40,7 +40,7 @@ class QuestionsController extends BaseApiController
         if ($questionnaireStatus->value == GeneralSettingsEnum::QUESTIONNAIRE_DISABLE) {
             return $this->transformDataModInclude([], '', new  ListQuestionsTransformer(), $this->ResourceType, $this->defaultIncludes());
         }
-        $questions = $this->repository->paginate();
+        $questions = $this->repository->where('active', true)->paginate();
         return $this->transformDataModInclude($questions, '', new  ListQuestionsTransformer(), $this->ResourceType, $this->defaultIncludes());
     }
 
