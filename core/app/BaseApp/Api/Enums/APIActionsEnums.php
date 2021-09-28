@@ -61,5 +61,6 @@ abstract class APIActionsEnums
     const DELETE_CALL = 'delete_call';
     const FILTER_EVENTS = 'filter_events';
     const BRANCHES_LOOKUPS = 'branches_lookups';
+    const CHILDREN_LOOKUPS = 'children_lookups';
     const BRANCHES_ROLES_LOOKUPS = 'branches_roles_lookups';
 }
