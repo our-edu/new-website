@@ -51,6 +51,7 @@ abstract class APIActionsEnums
     const EXPORT_VISITS = 'export_visits';
     const CREATE_COMPLAIN = 'create_complain';
     const RESOLVE_COMPLAIN = 'resolve_complain';
+    const EXPORT_COMPLAINS = 'export_complains';
     const UPDATE_EVENT = 'update_event';
     const SHOW_EVENT = 'show_event';
     const DELETE_EVENT = 'delete_event';
