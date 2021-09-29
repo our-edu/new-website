@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Complains\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
@@ -35,7 +36,26 @@ class ComplainsController extends BaseApiController
     public function index()
     {
         $complains = $this->repository->with('questionsAnswers')->paginate();
-        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['export'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.complains.index.export'),
+            'label' => trans('app.export-complains'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_COMPLAINS
+        ];
+        return ['default_actions' => $actions];
+    }
+
+    /**
+     * @return array|array[]|JsonResponse
+     */
+    public function export()
+    {
+        return $this->repository->export();
     }
 
     /**
