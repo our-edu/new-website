@@ -38,8 +38,8 @@ class CallsController extends BaseApiController
     public function index(Request $request)
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        if($request->has('parent_uuid')) {
-            $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->where('parent_uuid',$request->parent_uuid)->paginate();
+        if ($request->has('parent_uuid')) {
+            $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->where('parent_uuid', $request->parent_uuid)->paginate();
             return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
         }
             $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();

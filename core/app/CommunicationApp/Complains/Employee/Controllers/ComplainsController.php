@@ -35,8 +35,8 @@ class ComplainsController extends BaseApiController
      */
     public function index(Request $request)
     {
-        if($request->has('parent_uuid')){
-            $complains = $this->repository->with('questionsAnswers')->where('parent_uuid',$request->parent_uuid)->paginate();
+        if ($request->has('parent_uuid')) {
+            $complains = $this->repository->with('questionsAnswers')->where('parent_uuid', $request->parent_uuid)->paginate();
             return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
         }
         $complains = $this->repository->with('questionsAnswers')->paginate();

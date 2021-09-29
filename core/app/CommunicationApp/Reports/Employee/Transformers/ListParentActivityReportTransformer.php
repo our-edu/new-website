@@ -46,8 +46,10 @@ class ListParentActivityReportTransformer extends TransformerAbstract
     public function includeActions(ParentActivityReport $report)
     {
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.reports.parent_activity.show',
-                ['parent_uuid'=> $report->parent_uuid]),
+            'endpoint_url' => buildScopeRoute(
+                'api.employee.reports.parent_activity.show',
+                ['parent_uuid'=> $report->parent_uuid]
+            ),
             'label' => trans('visits.' . APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT

@@ -37,7 +37,7 @@ class ReportsController extends BaseApiController
      */
     public function parentActivityShow($parent_uuid)
     {
-        $parentActivities = ParentActivityReport::with('parent')->where('parent_uuid',$parent_uuid)->paginate();
+        $parentActivities = ParentActivityReport::with('parent')->where('parent_uuid', $parent_uuid)->paginate();
         return $this->transformDataModInclude($parentActivities, '', new  ParentActivityReportTransformer(), $this->ActivityReportResourceType);
     }
 
