@@ -34,6 +34,6 @@ class ReportsController extends BaseApiController
     public function parentActivityExport()
     {
         $parentActivities = ParentActivityReport::with('parent')->get();
-        return (new ParentActivityReport)->export($parentActivities,'Parent_Activity_Report');
+        return (new ParentActivityReport)->export($parentActivities, 'Parent_Activity_Report');
     }
 }
