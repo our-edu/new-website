@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Events\Employee\Controllers;
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\BaseApp\ExternalAPIs\DashboardAPIEnums;
 use App\BaseApp\Models\Branch;
 use App\CommunicationApp\Events\Employee\Requests\EventRequest;
 use App\CommunicationApp\Events\Employee\Transformers\EventTransformer;
@@ -52,6 +53,12 @@ class EventsController extends BaseApiController
             'label' => trans('app.create-events'),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_EVENT
+        ];
+        $actions['branches_lookups'] = [
+            'endpoint_url' => getExternalEndpoint(DashboardAPIEnums::EMPLOYEE_BRANCHES_LOOKUPS),
+            'label' => trans('app.branches-lookups'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::BRANCHES_LOOKUPS
         ];
         $actions['filter'] = [
             'endpoint_url' => buildScopeRoute('api.employee.events.index.filters'),

@@ -65,4 +65,5 @@ abstract class APIActionsEnums
     const LIST_COMPLAINS = "list_complains";
     const LIST_CALLS = "list_calls";
     const LIST_VISITS = "list_visits";
+    const CHILDREN_LOOKUPS = 'children_lookups';
 }
