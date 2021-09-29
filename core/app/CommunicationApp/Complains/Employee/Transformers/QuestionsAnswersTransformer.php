@@ -31,7 +31,7 @@ class QuestionsAnswersTransformer extends TransformerAbstract
     {
         return [
             'id' => $questionAnswer->uuid,
-            'question' => $questionAnswer->question->body,
+            'question' => $questionAnswer->question->body ?? null,
             'answer' => $questionAnswer->value,
             'parent' => $questionAnswer->parent->user->name,
             'complain' => $questionAnswer->complain->title,

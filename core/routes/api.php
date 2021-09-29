@@ -35,6 +35,7 @@ Route::group(['as' => 'api.'], function () {
             require base_path('app/CommunicationApp/Settings/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/CommunicationsLogs/Visits/Employee/Routes/api.php');
             require base_path('app/CommunicationApp/CommunicationsLogs/Calls/Employee/Routes/api.php');
+            require base_path('app/CommunicationApp/Reports/Employee/Routes/api.php');
         });
     });
 });
