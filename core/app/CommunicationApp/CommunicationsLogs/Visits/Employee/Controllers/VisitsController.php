@@ -15,6 +15,7 @@ use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Transformers\ListVis
 use App\CommunicationApp\CommunicationsLogs\Visits\Employee\Transformers\VisitTransformer;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Log;
 
 class VisitsController extends BaseApiController
@@ -34,10 +35,14 @@ class VisitsController extends BaseApiController
     /**
      * @return array|array[]|JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
+        if($request->has('parent_uuid')) {
+            $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->where('parent_uuid',$request->parent_uuid)->paginate();
+            return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType);
+        }
+            $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
         return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType);
     }
 

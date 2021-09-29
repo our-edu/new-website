@@ -35,7 +35,7 @@ class ParentActivityReportTransformer extends TransformerAbstract
     public function transform(ParentActivityReport $report): array
     {
         return [
-            'id' => Uuid::uuid4()->toString(),
+            'id' => $report->parent_uuid,
             'parent' => $report->parent->user->name,
             'complains_count' => $report->complains_count,
             'visits_count' => $report->visits_count,
@@ -43,31 +43,29 @@ class ParentActivityReportTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeActions()
+    public function includeActions(ParentActivityReport $report)
     {
         $actions[] = [
-                'endpoint_url' => buildScopeRoute('api.employee.complains.index'),
+                'endpoint_url' => buildScopeRoute('api.employee.complains.index',
+                    ['parent_uuid'=> $report->parent_uuid]),
                 'label' => trans('complains.' . APIActionsEnums::LIST_COMPLAINS),
                 'method' => 'GET',
                 'key' => APIActionsEnums::LIST_COMPLAINS
         ];
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.calls.index'),
+            'endpoint_url' => buildScopeRoute('api.employee.calls.index',
+                ['parent_uuid'=> $report->parent_uuid]),
+
             'label' => trans('calls.' . APIActionsEnums::LIST_CALLS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_CALLS
         ];
         $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.visits.index'),
+            'endpoint_url' => buildScopeRoute('api.employee.visits.index',
+                ['parent_uuid'=> $report->parent_uuid]),
             'label' => trans('visits.' . APIActionsEnums::LIST_VISITS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_VISITS
-        ];
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.parent_activity_export'),
-            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
-            'method' => 'GET',
-            'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
         ];
 
         if (count($actions)) {

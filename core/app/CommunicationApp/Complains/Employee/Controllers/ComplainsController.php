@@ -13,6 +13,7 @@ use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Log;
 
 class ComplainsController extends BaseApiController
@@ -32,8 +33,12 @@ class ComplainsController extends BaseApiController
     /**
      * @return array|array[]|JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('parent_uuid')){
+            $complains = $this->repository->with('questionsAnswers')->where('parent_uuid',$request->parent_uuid)->paginate();
+            return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
+        }
         $complains = $this->repository->with('questionsAnswers')->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
     }

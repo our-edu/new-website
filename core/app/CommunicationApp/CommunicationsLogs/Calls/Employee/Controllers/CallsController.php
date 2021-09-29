@@ -15,6 +15,7 @@ use App\CommunicationApp\CommunicationsLogs\Enums\CommunicationLogTypesEnums;
 use App\CommunicationApp\CommunicationsLogs\Repository\CommunicationLogRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Log;
 
 class CallsController extends BaseApiController
@@ -34,10 +35,14 @@ class CallsController extends BaseApiController
     /**
      * @return array|array[]|JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
-        $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
+        if($request->has('parent_uuid')) {
+            $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->where('parent_uuid',$request->parent_uuid)->paginate();
+            return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
+        }
+            $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
         return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
     }
 
