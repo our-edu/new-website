@@ -50,7 +50,7 @@ class EventsController extends BaseApiController
             'branches',
             'creator',
             'translations',
-        ])->filterData()->paginate();
+        ])->filterData()->get();
         return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
     }
 
