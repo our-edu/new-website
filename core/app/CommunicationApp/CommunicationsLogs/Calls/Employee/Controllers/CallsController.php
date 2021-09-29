@@ -46,7 +46,6 @@ class CallsController extends BaseApiController
         }
             $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
         return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
-
     }
 
     public function includeDefault()
