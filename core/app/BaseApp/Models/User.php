@@ -86,15 +86,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(UploadedMedia::class, 'profile_picture');
     }
 
-//    /**
-//     * get User Parent Data
-//     * @return HasOne
-//     */
-//
-//    public function parent(): HasOne
-//    {
-//        return $this->hasOne(ParentUser::class, 'user_uuid');
-//    }
 
     /**
      * @return HasOne

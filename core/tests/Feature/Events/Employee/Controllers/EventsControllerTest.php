@@ -145,5 +145,91 @@ class  EventsControllerTest extends TestCase
             ]
         ]);
     }
+
+    /**
+     * @test
+     */
+    public function event_update()
+    {
+        dump('test_event_update');
+        $this->apiSignIn($this->authEmployee());
+
+        $eventUuid = Event::factory()->create()->uuid;
+
+        $data = [
+            "data" => [
+                'id' => "null",
+                'type' => "application",
+                'attributes' => [
+                    'ar' => [
+                        'title' => "test announcements",
+                        'body' => 'test announcements'
+                    ],
+                    "en" => [
+                        'title' => "test announcements",
+                        'body' => 'test announcements'
+                    ],
+                    'full_day' => 0,
+                    'start' => Carbon::now()->toDateTimeString(),
+                    'end' => Carbon::tomorrow()->toDateTimeString(),
+                    'all_branches' => 0,
+                    'branches' => [
+                        Branch::all()->count() > 0 ? (Branch::all()->first()->uuid) : Branch::factory()->create()->uuid
+                    ]
+
+                ],
+
+            ]
+        ];
+        $response = $this->putJson("/api/v1/en/employee/events/$eventUuid", $data);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                'type',
+                'id',
+                'attributes' => [
+                    'title_ar',
+                    'title_en',
+                    'body_ar',
+                    'body_en',
+                    'full_day',
+                    'start',
+                    'end',
+                    'all_branches',
+                    'branches',
+                ],
+                "relationships" => [
+                    'actions' => [
+                        'data' => [
+                            [
+                                'type',
+                                'id'
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            'meta' => [
+                'message'
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function event_delete()
+    {
+        dump('test_event_delete');
+        $this->apiSignIn($this->authEmployee());
+
+        $response = $this->deleteJson("/api/v1/en/employee/events/".Event::factory()->create()->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'meta' => [
+                'message'
+            ]
+        ]);
+    }
 }
 

@@ -17,7 +17,6 @@ class ListQuestionsTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
-        'questionnaireSetting'
     ];
     protected $availableIncludes = [
     ];
@@ -36,7 +35,9 @@ class ListQuestionsTransformer extends TransformerAbstract
     {
         return [
             'id' => $question->uuid,
-            'body' => $question->body,
+            'body_en' => $question->translate('en')->body,
+            'body_ar' => $question->translate('ar')->body,
+            'active' => $question->active
         ];
     }
 
@@ -74,10 +75,5 @@ class ListQuestionsTransformer extends TransformerAbstract
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
-    }
-
-    public function includeQuestionnaireSetting(): Item
-    {
-        return $this->item($this->params['$questionnaireStatus'], new SettingsTransformer(), ResourceTypesEnums::GENERAL_SETTING);
     }
 }

@@ -13,7 +13,7 @@ class QuestionRequest extends BaseApiRequest
         return [
             'ar.body' => 'required|min:10',
             'en.body' => 'required|min:10',
-            'active' => 'bool'
+            'active' => 'required|bool'
 
         ];
     }

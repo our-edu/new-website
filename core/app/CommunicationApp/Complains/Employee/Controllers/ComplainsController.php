@@ -5,10 +5,12 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Complains\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
-use App\CommunicationApp\Complains\Employee\Requests\ComplainRequest;
+use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -33,8 +35,27 @@ class ComplainsController extends BaseApiController
      */
     public function index()
     {
-        $complains = $this->repository->paginate();
-        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
+        $complains = $this->repository->with('questionsAnswers')->paginate();
+        return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['export'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.complains.index.export'),
+            'label' => trans('app.export-complains'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_COMPLAINS
+        ];
+        return ['default_actions' => $actions];
+    }
+
+    /**
+     * @return array|array[]|JsonResponse
+     */
+    public function export()
+    {
+        return $this->repository->export();
     }
 
     /**
@@ -48,81 +69,33 @@ class ComplainsController extends BaseApiController
     }
 
     /**
-     * @param ComplainRequest $request
-     * @return array|array[]|JsonResponse
-     */
-    public function store(ComplainRequest  $request)
-    {
-
-        try {
-            $data = $request->data['attributes'];
-            $createdComplain  = $this->repository->create($data);
-
-            return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
-                'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
-                ]
-            ]);
-        } catch (Exception $exception) {
-            Log::error($exception->getMessage());
-            return response()->json([
-                'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
-                    'error'=> $exception->getMessage()
-                ]
-            ], 400);
-        }
-    }
-
-    /**
      * @param $id
-     * @param ComplainRequest $request
+     * @param ResolveComplainRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function update($id, ComplainRequest $request)
+    public function resolve($id, ResolveComplainRequest $request)
     {
         try {
             $data = $request->data['attributes'];
-            $complain =  $this->repository->find($id);
+            $complain = $this->repository->find($id);
+            $employee = auth('api')->user()->uuid;
             $complain->update($data);
-
+            $complain->statuses()->create([
+                'name' => ComplainStatusesEnum::RESOLVED_EN,
+                'user_uuid' => $employee
+            ]);
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was  updated successfully')
+                    'message' => trans('complains.' . $this->ModelName . '  was  resolved successfully')
                 ]
             ]);
         } catch (Exception $exception) {
-            Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  resolved '),
                     'error'=> $exception->getMessage()
                 ]
-            ], 400);
-        }
-    }
-
-    /**
-     * @param $id
-     * @return JsonResponse
-     */
-    public function destroy($id): JsonResponse
-    {
-        try {
-            $this->repository->find($id)->delete();
-            return response()->json([
-                'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was deleted '),
-                ]
-            ]);
-        } catch (Exception $exception) {
-            Log::error($exception->getMessage());
-            return response()->json([
-                'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  deleted '),
-                    'error'=> $exception->getMessage()
-                ]
-            ], 400);
+            ], 500);
         }
     }
 }
