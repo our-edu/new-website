@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\CommunicationsLogs\Visits\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Enums\UserTypeEnum;
 use App\BaseApp\Models\User;
@@ -38,7 +39,18 @@ class VisitsController extends BaseApiController
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
         $visits = $this->repository->where('type', CommunicationLogTypesEnums::VISITS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
-        return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($visits, '', new  ListVisitsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['export'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.visits.index.export'),
+            'label' => trans('app.export-visits'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_VISITS
+        ];
+        return ['default_actions' => $actions];
     }
 
     /**
