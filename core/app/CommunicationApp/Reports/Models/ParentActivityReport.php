@@ -34,5 +34,4 @@ class ParentActivityReport extends Model
             'calls_count' => $data->calls_count ,
         ];
     }
-
 }

@@ -43,7 +43,7 @@ class ParentActivityReportTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeActions( )
+    public function includeActions()
     {
         $actions[] = [
                 'endpoint_url' => buildScopeRoute('api.employee.complains.index'),
@@ -74,5 +74,4 @@ class ParentActivityReportTransformer extends TransformerAbstract
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
         }
     }
-
 }
