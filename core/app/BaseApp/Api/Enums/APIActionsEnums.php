@@ -48,6 +48,7 @@ abstract class APIActionsEnums
     const SHOW_VISIT = 'show_visit';
     const UPDATE_VISIT = 'update_visit';
     const DELETE_VISIT = 'delete_visit';
+    const EXPORT_VISITS = 'export_visits';
     const CREATE_COMPLAIN = 'create_complain';
     const RESOLVE_COMPLAIN = 'resolve_complain';
     const UPDATE_EVENT = 'update_event';
@@ -55,10 +56,10 @@ abstract class APIActionsEnums
     const DELETE_EVENT = 'delete_event';
     const CREATE_EVENT = 'create_event';
     const FILTER_EVENT = 'filter_event';
-    const EXPORT_EVENT = 'export_event';
     const SHOW_CALL    = 'show_call';
     const UPDATE_CALL = 'update_call';
     const DELETE_CALL = 'delete_call';
+    const EXPORT_CALLS = 'export_calls';
     const FILTER_EVENTS = 'filter_events';
     const BRANCHES_LOOKUPS = 'branches_lookups';
     const BRANCHES_ROLES_LOOKUPS = 'branches_roles_lookups';

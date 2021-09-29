@@ -5,8 +5,10 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\CommunicationsLogs\Calls\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Enums\UserTypeEnum;
+use App\BaseApp\ExternalAPIs\DashboardAPIEnums;
 use App\BaseApp\Models\User;
 use App\CommunicationApp\CommunicationsLogs\Calls\Employee\Requests\CallRequest;
 use App\CommunicationApp\CommunicationsLogs\Calls\Employee\Transformers\CallTransformer;
@@ -38,7 +40,18 @@ class CallsController extends BaseApiController
     {
         $currentEmployeeBranch = auth('api')->user()->schoolEmployee->branch_id;
         $calls = $this->repository->where('type', CommunicationLogTypesEnums::CALLS)->where('branch_uuid', $currentEmployeeBranch)->paginate();
-        return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType);
+        return $this->transformDataModInclude($calls, '', new  ListCallsTransformer(), $this->ResourceType, $this->includeDefault());
+    }
+
+    public function includeDefault()
+    {
+        $actions['export'] = [
+            'endpoint_url' => buildScopeRoute('api.employee.calls.index.export'),
+            'label' => trans('app.export-calls'),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_CALLS
+        ];
+        return ['default_actions' => $actions];
     }
 
     /**
