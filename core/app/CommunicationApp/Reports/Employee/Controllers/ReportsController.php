@@ -31,5 +31,9 @@ class ReportsController extends BaseApiController
         $parentActivities = ParentActivityReport::with('parent')->paginate();
         return $this->transformDataModInclude($parentActivities, '', new  ParentActivityReportTransformer(), $this->ActivityReportResourceType);
     }
-
+    public function parentActivityExport()
+    {
+        $parentActivities = ParentActivityReport::with('parent')->get();
+        return (new ParentActivityReport)->export($parentActivities,'Parent_Activity_Report');
+    }
 }

@@ -47,21 +47,27 @@ class ParentActivityReportTransformer extends TransformerAbstract
     {
         $actions[] = [
                 'endpoint_url' => buildScopeRoute('api.employee.complains.index'),
-                'label' => trans('questions.' . APIActionsEnums::LIST_COMPLAINS),
+                'label' => trans('complains.' . APIActionsEnums::LIST_COMPLAINS),
                 'method' => 'GET',
                 'key' => APIActionsEnums::LIST_COMPLAINS
         ];
         $actions[] = [
             'endpoint_url' => buildScopeRoute('api.employee.calls.index'),
-            'label' => trans('questions.' . APIActionsEnums::LIST_CALLS),
+            'label' => trans('calls.' . APIActionsEnums::LIST_CALLS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_CALLS
         ];
         $actions[] = [
             'endpoint_url' => buildScopeRoute('api.employee.visits.index'),
-            'label' => trans('questions.' . APIActionsEnums::LIST_VISITS),
+            'label' => trans('visits.' . APIActionsEnums::LIST_VISITS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_VISITS
+        ];
+        $actions[] = [
+            'endpoint_url' => buildScopeRoute('api.employee.parent_activity_export'),
+            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
         ];
 
         if (count($actions)) {

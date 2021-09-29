@@ -29,9 +29,9 @@ class ParentActivityReport extends Model
     {
         return [
             'parent' => $data->parent->user->name,
-            'complains_count' => $data->complains_count,
-            'visits_count' => $data->visits_count,
-            'calls_count' => $data->calls_count,
+            'complains_count' => $data->complains_count ,
+            'visits_count' => $data->visits_count ,
+            'calls_count' => $data->calls_count ,
         ];
     }
 
