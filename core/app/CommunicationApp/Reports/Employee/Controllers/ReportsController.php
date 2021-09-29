@@ -11,6 +11,7 @@ use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Employee\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
+use App\CommunicationApp\Reports\Employee\Transformers\ListParentActivityReportTransformer;
 use App\CommunicationApp\Reports\Employee\Transformers\ParentActivityReportTransformer;
 use App\CommunicationApp\Reports\Models\ParentActivityReport;
 use Exception;
@@ -26,11 +27,20 @@ class ReportsController extends BaseApiController
     /**
      * @return array|array[]|JsonResponse
      */
-    public function parentActivity()
+    public function parentActivityList()
     {
         $parentActivities = ParentActivityReport::with('parent')->paginate();
+        return $this->transformDataModInclude($parentActivities, '', new  ListParentActivityReportTransformer(), $this->ActivityReportResourceType);
+    }
+    /**
+     * @return array|array[]|JsonResponse
+     */
+    public function parentActivityShow($parent_uuid)
+    {
+        $parentActivities = ParentActivityReport::with('parent')->where('parent_uuid', $parent_uuid)->paginate();
         return $this->transformDataModInclude($parentActivities, '', new  ParentActivityReportTransformer(), $this->ActivityReportResourceType);
     }
+
     public function parentActivityExport()
     {
         $parentActivities = ParentActivityReport::with('parent')->get();

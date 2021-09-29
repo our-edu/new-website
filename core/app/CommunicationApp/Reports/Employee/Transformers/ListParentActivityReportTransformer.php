@@ -14,7 +14,7 @@ use App\CommunicationApp\Reports\Models\ParentActivityReport;
 use League\Fractal\TransformerAbstract;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
-class ParentActivityReportTransformer extends TransformerAbstract
+class ListParentActivityReportTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
         'actions',
@@ -46,32 +46,19 @@ class ParentActivityReportTransformer extends TransformerAbstract
     public function includeActions(ParentActivityReport $report)
     {
         $actions[] = [
-                'endpoint_url' => buildScopeRoute(
-                    'api.employee.complains.index',
-                    ['parent_uuid'=> $report->parent_uuid]
-                ),
-                'label' => trans('complains.' . APIActionsEnums::LIST_COMPLAINS),
-                'method' => 'GET',
-                'key' => APIActionsEnums::LIST_COMPLAINS
-        ];
-        $actions[] = [
             'endpoint_url' => buildScopeRoute(
-                'api.employee.calls.index',
+                'api.employee.reports.parent_activity.show',
                 ['parent_uuid'=> $report->parent_uuid]
             ),
-
-            'label' => trans('calls.' . APIActionsEnums::LIST_CALLS),
+            'label' => trans('visits.' . APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT),
             'method' => 'GET',
-            'key' => APIActionsEnums::LIST_CALLS
+            'key' => APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT
         ];
         $actions[] = [
-            'endpoint_url' => buildScopeRoute(
-                'api.employee.visits.index',
-                ['parent_uuid'=> $report->parent_uuid]
-            ),
-            'label' => trans('visits.' . APIActionsEnums::LIST_VISITS),
+            'endpoint_url' => buildScopeRoute('api.employee.reports.parent_activity_export'),
+            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
             'method' => 'GET',
-            'key' => APIActionsEnums::LIST_VISITS
+            'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
         ];
 
         if (count($actions)) {
