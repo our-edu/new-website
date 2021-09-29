@@ -11,6 +11,7 @@ use App\CommunicationApp\Questions\Employee\Requests\QuestionRequest;
 use App\CommunicationApp\Questions\Employee\Transformers\ListQuestionsTransformer;
 use App\CommunicationApp\Questions\Employee\Transformers\QuestionTransformer;
 use App\CommunicationApp\Questions\Repository\QuestionRepositoryInterface;
+use App\CommunicationApp\Questions\UseCases\DeleteUseCases\DeleteQuestionUseCaseInterface;
 use App\CommunicationApp\Settings\Enums\GeneralSettingsEnum;
 use App\CommunicationApp\Settings\model\GeneralSettings;
 use App\CommunicationApp\Settings\Repository\GeneralSettingsRepositoryInterface;
@@ -22,16 +23,18 @@ class QuestionsController extends BaseApiController
 {
     public QuestionRepositoryInterface  $repository;
     public GeneralSettingsRepositoryInterface  $generalSettingsRepository;
+    public DeleteQuestionUseCaseInterface  $deleteQuestionUseCase;
     protected string $ModelName = 'Question';
     protected string $ResourceType = ResourceTypesEnums::QUESTION;
 
     /**
      * @param QuestionRepositoryInterface $repository
      */
-    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository)
+    public function __construct(QuestionRepositoryInterface $repository, GeneralSettingsRepositoryInterface $generalSettingsRepository, DeleteQuestionUseCaseInterface $deleteQuestionUseCase)
     {
         $this->repository = $repository;
         $this->generalSettingsRepository = $generalSettingsRepository;
+        $this->deleteQuestionUseCase = $deleteQuestionUseCase;
     }
 
     /**
@@ -114,7 +117,12 @@ class QuestionsController extends BaseApiController
     public function destroy($id): JsonResponse
     {
         try {
-            $this->repository->find($id)->delete();
+            $question = $this->repository->find($id);
+            $errors = $this->deleteQuestionUseCase->checkAnswers($question);
+            if (!empty($errors)) {
+                return formatErrorValidation($errors);
+            }
+            $question->delete();
             return response()->json([
                 'meta' => [
                     'message' => trans('questions.' . $this->ModelName . '  was deleted '),
