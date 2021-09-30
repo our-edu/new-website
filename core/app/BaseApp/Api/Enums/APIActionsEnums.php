@@ -64,5 +64,10 @@ abstract class APIActionsEnums
     const FILTER_EVENTS = 'filter_events';
     const BRANCHES_LOOKUPS = 'branches_lookups';
     const BRANCHES_ROLES_LOOKUPS = 'branches_roles_lookups';
+    const LIST_COMPLAINS = "list_complains";
+    const LIST_CALLS = "list_calls";
+    const LIST_VISITS = "list_visits";
     const CHILDREN_LOOKUPS = 'children_lookups';
+    const EXPORT_PARENT_ACTIVITY_REPORT = 'export_parent_activity_report';
+    const SHOW_PARENT_ACTIVITY_REPORT = 'show_parent_activity_report';
 }
