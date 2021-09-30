@@ -82,6 +82,45 @@ class  EventsControllerTest extends TestCase
     /**
      * @test
      */
+    public function events_show()
+    {
+        dump('test_events_show');
+        $this->apiSignIn($this->authEmployee());
+        $event = Event::factory()->create();
+        $response = $this->getJson("/api/v1/en/employee/events/".$event->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                'type',
+                'id',
+                'attributes' => [
+                    'title_ar',
+                    'title_en',
+                    'body_ar',
+                    'body_en',
+                    'full_day',
+                    'start',
+                    'end',
+                    'all_branches',
+                    'branches',
+                ],
+                "relationships" => [
+                    'actions' => [
+                        'data' => [
+                            [
+                                'type',
+                                'id'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function event_store()
     {
         dump('test_event_store');

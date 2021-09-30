@@ -101,6 +101,16 @@ class EventsController extends BaseApiController
     }
 
     /**
+     * @param $id
+     * @return array|array[]|JsonResponse
+     */
+    public function show($id)
+    {
+        $event = $this->repository->find($id);
+        return $this->transformDataModInclude($event, '', new  EventTransformer(), $this->ResourceType);
+    }
+
+    /**
      * @param EventRequest $request
      * @return array|array[]|JsonResponse
      */
