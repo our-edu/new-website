@@ -59,6 +59,7 @@ class CreateParentActivitiesReportView extends Migration
                         where type = 'calls'
                         group by parent_uuid
                         ) as ca
-                on  pu.uuid = ca.parent_uuid";
+                on  pu.uuid = ca.parent_uuid
+                   where pu.deleted_at is null ";
     }
 }
