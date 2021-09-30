@@ -54,12 +54,7 @@ class ListParentActivityReportTransformer extends TransformerAbstract
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT
         ];
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.employee.reports.parent_activity_export'),
-            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
-            'method' => 'GET',
-            'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
-        ];
+
 
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);

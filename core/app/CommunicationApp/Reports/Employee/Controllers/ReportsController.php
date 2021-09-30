@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\CommunicationApp\Reports\Employee\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
+use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\CommunicationApp\Complains\Employee\Requests\ResolveComplainRequest;
 use App\CommunicationApp\Complains\Employee\Transformers\ComplainTransformer;
@@ -30,7 +31,7 @@ class ReportsController extends BaseApiController
     public function parentActivityList()
     {
         $parentActivities = ParentActivityReport::with('parent')->paginate();
-        return $this->transformDataModInclude($parentActivities, '', new  ListParentActivityReportTransformer(), $this->ActivityReportResourceType);
+        return $this->transformDataModInclude($parentActivities, '', new  ListParentActivityReportTransformer(), $this->ActivityReportResourceType, $this->defaultIncludes());
     }
     /**
      * @return array|array[]|JsonResponse
@@ -45,5 +46,15 @@ class ReportsController extends BaseApiController
     {
         $parentActivities = ParentActivityReport::with('parent')->get();
         return (new ParentActivityReport)->export($parentActivities, 'Parent_Activity_Report');
+    }
+    private function defaultIncludes(): array
+    {
+        $actions[APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT] = [
+            'endpoint_url' => buildScopeRoute('api.employee.reports.parent_activity_export'),
+            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
+            'method' => 'GET',
+            'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
+        ];
+        return ['default_actions' => $actions];
     }
 }

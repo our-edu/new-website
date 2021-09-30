@@ -130,6 +130,44 @@ class  AnnouncementControllerTest extends TestCase
     /**
      * @test
      */
+    public function announcements_show()
+    {
+        dump('test_announcements_show');
+        $this->apiSignIn($this->authEmployee());
+        $announcement = Announcement::factory()->create();
+        $response = $this->getJson("/api/v1/en/employee/announcements/".$announcement->uuid);
+        $response->assertOk();
+        $response->assertJsonStructure([
+            'data' => [
+                'type',
+                'id',
+                'attributes' => [
+                    'title_ar',
+                    'title_en',
+                    'body_ar',
+                    'body_en',
+                    'from',
+                    'to',
+                    'branches',
+                    'roles',
+                ],
+                "relationships" => [
+                    'actions' => [
+                        'data' => [
+                            [
+                                'type',
+                                'id'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     */
     public function announcement_show_list()
     {
         dump('test_announcement_show_list');
@@ -150,7 +188,7 @@ class  AnnouncementControllerTest extends TestCase
         $announcement->branches()->attach([$branchUuid]);
         $announcement->roles()->attach([$roleId]);
 
-        $response = $this->getJson("/api/v1/en/employee/announcements/show");
+        $response = $this->getJson("/api/v1/en/employee/announcements/index/view");
         $response->assertOk();
         $response->assertJsonStructure([
             'data' => [

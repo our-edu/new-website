@@ -29,6 +29,7 @@ class EmployeeBranchesRolesLookUpTransformer extends TransformerAbstract
         return [
             'id' => $role->id,
             'name' => $role->display_name,
+            'branch_name' => $role->branch->name,
         ];
     }
 }
