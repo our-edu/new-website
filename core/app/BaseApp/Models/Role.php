@@ -6,6 +6,7 @@ namespace App\BaseApp\Models;
 
 use App\CommunicationApp\Announcements\Models\Announcement;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Models\Role as SpatieRole;
@@ -54,5 +55,13 @@ class Role extends SpatieRole
     public function announcements() : BelongsToMany
     {
         return $this->belongsToMany(Announcement::class, 'announcements_roles', 'role_id', 'announcement_uuid');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function branch() : BelongsTo
+    {
+        return $this->belongsTo(Branch::class, 'branch_uuid');
     }
 }

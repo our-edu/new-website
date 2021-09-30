@@ -30,7 +30,12 @@ class LookUpController extends BaseApiController
 
     public function getEmployeeBranchesRoles()
     {
-        $roles = Role::whereIn('branch_uuid', auth('api')->user()->schoolEmployee->branches->pluck('uuid')->toArray())->get();
+        if (request()->has('branches_uuids')) {
+            $branchesUuids = explode(',', request()->get('branches_uuids'));
+        } else {
+            $branchesUuids = auth('api')->user()->schoolEmployee->branches->pluck('uuid')->toArray();
+        }
+        $roles = Role::whereIn('branch_uuid', $branchesUuids)->orderBy('branch_uuid')->with(['branch.translations'])->get();
         return $this->transformDataModInclude(
             $roles,
             '',

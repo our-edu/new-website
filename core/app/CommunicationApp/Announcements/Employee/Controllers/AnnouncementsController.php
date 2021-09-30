@@ -127,7 +127,17 @@ class AnnouncementsController extends BaseApiController
      * @param $id
      * @return array|array[]|JsonResponse
      */
-    public function show()
+    public function show($id)
+    {
+        $announcement = $this->repository->find($id);
+        return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType);
+    }
+
+    /**
+     * @param $id
+     * @return array|array[]|JsonResponse
+     */
+    public function view()
     {
         $role = auth('api')->user()->userRole()->where('branch_uuid', auth('api')->user()->schoolEmployee->branch_id)->first();
         $announcements = [];
