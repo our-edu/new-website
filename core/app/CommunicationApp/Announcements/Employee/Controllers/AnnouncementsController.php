@@ -94,14 +94,14 @@ class AnnouncementsController extends BaseApiController
             'meta' => filtersObject([
                 mapFiltersArrayFromModels(
                     'branch',
-                    trans('app.label.branches'),
+                    trans('announcements.filters.label.branches'),
                     'dropdown',
                     auth('api')->user()->schoolEmployee->branches()->with(['translations'])->get(),
                     new BranchesFilterTransformer()
                 ),
                 mapFiltersArrayFromModels(
                     'publisher',
-                    trans('app.label.publisher'),
+                    trans('announcements.filters.label.publisher'),
                     'dropdown',
                     User::where('type', UserTypeEnum::EMPLOYEE)->get(),
                     new EmployeesUsersFilterTransformer()
