@@ -167,13 +167,15 @@ class  ComplainControllerTest extends TestCase
                 "type" => "complain",
                 "id" => "null",
                 "attributes" => [
-                    "status" => "resolved"
+                    "status" => "resolved",
+                    "procedure"=>"prodcasdsd"
                 ]
             ]
 
         ];
         $response = $this->putJson("/api/v1/en/employee/complains/".$complain->uuid.'/resolve',$data);
         $response->assertOk();
+
         $response->assertJsonStructure([
             'data' => [
                 'type',
@@ -182,6 +184,7 @@ class  ComplainControllerTest extends TestCase
                     "title",
                     "body",
                     "status",
+                    "procedure",
                     "parent",
                     "student"
                 ],
@@ -216,7 +219,9 @@ class  ComplainControllerTest extends TestCase
                 "type" => "complain",
                 "id" => "null",
                 "attributes" => [
-                    "status" => "resolved"
+                    "status" => "resolved",
+                    "procedure"=>"prodcasdsd"
+
                 ]
             ]
 

@@ -84,6 +84,7 @@ class  VisitsControllerTest extends TestCase
                 'attributes' => [
                     'reason',
                     'date',
+                    'procedure',
                     'branch',
                 ],
                 "relationships" => [
@@ -121,6 +122,7 @@ class  VisitsControllerTest extends TestCase
                     "reason" => "test bodytest bodytest bodytest bodytest bodytest body",
                     "parent_national_id" => ParentUser::factory()->create()->user->national_id,
                     "date" => "2021-12-22",
+                    "procedure" => "dsasd"
                 ]
             ]
         ];
@@ -135,6 +137,7 @@ class  VisitsControllerTest extends TestCase
                 'attributes' => [
                     'reason',
                     'date',
+                    'procedure',
                     'branch',
                 ],
                 "relationships" => [
@@ -172,6 +175,7 @@ class  VisitsControllerTest extends TestCase
                     "reason" => "test bodytest bodytest bodytest bodytest bodytest body",
                     "parent_national_id" => ParentUser::factory()->create()->user->national_id,
                     "date" => "2021-12-22",
+                    "procedure" => "dsadasas"
 
                 ]
             ]
@@ -187,6 +191,7 @@ class  VisitsControllerTest extends TestCase
                 'attributes' => [
                     'reason',
                     'date',
+                    'procedure',
                     'branch',
                 ],
                 "relationships" => [
