@@ -73,10 +73,14 @@ class Complain extends BaseModel
     protected function exportedData($data)
     {
         return [
+            'Parent Name' => $data->parent->user->name,
+            'Parent National Id ' => $data->parent->user->national_id,
+            'Title' => $data->title,
             'Child name' => $data->student->user->name,
+            'Body' => $data->body,
             'Status' => ComplainStatusesEnum::getStatuses()[$data->status][app()->getLocale()],
             'Sent date and time' => $data->created_at,
-            'Receive date' => $data->created_at,
+            'Resolution Date' => $data->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at ?? 'not resolved',
         ];
     }
 }
