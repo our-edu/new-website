@@ -80,7 +80,7 @@ class Complain extends BaseModel
             'Body' => $data->body,
             'Status' => ComplainStatusesEnum::getStatuses()[$data->status][app()->getLocale()],
             'Sent date and time' => $data->created_at,
-            'Resolution Date' => $data->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at ?? 'not resolved',
+            'Resolution Date' => $data->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at ?? 'not resolved',
         ];
     }
 }
