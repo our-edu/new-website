@@ -28,7 +28,8 @@ class ParentActivityReport extends Model
     protected function exportedData($data): array
     {
         return [
-            'parent' => $data->parent->user->name,
+            'parent name' => $data->parent->user->name,
+            'parent national id' => $data->parent->user->national_id,
             'complains_count' => $data->complains_count ,
             'visits_count' => $data->visits_count ,
             'calls_count' => $data->calls_count ,
