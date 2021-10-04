@@ -36,7 +36,8 @@ class ComplainTransformer extends TransformerAbstract
             'body' => $complain->body,
             'status' => $complain->status,
             'parent' => $complain->parent->user->name,
-            'student' => $complain->student->user->name
+            'student' => $complain->student->user->name,
+            'procedure' => $complain->procedure
         ];
     }
 

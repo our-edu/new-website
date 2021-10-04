@@ -17,6 +17,7 @@ class VisitRequest extends BaseApiRequest
             'parent_national_id'  => 'required|exists:users,national_id',
             'reason'       => 'required|string',
             'date'         => 'required|date',
+            'procedure' => 'required|string'
         ];
     }
 
@@ -28,7 +29,8 @@ class VisitRequest extends BaseApiRequest
         return [
             'reason' => trans('visits.fields.reason'),
             'parent_uuid' => trans('visits.fields.parent_uuid'),
-            'date' => trans('visits.fields.date')
+            'date' => trans('visits.fields.date'),
+            'procedure' => trans('visits.fields.procedure')
         ];
     }
 }

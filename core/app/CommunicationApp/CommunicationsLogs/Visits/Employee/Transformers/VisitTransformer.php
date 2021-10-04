@@ -36,6 +36,7 @@ class VisitTransformer extends TransformerAbstract
             'parent' => $visit->parent->user->name,
             'parent_national_id' => $visit->parent->user->national_id,
             'date' => $visit->date,
+            'procedure' => $visit->procedure,
             'branch' => $visit->branch->name
         ];
     }

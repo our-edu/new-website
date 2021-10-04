@@ -15,8 +15,9 @@ class ResolveComplainRequest extends BaseApiRequest
     public function rules(): array
     {
         return [
-                "status" => 'required|in:'.ComplainStatusesEnum::RESOLVED_EN
-        ];
+                "status" => 'required|in:'.ComplainStatusesEnum::RESOLVED_EN,
+                "procedure" => 'required'
+            ];
     }
 
     /**
@@ -25,9 +26,7 @@ class ResolveComplainRequest extends BaseApiRequest
     public function attributes(): array
     {
         return [
-            'body' => trans('complains.fields.body'),
-            'parent_uuid' => trans('complains.fields.parent_uuid'),
-            'student_uuid' => trans('complains.fields.student_uuid')
+            'status' => trans('complains.fields.status'),
         ];
     }
 }
