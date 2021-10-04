@@ -39,7 +39,8 @@ class ComplainTransformer extends TransformerAbstract
             'status' => $complain->status,
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
-            'status_slug' => $complain->status == ComplainStatusesEnum::OPENED_EN ? ComplainStatusesEnum::OPENED_EN : ComplainStatusesEnum::RESOLVED_EN
+            'status_slug' => $complain->status == ComplainStatusesEnum::OPENED_EN ? ComplainStatusesEnum::OPENED_EN : ComplainStatusesEnum::RESOLVED_EN,
+            'procedure' => $complain->procedure
         ];
     }
 
