@@ -96,6 +96,7 @@ class Announcement extends BaseModel
             'Announcement Title' => $data->title,
             'Publish At' => $data->from,
             'End Publish At' => $data->to,
+            'body' => $data->body,
             'school Branch' => $branchesName,
             'Added at' => $data->created_at,
             'Published by' => $data->publisher->name,
