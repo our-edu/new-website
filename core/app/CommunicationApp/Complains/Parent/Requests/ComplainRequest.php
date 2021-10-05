@@ -44,7 +44,11 @@ class ComplainRequest extends BaseApiRequest
             'body' => trans('complains.fields.body'),
             'title' => trans('complains.fields.title'),
             'parent_uuid' => trans('complains.fields.parent_uuid'),
-            'student_uuid' => trans('complains.fields.student_uuid')
+            'student_uuid' => trans('complains.fields.student_uuid'),
+            'category' => trans('complains.fields.category'),
+            'questions_answers' => trans('complains.fields.questions_answers'),
+            'questions_answers.*.question_uuid' => trans('complains.fields.questions_answers.question_uuid'),
+            'questions_answers.*.answer' => trans('complains.fields.questions_answers.answer'),
         ];
     }
 }
