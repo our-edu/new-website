@@ -14,7 +14,7 @@ class AddComplainCategoryColumnTable extends Migration
     public function up()
     {
         Schema::table('complains', function (Blueprint $table) {
-            $table->string('category')->nullable();
+            $table->string('category')->nullable()->default('canteen');
         });
     }
 
