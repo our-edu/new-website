@@ -39,6 +39,8 @@ class AnnouncementTransformer extends TransformerAbstract
             'body_en' => $announcement->translate('en')->body,
             'from' => $announcement->from,
             'to' => $announcement->to,
+            'web_image' => $announcement->webImage ? $announcement->webImage->url :  'https://www.btklsby.go.id/images/placeholder/nogender.png',
+            'mobile_image' => $announcement->mobileImage ? $announcement->mobileImage->url :  'https://www.btklsby.go.id/images/placeholder/nogender.png',
             'branches' => $announcement->branches->pluck('uuid'),
             'roles' => $announcement->roles->pluck('id')
         ];
