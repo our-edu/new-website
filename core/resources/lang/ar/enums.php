@@ -12,5 +12,8 @@ return [
         "show_announcement" => "عرض الاعلان",
         "delete_announcement" => "حذف الاعلان",
         "create_announcement" => "انشاء اعلان",
+        "update_question" => "تعديل السؤال",
+        "delete_question" => "حذف السؤال",
+        "show_question" => "عرض السؤال",
     ],
 ];

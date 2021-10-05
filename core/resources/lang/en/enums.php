@@ -12,5 +12,8 @@ return [
         "show_announcement" => "Show Announcement",
         "delete_announcement" => "Delete Announcement",
         "create_announcement" => "Create Announcement",
+        "update_question" => "Update Question",
+        "delete_question" => "Delete Question",
+        "show_question" => "Show Question",
     ],
 ];
