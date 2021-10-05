@@ -54,31 +54,31 @@ class AnnouncementsController extends BaseApiController
 
         $actions['create_announcement'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.store'),
-            'label' => trans('app.create-announcement'),
+            'label' => trans('announcements.create-announcement'),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_ANNOUNCEMENT
         ];
         $actions['branches_lookups'] = [
             'endpoint_url' => getExternalEndpoint(DashboardAPIEnums::EMPLOYEE_BRANCHES_LOOKUPS),
-            'label' => trans('app.branches-lookups'),
+            'label' => trans('announcements.branches-lookups'),
             'method' => 'GET',
             'key' => APIActionsEnums::BRANCHES_LOOKUPS
         ];
         $actions['branches_roles_lookups'] = [
             'endpoint_url' => buildScopeRoute('api.lookUp.employee.branches.roles'),
-            'label' => trans('app.employee-branches-roles-lookup'),
+            'label' => trans('announcements.employee-branches-roles-lookup'),
             'method' => 'GET',
             'key' => APIActionsEnums::BRANCHES_ROLES_LOOKUPS
         ];
         $actions['filter'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.index.filters'),
-            'label' => trans('app.filter-announcement'),
+            'label' => trans('announcements.filter-announcement'),
             'method' => 'GET',
             'key' => APIActionsEnums::FILTER_ANNOUNCEMENTS
         ];
         $actions['export'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.index.export'),
-            'label' => trans('app.export-announcement'),
+            'label' => trans('announcements.export-announcement'),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_ANNOUNCEMENTS
         ];
