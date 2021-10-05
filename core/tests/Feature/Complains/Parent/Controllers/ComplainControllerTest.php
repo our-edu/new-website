@@ -21,7 +21,8 @@ class  ComplainControllerTest extends TestCase
         dump('test_complains_list');
         $this->apiSignIn($this->authParent());
         $complains = Complain::factory(10)->create([
-            'parent_uuid' => $this->authParent()->parent->uuid
+            'parent_uuid' => $this->authParent()->parent->uuid,
+            'category'=>ComplainCategoriesEnum::CANTEEN_EN
         ]);
         $response = $this->getJson("/api/v1/en/parent/complains");
         $response->assertOk();
@@ -33,6 +34,7 @@ class  ComplainControllerTest extends TestCase
                     'attributes' => [
                         "title",
                         "status",
+                        'category',
                         "parent",
                         "student"
                     ],
@@ -72,7 +74,9 @@ class  ComplainControllerTest extends TestCase
         dump('test_complains_show');
         $this->apiSignIn($this->authParent());
         $complain= Complain::factory()->create([
-            'parent_uuid' => $this->authParent()->parent->uuid
+            'parent_uuid' => $this->authParent()->parent->uuid,
+            'category'=>ComplainCategoriesEnum::CANTEEN_EN
+
         ]);
         $response = $this->getJson("/api/v1/en/parent/complains/".$complain->uuid);
         $response->assertOk();
@@ -83,6 +87,7 @@ class  ComplainControllerTest extends TestCase
                     'id',
                     'attributes' => [
                         "title",
+                        "category",
                         "body",
                         "status",
                         "parent",
@@ -125,6 +130,7 @@ class  ComplainControllerTest extends TestCase
                 'attributes' => [
                     "title",
                     "body",
+                    "category",
                     "status",
                     "parent",
                     "student"
@@ -173,6 +179,7 @@ class  ComplainControllerTest extends TestCase
                 'attributes' => [
                     "title",
                     "body",
+                    "category",
                     "status",
                     "parent",
                     "student"
