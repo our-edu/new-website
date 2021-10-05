@@ -31,6 +31,7 @@ class Complain extends BaseModel
         'student_uuid',
         'body',
         'procedure',
+        'category',
         'title',
         'status'
     ];

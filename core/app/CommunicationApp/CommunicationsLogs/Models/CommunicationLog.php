@@ -29,6 +29,9 @@ class CommunicationLog extends \App\BaseApp\BaseModel
         'creator_uuid',
         'branch_uuid'
     ];
+    protected $casts = [
+        'date' => 'datetime:Y-m-d',
+    ];
 
     /**
      * @return BelongsTo

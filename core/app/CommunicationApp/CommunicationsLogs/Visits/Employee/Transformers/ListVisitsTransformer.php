@@ -34,7 +34,7 @@ class ListVisitsTransformer extends TransformerAbstract
             'id' => $visit->uuid,
             'reason' => $visit->reason,
             'parent' => $visit->parent->user->name,
-            'date' => $visit->date,
+            'datetime' => $visit->date,
             'branch' => $visit->branch->name
         ];
     }

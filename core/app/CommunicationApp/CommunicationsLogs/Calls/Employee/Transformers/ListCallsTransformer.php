@@ -36,6 +36,7 @@ class ListCallsTransformer extends TransformerAbstract
             'parent' => $call->parent->user->name,
             'date' => $call->date,
             'procedure' => $call->procedure,
+            'datetime' => $call->date,
             'branch' => $call->branch->name
         ];
     }
