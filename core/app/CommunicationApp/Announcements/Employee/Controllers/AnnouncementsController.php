@@ -56,31 +56,31 @@ class AnnouncementsController extends BaseApiController
 
         $actions['create_announcement'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.store'),
-            'label' => trans('app.create-announcement'),
+            'label' => trans('announcements.create-announcement'),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_ANNOUNCEMENT
         ];
         $actions['branches_lookups'] = [
             'endpoint_url' => getExternalEndpoint(DashboardAPIEnums::EMPLOYEE_BRANCHES_LOOKUPS),
-            'label' => trans('app.branches-lookups'),
+            'label' => trans('announcements.branches-lookups'),
             'method' => 'GET',
             'key' => APIActionsEnums::BRANCHES_LOOKUPS
         ];
         $actions['branches_roles_lookups'] = [
             'endpoint_url' => buildScopeRoute('api.lookUp.employee.branches.roles'),
-            'label' => trans('app.employee-branches-roles-lookup'),
+            'label' => trans('announcements.employee-branches-roles-lookup'),
             'method' => 'GET',
             'key' => APIActionsEnums::BRANCHES_ROLES_LOOKUPS
         ];
         $actions['filter'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.index.filters'),
-            'label' => trans('app.filter-announcement'),
+            'label' => trans('announcements.filter-announcement'),
             'method' => 'GET',
             'key' => APIActionsEnums::FILTER_ANNOUNCEMENTS
         ];
         $actions['export'] = [
             'endpoint_url' => buildScopeRoute('api.employee.announcements.index.export'),
-            'label' => trans('app.export-announcement'),
+            'label' => trans('announcements.export-announcement'),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_ANNOUNCEMENTS
         ];
@@ -166,12 +166,15 @@ class AnnouncementsController extends BaseApiController
             $createdAnnouncement->roles()->attach($data['roles']);
             $createdAnnouncement->loadMissing(['branches', 'roles', 'translations', 'webImage', 'mobileImage']);
             return $this->transformDataModInclude($createdAnnouncement, '', new  AnnouncementTransformer(), $this->ResourceType, [
-                'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
+//                'message' => trans('announcements.' . $this->ModelName . '  was  created successfully')
+                      'message' => trans('announcements.was created successfully', ['module_name' => __('announcements.'.$this->ModelName)]),
+
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
+//                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  created '),
+                'message' => trans('announcements.wasn’t created', ['module_name' => __('announcements.'.$this->ModelName)]),
                 'error' => $exception->getMessage()
             ], 500);
         }
@@ -194,12 +197,15 @@ class AnnouncementsController extends BaseApiController
             $announcement->loadMissing(['branches', 'roles', 'translations', 'webImage', 'mobileImage']);
 
             return $this->transformDataModInclude($announcement, '', new  AnnouncementTransformer(), $this->ResourceType, [
-                'message' => trans('announcements.' . $this->ModelName . '  was  updated successfully')
+//                'message' => trans('announcements.' . $this->ModelName . '  was  updated successfully')
+                'message' => trans('announcements.was updated successfully', ['module_name' => __('announcements.'.$this->ModelName)]),
+
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  updated '),
+//                'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  updated '),
+                'message' => trans('announcements.wasn’t updated', ['module_name' => __('announcements.'.$this->ModelName)]),
                 'error'=> $exception->getMessage()
             ], 500);
         }
@@ -215,14 +221,17 @@ class AnnouncementsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  was deleted '),
+//                    'message' => trans('announcements.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('announcements.was deleted', ['module_name' => __('announcements.'.$this->ModelName)]),
+
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  deleted '),
+//                    'message' => trans('announcements.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('announcements.wasn’t deleted', ['module_name' => __('announcements.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);

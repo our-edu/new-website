@@ -48,7 +48,7 @@ class ComplainsController extends BaseApiController
     {
         $actions['export'] = [
             'endpoint_url' => buildScopeRoute('api.employee.complains.index.export'),
-            'label' => trans('app.export-complains'),
+            'label' => trans('complains.export-complains'),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_COMPLAINS
         ];

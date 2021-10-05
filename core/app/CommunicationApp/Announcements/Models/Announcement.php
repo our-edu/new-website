@@ -112,15 +112,16 @@ class Announcement extends BaseModel
             $rolesName .= $role->display_name;
         }
         return [
-            'Announcement Title' => $data->title,
-            'Publish At' => $data->from,
-            'End Publish At' => $data->to,
-            'body' => $data->body,
-            'school Branch' => $branchesName,
-            'Added at' => $data->created_at,
-            'Published by' => $data->publisher->name,
-            'Displayed to Types' => $rolesName,
-            'Status' => $data->getPublishStatus(),
+
+            trans('export.Announcement.Title') => $data->title,
+            trans('export.Announcement.Publish_At') => $data->from,
+            trans('export.Announcement.End_Publish_At') => $data->to,
+            trans('export.Announcement.body') => $data->body,
+            trans('export.Announcement.school_Branch') => $branchesName,
+            trans('export.Announcement.Added_at') => $data->created_at,
+            trans('export.Announcement.Published_by') => $data->publisher->name,
+            trans('export.Announcement.Displayed_to_Types') => $rolesName,
+            trans('export.Announcement.Status') => $data->getPublishStatus(),
         ];
     }
 }

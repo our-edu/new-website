@@ -47,7 +47,7 @@ class VisitTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.visits.update', [
                 'visit' => $visit->uuid,
             ]),
-            'label' => trans('visits.'.APIActionsEnums::UPDATE_VISIT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_VISIT),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_VISIT
         ];
@@ -55,7 +55,7 @@ class VisitTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.visits.destroy', [
                 'visit' => $visit->uuid,
             ]),
-            'label' => trans('visits.'.APIActionsEnums::DELETE_VISIT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::DELETE_VISIT),
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_VISIT
         ];

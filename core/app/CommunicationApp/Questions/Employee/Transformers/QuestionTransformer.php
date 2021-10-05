@@ -45,7 +45,7 @@ class QuestionTransformer extends TransformerAbstract
         'endpoint_url' => buildScopeRoute('api.employee.questions.update', [
             'question' => $question->uuid,
         ]),
-        'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTION),
+        'label' => trans('enums.'.APIActionsEnums::UPDATE_QUESTION),
         'method' => 'PUT',
         'key' => APIActionsEnums::UPDATE_QUESTION
         ];
@@ -53,7 +53,7 @@ class QuestionTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.questions.destroy', [
                 'question' => $question->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::DELETE_QUESTION),
+            'label' => trans('enums.'.APIActionsEnums::DELETE_QUESTION),
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_QUESTION
         ];
