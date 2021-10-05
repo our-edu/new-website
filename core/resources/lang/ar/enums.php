@@ -15,5 +15,8 @@ return [
         "update_question" => "تعديل السؤال",
         "delete_question" => "حذف السؤال",
         "show_question" => "عرض السؤال",
+        "resolve_complain" => 'حل الشكوي',
+        "show_complain" => "عرض الشكوي",
+
     ],
 ];

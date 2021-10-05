@@ -15,5 +15,7 @@ return [
         "update_question" => "Update Question",
         "delete_question" => "Delete Question",
         "show_question" => "Show Question",
+        "resolve_complain" => "Resolve Complain",
+        "show_complain" => "Show Complain",
     ],
 ];

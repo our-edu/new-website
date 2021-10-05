@@ -54,7 +54,7 @@ class ComplainTransformer extends TransformerAbstract
                 'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
                     'complain' => $complain->uuid,
                 ]),
-                'label' => trans('questions.' . APIActionsEnums::RESOLVE_COMPLAIN),
+                'label' => trans('enums.' . APIActionsEnums::RESOLVE_COMPLAIN),
                 'method' => 'PUT',
                 'key' => APIActionsEnums::RESOLVE_COMPLAIN
             ];
