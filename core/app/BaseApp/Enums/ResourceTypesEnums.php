@@ -27,4 +27,5 @@ abstract class ResourceTypesEnums
     const EVENT = 'event';
     const CALLS = 'call';
     const PARENT_ACTIVITY_REPORT = 'parent_activity_report';
+    const COMPLAIN_CATEGORY = 'complain_category';
 }

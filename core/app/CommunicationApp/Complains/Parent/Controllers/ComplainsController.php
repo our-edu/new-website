@@ -6,8 +6,10 @@ namespace App\CommunicationApp\Complains\Parent\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
+use App\CommunicationApp\Complains\Parent\Transformers\ComplainCategoryTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ComplainTransformer;
 use App\CommunicationApp\Complains\Parent\Transformers\ListComplainsTransformer;
 use App\CommunicationApp\Complains\Repository\ComplainRepositoryInterface;
@@ -89,5 +91,10 @@ class ComplainsController extends BaseApiController
                 ]
             ], 500);
         }
+    }
+    public function getCategoriesLookup()
+    {
+        $categories = ComplainCategoriesEnum::getCategories();
+        return $this->transformDataModInclude($categories, '', new  ComplainCategoryTransformer(), ResourceTypesEnums::COMPLAIN_CATEGORY);
     }
 }
