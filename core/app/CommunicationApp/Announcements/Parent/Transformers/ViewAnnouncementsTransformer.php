@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\CommunicationApp\Announcements\Employee\Transformers;
+namespace App\CommunicationApp\Announcements\Parent\Transformers;
 
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
@@ -30,13 +30,15 @@ class ViewAnnouncementsTransformer extends TransformerAbstract
 
     public function transform(Announcement $announcement): array
     {
+        $image = $this->params['device_type'] == 'web' ? $announcement->webImage :
+            ($this->params['device_type'] == 'mobile' ? $announcement->mobileImage : null);
         return [
             'id' => $announcement->uuid,
             'title' => $announcement->title,
             'body' => $announcement->body,
             'from' => $announcement->from,
             'to' => $announcement->to,
-            'image' => $announcement->webImage ? $announcement->webImage->url :  'https://www.btklsby.go.id/images/placeholder/nogender.png',
+            'image' => $image ? $image->url :  'https://www.btklsby.go.id/images/placeholder/nogender.png',
         ];
     }
 }

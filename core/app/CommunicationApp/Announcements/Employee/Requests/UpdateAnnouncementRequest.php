@@ -7,7 +7,7 @@ namespace App\CommunicationApp\Announcements\Employee\Requests;
 use App\BaseApp\Api\Requests\BaseApiRequest;
 use Illuminate\Validation\Rule;
 
-class AnnouncementRequest extends BaseApiRequest
+class UpdateAnnouncementRequest extends BaseApiRequest
 {
     public function rules()
     {
@@ -20,8 +20,8 @@ class AnnouncementRequest extends BaseApiRequest
             'to' => 'required|date|after_or_equal:from',
             'branches' => 'required|array|min:1',
             'branches.*' => 'exists:branches,uuid',
-            'web_image' => 'required|exists:uploaded_media,uuid',
-            'mobile_image' => 'required|exists:uploaded_media,uuid',
+            'web_image' => 'nullable|exists:uploaded_media,uuid',
+            'mobile_image' => 'nullable|exists:uploaded_media,uuid',
             'roles' => 'required|array|min:1',
             'roles.*' => Rule::exists('roles', 'id')->where(function ($query) {
                 return $query->whereIn('branch_uuid', request()->get('data')['attributes']['branches']);
