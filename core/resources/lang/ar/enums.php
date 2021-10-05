@@ -8,6 +8,9 @@ return [
         "update_visit" => "تعديل الزياره",
         "delete_visit" => "حذف الزياره",
         "export_visits" => "تصدير الزيارات",
-
+        "update_announcement" => "تعديل الاعلان",
+        "show_announcement" => "عرض الاعلان",
+        "delete_announcement" => "حذف الاعلان",
+        "create_announcement" => "انشاء اعلان",
     ],
 ];

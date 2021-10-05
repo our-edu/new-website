@@ -8,7 +8,7 @@ return [
     'wasn’t updated' => ":module_name لا يمكن تحديثه",
     'was deleted' => ':module_name تم حذفه بنجاح',
     'wasn’t deleted' => ":module_name لا يمكن حذفه",
-    'Call' => 'مكالمه',
+    'Visit' => 'زياره',
     "fields" => [
         'reason' => 'السبب',
         'parent_uuid' => 'parent uuid',

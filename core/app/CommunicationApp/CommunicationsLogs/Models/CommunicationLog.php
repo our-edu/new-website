@@ -66,17 +66,17 @@ class CommunicationLog extends \App\BaseApp\BaseModel
     {
         if ($data->type == CommunicationLogTypesEnums::VISITS) {
             return [
-                'Date' => $data->date,
-                'Purpose' => $data->reason,
-                'Added by' => $data->creator->name,
+                trans('export.visits.Date')  => $data->date,
+                trans('export.visits.Purpose') => $data->reason,
+                trans('export.visits.Added_by') => $data->creator->name,
             ];
         }
         if ($data->type == CommunicationLogTypesEnums::CALLS) {
             return [
-                'Date' => $data->date,
-                'Purpose' => $data->reason,
-                'taken Actions' => $data->procedure,
-                'Added by' => $data->creator->name,
+                trans('export.calls.Date')  => $data->date,
+                trans('export.calls.Purpose') => $data->reason,
+                trans('export.calls.taken_Actions') => $data->procedure,
+               trans('export.calls.Added_by') => $data->creator->name,
             ];
         }
         return null;

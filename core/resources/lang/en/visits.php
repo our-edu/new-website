@@ -8,7 +8,7 @@ return [
     'wasn’t updated' => ':module_name Wasn’t Updated',
     'was deleted' => ':module_name Was Deleted',
     'wasn’t deleted' => ':module_name Wasn’t Deleted',
-    'Call' => 'Call',
+    'Visit' => 'Visit',
     "fields" => [
         'reason' => 'reason',
         'parent_uuid' => 'parent uuid',
