@@ -63,6 +63,12 @@ class QuestionsController extends BaseApiController
             'method' => 'GET',
             'key' => APIActionsEnums::CHILDREN_LOOKUPS
         ];
+        $actions[APIActionsEnums::COMPLAIN_CATEGORY_LOOKUP] = [
+            'endpoint_url' => buildScopeRoute('api.parent.complains.CategoryLookup'),
+            'label' => trans('complains.'.APIActionsEnums::COMPLAIN_CATEGORY_LOOKUP),
+            'method' => 'GET',
+            'key' => APIActionsEnums::COMPLAIN_CATEGORY_LOOKUP
+        ];
         return ['default_actions' => $actions];
     }
 }
