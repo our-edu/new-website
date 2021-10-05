@@ -31,7 +31,7 @@ class  VisitsControllerTest extends TestCase
                     'id',
                     'attributes' => [
                         'reason',
-                        'date',
+                        'datetime',
                         'branch',
                     ],
                     "relationships" => [
@@ -83,7 +83,7 @@ class  VisitsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
@@ -136,7 +136,7 @@ class  VisitsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
@@ -190,7 +190,7 @@ class  VisitsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
