@@ -7,6 +7,7 @@ namespace App\CommunicationApp\Complains\Employee\Transformers;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
 use League\Fractal\TransformerAbstract;
@@ -37,6 +38,7 @@ class ComplainTransformer extends TransformerAbstract
             'title' => $complain->title,
             'body' => $complain->body,
             'status' => $complain->status,
+            'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
             'status_slug' => $complain->status == ComplainStatusesEnum::OPENED_EN ? ComplainStatusesEnum::OPENED_EN : ComplainStatusesEnum::RESOLVED_EN,
