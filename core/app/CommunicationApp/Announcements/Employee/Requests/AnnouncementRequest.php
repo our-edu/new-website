@@ -38,7 +38,13 @@ class AnnouncementRequest extends BaseApiRequest
             'en.title' => trans('announcements.fields.title_en'),
             'en.body' => trans('announcements.fields.body_en'),
             'from' => trans('announcements.fields.from'),
-            'to' => trans('announcements.fields.to')
+            'to' => trans('announcements.fields.to'),
+            'branches.*' => trans('announcements.fields.branches_item'),
+            'branches' => trans('announcements.fields.branches'),
+            'roles.*' => trans('announcements.fields.roles_item'),
+            'roles' => trans('announcements.fields.roles'),
+            'web_image' => trans('announcements.fields.web_image'),
+            'mobile_image' => trans('announcements.fields.mobile_image'),
         ];
     }
 }
