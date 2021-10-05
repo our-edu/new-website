@@ -20,8 +20,6 @@ class UpdateAnnouncementRequest extends BaseApiRequest
             'to' => 'required|date|after_or_equal:from',
             'branches' => 'required|array|min:1',
             'branches.*' => 'exists:branches,uuid',
-            'web_image' => 'nullable|exists:uploaded_media,uuid',
-            'mobile_image' => 'nullable|exists:uploaded_media,uuid',
             'roles' => 'required|array|min:1',
             'roles.*' => Rule::exists('roles', 'id')->where(function ($query) {
                 return $query->whereIn('branch_uuid', request()->get('data')['attributes']['branches']);
@@ -43,8 +41,6 @@ class UpdateAnnouncementRequest extends BaseApiRequest
             'branches' => trans('announcements.fields.branches'),
             'roles.*' => trans('announcements.fields.roles_item'),
             'roles' => trans('announcements.fields.roles'),
-            'web_image' => trans('announcements.fields.web_image'),
-            'mobile_image' => trans('announcements.fields.mobile_image'),
         ];
     }
 }
