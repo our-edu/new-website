@@ -47,7 +47,7 @@ class CallTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.calls.update', [
                 'call' => $call->uuid,
             ]),
-            'label' => trans('calls.'.APIActionsEnums::UPDATE_CALL),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_CALL),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_CALL
         ];
@@ -55,7 +55,7 @@ class CallTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.calls.destroy', [
                 'call' => $call->uuid,
             ]),
-            'label' => trans('calls.'.APIActionsEnums::DELETE_CALL),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::DELETE_CALL),
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_CALL
         ];

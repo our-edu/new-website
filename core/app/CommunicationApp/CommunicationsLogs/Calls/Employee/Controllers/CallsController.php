@@ -52,7 +52,7 @@ class CallsController extends BaseApiController
     {
         $actions['export'] = [
             'endpoint_url' => buildScopeRoute('api.employee.calls.index.export'),
-            'label' => trans('app.export-calls'),
+            'label' => trans('calls.export-calls'),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_CALLS
         ];
@@ -102,14 +102,17 @@ class CallsController extends BaseApiController
             $createdCall  = $this->repository->create($data);
             return $this->transformDataModInclude($createdCall, '', new  CallTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('calls.was created successfully', ['module_name' => __('calls.'.$this->ModelName)])
+//                    'message' => trans('calls.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('calls.wasn’t created', ['module_name' => __('calls.'.$this->ModelName)]),
+
+//                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -139,14 +142,18 @@ class CallsController extends BaseApiController
 
             return $this->transformDataModInclude($call, '', new  CallTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  was  updated successfully')
+                    'message' => trans('calls.was updated successfully', ['module_name' => __('calls.'.$this->ModelName)]),
+
+//                    'message' => trans('calls.' . $this->ModelName . '  was  updated successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('calls.wasn’t updated', ['module_name' => __('calls.'.$this->ModelName)]),
+
+//                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  updated '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -163,14 +170,17 @@ class CallsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('calls.was deleted', ['module_name' => __('calls.'.$this->ModelName)]),
+//                    'message' => trans('calls.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('calls.wasn’t deleted', ['module_name' => __('calls.'.$this->ModelName)]),
+
+//                    'message' => trans('calls.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
