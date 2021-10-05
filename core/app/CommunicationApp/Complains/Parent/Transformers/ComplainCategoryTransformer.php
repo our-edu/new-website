@@ -34,7 +34,8 @@ class ComplainCategoryTransformer extends TransformerAbstract
     {
         return [
             'id' => Uuid::uuid4()->toString(),
-            'name' => $category
+            'name' => ComplainCategoriesEnum::getCategoriesTranslated()[$category][app()->getLocale()],
+            'slug'=> $category
         ];
     }
 
