@@ -22,20 +22,9 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
         return parent::find($id, $columns);
     }
 
-    public function filterData()
+    public function filterData($start,$end)
     {
-        $query = $this;
-        switch (request()->get('period')) {
-            case 'week':
-                $query = $query->whereBetween('start', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-                break;
-            case 'day':
-                $query = $query->whereDay('start', Carbon::now()->day);
-                break;
-            default:
-                $query = $query->whereMonth('start', Carbon::now()->month);
-                break;
-        }
+        $query = $this->where('start',">=",$start)->where('end',"<=",$end);
         return $query;
     }
 
