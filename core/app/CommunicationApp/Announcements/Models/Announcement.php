@@ -88,8 +88,8 @@ class Announcement extends BaseModel
         return $this->attributes['from'] > $today ?
             trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::PENDING) :
             ($this->attributes['from'] <= $today && $this->attributes['to'] >= $today ?
-                trans('enums.AnnouncementStatuses..'.AnnouncementStatuses::ACTIVE) :
-                trans('enums.AnnouncementStatuses..'.AnnouncementStatuses::EXPIRED)
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::ACTIVE) :
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::EXPIRED)
             );
     }
 
