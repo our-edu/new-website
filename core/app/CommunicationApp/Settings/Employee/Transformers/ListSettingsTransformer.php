@@ -43,7 +43,7 @@ class ListSettingsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.generalSettings.show', [
                 'generalSetting' => $generalSetting->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::SHOW_SETTING),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::SHOW_SETTING),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_SETTING
         ];
@@ -52,7 +52,7 @@ class ListSettingsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.generalSettings.update', [
                 'generalSetting' => $generalSetting->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::UPDATE_SETTING),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_SETTING),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_SETTING
         ];
