@@ -33,4 +33,9 @@ return [
         "update_questionnaire_status" => "تحديث حالة الاستبيان",
 
     ],
+    "AnnouncementStatuses" => [
+        "pending" => "معلق",
+        "active"  => "نشط",
+        "expired" => "منتهي"
+    ]
 ];

@@ -83,12 +83,13 @@ class Announcement extends BaseModel
 
     public function getPublishStatus()
     {
+
         $today = Carbon::today()->toDate()->format('Y-m-d');
         return $this->attributes['from'] > $today ?
             trans('announcements.'.AnnouncementStatuses::PENDING) :
             ($this->attributes['from'] <= $today && $this->attributes['to'] >= $today ?
                 trans('announcements.'.AnnouncementStatuses::ACTIVE) :
-                trans('announcements.'.AnnouncementStatuses::EXPIRED));
+                trans('announcements.'.AnnouncementStatuses::EXPIRED))
     }
 
     /**
