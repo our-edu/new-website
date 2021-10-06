@@ -17,5 +17,10 @@ return [
         "show_question" => "Show Question",
         "resolve_complain" => "Resolve Complain",
         "show_complain" => "Show Complain",
+        "update_event" => "Update Event",
+        "show_event" => "Show Event",
+        "delete_event" => "Delete Event",
+        "create_event" => "Create Event",
+        "filter_event" => "Filter Event"
     ],
 ];

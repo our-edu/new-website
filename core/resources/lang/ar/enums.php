@@ -17,6 +17,11 @@ return [
         "show_question" => "عرض السؤال",
         "resolve_complain" => 'حل الشكوي',
         "show_complain" => "عرض الشكوي",
+        "update_event" => "تعديل الحدث",
+        "show_event" => "عرض الحدث",
+        "delete_event" => "حذف الحدث",
+        "create_event" => "انشاء حدث",
+        "filter_event" => "تصفيه الحدث"
 
     ],
 ];
