@@ -66,10 +66,10 @@ class Announcement extends BaseModel
     public function getPublishStatus()
     {
         return $this->attributes['from'] > Carbon::now() ?
-            trans('announcements.'.AnnouncementStatuses::PENDING) :
+            trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::PENDING) :
             ($this->attributes['from'] <= Carbon::now() && $this->attributes['to'] >= Carbon::now() ?
-                trans('announcements.'.AnnouncementStatuses::ACTIVE) :
-                trans('announcements.'.AnnouncementStatuses::EXPIRED));
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::ACTIVE) :
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::EXPIRED));
     }
 
     /**

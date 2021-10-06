@@ -33,4 +33,9 @@ return [
         "update_questionnaire_status" => "Update Questionnaire Status",
 
     ],
+    "AnnouncementStatuses" => [
+        "pending" => "Pending",
+        "active"  => "Active",
+        "expired" => "Expired"
+    ]
 ];
