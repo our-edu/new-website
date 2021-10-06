@@ -28,6 +28,9 @@ return [
         "list_complains" => "قائمة الشكاوى",
         "list_calls" => "قائمه المكالمات",
         "list_visits" => "قائمه الزيارات",
+        "show_setting" => "عرض الإعدادات",
+        "update_setting" => "تعديل الاعدادات",
+        "update_questionnaire_status" => "تحديث حالة الاستبيان",
 
     ],
 ];

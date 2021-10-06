@@ -28,5 +28,9 @@ return [
         "list_complains" => "List Complains",
         "list_calls" => "List Calls",
         "list_visits" => "List Visits",
+        "show_setting" => "Show Setting",
+        "update_setting" => "Update Setting",
+        "update_questionnaire_status" => "Update Questionnaire Status",
+
     ],
 ];
