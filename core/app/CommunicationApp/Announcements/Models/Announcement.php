@@ -87,7 +87,8 @@ class Announcement extends BaseModel
         $today = Carbon::today()->toDate()->format('Y-m-d');
         return $this->attributes['from'] > $today ?
             trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::PENDING) :
-            ($this->attributes['from'] <= $today && $this->attributes['to'] >= $today ?
+            (
+                $this->attributes['from'] <= $today && $this->attributes['to'] >= $today ?
                 trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::ACTIVE) :
                 trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::EXPIRED)
             );

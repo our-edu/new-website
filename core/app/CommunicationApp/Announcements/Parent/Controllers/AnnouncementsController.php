@@ -59,6 +59,9 @@ class AnnouncementsController extends BaseApiController
                 $query->whereIn('uuid', $branchesUuids);
             })->where('from', '<=', $today)->where('to', '>=', $today)->get();
         $index = rand(0, count($announcements)-1);
-        return $this->transformDataModInclude($announcements[$index], '', new  ViewAnnouncementsTransformer(['device_type' => 'mobile']), $this->ResourceType);
+        if($announcements->count() >  0){
+            $announcements = $announcements[$index];
+        }
+        return $this->transformDataModInclude($announcements, '', new  ViewAnnouncementsTransformer(['device_type' => 'mobile']), $this->ResourceType);
     }
 }
