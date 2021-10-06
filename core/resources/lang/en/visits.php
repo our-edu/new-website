@@ -11,7 +11,7 @@ return [
     'Visit' => 'Visit',
     "fields" => [
         'reason' => 'reason',
-        'parent_uuid' => 'parent uuid',
+        'parent_national_id' => 'Parent National Id',
         'date' => 'date',
         'procedure' => 'procedure',
     ]
