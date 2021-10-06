@@ -34,10 +34,10 @@ return [
     ],
     "reports" => [
         'parent_name' => 'اسم الاب',
-        'parent_national_id' => 'رقم هويه الاب',
-        'End_Publish_At' => 'عدد الشكاوي',
-        'school_Branch' => 'عدد الزيارات',
-        'Added_at' => 'عدد المكالمات',
+        'parent_national_id' => 'رقم هوية ولي الأمر',
+        'complains_count' => 'عدد الشكاوي',
+        'visits_count' => 'عدد الزيارات',
+        'calls_count' => 'عدد المكالمات',
     ],
 
     "complain" => [

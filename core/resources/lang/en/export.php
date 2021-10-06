@@ -35,9 +35,9 @@ return [
     "reports" => [
         'parent_name' => 'Parent Name',
         'parent_national_id' => 'Parent National Id',
-        'End_Publish_At' => 'Complains Count',
-        'school_Branch' => 'Visits Count',
-        'Added_at' => 'Calls Count',
+        'complains_count' => 'Complains Count',
+        'visits_count' => 'Visits Count',
+        'calls_count' => 'Calls Count',
     ],
     "complain" => [
         'Parent Name' => 'Parent Name',
