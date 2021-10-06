@@ -8,6 +8,8 @@ return [
     'wasn’t deleted' => ":module_name لا يمكن حذفه",
     "export-complains" => 'تصدير الشكوي',
     "resolve_complain" => ' حل الشكوي',
+    "was resolved successfully"=> ":module_name تم حلها ",
+    "wasn\'t  resolved"=> ":module_name لم يتم حل ",
     'Complain' => 'شكوي',
     "fields" => [
         'body' => 'محتوي',

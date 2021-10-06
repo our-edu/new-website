@@ -78,7 +78,7 @@ class ComplainsController extends BaseApiController
             DB::commit();
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('complains.was created successfully',['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
@@ -86,7 +86,7 @@ class ComplainsController extends BaseApiController
             DB::rollBack();
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('complains.wasn’t created',['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
