@@ -51,7 +51,7 @@ class ReportsController extends BaseApiController
     {
         $actions[APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT] = [
             'endpoint_url' => buildScopeRoute('api.employee.reports.parent_activity_export'),
-            'label' => trans('reports.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
+            'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_PARENT_ACTIVITY_REPORT
         ];

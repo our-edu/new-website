@@ -28,11 +28,11 @@ class ParentActivityReport extends Model
     protected function exportedData($data): array
     {
         return [
-            'parent name' => $data->parent->user->name,
-            'parent national id' => $data->parent->user->national_id,
-            'complains_count' => $data->complains_count ,
-            'visits_count' => $data->visits_count ,
-            'calls_count' => $data->calls_count ,
+            trans('export.reports.parent_name')  => $data->parent->user->name,
+           trans('export.reports.parent_national_id')  => $data->parent->user->national_id,
+           trans('export.reports.complains_count')  => $data->complains_count ,
+           trans('export.reports.visits_count')  => $data->visits_count ,
+            trans('export.reports.calls_count') => $data->calls_count ,
         ];
     }
 }

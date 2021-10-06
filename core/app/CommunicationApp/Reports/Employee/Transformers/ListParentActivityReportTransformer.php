@@ -50,7 +50,7 @@ class ListParentActivityReportTransformer extends TransformerAbstract
                 'api.employee.reports.parent_activity.show',
                 ['parent_uuid'=> $report->parent_uuid]
             ),
-            'label' => trans('visits.' . APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT),
+            'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_PARENT_ACTIVITY_REPORT
         ];

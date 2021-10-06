@@ -21,7 +21,13 @@ return [
         "show_event" => "عرض الحدث",
         "delete_event" => "حذف الحدث",
         "create_event" => "انشاء حدث",
-        "filter_event" => "تصفيه الحدث"
+        "filter_event" => "تصفيه الحدث",
+        "export_parent_activity_report" => "تصدير تقرير النشاط الأصلي",
+        "show_parent_activity_report" => "إظهار تقرير نشاط الوالدين",
+        "complain_category_lookup" => "بحث فئة الشكوى",
+        "list_complains" => "قائمة الشكاوى",
+        "list_calls" => "قائمه المكالمات",
+        "list_visits" => "قائمه الزيارات",
 
     ],
 ];

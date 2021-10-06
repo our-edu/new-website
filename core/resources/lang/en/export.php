@@ -32,6 +32,13 @@ return [
         'Displayed_to_Types' => 'Displayed to Types',
         'Status' => 'Status',
     ],
+    "reports" => [
+        'parent_name' => 'Parent Name',
+        'parent_national_id' => 'Parent National Id',
+        'End_Publish_At' => 'Complains Count',
+        'school_Branch' => 'Visits Count',
+        'Added_at' => 'Calls Count',
+    ],
 
 
 ];

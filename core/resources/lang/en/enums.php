@@ -21,6 +21,12 @@ return [
         "show_event" => "Show Event",
         "delete_event" => "Delete Event",
         "create_event" => "Create Event",
-        "filter_event" => "Filter Event"
+        "filter_event" => "Filter Event",
+        "export_parent_activity_report" => "Export Parent Activity Report",
+        "show_parent_activity_report" => "Show Parent Activity Report",
+        "complain_category_lookup" => "Complain Category Lookup",
+        "list_complains" => "List Complains",
+        "list_calls" => "List Calls",
+        "list_visits" => "List Visits",
     ],
 ];
