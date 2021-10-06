@@ -39,6 +39,16 @@ return [
         'school_Branch' => 'Visits Count',
         'Added_at' => 'Calls Count',
     ],
+    "complain" => [
+        'Parent Name' => 'Parent Name',
+        'Parent National Id' => 'Parent National Id',
+        'Title' => 'Title',
+        'Child name' => 'Child name',
+        'Body' => 'Body',
+        'Status' => 'Status',
+        'Sent date and time' => 'Sent date and time',
+        'Resolution Date' => 'Resolution Date',
+    ]
 
 
 ];

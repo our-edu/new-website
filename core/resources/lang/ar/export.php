@@ -40,5 +40,16 @@ return [
         'Added_at' => 'عدد المكالمات',
     ],
 
+    "complain" => [
+        'Parent Name' => 'اسم الأب',
+        'Parent National Id' => 'رقم هوية الأب',
+        'Title' => 'العنوان',
+        'Child name' => 'اسم الابن',
+        'Body' => 'نص',
+        'Status' => 'حاله',
+        'Sent date and time' => 'وقت وتاريخ الارسال',
+        'Resolution Date' => 'تاريخ الحل',
+    ]
+
 
 ];
