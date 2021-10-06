@@ -37,7 +37,7 @@ class ComplainTransformer extends TransformerAbstract
             'id' => $complain->uuid,
             'title' => $complain->title,
             'body' => $complain->body,
-            'status' => $complain->status,
+            'status' => ComplainStatusesEnum::getStatuses()[$complain->status][app()->getLocale()],
             'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
