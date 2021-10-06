@@ -21,6 +21,7 @@ Route::group(['as' => 'api.'], function () {
         Route::group(['prefix' => 'parent', 'as' => 'parent.',
             'middleware' => 'type:parent'
         ], function () {
+            require base_path('app/CommunicationApp/Announcements/Parent/Routes/api.php');
             require base_path('app/CommunicationApp/Complains/Parent/Routes/api.php');
             require base_path('app/CommunicationApp/Questions/Parent/Routes/api.php');
         });

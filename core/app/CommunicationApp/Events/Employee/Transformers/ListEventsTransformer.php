@@ -33,8 +33,7 @@ class ListEventsTransformer extends TransformerAbstract
     {
         return [
             'id' => $event->uuid,
-            'title_ar' => $event->translate('ar')->title,
-            'title_en' => $event->translate('en')->title,
+            'title' => $event->title,
             'body_ar' => $event->translate('ar')->body,
             'body_en' => $event->translate('en')->body,
             'start' => $event->start,

@@ -17,6 +17,7 @@ use App\CommunicationApp\Events\Repository\EventRepositoryInterface;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Log;
 
 class EventsController extends BaseApiController
@@ -36,13 +37,25 @@ class EventsController extends BaseApiController
     /**
      * @return array|array[]|JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->has('start') && $request->has('start') ){
+            $filters = $request->validate([
+                'start' => 'date',
+                'end' => 'date'
+            ]);
+            $events = $this->repository->with([
+                'branches',
+                'creator',
+                'translations',
+            ])->filterData($filters['start'],$filters['end'])->get();
+            return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
+        }
         $events = $this->repository->with([
             'branches',
             'creator',
             'translations',
-        ])->filterData()->get();
+        ])->get();
         return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
     }
 
