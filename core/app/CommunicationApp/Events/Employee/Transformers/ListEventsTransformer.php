@@ -47,7 +47,7 @@ class ListEventsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.events.update', [
                 'event' => $event->uuid,
             ]),
-            'label' => trans('events.'.APIActionsEnums::UPDATE_EVENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_EVENT),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_EVENT
         ];
@@ -56,7 +56,7 @@ class ListEventsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.events.destroy', [
                 'event' => $event->uuid,
             ]),
-            'label' => trans('events.'.APIActionsEnums::DELETE_EVENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::DELETE_EVENT),
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_EVENT
         ];
@@ -65,7 +65,7 @@ class ListEventsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.events.show', [
                 'event' => $event->uuid,
             ]),
-            'label' => trans('events.'.APIActionsEnums::SHOW_EVENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::SHOW_EVENT),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_EVENT
         ];

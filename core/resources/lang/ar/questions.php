@@ -9,8 +9,8 @@ return [
     'update_questionnaire_status' => 'تعديل حالة الاستبيان',
     'Question' => 'السؤال',
     "fields" => [
-        'body_ar' => 'جسم السؤال العربي',
-        'body_en' => 'جسم السؤال الانجليزي',
+        'body_ar' => 'نص السؤال العربي',
+        'body_en' => 'نص السؤال الانجليزي',
         'active' => 'نشط'
     ]
 

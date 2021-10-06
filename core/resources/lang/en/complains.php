@@ -8,6 +8,8 @@ return [
     'wasn’t deleted' => ':module_name Wasn’t Deleted',
     "export-complains" => 'Export Complains',
     "resolve_complain" => 'Resolve Complain',
+    "was resolved successfully"=> ":module_name was resolved successfully",
+    "wasn\'t  resolved"=> ":module_name wasn\'t  resolved",
     'Complain' => 'Complain',
     "fields" => [
         'body' => 'body',

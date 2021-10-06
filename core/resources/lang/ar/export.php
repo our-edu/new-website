@@ -21,6 +21,34 @@ return [
         'Purpose' => 'غرض',
         'taken_Actions' => 'الإجراءات المتخذة',
         'Added_by' => 'تمت اضافتها بواسطه',
+    ],
+    "events" => [
+        'Announcement_Title' => 'عنوان الاعلان',
+        'Publish_At' => 'نشرت في',
+        'End_Publish_At' => 'إنهاء النشر في',
+        'school_Branch' => 'فرع المدرسه',
+        'Added_at' => 'تمت اضافتها في ',
+        'Published_by' => 'نشرت بواسطه',
+        'Displayed_to_Types' => 'معروض على الأنواع',
+        'Status' => 'الحاله',
+    ],
+    "reports" => [
+        'parent_name' => 'اسم الاب',
+        'parent_national_id' => 'رقم هويه الاب',
+        'End_Publish_At' => 'عدد الشكاوي',
+        'school_Branch' => 'عدد الزيارات',
+        'Added_at' => 'عدد المكالمات',
+    ],
+
+    "complain" => [
+        'Parent Name' => 'اسم الأب',
+        'Parent National Id' => 'رقم هوية الأب',
+        'Title' => 'العنوان',
+        'Child name' => 'اسم الابن',
+        'Body' => 'نص',
+        'Status' => 'حاله',
+        'Sent date and time' => 'وقت وتاريخ الارسال',
+        'Resolution Date' => 'تاريخ الحل',
     ]
 
 

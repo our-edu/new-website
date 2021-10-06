@@ -63,19 +63,19 @@ class EventsController extends BaseApiController
     {
         $actions['create_event'] = [
             'endpoint_url' => buildScopeRoute('api.employee.events.store'),
-            'label' => trans('app.create-events'),
+            'label' => trans('events.create-events'),
             'method' => 'POST',
             'key' => APIActionsEnums::CREATE_EVENT
         ];
         $actions['branches_lookups'] = [
             'endpoint_url' => getExternalEndpoint(DashboardAPIEnums::EMPLOYEE_BRANCHES_LOOKUPS),
-            'label' => trans('app.branches-lookups'),
+            'label' => trans('events.branches-lookups'),
             'method' => 'GET',
             'key' => APIActionsEnums::BRANCHES_LOOKUPS
         ];
         $actions['filter'] = [
             'endpoint_url' => buildScopeRoute('api.employee.events.index.filters'),
-            'label' => trans('app.filter-event'),
+            'label' => trans('events.filter-event'),
             'method' => 'GET',
             'key' => APIActionsEnums::FILTER_EVENTS
         ];
@@ -91,7 +91,7 @@ class EventsController extends BaseApiController
             'meta' => filtersObject([
                 mapFiltersArrayFromModels(
                     'period',
-                    trans('app.label.period'),
+                    trans('events.periods.period'),
                     'dropdown',
                     [
                         [
@@ -144,12 +144,14 @@ class EventsController extends BaseApiController
             $createdEvent->branches()->attach($data['branches']);
             $createdEvent->loadMissing(['branches', 'translations']);
             return $this->transformDataModInclude($createdEvent, '', new  EventTransformer(), $this->ResourceType, [
-                'message' => trans('events.' . $this->ModelName . '  was  created successfully')
+//                'message' => trans('events.' . $this->ModelName . '  was  created successfully')
+                'message' => trans('events.was created successfully', ['module_name' => __('events.'.$this->ModelName)]),
+
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'message' => trans('events.' . $this->ModelName . '  wasn\'t  created '),
+                'message' => trans('events.wasn’t created', ['module_name' => __('events.'.$this->ModelName)]),
                 'error' => $exception->getMessage()
             ], 500);
         }
@@ -175,12 +177,12 @@ class EventsController extends BaseApiController
             $event->branches()->sync($data['branches']);
 
             return $this->transformDataModInclude($event, '', new  EventTransformer(), $this->ResourceType, [
-                'message' => trans('events.' . $this->ModelName . '  was  updated successfully')
+                'message' => trans('events.was updated successfully', ['module_name' => __('events.'.$this->ModelName)]),
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
-                'message' => trans('events.' . $this->ModelName . '  wasn\'t  updated '),
+                'message' => trans('events.wasn’t updated', ['module_name' => __('events.'.$this->ModelName)]),
                 'error'=> $exception->getMessage()
             ], 500);
         }
@@ -196,14 +198,14 @@ class EventsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('events.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('events.was deleted', ['module_name' => __('events.'.$this->ModelName)]),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('events.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('events.wasn’t deleted', ['module_name' => __('events.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);

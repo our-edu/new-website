@@ -50,7 +50,7 @@ class ParentActivityReportTransformer extends TransformerAbstract
                     'api.employee.complains.index',
                     ['parent_uuid'=> $report->parent_uuid]
                 ),
-                'label' => trans('complains.' . APIActionsEnums::LIST_COMPLAINS),
+                'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::LIST_COMPLAINS),
                 'method' => 'GET',
                 'key' => APIActionsEnums::LIST_COMPLAINS
         ];
@@ -60,7 +60,7 @@ class ParentActivityReportTransformer extends TransformerAbstract
                 ['parent_uuid'=> $report->parent_uuid]
             ),
 
-            'label' => trans('calls.' . APIActionsEnums::LIST_CALLS),
+            'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::LIST_CALLS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_CALLS
         ];
@@ -69,7 +69,7 @@ class ParentActivityReportTransformer extends TransformerAbstract
                 'api.employee.visits.index',
                 ['parent_uuid'=> $report->parent_uuid]
             ),
-            'label' => trans('visits.' . APIActionsEnums::LIST_VISITS),
+            'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::LIST_VISITS),
             'method' => 'GET',
             'key' => APIActionsEnums::LIST_VISITS
         ];
