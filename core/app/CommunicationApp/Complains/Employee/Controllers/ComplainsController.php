@@ -91,13 +91,13 @@ class ComplainsController extends BaseApiController
             ]);
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  was  resolved successfully')
+                    'message' => trans('complains.was resolved successfully',['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.' . $this->ModelName . '  wasn\'t  resolved '),
+                    'message' => trans('complains.wasn\'t  resolved',['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
