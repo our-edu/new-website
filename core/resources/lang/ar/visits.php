@@ -11,7 +11,7 @@ return [
     'Visit' => 'زياره',
     "fields" => [
         'reason' => 'السبب',
-        'parent_uuid' => 'parent uuid',
+        'parent_national_id' => 'الرقم هويه للأب',
         'date' => 'التاريخ',
         'procedure' => 'إجراء',
     ]

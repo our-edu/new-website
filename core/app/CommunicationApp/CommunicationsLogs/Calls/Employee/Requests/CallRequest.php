@@ -28,7 +28,7 @@ class CallRequest extends BaseApiRequest
     {
         return [
             'reason' => trans('calls.fields.reason'),
-            'parent_uuid' => trans('calls.fields.parent_uuid'),
+            'parent_national_id' => trans('calls.fields.parent_national_id'),
             'date' => trans('calls.fields.date'),
             'procedure' => trans('calls.fields.procedure')
         ];

@@ -28,7 +28,7 @@ class VisitRequest extends BaseApiRequest
     {
         return [
             'reason' => trans('visits.fields.reason'),
-            'parent_uuid' => trans('visits.fields.parent_uuid'),
+            'parent_national_id' => trans('visits.fields.parent_national_id'),
             'date' => trans('visits.fields.date'),
             'procedure' => trans('visits.fields.procedure')
         ];

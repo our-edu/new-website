@@ -11,7 +11,7 @@ return [
     'Call' => 'مكالمه',
     "fields" => [
         'reason' => 'السبب',
-        'parent_uuid' => 'parent uuid',
+        'parent_uuid' => 'الرقم التعريفي للأب',
         'date' => 'التاريخ',
         'procedure' => 'إجراء',
     ]
