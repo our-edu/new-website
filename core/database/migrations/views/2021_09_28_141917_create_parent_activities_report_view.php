@@ -35,8 +35,9 @@ class CreateParentActivitiesReportView extends Migration
 
     private function createView(): string
     {
-        return "CREATE VIEW parent_activity_report AS
-                select pu.uuid  as parent_uuid, COALESCE(complains_inner_count,0) as complains_count, COALESCE(visits_inner_count,0) as visits_count,COALESCE( calls_inner_count,0) as calls_count
+        return "
+                CREATE VIEW parent_activity_report AS
+                select pu.uuid  as parent_uuid, v.branch_uuid as Branch, COALESCE(complains_inner_count,0) as complains_count, COALESCE(visits_inner_count,0) as visits_count,COALESCE( calls_inner_count,0) as calls_count
                 from parent_users pu
                 left join (
                     select parent_uuid, count(*) as complains_inner_count
@@ -46,20 +47,20 @@ class CreateParentActivitiesReportView extends Migration
                 on  pu.uuid = c.parent_uuid
                 left join
                     (
-                        select parent_uuid,count(*) as visits_inner_count
+                        select parent_uuid,count(*) as visits_inner_count,branch_uuid
                         from communications_log
                         where type = 'visits'
-                        group by parent_uuid
+                        group by parent_uuid,branch_uuid
                         ) as v
                 on  pu.uuid  = v.parent_uuid
                 left join
                     (
-                        select parent_uuid,count(*) as calls_inner_count
+                        select parent_uuid,count(*) as calls_inner_count,branch_uuid
                         from communications_log
                         where type = 'calls'
-                        group by parent_uuid
+                        group by parent_uuid,branch_uuid
                         ) as ca
                 on  pu.uuid = ca.parent_uuid
-                   where pu.deleted_at is null ";
+                where pu.deleted_at is null";
     }
 }
