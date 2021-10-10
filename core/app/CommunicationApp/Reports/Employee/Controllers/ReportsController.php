@@ -30,7 +30,8 @@ class ReportsController extends BaseApiController
      */
     public function parentActivityList()
     {
-        $parentActivities = ParentActivityReport::with('parent')->paginate();
+        $employee_branch_uuid = auth('api')->user()->schoolEmployee->branch_id;
+        $parentActivities = ParentActivityReport::with('parent')->where('branch',$employee_branch_uuid)->paginate();
         return $this->transformDataModInclude($parentActivities, '', new  ListParentActivityReportTransformer(), $this->ActivityReportResourceType, $this->defaultIncludes());
     }
     /**
@@ -38,13 +39,15 @@ class ReportsController extends BaseApiController
      */
     public function parentActivityShow($parent_uuid)
     {
-        $parentActivities = ParentActivityReport::with('parent')->where('parent_uuid', $parent_uuid)->paginate();
+        $employee_branch_uuid = auth('api')->user()->schoolEmployee->branch_id;
+        $parentActivities = ParentActivityReport::with('parent')->where('parent_uuid', $parent_uuid)->where('branch',$employee_branch_uuid)->paginate();
         return $this->transformDataModInclude($parentActivities, '', new  ParentActivityReportTransformer(), $this->ActivityReportResourceType);
     }
 
     public function parentActivityExport()
     {
-        $parentActivities = ParentActivityReport::with('parent')->get();
+        $employee_branch_uuid = auth('api')->user()->schoolEmployee->branch_id;
+        $parentActivities = ParentActivityReport::with('parent')->where('branch',$employee_branch_uuid)->paginate();
         return (new ParentActivityReport)->export($parentActivities, 'Parent_Activity_Report');
     }
     private function defaultIncludes(): array
