@@ -33,7 +33,8 @@ class Complain extends BaseModel
         'procedure',
         'category',
         'title',
-        'status'
+        'status',
+        'branch_uuid'
     ];
 
     /**
