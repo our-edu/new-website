@@ -37,7 +37,7 @@ class CreateParentActivitiesReportView extends Migration
     {
         return "
                 CREATE VIEW parent_activity_report AS
-                select pu.uuid  as parent_uuid, v.branch_uuid as Branch, COALESCE(complains_inner_count,0) as complains_count, COALESCE(visits_inner_count,0) as visits_count,COALESCE( calls_inner_count,0) as calls_count
+                select DISTINCT pu.uuid  as parent_uuid, v.branch_uuid as Branch, COALESCE(complains_inner_count,0) as complains_count, COALESCE(visits_inner_count,0) as visits_count,COALESCE( calls_inner_count,0) as calls_count
                 from parent_users pu
                 left join (
                     select parent_uuid, count(*) as complains_inner_count
