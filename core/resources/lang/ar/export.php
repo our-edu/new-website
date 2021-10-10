@@ -33,7 +33,7 @@ return [
         'Status' => 'الحاله',
     ],
     "reports" => [
-        'parent_name' => 'اسم الاب',
+        'parent_name' => 'اسم  ولي الأمر',
         'parent_national_id' => 'رقم هوية ولي الأمر',
         'complains_count' => 'عدد الشكاوي',
         'visits_count' => 'عدد الزيارات',
@@ -41,8 +41,8 @@ return [
     ],
 
     "complain" => [
-        'Parent Name' => 'اسم الأب',
-        'Parent National Id' => 'رقم هوية الأب',
+        'Parent Name' => 'اسم  ولي الأمر',
+        'Parent National Id' => 'رقم هوية  ولي الأمر',
         'Title' => 'العنوان',
         'Child name' => 'اسم الابن',
         'Body' => 'نص',
