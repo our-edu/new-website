@@ -71,4 +71,6 @@ abstract class APIActionsEnums
     const EXPORT_PARENT_ACTIVITY_REPORT = 'export_parent_activity_report';
     const SHOW_PARENT_ACTIVITY_REPORT = 'show_parent_activity_report';
     const COMPLAIN_CATEGORY_LOOKUP = 'complain_category_lookup';
+    const CONFIRM_COMPLAIN = 'confirm_complain';
+    const REJECT_COMPLAIN = 'reject_complain';
 }
