@@ -6,6 +6,7 @@ namespace App\CommunicationApp\Complains\Parent\Controllers;
 
 use App\BaseApp\Api\BaseApiController;
 use App\BaseApp\Enums\ResourceTypesEnums;
+use App\BaseApp\Models\Student;
 use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Parent\Requests\ComplainRequest;
@@ -64,6 +65,7 @@ class ComplainsController extends BaseApiController
             $data = $request->data['attributes'];
             $data['status'] =  ComplainStatusesEnum::OPENED_EN;
             $data['parent_uuid'] = auth('api')->user()->parent->uuid;
+            $data['branch_uuid'] = Student::find($data['student_uuid'])->branch_id;
             $questionnaireStatus = GeneralSettings::where('key', GeneralSettingsEnum::QUESTIONNAIRE_STATUS_KEY)->first()->value;
             DB::beginTransaction();
             $createdComplain  = $this->repository->create($data);

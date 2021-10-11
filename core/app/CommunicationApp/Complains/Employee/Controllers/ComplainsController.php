@@ -35,12 +35,16 @@ class ComplainsController extends BaseApiController
      * @return array|array[]|JsonResponse
      */
     public function index(Request $request)
-    {
+   {
+       $branch_uuid  = auth('api')->user()->schoolEmployee->branch_id;
+
         if ($request->has('parent_uuid')) {
-            $complains = $this->repository->with('questionsAnswers')->where('parent_uuid', $request->parent_uuid)->paginate();
+
+            $complains = $this->repository->with('questionsAnswers')->where('parent_uuid', $request->parent_uuid)->where('branch_uuid', $branch_uuid)->paginate();
             return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
         }
-        $complains = $this->repository->with('questionsAnswers')->paginate();
+
+        $complains = $this->repository->with('questionsAnswers')->where('branch_uuid', $branch_uuid)->paginate();
         return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType, $this->includeDefault());
     }
 
