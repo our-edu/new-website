@@ -53,6 +53,7 @@ class ComplainTransformer extends TransformerAbstract
 
     public function includeActions(Complain $complain)
     {
+        $actions = [];
         if($complain->status == ComplainStatusesEnum::RESOLVED_EN){
             $actions[] = [
                 'endpoint_url' => buildScopeRoute('api.parent.complains.confirm', [
