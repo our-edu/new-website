@@ -24,6 +24,7 @@ class ComplainStatus extends BaseModel
         'name',
         'complain_uuid',
         'user_uuid',
+        'reason'
     ];
 
     /**
