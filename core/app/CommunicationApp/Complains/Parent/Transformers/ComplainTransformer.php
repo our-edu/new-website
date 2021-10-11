@@ -16,7 +16,7 @@ use League\Fractal\TransformerAbstract;
 class ComplainTransformer extends TransformerAbstract
 {
     protected $defaultIncludes = [
-       // 'actions',
+       'actions',
     ];
     protected $availableIncludes = [
     ];
@@ -53,30 +53,25 @@ class ComplainTransformer extends TransformerAbstract
 
     public function includeActions(Complain $complain)
     {
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.parent.complains.show', [
-                'complain' => $complain->uuid,
-            ]),
-            'label' => trans('enums.' . APIActionsEnums::SHOW_COMPLAIN),
-            'method' => 'GET',
-            'key' => APIActionsEnums::SHOW_COMPLAIN
-        ];
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.parent.complains.confirm', [
-                'complain' => $complain->uuid,
-            ]),
-            'label' => trans('enums.' . APIActionsEnums::CONFIRM_COMPLAIN),
-            'method' => 'PUT',
-            'key' => APIActionsEnums::CONFIRM_COMPLAIN
-        ];
-        $actions[] = [
-            'endpoint_url' => buildScopeRoute('api.parent.complains.reject', [
-                'complain' => $complain->uuid,
-            ]),
-            'label' => trans('enums.' . APIActionsEnums::REJECT_COMPLAIN),
-            'method' => 'PUT',
-            'key' => APIActionsEnums::REJECT_COMPLAIN
-        ];
+        if($complain->status == ComplainStatusesEnum::RESOLVED_EN){
+            $actions[] = [
+                'endpoint_url' => buildScopeRoute('api.parent.complains.confirm', [
+                    'complain' => $complain->uuid,
+                ]),
+                'label' => trans('enums.' . APIActionsEnums::CONFIRM_COMPLAIN),
+                'method' => 'PUT',
+                'key' => APIActionsEnums::CONFIRM_COMPLAIN
+            ];
+            $actions[] = [
+                'endpoint_url' => buildScopeRoute('api.parent.complains.reject', [
+                    'complain' => $complain->uuid,
+                ]),
+                'label' => trans('enums.' . APIActionsEnums::REJECT_COMPLAIN),
+                'method' => 'PUT',
+                'key' => APIActionsEnums::REJECT_COMPLAIN
+            ];
+
+        }
 
 
         if (count($actions)) {
