@@ -14,6 +14,8 @@ abstract class ComplainCategoriesEnum
     const FINANCE_AR = 'الماليه';
     const REGISTRATION_EN = 'registration';
     const REGISTRATION_AR = 'التسجيل والقبول';
+    const OTHER_EN = 'other';
+    const OTHER_AR= 'أخري';
 
 
     public static function getCategoriesTranslated(): array
@@ -35,6 +37,10 @@ abstract class ComplainCategoriesEnum
             self::REGISTRATION_EN => [
                 'en' => self::REGISTRATION_EN,
                 'ar' => self::REGISTRATION_AR
+            ] ,
+            self::OTHER_EN => [
+                'en' => self::OTHER_EN,
+                'ar' => self::OTHER_AR
             ]
         ];
     }
