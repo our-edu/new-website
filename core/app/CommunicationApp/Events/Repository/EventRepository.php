@@ -26,7 +26,6 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
     {
             $query = $this->whereBetween('start',[$start,$end])->orWhereBetween('end',[$start,$end]);
             return $query;
-
     }
 
     /**
