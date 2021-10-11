@@ -10,6 +10,7 @@ use App\BaseApp\Api\Transformers\ActionTransformer;
 use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class ListComplainsTransformer extends TransformerAbstract
@@ -38,7 +39,10 @@ class ListComplainsTransformer extends TransformerAbstract
             'status' => $complain->status,
             'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
             'parent' => $complain->parent->user->name,
-            'student' => $complain->student->user->name
+            'student' => $complain->student->user->name,
+            'creation_date' => Carbon::parse($complain->created_at)->format('d-m-Y H:m'),
+            'resolve_date' =>Carbon::parse($complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->get()->first()->created_at )->format('d-m-Y H:m')  ?? null
+
         ];
     }
 
