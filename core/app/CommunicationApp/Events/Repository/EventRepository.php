@@ -24,8 +24,9 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
 
     public function filterData($start,$end)
     {
-        $query = $this->where('start',">=",$start)->where('end',"<=",$end);
-        return $query;
+            $query = $this->whereBetween('start',[$start,$end])->orWhereBetween('end',[$start,$end]);
+            return $query;
+
     }
 
     /**
