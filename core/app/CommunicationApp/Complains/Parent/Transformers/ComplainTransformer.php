@@ -42,8 +42,8 @@ class ComplainTransformer extends TransformerAbstract
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
             'procedure' => $complain->procedure,
-            'creation_date' => Carbon::parse($complain->created_at)->format('d-m-Y H:m'),
-            'resolve_date' =>Carbon::parse($complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->get()->first()->created_at )->format('d-m-Y H:m')  ?? null
+            'creation_date' => $complain->created_at,
+            'resolve_date' => $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
 
         ];
     }
