@@ -138,7 +138,7 @@ class EventsController extends BaseApiController
                 $data['end'] = Carbon::createFromFormat('Y-m-d H:i:s', $data['start'])->addDay()->format('Y-m-d 00:00:00');
             }
             if ($data['all_branches']) {
-                $data['branches'] = Branch::pluck('uuid')->toArray();
+                $data['branches'] = auth()->user()->schoolEmployee->branches()->pluck('uuid')->toArray();
             }
             $createdEvent  = $this->repository->create($data);
             $createdEvent->branches()->attach($data['branches']);
