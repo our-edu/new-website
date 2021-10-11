@@ -36,6 +36,7 @@ class ListEventsTransformer extends TransformerAbstract
             'title' => $event->title,
             'body_ar' => $event->translate('ar')->body,
             'body_en' => $event->translate('en')->body,
+            'full_day' => $event->full_day,
             'start' => $event->start,
             'end' => $event->end,
         ];
