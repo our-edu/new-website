@@ -13,9 +13,9 @@ class AnnouncementRequest extends BaseApiRequest
     {
         return [
             'ar.title' => 'required|min:10',
-            'ar.body' => 'required|min:10',
+            'ar.body' => 'required|min:10|max:500',
             'en.title' => 'required|min:10',
-            'en.body' => 'required|min:10',
+            'en.body' => 'required|min:10|max:500',
             'from' => 'required|date|after_or_equal:today',
             'to' => 'required|date|after_or_equal:from',
             'branches' => 'required|array|min:1',
