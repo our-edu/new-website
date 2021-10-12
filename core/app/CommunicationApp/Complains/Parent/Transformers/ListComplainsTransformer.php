@@ -58,7 +58,25 @@ class ListComplainsTransformer extends TransformerAbstract
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_COMPLAIN
         ];
+        if($complain->status == ComplainStatusesEnum::RESOLVED_EN){
+            $actions[] = [
+                'endpoint_url' => buildScopeRoute('api.parent.complains.confirm', [
+                    'complain' => $complain->uuid,
+                ]),
+                'label' => trans('enums.' . APIActionsEnums::CONFIRM_COMPLAIN),
+                'method' => 'PUT',
+                'key' => APIActionsEnums::CONFIRM_COMPLAIN
+            ];
+            $actions[] = [
+                'endpoint_url' => buildScopeRoute('api.parent.complains.reject', [
+                    'complain' => $complain->uuid,
+                ]),
+                'label' => trans('enums.' . APIActionsEnums::REJECT_COMPLAIN),
+                'method' => 'PUT',
+                'key' => APIActionsEnums::REJECT_COMPLAIN
+            ];
 
+        }
 
         if (count($actions)) {
             return $this->collection($actions, new ActionTransformer(), ResourceTypesEnums::ACTION);
