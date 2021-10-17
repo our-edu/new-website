@@ -1,9 +1,7 @@
 # build.yml
 on:
-  pull_request:
   push:
     branches: # array of glob patterns matching against refs/heads. Optional; defaults to all
-      - test_ecr          # triggers on pushes that contain changes in master
       - staging
 
 name: Build and Push to ECR
@@ -19,7 +17,7 @@ env:
 
   RELEASE_REVISION: "pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}"
   KUBE_CONFIG_DATA: ${{ secrets.EKS_TEST_KUBE_CONFIG_DATA }}
-  KUBE_NAMESPACE: laravel-test
+  KUBE_NAMESPACE: ${{ secrets.KUBE_NAMESPACE }}
   ECR_REPOSITORY: communicationbe
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 jobs:
