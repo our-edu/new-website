@@ -1,0 +1,82 @@
+# build.yml
+on:
+  pull_request:
+  push:
+    branches: # array of glob patterns matching against refs/heads. Optional; defaults to all
+      - test_ecr          # triggers on pushes that contain changes in master
+      - staging
+
+name: Build and Push to ECR
+# https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html
+env:
+  AWS_DEFAULT_REGION: us-east-2
+  AWS_DEFAULT_OUTPUT: json
+  AWS_ACCOUNT_ID: ${{ secrets.EKS_TEST_AWS_ACCOUNT_ID }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.EKS_TEST_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.EKS_TEST_AWS_SECRET_ACCESS_KEY }}
+  CONTAINER_IMAGE: communicationbe
+  $AWS_ACCOUNT_ID: ${{ secrets.EKS_TEST_AWS_ACCOUNT_ID }}
+
+  RELEASE_REVISION: "pr-${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}"
+  KUBE_CONFIG_DATA: ${{ secrets.EKS_TEST_KUBE_CONFIG_DATA }}
+  KUBE_NAMESPACE: laravel-test
+  ECR_REPOSITORY: communicationbe
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+jobs:
+  build-and-push:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    outputs:
+      github_sha: ${{ steps.build-image.outputs.github_sha }}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@master
+
+        # Add steps here like linting, testing, minification, etc.
+
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1.5.5
+        with:
+          aws-access-key-id: ${{ secrets.EKS_TEST_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.EKS_TEST_AWS_SECRET_KEY }}
+          aws-region: us-east-2
+      - name: login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1.3.1
+
+      - name: Build and tag the image
+        run: |
+          # Build and tag the image
+          docker build  -f ./Production/Dockerfile . \
+            -t $CONTAINER_IMAGE \
+            -t $AWS_ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/$CONTAINER_IMAGE:$GITHUB_SHA
+
+      # Add additional steps here like scanning of image
+
+      # Only push to registry on master
+      - name: Push
+        #        if: github.ref == 'refs/heads/master'
+        run: |
+          # Push image to AWS ECR
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-2.amazonaws.com/$CONTAINER_IMAGE:$GITHUB_SHA
+      - name: Deploy to Kubernetes cluster
+        uses: kodermax/kubectl-aws-eks@master
+        env:
+          RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:$$GITHUB_SHA
+          KUBE_CONFIG_DATA: ${{ secrets.EKS_TEST_KUBE_CONFIG_DATA }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        with:
+          #          $ kubectl set image deployments myapp myapp=caarlos0/myapp:v2
+          #  kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1 --record
+          #          args: set image deployment/registration registration=registration:${{ env.RELEASE_IMAGE }} -n $KUBE_NAMESPACE
+
+          args: set image -n main --record deployment/communicationbe communicationbe=$ECR_REGISTRY/$CONTAINER_IMAGE:$GITHUB_SHA -n $KUBE_NAMESPACE
+
+
+
+      - name: Verify Kubernetes deployment
+        uses: kodermax/kubectl-aws-eks@master
+        with:
+          args: rollout status deploy communicationbe -n $KUBE_NAMESPACE
