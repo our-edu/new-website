@@ -41,10 +41,18 @@ class RouteServiceProvider extends ServiceProvider
 
 
         $this->routes(function () {
-            Route::prefix('api/v1/{language}')
-                ->middleware(['api','Locale'])
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+            if (env('PRODUCTION_LOAD_BALANCER') == 'alb') {
+                $prefix = env('PRODUCTION_APP_PREFIX');
+                Route::prefix("$prefix/api/v1/{language}")
+                    ->middleware(['api','Locale'])
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/api.php'));
+            } else {
+                Route::prefix('api/v1/{language}')
+                    ->middleware(['api','Locale'])
+                    ->namespace($this->namespace)
+                    ->group(base_path('routes/api.php'));
+            }
 
             Route::middleware('web')
                 ->namespace($this->namespace)
