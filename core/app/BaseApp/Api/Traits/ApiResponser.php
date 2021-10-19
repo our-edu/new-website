@@ -67,6 +67,9 @@ trait ApiResponser
                     ->addMeta($meta)
                     ->toArray();
             } else {
+                if ($data == new \stdClass()){
+                    return $this->successResponse(['data' => $data]);
+                }
 //                new Fractal()
 
 //              return  Fractal::Item($data,$transformer,'resource_name')->serializeWith(new JsonApiSerializer())->addMeta($meta)->toArray();

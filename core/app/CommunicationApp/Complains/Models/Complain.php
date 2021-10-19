@@ -30,8 +30,11 @@ class Complain extends BaseModel
         'parent_uuid',
         'student_uuid',
         'body',
+        'procedure',
+        'category',
         'title',
-        'status'
+        'status',
+        'branch_uuid'
     ];
 
     /**
@@ -73,10 +76,14 @@ class Complain extends BaseModel
     protected function exportedData($data)
     {
         return [
-            'Child name' => $data->student->user->name,
-            'Status' => ComplainStatusesEnum::getStatuses()[$data->status][app()->getLocale()],
-            'Sent date and time' => $data->created_at,
-            'Receive date' => $data->created_at,
+            trans('export.complain.Parent Name') => $data->parent->user->name,
+            trans('export.complain.Parent National Id') => $data->parent->user->national_id,
+            trans('export.complain.Title') => $data->title,
+            trans('export.complain.Child name') => $data->student->user->name,
+            trans('export.complain.Body') => $data->body,
+            trans('export.complain.Status') => ComplainStatusesEnum::getStatuses()[$data->status][app()->getLocale()],
+            trans('export.complain.Sent date and time') => $data->created_at,
+            trans('export.complain.Resolution Date') => $data->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at ?? null
         ];
     }
 }

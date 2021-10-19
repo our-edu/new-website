@@ -78,14 +78,14 @@ class Event extends BaseModel
             $rolesName .= $role->display_name;
         }
         return [
-            'Announcement Title' => $data->title,
-            'Publish At' => $data->from,
-            'End Publish At' => $data->to,
-            'school Branch' => $branchesName,
-            'Added at' => $data->created_at,
-            'Published by' => $data->publisher->name,
-            'Displayed to Types' => $rolesName,
-            'Status' => $data->getPublishStatus(),
+            trans('export.events.Announcement_Title') => $data->title,
+            trans('export.events.Publish_At')  => $data->from,
+            trans('export.events.End_Publish_At') => $data->to,
+            trans('export.events.school_Branch') => $branchesName,
+            trans('export.events.Added_at') => $data->created_at,
+            trans('export.events.Published_by') => $data->publisher->name,
+            trans('export.events.Displayed_to_Types') => $rolesName,
+            trans('export.events.Status') => $data->getPublishStatus(),
         ];
     }
 }

@@ -34,6 +34,9 @@ class ViewAnnouncementsTransformer extends TransformerAbstract
             'id' => $announcement->uuid,
             'title' => $announcement->title,
             'body' => $announcement->body,
+            'from' => $announcement->from,
+            'to' => $announcement->to,
+            'image' => $announcement->webImage ? $announcement->webImage->url :  'https://www.btklsby.go.id/images/placeholder/nogender.png',
         ];
     }
 }

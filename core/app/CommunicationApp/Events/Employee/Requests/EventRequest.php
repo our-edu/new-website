@@ -20,7 +20,7 @@ class EventRequest extends BaseApiRequest
             'start' => 'required|date|date_format:Y-m-d H:i:s|after_or_equal:today',
             'end' => 'required_if:full_day,0|date|date_format:Y-m-d H:i:s|after_or_equal:start',
             'all_branches' => 'required|'.Rule::in([1, 0]),
-            'branches' => 'required_if:all_branches,0|array|min:1',
+            'branches' => 'required_if:all_branches,0|array',
             'branches.*' => 'exists:branches,uuid',
 
         ];
