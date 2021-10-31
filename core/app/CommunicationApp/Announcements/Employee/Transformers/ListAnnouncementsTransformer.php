@@ -57,7 +57,7 @@ class ListAnnouncementsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.announcements.update', [
                 'announcement' => $announcement->uuid,
             ]),
-            'label' => trans('announcements.'.APIActionsEnums::UPDATE_ANNOUNCEMENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_ANNOUNCEMENT),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_ANNOUNCEMENT
         ];
@@ -66,7 +66,7 @@ class ListAnnouncementsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.announcements.destroy', [
                 'announcement' => $announcement->uuid,
             ]),
-            'label' => trans('announcements.'.APIActionsEnums::DELETE_ANNOUNCEMENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::DELETE_ANNOUNCEMENT),
             'method' => 'DELETE',
             'key' => APIActionsEnums::DELETE_ANNOUNCEMENT
         ];
@@ -75,7 +75,7 @@ class ListAnnouncementsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.announcements.show', [
                 'announcement' => $announcement->uuid,
             ]),
-            'label' => trans('announcements.'.APIActionsEnums::SHOW_ANNOUNCEMENT),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::SHOW_ANNOUNCEMENT),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_ANNOUNCEMENT
         ];

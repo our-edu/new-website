@@ -7,8 +7,10 @@ namespace App\CommunicationApp\Complains\Employee\Transformers;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class ComplainTransformer extends TransformerAbstract
@@ -36,10 +38,17 @@ class ComplainTransformer extends TransformerAbstract
             'id' => $complain->uuid,
             'title' => $complain->title,
             'body' => $complain->body,
-            'status' => $complain->status,
+            'status' => ComplainStatusesEnum::getStatuses()[$complain->status][app()->getLocale()],
+            'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
-            'status_slug' => $complain->status == ComplainStatusesEnum::OPENED_EN ? ComplainStatusesEnum::OPENED_EN : ComplainStatusesEnum::RESOLVED_EN
+            'status_slug' => ComplainStatusesEnum::getStatuses()[$complain->status]['en'],
+            'rejection_reason' =>  $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
+                                    $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
+                                    null,
+                'procedure' => $complain->procedure,
+            'creation_date' => $complain->created_at,
+            'resolve_date' => $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
         ];
     }
 
@@ -51,7 +60,7 @@ class ComplainTransformer extends TransformerAbstract
                 'endpoint_url' => buildScopeRoute('api.employee.complains.resolve', [
                     'complain' => $complain->uuid,
                 ]),
-                'label' => trans('questions.' . APIActionsEnums::RESOLVE_COMPLAIN),
+                'label' => trans('enums.' . APIActionsEnums::RESOLVE_COMPLAIN),
                 'method' => 'PUT',
                 'key' => APIActionsEnums::RESOLVE_COMPLAIN
             ];

@@ -43,7 +43,7 @@ class SettingsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.generalSettings.update', [
                 'generalSetting' => $generalSetting->uuid,
             ]),
-            'label' => trans('questions.' . APIActionsEnums::UPDATE_SETTING),
+            'label' => trans('enums.APIActionsEnums.' . APIActionsEnums::UPDATE_SETTING),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_SETTING
         ];
@@ -51,7 +51,7 @@ class SettingsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.generalSettings.updateQuestionnaire', [
                 'generalSetting' => $generalSetting->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS),
+            'label' => trans('enums.APIActionsEnums.'.APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS),
             'method' => 'PUT',
             'key' => APIActionsEnums::UPDATE_QUESTIONNAIRE_STATUS
         ];

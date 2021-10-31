@@ -51,7 +51,7 @@ class VisitsController extends BaseApiController
     {
         $actions['export'] = [
             'endpoint_url' => buildScopeRoute('api.employee.visits.index.export'),
-            'label' => trans('app.export-visits'),
+            'label' => trans('visits.export-visits'),
             'method' => 'GET',
             'key' => APIActionsEnums::EXPORT_VISITS
         ];
@@ -90,7 +90,7 @@ class VisitsController extends BaseApiController
             $parentUser = User::where('national_id', $parent_national_id)->where('type', UserTypeEnum::PARENT)->first();
             if (!$parentUser) {
                 $returnArr['status'] = 422;
-                $returnArr['detail'] = __('visits.parent national id is invalid  ');
+                $returnArr['detail'] = __('visits.parent national id is invalid');
                 $returnArr['title'] = 'invalid parent';
                 return response()->json(["errors" => [$returnArr] ], 422);
             }
@@ -101,14 +101,16 @@ class VisitsController extends BaseApiController
             $createdVisit  = $this->repository->create($data);
             return $this->transformDataModInclude($createdVisit, '', new  VisitTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was  created successfully')
+                    'message' => trans('visits.was created successfully', ['module_name' => __('visits.'.$this->ModelName)])
+//                    'message' => trans('visits.' . $this->ModelName . '  was  created successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  created '),
+                    'message' => trans('visits.wasn’t created', ['module_name' => __('visits.'.$this->ModelName)]),
+//                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  created '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -138,14 +140,16 @@ class VisitsController extends BaseApiController
 
             return $this->transformDataModInclude($visit, '', new  VisitTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was  updated successfully')
+                    'message' => trans('visits.was updated successfully', ['module_name' => __('visits.'.$this->ModelName)]),
+//                    'message' => trans('visits.' . $this->ModelName . '  was  updated successfully')
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  updated '),
+//                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('visits.wasn’t updated', ['module_name' => __('visits.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -162,14 +166,16 @@ class VisitsController extends BaseApiController
             $this->repository->find($id)->delete();
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  was deleted '),
+                    'message' => trans('visits.was deleted', ['module_name' => __('visits.'.$this->ModelName)]),
+//                    'message' => trans('visits.' . $this->ModelName . '  was deleted '),
                 ]
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  deleted '),
+                    'message' => trans('visits.wasn’t deleted', ['module_name' => __('visits.'.$this->ModelName)]),
+//                    'message' => trans('visits.' . $this->ModelName . '  wasn\'t  deleted '),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);

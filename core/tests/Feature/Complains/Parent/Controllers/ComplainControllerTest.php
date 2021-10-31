@@ -4,6 +4,7 @@ namespace Tests\Feature\Complains\Parent\Controllers;
 
 use App\BaseApp\Models\ParentUser;
 use App\BaseApp\Models\Student;
+use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
 use App\CommunicationApp\Questions\Models\Question;
 use App\CommunicationApp\Settings\model\GeneralSettings;
@@ -20,7 +21,8 @@ class  ComplainControllerTest extends TestCase
         dump('test_complains_list');
         $this->apiSignIn($this->authParent());
         $complains = Complain::factory(10)->create([
-            'parent_uuid' => $this->authParent()->parent->uuid
+            'parent_uuid' => $this->authParent()->parent->uuid,
+            'category'=>ComplainCategoriesEnum::CANTEEN_EN
         ]);
         $response = $this->getJson("/api/v1/en/parent/complains");
         $response->assertOk();
@@ -32,6 +34,7 @@ class  ComplainControllerTest extends TestCase
                     'attributes' => [
                         "title",
                         "status",
+                        'category',
                         "parent",
                         "student"
                     ],
@@ -71,7 +74,9 @@ class  ComplainControllerTest extends TestCase
         dump('test_complains_show');
         $this->apiSignIn($this->authParent());
         $complain= Complain::factory()->create([
-            'parent_uuid' => $this->authParent()->parent->uuid
+            'parent_uuid' => $this->authParent()->parent->uuid,
+            'category'=>ComplainCategoriesEnum::CANTEEN_EN
+
         ]);
         $response = $this->getJson("/api/v1/en/parent/complains/".$complain->uuid);
         $response->assertOk();
@@ -82,6 +87,7 @@ class  ComplainControllerTest extends TestCase
                     'id',
                     'attributes' => [
                         "title",
+                        "category",
                         "body",
                         "status",
                         "parent",
@@ -109,27 +115,12 @@ class  ComplainControllerTest extends TestCase
                 "attributes" => [
                     "body" => "test bodytest bodytest bodytest bodytest bodytest body",
                     "title" => "Safety test",
+                    "category" => ComplainCategoriesEnum::CANTEEN_EN,
                     "student_uuid" => $student->uuid
                 ]
             ]
         ];
-        $data2=  [
-            "data" => [
-                "type" => "complain",
-                "id" => "null",
-                "attributes" => [
-                    "body" => "test bodytest bodytest bodytest bodytest bodytest body",
-                    "title" => "Safety test",
-                    "student_uuid" => "0e2729e3-367d-4f64-a6f5-bd1ec9ad8b69",
-                    "questions_answers" => [
-                        [
-                            "question_uuid" => "0e2729e3-367d-4f64-a6f5-bd1ec9ad8b69",
-                            "answer" => "test answer"
-                        ]
-                    ]
-                ]
-            ]
-        ];
+
         $response = $this->postJson("/api/v1/en/parent/complains/",$data);
         $response->assertOk();
         $response->assertJsonStructure([
@@ -139,6 +130,7 @@ class  ComplainControllerTest extends TestCase
                 'attributes' => [
                     "title",
                     "body",
+                    "category",
                     "status",
                     "parent",
                     "student"
@@ -167,6 +159,8 @@ class  ComplainControllerTest extends TestCase
                     "body" => "test bodytest bodytest bodytest bodytest bodytest body",
                     "title" => "Safety test",
                     "student_uuid" => $student->uuid,
+                    "category" => ComplainCategoriesEnum::CANTEEN_EN,
+
                     "questions_answers" => [
                         [
                             "question_uuid" => $question->uuid,
@@ -185,6 +179,7 @@ class  ComplainControllerTest extends TestCase
                 'attributes' => [
                     "title",
                     "body",
+                    "category",
                     "status",
                     "parent",
                     "student"

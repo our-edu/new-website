@@ -69,13 +69,13 @@ class GeneralSettingsController extends BaseApiController
                 'value' => $request->data['attributes']['value']
             ]);
             return $this->transformDataModInclude($questionnaire, '', new  SettingsTransformer(), $this->ResourceType, [
-                    'message' => trans('questions.' . $this->ModelName . '  was   updated  successfully'),
+                'message' => trans('generalSettings.was updated successfully', ['module_name' => __('generalSettings.'.$this->ModelName)]),
             ]);
         } catch (Exception $exception) {
             Log::error($exception->getMessage());
             return response()->json([
                 'meta' => [
-                    'message' => trans('questions.' . $this->ModelName . '  wasn\'t  updated '),
+                    'message' => trans('generalSettings.wasn’t updated', ['module_name' => __('generalSettings.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);

@@ -8,13 +8,13 @@ use App\BaseApp\BaseModel;
 use App\BaseApp\Enums\AnnouncementStatuses;
 use App\BaseApp\Models\Branch;
 use App\BaseApp\Models\Role;
+use App\BaseApp\Models\UploadedMedia;
 use App\BaseApp\Models\User;
 use App\BaseApp\Traits\ExportTrait;
 use Astrotomic\Translatable\Translatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Announcement extends BaseModel
@@ -30,6 +30,8 @@ class Announcement extends BaseModel
         'to',
         'publisher_uuid',
         'status',
+        'web_image',
+        'mobile_image',
     ];
 
     /**
@@ -45,6 +47,22 @@ class Announcement extends BaseModel
     public function publisher() : BelongsTo
     {
         return $this->belongsTo(User::class, 'publisher_uuid');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function webImage() : BelongsTo
+    {
+        return $this->belongsTo(UploadedMedia::class, 'web_image');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function mobileImage() : BelongsTo
+    {
+        return $this->belongsTo(UploadedMedia::class, 'mobile_image');
     }
 
     /**
@@ -65,11 +83,15 @@ class Announcement extends BaseModel
 
     public function getPublishStatus()
     {
-        return $this->attributes['from'] > Carbon::now() ?
-            trans('announcements.'.AnnouncementStatuses::PENDING) :
-            ($this->attributes['from'] <= Carbon::now() && $this->attributes['to'] >= Carbon::now() ?
-                trans('announcements.'.AnnouncementStatuses::ACTIVE) :
-                trans('announcements.'.AnnouncementStatuses::EXPIRED));
+
+        $today = Carbon::today()->toDate()->format('Y-m-d');
+        return $this->attributes['from'] > $today ?
+            trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::PENDING) :
+            (
+                $this->attributes['from'] <= $today && $this->attributes['to'] >= $today ?
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::ACTIVE) :
+                trans('enums.AnnouncementStatuses.'.AnnouncementStatuses::EXPIRED)
+            );
     }
 
     /**
@@ -93,14 +115,16 @@ class Announcement extends BaseModel
             $rolesName .= $role->display_name;
         }
         return [
-            'Announcement Title' => $data->title,
-            'Publish At' => $data->from,
-            'End Publish At' => $data->to,
-            'school Branch' => $branchesName,
-            'Added at' => $data->created_at,
-            'Published by' => $data->publisher->name,
-            'Displayed to Types' => $rolesName,
-            'Status' => $data->getPublishStatus(),
+
+            trans('export.Announcement.Title') => $data->title,
+            trans('export.Announcement.Publish_At') => $data->from,
+            trans('export.Announcement.End_Publish_At') => $data->to,
+            trans('export.Announcement.body') => $data->body,
+            trans('export.Announcement.school_Branch') => $branchesName,
+            trans('export.Announcement.Added_at') => $data->created_at,
+            trans('export.Announcement.Published_by') => $data->publisher->name,
+            trans('export.Announcement.Displayed_to_Types') => $rolesName,
+            trans('export.Announcement.Status') => $data->getPublishStatus(),
         ];
     }
 }

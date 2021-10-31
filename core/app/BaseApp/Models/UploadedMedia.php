@@ -27,6 +27,6 @@ class UploadedMedia extends BaseModel
      */
     public function getUrlAttribute() : string
     {
-        return env('MEDIA_SERVICE_HOST')."storage/uploaded_media/". $this->getAttributeValue('filename');
+        return env('MEDIA_SERVICE_HOST')."/storage/uploaded_media/". $this->getAttributeValue('filename');
     }
 }

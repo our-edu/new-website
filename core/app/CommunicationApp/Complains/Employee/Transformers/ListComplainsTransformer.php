@@ -7,7 +7,10 @@ namespace App\CommunicationApp\Complains\Employee\Transformers;
 use App\BaseApp\Api\Enums\APIActionsEnums;
 use App\BaseApp\Enums\ResourceTypesEnums;
 use App\BaseApp\Api\Transformers\ActionTransformer;
+use App\CommunicationApp\Complains\Enums\ComplainCategoriesEnum;
+use App\CommunicationApp\Complains\Enums\ComplainStatusesEnum;
 use App\CommunicationApp\Complains\Models\Complain;
+use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
 
 class ListComplainsTransformer extends TransformerAbstract
@@ -34,9 +37,16 @@ class ListComplainsTransformer extends TransformerAbstract
             'id' => $complain->uuid,
             'title' => $complain->title,
             'body' => $complain->body,
-            'status' => $complain->status,
+            'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
+            'status' => ComplainStatusesEnum::getStatuses()[$complain->status][app()->getLocale()],
             'parent' => $complain->parent->user->name,
-            'student' => $complain->student->user->name        ];
+            'student' => $complain->student->user->name,
+            'rejection_reason' =>  $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
+                $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
+                null,
+            'creation_date' => $complain->created_at,
+            'resolve_date' => $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
+        ];
     }
 
     public function includeActions(Complain $complain)
@@ -45,7 +55,7 @@ class ListComplainsTransformer extends TransformerAbstract
             'endpoint_url' => buildScopeRoute('api.employee.complains.show', [
                 'complain' => $complain->uuid,
             ]),
-            'label' => trans('questions.'.APIActionsEnums::SHOW_COMPLAIN),
+            'label' => trans('enums.'.APIActionsEnums::SHOW_COMPLAIN),
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_COMPLAIN
         ];

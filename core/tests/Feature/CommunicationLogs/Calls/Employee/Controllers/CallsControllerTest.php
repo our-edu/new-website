@@ -36,7 +36,7 @@ class  CallsControllerTest extends TestCase
                     'id',
                     'attributes' => [
                         'reason',
-                        'date',
+                        'datetime',
                         'procedure',
                         'branch',
                     ],
@@ -90,7 +90,7 @@ class  CallsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
@@ -144,7 +144,7 @@ class  CallsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
@@ -198,7 +198,7 @@ class  CallsControllerTest extends TestCase
                 'id',
                 'attributes' => [
                     'reason',
-                    'date',
+                    'datetime',
                     'procedure',
                     'branch',
                 ],
