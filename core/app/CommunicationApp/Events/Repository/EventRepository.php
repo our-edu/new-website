@@ -22,9 +22,9 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
         return parent::find($id, $columns);
     }
 
-    public function filterData($start,$end)
+    public function filterData($start, $end)
     {
-            $query = $this->whereBetween('start',[$start,$end])->orWhereBetween('end',[$start,$end]);
+            $query = $this->whereBetween('start', [$start,$end])->orWhereBetween('end', [$start,$end]);
             return $query;
     }
 
@@ -33,7 +33,7 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
      */
     public function export()
     {
-        $data = $this->filterData()->get();
+        $data = $this->get();
         return app($this->model())->export($data, 'events');
     }
 }

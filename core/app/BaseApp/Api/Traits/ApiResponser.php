@@ -67,7 +67,7 @@ trait ApiResponser
                     ->addMeta($meta)
                     ->toArray();
             } else {
-                if ($data == new \stdClass()){
+                if ($data == new \stdClass()) {
                     return $this->successResponse(['data' => $data]);
                 }
 //                new Fractal()

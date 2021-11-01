@@ -38,5 +38,4 @@ class ComplainCategoryTransformer extends TransformerAbstract
             'slug'=> $category
         ];
     }
-
- }
+}

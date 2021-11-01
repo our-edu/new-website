@@ -5,6 +5,7 @@ namespace Tests\Feature\Announcements\Employee\Controllers;
 use App\BaseApp\Enums\UserTypeEnum;
 use App\BaseApp\Models\Branch;
 use App\BaseApp\Models\Role;
+use App\BaseApp\Models\UploadedMedia;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use Carbon\Carbon;
 use Tests\TestCase;
@@ -223,6 +224,7 @@ class  AnnouncementControllerTest extends TestCase
             'guard_name' => 'api',
             'branch_uuid' => $branchUuid,
         ])->id;
+        $imageId = UploadedMedia::factory()->create()->uuid;
         $data = [
             "data" => [
                 'id' => "null",
@@ -236,6 +238,8 @@ class  AnnouncementControllerTest extends TestCase
                         'title' => "test announcements",
                         'body' => 'test announcements'
                     ],
+                    'mobile_image' => $imageId,
+                    'web_image' => $imageId,
                     'from' => Carbon::now()->toDateString(),
                     'to' => Carbon::tomorrow()->toDateString(),
                     'branches' => [

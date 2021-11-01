@@ -43,12 +43,12 @@ class ComplainTransformer extends TransformerAbstract
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
             'status_slug' => ComplainStatusesEnum::getStatuses()[$complain->status]['en'],
-            'rejection_reason' =>  $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
-                                    $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
+            'rejection_reason' =>  $complain->statuses()->where('name', ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
+                                    $complain->statuses()->where('name', ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
                                     null,
                 'procedure' => $complain->procedure,
             'creation_date' => $complain->created_at,
-            'resolve_date' => $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
+            'resolve_date' => $complain->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
         ];
     }
 

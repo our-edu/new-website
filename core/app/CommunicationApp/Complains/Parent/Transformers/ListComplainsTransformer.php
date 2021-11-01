@@ -40,11 +40,11 @@ class ListComplainsTransformer extends TransformerAbstract
             'category' => ComplainCategoriesEnum::getCategoriesTranslated()[$complain->category][app()->getLocale()],
             'parent' => $complain->parent->user->name,
             'student' => $complain->student->user->name,
-            'rejection_reason' =>  $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
-                $complain->statuses()->where('name',ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
+            'rejection_reason' =>  $complain->statuses()->where('name', ComplainStatusesEnum::REJECTED_EN)->latest()->first() ?
+                $complain->statuses()->where('name', ComplainStatusesEnum::REJECTED_EN)->latest()->first()->reason:
                 null,
             'creation_date' => $complain->created_at,
-            'resolve_date' => $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name',ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
+            'resolve_date' => $complain->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()  ? $complain->statuses()->where('name', ComplainStatusesEnum::RESOLVED_EN)->latest()->first()->created_at  : null
         ];
     }
 
@@ -58,7 +58,7 @@ class ListComplainsTransformer extends TransformerAbstract
             'method' => 'GET',
             'key' => APIActionsEnums::SHOW_COMPLAIN
         ];
-        if($complain->status == ComplainStatusesEnum::RESOLVED_EN){
+        if ($complain->status == ComplainStatusesEnum::RESOLVED_EN) {
             $actions[] = [
                 'endpoint_url' => buildScopeRoute('api.parent.complains.confirm', [
                     'complain' => $complain->uuid,
@@ -75,7 +75,6 @@ class ListComplainsTransformer extends TransformerAbstract
                 'method' => 'PUT',
                 'key' => APIActionsEnums::REJECT_COMPLAIN
             ];
-
         }
 
         if (count($actions)) {

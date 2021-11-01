@@ -19,9 +19,17 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
+        // if we're still using this alb => increment the segment
+        if (env('PRODUCTION_LOAD_BALANCER') == 'alb') {
+            // URL format $prefix/api/v1/{language}/
+            $languageCode = $request->segment(4);
+        } else {
+            // URL format api/v1/{language}/
+            $languageCode = $request->segment(3);
+        }
+
         // URL format api/v1/{language}/
         $availableLocales = config("translatable.locales");
-        $languageCode = $request->segment(3);
         $languageCode = strtolower($languageCode);
 
         if (!in_array($languageCode, $availableLocales)) {

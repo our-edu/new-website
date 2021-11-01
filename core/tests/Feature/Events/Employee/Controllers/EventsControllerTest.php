@@ -33,8 +33,7 @@ class  EventsControllerTest extends TestCase
                     'type',
                     'id',
                     'attributes' => [
-                        'title_ar',
-                        'title_en',
+                        'title',
                         'body_ar',
                         'body_en',
                         'start',
