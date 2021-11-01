@@ -18,16 +18,16 @@ class AddBranchuuidToComplains extends Seeder
      */
     public function run()
     {
-      try{
-          $complains = Complain::all();
-          foreach ($complains as $complain){
-              $branch_uuid = $complain->student->branch_id;
-              $complain->update([
+        try {
+            $complains = Complain::all();
+            foreach ($complains as $complain) {
+                $branch_uuid = $complain->student->branch_id;
+                $complain->update([
                   'branch_uuid' => $branch_uuid
-              ]);
-          }
-      }  catch (Exception $exception){
-         var_dump('not seeded');
-      }
+                ]);
+            }
+        } catch (Exception $exception) {
+            var_dump('not seeded');
+        }
     }
 }

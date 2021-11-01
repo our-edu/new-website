@@ -4,6 +4,7 @@
 namespace Database\Factories\CommunicationApp\Announcements\Models;
 
 use App\BaseApp\Enums\UserTypeEnum;
+use App\BaseApp\Models\UploadedMedia;
 use App\BaseApp\Models\User;
 use App\CommunicationApp\Announcements\Models\Announcement;
 use Carbon\Carbon;
@@ -31,6 +32,8 @@ class AnnouncementFactory extends Factory
             'to' => Carbon::tomorrow(),
             'publisher_uuid' => $user->uuid,
             'status' => 1,
+            'web_image' => UploadedMedia::factory()->create()->uuid,
+            'mobile_image' => UploadedMedia::factory()->create()->uuid,
             'title:ar' => $this->faker->word(),
             'title:en' => $this->faker->word(),
             'body:ar' => $this->faker->word(),
