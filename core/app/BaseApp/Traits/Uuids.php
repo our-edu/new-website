@@ -51,7 +51,7 @@ trait Uuids
         $model = static::where('uuid', '=', $uuid)->first();
 
         if (is_null($model)) {
-            return abort(404);
+            abort(404);
         } else {
             return $model;
         }

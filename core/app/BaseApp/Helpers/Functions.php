@@ -199,7 +199,7 @@ if (!function_exists('viewFile')) {
 if (!function_exists('unauthorizeWeb')) {
     function unauthorizeWeb()
     {
-        return abort(403, 'Unauthorized action.');
+        abort(403, 'Unauthorized action.');
     }
 }
 
