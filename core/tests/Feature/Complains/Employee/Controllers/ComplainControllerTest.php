@@ -17,9 +17,11 @@ class  ComplainControllerTest extends TestCase
     public function complains_list()
     {
         dump('test_complains_list');
-        $this->apiSignIn($this->authEmployee());
+        $employeeUser = $this->authEmployee();
+        $this->apiSignIn($employeeUser);
         $complains = Complain::factory(10)->create([
             "category" => ComplainCategoriesEnum::CANTEEN_EN,
+            "branch_uuid" => $employeeUser->schoolEmployee->branch_id,
         ]);
         $response = $this->getJson("/api/v1/en/employee/complains");
         $response->assertOk();
