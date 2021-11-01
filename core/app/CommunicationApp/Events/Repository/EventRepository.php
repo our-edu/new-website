@@ -22,7 +22,7 @@ class EventRepository extends RepositoryAlias implements EventRepositoryInterfac
         return parent::find($id, $columns);
     }
 
-    public function filterData($start , $end )
+    public function filterData($start, $end)
     {
             $query = $this->whereBetween('start', [$start,$end])->orWhereBetween('end', [$start,$end]);
             return $query;
