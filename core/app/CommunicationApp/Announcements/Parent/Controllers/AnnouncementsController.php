@@ -36,12 +36,12 @@ class AnnouncementsController extends BaseApiController
             $query->where('uuid', auth('api')->user()->parent->uuid);
         })->distinct('branch_id')->pluck('branch_id');
         $today = Carbon::today()->toDate()->format('Y-m-d');
-        $announcements = $this->repository->with(['translations', 'webImage'])->whereHas(
+        $announcements = $this->repository->with(['translations', 'webImage'])->where('from', '<=', $today)->where('to', '>=', $today)->whereHas(
             'branches',
             function ($query) use ($branchesUuids) {
                 $query->whereIn('uuid', $branchesUuids);
             }
-        )->where('from', '<=', $today)->where('to', '>=', $today)->get();
+        )->get();
 //        dd($today, $branchesUuids, $announcements);
         return $this->transformDataModInclude($announcements, '', new  ViewAnnouncementsTransformer(['device_type' => 'web']), $this->ResourceType);
     }
@@ -56,12 +56,12 @@ class AnnouncementsController extends BaseApiController
             $query->where('uuid', auth('api')->user()->parent->uuid);
         })->distinct('branch_id')->pluck('branch_id');
         $today = Carbon::today()->toDate()->format('Y-m-d');
-        $announcements = $this->repository->with(['translations', 'mobileImage'])->whereHas(
+        $announcements = $this->repository->with(['translations', 'mobileImage'])->where('from', '<=', $today)->where('to', '>=', $today)->whereHas(
             'branches',
             function ($query) use ($branchesUuids) {
                 $query->whereIn('uuid', $branchesUuids);
             }
-        )->where('from', '<=', $today)->where('to', '>=', $today)->get();
+        )->get();
         if ($announcements->count() >  0) {
             $index = rand(0, count($announcements)-1);
             $announcements = $announcements[$index];

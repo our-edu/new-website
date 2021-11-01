@@ -14,7 +14,7 @@ interface EventRepositoryInterface extends BaseRepositoryInterface
 {
     public function find($id, $columns = ['*']) : Event;
 
-    public function filterData($start, $end);
+    public function filterData($start  , $end );
 
     public function export();
 }
