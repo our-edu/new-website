@@ -39,7 +39,7 @@ class EventsController extends BaseApiController
      */
     public function index(Request $request)
     {
-        if($request->has('start') && $request->has('start') ){
+        if ($request->has('start') && $request->has('start')) {
             $filters = $request->validate([
                 'start' => 'date',
                 'end' => 'date'
@@ -48,7 +48,7 @@ class EventsController extends BaseApiController
                 'branches',
                 'creator',
                 'translations',
-            ])->filterData($filters['start'],$filters['end'])->get();
+            ])->filterData($filters['start'], $filters['end'])->get();
             return $this->transformDataModInclude($events, '', new  ListEventsTransformer(), $this->ResourceType, $this->includeDefault());
         }
         $events = $this->repository->with([

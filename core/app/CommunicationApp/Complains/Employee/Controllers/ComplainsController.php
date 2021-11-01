@@ -35,11 +35,10 @@ class ComplainsController extends BaseApiController
      * @return array|array[]|JsonResponse
      */
     public function index(Request $request)
-   {
-       $branch_uuid  = auth('api')->user()->schoolEmployee->branch_id;
+    {
+        $branch_uuid  = auth('api')->user()->schoolEmployee->branch_id;
 
         if ($request->has('parent_uuid')) {
-
             $complains = $this->repository->with('questionsAnswers')->where('parent_uuid', $request->parent_uuid)->where('branch_uuid', $branch_uuid)->paginate();
             return $this->transformDataModInclude($complains, '', new  ListComplainsTransformer(), $this->ResourceType);
         }
@@ -95,13 +94,13 @@ class ComplainsController extends BaseApiController
             ]);
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.was resolved successfully',['module_name' => __('complains.'.$this->ModelName)])
+                    'message' => trans('complains.was resolved successfully', ['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.wasn\'t  resolved',['module_name' => __('complains.'.$this->ModelName)]),
+                    'message' => trans('complains.wasn\'t  resolved', ['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);

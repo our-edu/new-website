@@ -83,7 +83,7 @@ class ComplainsController extends BaseApiController
             DB::commit();
             return $this->transformDataModInclude($createdComplain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.was created successfully',['module_name' => __('complains.'.$this->ModelName)])
+                    'message' => trans('complains.was created successfully', ['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
@@ -91,7 +91,7 @@ class ComplainsController extends BaseApiController
             DB::rollBack();
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.wasn’t created',['module_name' => __('complains.'.$this->ModelName)]),
+                    'message' => trans('complains.wasn’t created', ['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
@@ -108,7 +108,7 @@ class ComplainsController extends BaseApiController
      * @param ConfirmComplainRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function confirm($id,ConfirmComplainRequest $request)
+    public function confirm($id, ConfirmComplainRequest $request)
     {
         try {
             $data = $request->data['attributes'];
@@ -119,21 +119,19 @@ class ComplainsController extends BaseApiController
                 'name' => ComplainStatusesEnum::CONFIRMED_EN,
                 'user_uuid' => $parent
             ]);
-            return $this->transformDataModInclude($complain, '',  new  ComplainTransformer(), $this->ResourceType, [
+            return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.was Confirmed successfully',['module_name' => __('complains.'.$this->ModelName)])
+                    'message' => trans('complains.was Confirmed successfully', ['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.wasn\'t  Confirmed',['module_name' => __('complains.'.$this->ModelName)]),
+                    'message' => trans('complains.wasn\'t  Confirmed', ['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
         }
-
-
     }
 
     /**
@@ -141,7 +139,7 @@ class ComplainsController extends BaseApiController
      * @param RejectComplainRequest $request
      * @return array|array[]|JsonResponse
      */
-    public function reject($id,RejectComplainRequest $request)
+    public function reject($id, RejectComplainRequest $request)
     {
 
         try {
@@ -156,18 +154,16 @@ class ComplainsController extends BaseApiController
             ]);
             return $this->transformDataModInclude($complain, '', new  ComplainTransformer(), $this->ResourceType, [
                 'meta' => [
-                    'message' => trans('complains.was rejected successfully',['module_name' => __('complains.'.$this->ModelName)])
+                    'message' => trans('complains.was rejected successfully', ['module_name' => __('complains.'.$this->ModelName)])
                 ]
             ]);
         } catch (Exception $exception) {
             return response()->json([
                 'meta' => [
-                    'message' => trans('complains.wasn\'t  rejected',['module_name' => __('complains.'.$this->ModelName)]),
+                    'message' => trans('complains.wasn\'t  rejected', ['module_name' => __('complains.'.$this->ModelName)]),
                     'error'=> $exception->getMessage()
                 ]
             ], 500);
         }
-
-
     }
 }
