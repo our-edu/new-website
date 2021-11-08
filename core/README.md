@@ -7,7 +7,7 @@
 - Copy the core/.env.example to core/.env
 - `docker-compose up` you may need to use `sudo`
 #### IF You are running multiple projects make sure to change the services ports in every project to avoid conflicts with others services running
-- in another terminal tab run `docker ps` and choose the Container ID for '<service-name>'
+- in another terminal tab run `docker ps` and choose the Container ID for `<service-name>`
 - `docker exec -it 'Container ID' bash` you may need to use `sudo`
 - run `composer install` maybe not
 - run this commands:
