@@ -100,6 +100,4 @@ class Branch extends BaseModel
     {
         return $this->hasMany(Role::class, 'branch_uuid');
     }
-
-
 }
