@@ -25,6 +25,6 @@
 ## To Run The psalm
 -run `./vendor/bin/psalm --no-cache`
 ## To Run the code sniffer checks
--run `./vendor/bin/phpcs`
+-run `./vendor/bin/phpcs --warning-severity=6`
 ## To Run the compser checks code style
 -run `composer check-style`
