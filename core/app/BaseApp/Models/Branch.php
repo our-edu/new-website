@@ -5,8 +5,6 @@ declare(strict_types = 1);
 namespace App\BaseApp\Models;
 
 use App\BaseApp\BaseModel;
-use App\CommunicationApp\Announcements\Models\Announcement;
-use App\CommunicationApp\Events\Models\Event;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -103,19 +101,5 @@ class Branch extends BaseModel
         return $this->hasMany(Role::class, 'branch_uuid');
     }
 
-    /**
-     * @return BelongsToMany
-     */
-    public function announcements() : BelongsToMany
-    {
-        return $this->belongsToMany(Announcement::class, 'announcements_branches', 'branch_uuid', 'announcement_uuid');
-    }
 
-    /**
-     * @return BelongsToMany
-     */
-    public function events() : BelongsToMany
-    {
-        return $this->belongsToMany(Event::class, 'branches_events', 'branch_uuid', 'event_uuid');
-    }
 }

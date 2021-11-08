@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\BaseApp\Models;
 
-use App\CommunicationApp\Announcements\Models\Announcement;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -48,15 +47,6 @@ class Role extends SpatieRole
             $this->attributes['name'] = $value;
         }
     }
-
-    /**
-     * @return BelongsToMany
-     */
-    public function announcements() : BelongsToMany
-    {
-        return $this->belongsToMany(Announcement::class, 'announcements_roles', 'role_id', 'announcement_uuid');
-    }
-
     /**
      * @return BelongsTo
      */
