@@ -10,6 +10,5 @@ class RepositoriesServiceProviders extends ServiceProvider
 {
     public function register()
     {
-
     }
 }
