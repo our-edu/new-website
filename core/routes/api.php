@@ -17,26 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'api.'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
-        require base_path('app/CommunicationApp/LookUp/Routes/api.php');
-        Route::group(['prefix' => 'parent', 'as' => 'parent.',
-            'middleware' => 'type:parent'
-        ], function () {
-            require base_path('app/CommunicationApp/Announcements/Parent/Routes/api.php');
-            require base_path('app/CommunicationApp/Complains/Parent/Routes/api.php');
-            require base_path('app/CommunicationApp/Questions/Parent/Routes/api.php');
-        });
 
-        Route::group(['prefix' => 'employee', 'as' => 'employee.',
-            'middleware' => 'type:employee'
-        ], function () {
-            require base_path('app/CommunicationApp/Announcements/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/Questions/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/Complains/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/Events/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/Settings/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/CommunicationsLogs/Visits/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/CommunicationsLogs/Calls/Employee/Routes/api.php');
-            require base_path('app/CommunicationApp/Reports/Employee/Routes/api.php');
-        });
     });
 });
