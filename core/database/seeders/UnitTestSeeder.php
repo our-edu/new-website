@@ -14,10 +14,6 @@ class UnitTestSeeder extends Seeder
     public function run()
     {
         // order matter
-        $this->call(\Database\Seeders\seeders_test\DummySchoolSeeder::class);
-        $this->call(\Database\Seeders\seeders_test\DummyUsersSeeder::class);
-        $this->call(\Database\Seeders\seeders_test\Roles\PermissionSeeder::class);
-        $this->call(\Database\Seeders\seeders_test\Roles\EmployeeRolesSeeder::class);
-        $this->call(\Database\Seeders\seeders_test\Roles\AssignRoleLeaderToEmployee::class);
+
     }
 }

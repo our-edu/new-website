@@ -6,26 +6,5 @@ namespace App\BaseApp\Enums;
 
 abstract class ResourceTypesEnums
 {
-    const DOCUMENT = 'document';
-    const ORDER = 'order';
-    const APPLICATION = 'application';
-    const BUS = 'bus';
-    const SERVICE = 'service';
-    const BRANCH = 'branch';
-    const ROLE = 'role';
-    const SCHOOL_EMPLOYEE = 'school_employee';
-    const LIST_RELATED_ATTACHMENT = 'list_related_attachment';
-    const ACTION = 'action';
-    const UPLOADED_MEDIA = 'uploaded_media';
-    const PAYMENT_METHOD = 'payment_method';
-    const QUESTION = 'question';
-    const COMPLAIN = 'complain';
-    const GENERAL_SETTING = 'general_settings';
-    const ANNOUNCEMENT = 'announcement';
-    const QUESTION_ANSWERS = 'questions_answers';
-    const VISITS = 'visit';
-    const EVENT = 'event';
-    const CALLS = 'call';
-    const PARENT_ACTIVITY_REPORT = 'parent_activity_report';
-    const COMPLAIN_CATEGORY = 'complain_category';
+   
 }

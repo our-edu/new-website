@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddReasonColComplainStatusesTable extends Migration
+class CreateTestTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddReasonColComplainStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::table('complain_statuses', function (Blueprint $table) {
-            $table->string('reason')->nullable();
+        Schema::create('test', function (Blueprint $table) {
+            $table->uuid('uuid')->primary();
+            $table->string('test');
+            $table->softDeletes();
+            $table->timestamps();
+
         });
     }
 
@@ -25,8 +29,6 @@ class AddReasonColComplainStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::table('complain_statuses', function (Blueprint $table) {
-            $table->dropColumn('reason');
-        });
+        Schema::dropIfExists('complains');
     }
 }

@@ -6,5 +6,4 @@ namespace App\BaseApp\ExternalAPIs;
 
 abstract class GatewayAPIEnums
 {
-    const PARENT_CHILDREN = '/api/v1/{lang}/parent/profile/children';
 }

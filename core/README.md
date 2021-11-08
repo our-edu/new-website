@@ -15,7 +15,7 @@
 - do your work
 
 
-### browse [http://localhost:8077](http://localhost:<service-port>) for the service
+### browse [http://localhost:<service-port>](http://localhost:<service-port>) for the service
 
 ### when changing any configuration in the Dockerfile or docker-compose you have to run `sudo docker-compose build`
 

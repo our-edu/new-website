@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace App\BaseApp\Enums;
 
-use MyCLabs\Enum\Enum;
 
 class CrudOperationsEnums
 {
