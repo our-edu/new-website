@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  service-name:
+  automatic-payment:
     env_file: .env
     build: .
     volumes:
@@ -11,7 +11,7 @@ services:
     networks:
       - ouredu-service-app
 
-  service-name-nginx:
+  automatic-payment-nginx:
     env_file: .env
     build: ./.docker/nginx
     restart: always
@@ -21,7 +21,7 @@ services:
     volumes:
       - ./core:/var/www
     depends_on:
-      - service-name
+      - automatic-payment
     environment:
       - NGINX_HOST=oureducation.test
       - NGINX_PORT=80
@@ -29,6 +29,24 @@ services:
       ouredu-service-app:
         aliases:
           - app-nginx
+
+  postgresql-payment:
+    env_file: .env
+    image: 'postgis/postgis:latest'
+    container_name: ${MAIN_DB_CONTAINER_NAME}
+    command: '-p ${MAIN_DB_PORT}' # running the container on port 1111
+    ports:
+      - ${MAIN_DB_PORT}:5432
+    environment:
+      POSTGRES_DB: ouredu-automatic-payment
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - "./.docker-data/dbdata:/var/lib/postgresql"
+      - ".docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf"
+      - ".docker/postgres/pg_hba.conf:/usr/share/postgresql/13/pg_hba.conf"
+    networks:
+      - ouredu-service-app
 
 networks:
   ouredu-service-app:
