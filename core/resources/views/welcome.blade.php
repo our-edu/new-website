@@ -34,6 +34,18 @@
                     </div>
 
             </form>
-        </div>
+            @if($loginEnabled)
+                <div class="actions mb-2"  >
+                    <a href="#"> Login</a>
+
+                </div>
+            @endif
+                @if($registerEnabled)
+                    <div class="actions mb-2"  >
+                        <a href="#"> Register</a>
+
+                    </div>
+                @endif
+
     </main>
 @endsection
