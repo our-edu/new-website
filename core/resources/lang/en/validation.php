@@ -1,8 +1,6 @@
 <?php
 
 return [
-
-    'test_trans' => 'delete this line',
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
