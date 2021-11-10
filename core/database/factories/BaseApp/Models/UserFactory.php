@@ -31,10 +31,8 @@ class UserFactory extends Factory
             "email" => $this->faker->email,
             'mobile' => $this->faker->phoneNumber,
             'password' => $this->faker->password(8),
-            'type' => "parent",
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
-            'profile_picture'=> null,
             'national_id'=>$this->faker->randomNumber(2)
         ];
     }

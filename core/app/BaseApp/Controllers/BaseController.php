@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\OurEdu\BaseApp\Controllers;
+namespace App\BaseApp\Controllers;
 
 use App\Http\Controllers\Controller;
 
