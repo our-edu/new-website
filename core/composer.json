@@ -17,6 +17,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
         "maatwebsite/excel": "^3.1",
         "mcamara/laravel-localization": "^1.6",
         "mstaack/laravel-postgis": "^5.2",

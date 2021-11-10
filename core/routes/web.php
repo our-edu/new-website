@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -17,7 +18,17 @@ Route::group([
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function () {
-        Route::get('/', function () {
-            return view('welcome');
-        });
+    //Front Routes goes here
+    require base_path('app/AutomaticPaymentApp/Front/Routes/routes.php');
     });
+Route::group(['prefix'=>'admin'],function(){
+    Auth::routes();
+    //Admin Routes goes here
+    Route::group(['middleware'=>'auth'],function(){
+        require base_path('app/AutomaticPaymentApp/Admin/Routes/routes.php');
+    });
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
