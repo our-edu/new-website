@@ -17,9 +17,9 @@ RUN yes | pecl install \
     xdebug \
     imagick \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo " xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/xdebug.ini
+    && echo "xdebug.remote_port=9003" >> /usr/local/etc/php/conf.d/xdebug.ini
 RUN docker-php-ext-enable \
     imagick
 RUN pecl install -o -f redis \
