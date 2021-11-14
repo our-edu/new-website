@@ -27,7 +27,7 @@ class ParentDueBalanceFactory extends Factory
         return [
             'parent_name' => $this->faker->name,
             'national_id' => $this->faker->uuid,
-            'balance' => $this->faker->randomFloat(1,500,2500)/1000,
+            'balance' => $this->faker->randomFloat(1,500,2500),
             'email'=> $this->faker->email,
             'created_at' => Carbon::now()
         ];
