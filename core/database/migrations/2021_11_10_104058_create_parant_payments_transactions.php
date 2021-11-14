@@ -16,11 +16,11 @@ class CreateParantPaymentsTransactions extends Migration
         Schema::create('parent_payments_transactions', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('parent_name',60);
-            $table->string('national_id')->unique()->index();
+            $table->string('national_id')->index();
             $table->float('balance');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
-            $table->string('email')->unique()->index();
+            $table->string('email')->index();
             $table->float('paid_amount');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
-            $table->json('payfort_response');
+            $table->json('payfort_response')->nullable();
 
             $table->timestamps();
         });
