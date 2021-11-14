@@ -29,7 +29,8 @@
         "spatie/laravel-permission": "^4.0",
         "spatie/laravel-sluggable": "^2.6",
         "squizlabs/php_codesniffer": "^3.6",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "carlos-meneses/laravel-mpdf": "^2.1"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

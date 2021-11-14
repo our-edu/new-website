@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\PaymentApp\Payments\Enums;
+namespace App\BaseApp\Enums;
 
 abstract class PayFortStatusEnum
 {

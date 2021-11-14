@@ -286,9 +286,6 @@
     <div class="card">
         <div class="card-body">
 
-
-
-
             <div class="card-item border-bottom-grey">
                 <div class="card-item_title">{{__('payment.amount',[],$language)}}</div>
 
@@ -302,14 +299,12 @@
 
             </div>
 
-
             <div class="card-item border-bottom-grey">
                 <div class="card-item_title">{{__('payment.payment_option',[],$language)}}</div>
 
                 <div class="card-item_content">{{$payment_option}}</div>
 
             </div>
-
 
             <div class="card-item border-bottom-grey">
                 <div class="card-item_title">{{__('payment.card_holder_name',[],$language)}}</div>
@@ -318,54 +313,12 @@
 
             </div>
 
-
             <div class="card-item border-bottom-grey">
                 <div class="card-item_title">{{__('payment.parent_name',[],$language)}}</div>
 
-                <div class="card-item_content">{{$parent_first_name}} {{$parent_last_name}}</div>
+                <div class="card-item_content">{{$parent_name}}</div>
 
             </div>
-
-            <div class="card-item border-bottom-grey">
-                <div class="card-item_title">{{__('payment.student_name',[],$language)}}</div>
-
-                <div class="card-item_content">{{$first_name}} {{$last_name}}</div>
-
-            </div>
-
-
-            <!-- sssssssss -->
-            <div class="total">
-                <div class="header">
-                    <div class="card-item_title">{{__('payment.full_total_amount',[],$language)}}</div>
-
-                    <div class="card-item_content" style="color: #32ba7c">{{$amount_with_vat}}</div>
-
-                </div>
-
-                @foreach($items as $item)
-
-                    <div class="breakdown">
-                        <div class="">{{$item->name}}</div>
-                        <div class="">{{$item->semester}}</div>
-                        <div class="">{{$item->price}}</div>
-                    </div>
-                @endforeach
-                <div class="breakdown">
-                    <div class="">{{__('payment.vat',[],$language)}}</div>
-                    <div class="">{{$vat}}</div>
-                </div>
-                <div class="breakdown">
-                    <div class="">{{__('payment.total',[],$language)}}</div>
-                    <div class="">{{$bill_amount}}</div>
-                </div>
-                <div class="breakdown">
-                    <div class="">{{__('payment.bill_reaming',[],$language)}}</div>
-                    <div class="">{{$bill_reaming}}</div>
-                </div>
-
-            </div>
-
 
         </div>
     </div>

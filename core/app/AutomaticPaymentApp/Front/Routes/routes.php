@@ -9,6 +9,7 @@ Route::group(['namespace'=>'\App\AutomaticPaymentApp\Front\Controllers'],functio
         Route::get('/due_payment/{national_id}','FrontController@getPaymentView')->name('.getPaymentView');
         Route::post('/due_payment/','FrontController@getPaymentForm')->name('.getPaymentForm');
         Route::post('/process-return', 'FrontController@processReturn')->name('.processReturn');
+        Route::get('/processpdf', 'FrontController@processReturnPdf')->name('.processReturnPdf');
     });
 
 });
