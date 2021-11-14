@@ -124,6 +124,20 @@ if (!function_exists('image')) {
         return $src;
     }
 }
+if (!function_exists('setLocaleForProduction')) {
+    /**
+     * set the current locale for links needed in production (Web Routes)
+     * @param $url
+     * @return string
+     */
+    function setLocaleForProduction($url)
+    {
+        if (env('PRODUCTION_LOAD_BALANCER') == 'alb') {
+            return str_replace(":lang", lang(), $url);
+        }
+        return $url;
+    }
+}
 
 if (!function_exists('imageProfileApi')) {
     function imageProfileApi($img, $type = 'small')
