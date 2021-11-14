@@ -97,6 +97,26 @@ if (!function_exists('transformValidation')) {
     }
 }
 
+if (!function_exists('buildWebRoute')) {
+    /**
+     * build web Route
+     * @param $route , $param
+     * @return string
+     */
+    function buildWebRoute($route, array $param = [])
+    {
+        $params = ['language' => lang()];
+        if (count($param) > 0) {
+            $params = array_merge($params, $param);
+        }
+        if (env('PRODUCTION_LOAD_BALANCER') == 'alb') {
+            return str_replace(env("APP_URL"), env("BASE_APP_URL"), route($route, $params));
+        } else {
+            return route($route, $params);
+        }
+    }
+}
+
 if (!function_exists('image')) {
     function image($img, $type, $folder = 'uploads')
     {
