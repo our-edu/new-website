@@ -17,9 +17,9 @@ class CreateParantPaymentsTransactions extends Migration
             $table->uuid('uuid')->primary();
             $table->string('parent_name',60);
             $table->string('national_id')->unique()->index();
-            $table->integer('balance');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
+            $table->float('balance');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
             $table->string('email')->unique()->index();
-            $table->integer('paid_amount');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
+            $table->float('paid_amount');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
             $table->json('payfort_response');
 
             $table->timestamps();
