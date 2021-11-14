@@ -16,20 +16,4 @@ class ParentDueBalance extends BaseModel
         'email'
     ];
 
-    /**
-     * @param $value
-     * @return float|int
-     */
-    public function getBalanceAttribute($value): float|int
-    {
-        return  $value / 1000 ;
-    }
-
-    /**
-     * @param $value
-     */
-    public function setBalanceAttribute($value)
-    {
-        $this->attributes['balance'] = $value * 1000;
-    }
 }
