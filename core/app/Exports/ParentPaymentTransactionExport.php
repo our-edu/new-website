@@ -20,7 +20,7 @@ class ParentPaymentTransactionExport implements FromCollection, WithHeadings
             'balance',
             'email',
             'paid_amount'
-        ])->get();
+        ])->where('paid', 1)->get();
     }
 
     public function headings(): array
