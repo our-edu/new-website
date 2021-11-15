@@ -9,6 +9,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,15 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+        /** @var UrlGenerator $url */
+        $url = $this->app['url'];
+
+        // Force the application URL
+        $url->forceRootUrl(config('app.url'));
+        if (env('FORCE_HTTPS', true)) { // Default value should be false for local server
+            // Force the application URL
+            URL::forceScheme('https');
+        }
 
 
         $this->routes(function () {
