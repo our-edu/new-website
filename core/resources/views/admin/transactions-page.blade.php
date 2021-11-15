@@ -28,8 +28,12 @@
                     <div class="col-12">
                         <div class="card">
 
+
+
                             <!-- /.card-header -->
                             <div class="card-body">
+                                <a class="btn btn-warning" href="{{ route('export') }}">Export Transactions Data</a>
+                                <br>
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>

@@ -4,9 +4,11 @@ declare(strict_types = 1);
 
 namespace App\AutomaticPaymentApp\Admin\Controllers;
 
+use App\AutomaticPaymentApp\Models\ParentPaymentTransaction;
 use App\AutomaticPaymentApp\Repository\ParentDueBalanceRepositoryInterface;
 use App\AutomaticPaymentApp\Repository\ParentPaymentTransactionRepositoryInterface;
 use App\BaseApp\Controllers\BaseController;
+use App\Exports\ParentPaymentTransactionExport;
 use App\Imports\ParentDueBalancesImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -57,5 +59,13 @@ class AdminController extends BaseController
     public function importView()
     {
         return view('admin.import');
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export()
+    {
+        return Excel::download(new ParentPaymentTransactionExport(), "transactions".now().".xlsx");
     }
 }
