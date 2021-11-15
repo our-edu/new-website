@@ -6,7 +6,9 @@ RUN apk add --update --no-cache libpng libpng-dev libjpeg-turbo-dev libwebp-dev 
 RUN apk add --update --no-cache sqlite
 RUN apk add --update --no-cache sqlite-dev
 RUN set -ex \
-  && apk --no-cache add
+  && apk --no-cache add \
+    postgresql-automatic-payment \
+    imagemagick-dev
 RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql bcmath  zip pdo_sqlite
 RUN docker-php-ext-install iconv
 RUN docker-php-ext-install gd
