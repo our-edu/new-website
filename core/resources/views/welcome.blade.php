@@ -7,7 +7,7 @@
 @endsection
 @section('content')
     <nav>
-        <img src="{{env('APP_URL')}}/assets/images/6Qo-yqjYIU0HgZXDcD8IniikzvfWjUZH.png"
+        <img src="{{asset('/')}}/assets/images/6Qo-yqjYIU0HgZXDcD8IniikzvfWjUZH.png"
              alt="ibn khaldon"
              width="150px"
         />
@@ -22,9 +22,9 @@
                 <div class="card-body">
                     <div class="card-item border-bottom-grey">
                         <div class="card-item_title">National ID</div>
-
-
-                        <input type="text" name="national_id" placeholder="Enter Your National ID">
+                        <label>
+                            <input type="text"  class="form-control" name="national_id" placeholder="Enter Your National ID">
+                        </label>
                     </div>
                     <div class="actions mb-2">
                         <button type="submit" class="button">
@@ -32,6 +32,7 @@
                         </button>
 
                     </div>
+                </div>
 
             </form>
             @if($loginEnabled)
