@@ -9,10 +9,15 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class ParentPaymentTransactionExport implements FromCollection, WithHeadingRow
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
     public function collection()
     {
-        return ParentPaymentTransaction::all();
+        return ParentPaymentTransaction::select([
+            'national_id',
+            'balance',
+            'email',
+            'paid_amount'
+        ])->get();
     }
 }
