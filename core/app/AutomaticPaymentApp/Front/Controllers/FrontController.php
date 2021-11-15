@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\AutomaticPaymentApp\Front\Controllers;
 
@@ -23,43 +23,42 @@ use PDF;
 class FrontController extends BaseController
 {
     private $endpointUrl;
+
     public function __construct()
     {
         $this->endpointUrl = 'https://sbpaymentservices.payfort.com/FortAPI/paymentApi';
     }
 
-    public function searchNationalId(Request $request): Factory|View|Application
+    public function searchNationalId(Request $request)
     {
         $data = $request->validate([
-           'national_id' => 'required'
+            'national_id' => 'required'
         ]);
-        $NationalIdExistiDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
-        //check if national id found in our edu users
-//      if($request->national_id == 'found in our edu'){
-//          return view('welcome')->with(['loginEnabled'=>true,'registerEnabled'=>false]);
-//      //if it's found on automatic payment
-//      }else if($request->national_id == 'automatic'){
-//
-//          return view('welcome')->with(['loginEnabled'=>false,'registerEnabled'=>true]);
-//          //not found at all
-//      }else{
-//          return view('welcome')->with(['loginEnabled'=>false,'registerEnabled'=>false]);
-//
-//      }
-        return view('welcome')->with(['loginEnabled'=>false,'registerEnabled'=>false]);
+        $NationalIdExistDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
+
+        if ($NationalIdExistDatabase) {
+            return redirect()->route('payments.getPaymentView', [
+                'national_id' => $data['national_id']
+            ]);
+        } else {
+            return redirect()->route('home');
+
+        }
+
     }
+
     public function getPaymentView(Request $request)
     {
         $random = Str::random(20);
         $parentDue = ParentDueBalance::where('national_id', $request->national_id)->first();
-        if (! $parentDue) {
+        if (!$parentDue) {
             return view('error-page', [
                 'errorMessage' => __('payment.errors.parentDUeError', [], app()->getLocale())
             ]);
         }
         return view('new_payment.new-payment-page', [
             'url' => route('payments.getPaymentForm'),
-            'parentDue' =>$parentDue,
+            'parentDue' => $parentDue,
             'balance' => $parentDue->balance,
             'merchant_reference' => $random,
             'language' => app()->getLocale(),
@@ -76,10 +75,10 @@ class FrontController extends BaseController
                 'errorMessage' => __('payment.errors.amount_required', [], app()->getLocale())
             ]);
         }
-        if (! $parentDue) {
-                return view('error-page', [
-                    'errorMessage' => __('payment.errors.parentDUeError', [], app()->getLocale())
-                ]);
+        if (!$parentDue) {
+            return view('error-page', [
+                'errorMessage' => __('payment.errors.parentDUeError', [], app()->getLocale())
+            ]);
         }
         if ($amount > $parentDue->balance) {
             return view('error-page', [
@@ -87,13 +86,13 @@ class FrontController extends BaseController
             ]);
         }
         $parentTransactionPending = ParentPaymentTransaction::create([
-            'parent_name'=> $parentDue->parent_name,
-            'national_id'=> $parentDue->national_id,
-            'balance'=> $parentDue->balance,
+            'parent_name' => $parentDue->parent_name,
+            'national_id' => $parentDue->national_id,
+            'balance' => $parentDue->balance,
             'email' => $parentDue->email,
-            'paid_amount'=> $amount,
-            'payfort_response'=>null,
-            'paid'=> false
+            'paid_amount' => $amount,
+            'payfort_response' => null,
+            'paid' => false
         ]);
         $data = [
             'merchant_reference' => $request->merchant_reference,
@@ -111,7 +110,7 @@ class FrontController extends BaseController
         $locale = $request->lang ?? app()->getLocale();
 
         if (env('MEDIA_S3', false)) {
-            $pdfUrl = env('MEDIA_SERVICE_HOST') ."/storage/$request->pdf.pdf";
+            $pdfUrl = env('MEDIA_SERVICE_HOST') . "/storage/$request->pdf.pdf";
         } else {
             $pdfUrl = env('APP_URL') . '/storage/' . $request->pdf . '.pdf';
         }
@@ -128,13 +127,13 @@ class FrontController extends BaseController
             if ($response['status'] == PayFortStatusEnum::CAPTURE_SUCCESS) {
                 $parentDueTransaction->update([
                     'paid' => true,
-                    'payfort_response'=> json_encode($response)
+                    'payfort_response' => json_encode($response)
                 ]);
                 $fileName = $this->processPdf($request->toArray());
                 return Redirect::to(
                     buildWebRoute('payments.processReturnPdf', [
-                                'pdf' => $fileName,
-                            ])
+                        'pdf' => $fileName,
+                    ])
                 );
             }
         } else {
@@ -153,45 +152,46 @@ class FrontController extends BaseController
         $amount = intval($response['amount'] / pow(10, 2));
         $parentDueTransaction = ParentPaymentTransaction::find($parentDueTransactionUuid);
         if ($parentDueTransaction) {
-                $data = [
-                    'paid_amount' => $amount,
-                    'card_number' => $response['card_number'],
-                    'card_holder_name' => (isset($response['card_holder_name']) || !empty($response['card_holder_name']))  ?$response['card_holder_name'] : null,
-                    'expiry_date' => $response['expiry_date'],
-                    'payment_option' => $response['payment_option'],
-                    'response_message' => $response['response_message'],
-                    'fort_id' => $response['fort_id'],
-                    'parent_name' => $parentDueTransaction->parent_name,
+            $data = [
+                'paid_amount' => $amount,
+                'card_number' => $response['card_number'],
+                'card_holder_name' => (isset($response['card_holder_name']) || !empty($response['card_holder_name'])) ? $response['card_holder_name'] : null,
+                'expiry_date' => $response['expiry_date'],
+                'payment_option' => $response['payment_option'],
+                'response_message' => $response['response_message'],
+                'fort_id' => $response['fort_id'],
+                'parent_name' => $parentDueTransaction->parent_name,
 
-                    'language' => $response['language'],
-                ];
+                'language' => $response['language'],
+            ];
 
-                $fileName = Str::random();
-                if (env('MEDIA_S3', false)) {
-                    $pdf = PDF::loadView('success-payment-application-page', $data, [], [
-                        'title' => 'Another Title',
-                        'margin_top' => 0
-                    ]);
+            $fileName = Str::random();
+            if (env('MEDIA_S3', false)) {
+                $pdf = PDF::loadView('success-payment-application-page', $data, [], [
+                    'title' => 'Another Title',
+                    'margin_top' => 0
+                ]);
 
-                    $filePath =  "storage/$fileName.pdf";
-                    Storage::disk('s3')->put(
-                        $filePath,
-                        $pdf->output(),
-                        [
-                            'ACL' => 'public-read'
-                        ]
-                    );
-                    $pdfUrl = env('MEDIA_SERVICE_HOST') ."/$filePath";
-                } else {
-                    PDF::loadView('success-payment-application-page', $data, [], [
-                        'title' => 'Payment Receipt',
-                        'margin_top' => 0
-                    ])->save(storage_path() . '/app/public/' . $fileName . '.pdf');
-                    $pdfUrl = env('APP_URL') . '/storage/' . $fileName . '.pdf';
-                }
-                return $fileName;
+                $filePath = "storage/$fileName.pdf";
+                Storage::disk('s3')->put(
+                    $filePath,
+                    $pdf->output(),
+                    [
+                        'ACL' => 'public-read'
+                    ]
+                );
+                $pdfUrl = env('MEDIA_SERVICE_HOST') . "/$filePath";
+            } else {
+                PDF::loadView('success-payment-application-page', $data, [], [
+                    'title' => 'Payment Receipt',
+                    'margin_top' => 0
+                ])->save(storage_path() . '/app/public/' . $fileName . '.pdf');
+                $pdfUrl = env('APP_URL') . '/storage/' . $fileName . '.pdf';
+            }
+            return $fileName;
         }
     }
+
     //checked
     private function capture($amount, $merchantReference, $fortID)
     {
@@ -211,6 +211,7 @@ class FrontController extends BaseController
         $response = $response->json();
         return $response;
     }
+
     //checked
     public function calcPayfortSignature(array $params, $signature_type = 'request')
     {

@@ -39,7 +39,6 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
-        /** @var UrlGenerator $url */
         $url = $this->app['url'];
 
         // Force the application URL
