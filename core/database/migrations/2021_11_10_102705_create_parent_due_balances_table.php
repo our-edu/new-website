@@ -16,9 +16,9 @@ class CreateParentDueBalancesTable extends Migration
         Schema::create('parent_due_balances', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('parent_name',60);
-            $table->string('national_id')->unique()->index();
+            $table->string('national_id');
             $table->float('balance');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
-            $table->string('email')->unique()->index();
+            $table->string('email');
             $table->timestamps();
         });
     }

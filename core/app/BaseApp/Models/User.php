@@ -18,7 +18,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Uuids, CreatedBy , HasRoles;
+    use HasFactory, Uuids, CreatedBy ;
 
     protected $primaryKey = 'uuid';
     public $incrementing = false;
@@ -66,46 +66,5 @@ class User extends Authenticatable implements JWTSubject
     public function getNameAttribute(): string
     {
         return "{$this->getAttributeValue('first_name')} {$this->getAttributeValue('last_name')}";
-    }
-
-    /**
-     * @return BelongsTo
-     */
-
-    public function profilePicture(): BelongsTo
-    {
-        return $this->belongsTo(UploadedMedia::class, 'profile_picture');
-    }
-
-
-    /**
-     * @return HasOne
-     */
-
-    public function schoolEmployee() : HasOne
-    {
-        return $this->hasOne(SchoolEmployee::class, 'user_id');
-    }
-
-    /**
-     * @return MorphToMany
-     */
-    public function userRole() : MorphToMany
-    {
-        return $this->morphToMany(Role::class, 'model', 'model_has_roles', 'model_uuid');
-    }
-    /**
-     * get User Parent Data
-     * @return HasOne
-     */
-
-    public function parent(): HasOne
-    {
-        return $this->hasOne(ParentUser::class, 'user_uuid');
-    }
-
-    public function student() :  HasOne
-    {
-        return $this->hasOne(Student::class, 'user_id');
     }
 }

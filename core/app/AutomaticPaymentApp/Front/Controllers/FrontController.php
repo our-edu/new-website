@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\AutomaticPaymentApp\Front\Controllers;
 
 use App\AutomaticPaymentApp\Models\ParentDueBalance;
-use App\AutomaticPaymentApp\Models\ParentPaymentTransactions;
+use App\AutomaticPaymentApp\Models\ParentPaymentTransaction;
 use App\BaseApp\Controllers\BaseController;
 use App\BaseApp\Models\User;
 use App\BaseApp\PayFort\Facades\Payfort;
@@ -21,7 +23,8 @@ use PDF;
 class FrontController extends BaseController
 {
     private $endpointUrl;
-    public function __construct(){
+    public function __construct()
+    {
         $this->endpointUrl = 'https://sbpaymentservices.payfort.com/FortAPI/paymentApi';
     }
 
@@ -30,7 +33,7 @@ class FrontController extends BaseController
         $data = $request->validate([
            'national_id' => 'required'
         ]);
-        $NationalIdExistiDatabase = ParentDueBalance::where('national_id',$data['national_id'])->exists();
+        $NationalIdExistiDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
         //check if national id found in our edu users
 //      if($request->national_id == 'found in our edu'){
 //          return view('welcome')->with(['loginEnabled'=>true,'registerEnabled'=>false]);
@@ -48,12 +51,11 @@ class FrontController extends BaseController
     public function getPaymentView(Request $request)
     {
         $random = Str::random(20);
-        $parentDue = ParentDueBalance::where('national_id',$request->national_id)->first();
-        if( ! $parentDue){
+        $parentDue = ParentDueBalance::where('national_id', $request->national_id)->first();
+        if (! $parentDue) {
             return view('error-page', [
                 'errorMessage' => __('payment.errors.parentDUeError', [], app()->getLocale())
             ]);
-
         }
         return view('new_payment.new-payment-page', [
             'url' => route('payments.getPaymentForm'),
@@ -74,19 +76,17 @@ class FrontController extends BaseController
                 'errorMessage' => __('payment.errors.amount_required', [], app()->getLocale())
             ]);
         }
-        if( ! $parentDue){
+        if (! $parentDue) {
                 return view('error-page', [
                     'errorMessage' => __('payment.errors.parentDUeError', [], app()->getLocale())
                 ]);
-
         }
-        if( $amount > $parentDue->balance ){
+        if ($amount > $parentDue->balance) {
             return view('error-page', [
                 'errorMessage' => __('payment.errors.amountExceededBalance', [], app()->getLocale())
             ]);
-
         }
-        $parentTransactionPending = ParentPaymentTransactions::create([
+        $parentTransactionPending = ParentPaymentTransaction::create([
             'parent_name'=> $parentDue->parent_name,
             'national_id'=> $parentDue->national_id,
             'balance'=> $parentDue->balance,
@@ -123,7 +123,7 @@ class FrontController extends BaseController
     {
         $parentDueTransactionUuid = $request->merchant_extra;
         if ($request->status == PayFortStatusEnum::SUCCESS) {
-            $parentDueTransaction = ParentPaymentTransactions::find($parentDueTransactionUuid);
+            $parentDueTransaction = ParentPaymentTransaction::find($parentDueTransactionUuid);
             $response = $this->capture($parentDueTransaction->paid_amount, $request->merchant_reference, $request->fort_id);
             if ($response['status'] == PayFortStatusEnum::CAPTURE_SUCCESS) {
                 $parentDueTransaction->update([
@@ -132,19 +132,17 @@ class FrontController extends BaseController
                 ]);
                 $fileName = $this->processPdf($request->toArray());
                 return Redirect::to(
-                            buildWebRoute('payments.processReturnPdf', [
+                    buildWebRoute('payments.processReturnPdf', [
                                 'pdf' => $fileName,
                             ])
-                        );
-                    }
-
+                );
+            }
         } else {
             return view('error-page', [
                 'errorMessage' => $request->response_message,
                 'language' => app()->getLocale(),
             ]);
         }
-
     }
 
     //create pdf for payAll balance or bill
@@ -153,7 +151,7 @@ class FrontController extends BaseController
         $parentDueTransactionUuid = $response['merchant_extra'];
 
         $amount = intval($response['amount'] / pow(10, 2));
-        $parentDueTransaction = ParentPaymentTransactions::find($parentDueTransactionUuid);
+        $parentDueTransaction = ParentPaymentTransaction::find($parentDueTransactionUuid);
         if ($parentDueTransaction) {
                 $data = [
                     'paid_amount' => $amount,
@@ -192,7 +190,7 @@ class FrontController extends BaseController
                     $pdfUrl = env('APP_URL') . '/storage/' . $fileName . '.pdf';
                 }
                 return $fileName;
-            }
+        }
     }
     //checked
     private function capture($amount, $merchantReference, $fortID)

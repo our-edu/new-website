@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types = 1);
 
 namespace App\AutomaticPaymentApp\Models;
@@ -15,5 +16,4 @@ class ParentDueBalance extends BaseModel
         'balance',
         'email'
     ];
-
 }

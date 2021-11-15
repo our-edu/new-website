@@ -17,7 +17,7 @@ abstract class TestCase extends BaseTestCase
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->loadEnvironmentFrom('.env.testing');
+        //$app->loadEnvironmentFrom('.env.testing');
         $app->make('Illuminate\Contracts\Console\Kernel')->bootstrap();
 
 
@@ -29,8 +29,8 @@ abstract class TestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->artisan('migrate:fresh  --path=database/migrations/migration-test');
-        $this->artisan('db:seed --class=UnitTestSeeder');
+       // $this->artisan('migrate:fresh  --path=database/migrations/migration-test');
+       // $this->artisan('db:seed --class=UnitTestSeeder');
     }
 
     public function getJson($uri, array $headers = [])

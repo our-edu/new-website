@@ -16,9 +16,9 @@ class CreateParantPaymentsTransactions extends Migration
         Schema::create('parent_payments_transactions', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->string('parent_name',60);
-            $table->string('national_id')->index();
+            $table->string('national_id');
             $table->float('balance');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
-            $table->string('email')->index();
+            $table->string('email');
             $table->float('paid_amount');//will mutate it by multiply it by 1000 and return divide it by 1000 when accessing
             $table->json('payfort_response')->nullable();
 
