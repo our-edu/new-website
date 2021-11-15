@@ -40,7 +40,7 @@ class AdminController extends BaseController
 
     public function indexTransactions()
     {
-        $transactions = $this->parentPaymentTransactionRepository->all();
+        $transactions = $this->parentPaymentTransactionRepository->where('paid','1')->get();
         return view('admin.transactions-page', compact('transactions'));
     }
 
