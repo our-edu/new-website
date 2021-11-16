@@ -5,6 +5,7 @@ return array(
     'card_number' => 'Card Number',
     'payment_option' =>'Payment Method',
     'click_to_complete' => 'Press here to Pay',
+    'click_to_search'=>'Press here to search',
     'bill_reaming' => 'Rest Of Amount',
     'paid_amount' => 'Paid amount',
     'email'=>'Email',
