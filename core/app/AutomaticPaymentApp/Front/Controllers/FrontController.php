@@ -41,7 +41,7 @@ class FrontController extends BaseController
                 'national_id' => $data['national_id']
             ]);
         } else {
-            return redirect()->route('home');
+            return redirect()->route('home')->with(['loginEnabled'=>true,'registerEnabled'=>true]);;
 
         }
 
@@ -62,7 +62,9 @@ class FrontController extends BaseController
             'balance' => $parentDue->balance,
             'merchant_reference' => $random,
             'language' => app()->getLocale(),
-        ]);
+        ])->with(['loginEnabled'=>true,'registerEnabled'=>true]);
+
+
     }
 
     public function getPaymentForm(Request $request)

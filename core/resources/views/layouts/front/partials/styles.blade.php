@@ -137,15 +137,13 @@
     body {
         font-family: "Cairo", sans-serif;
     }
-    main {
-    }
+    main {}
     nav {
         text-align: center;
         padding: 2em;
         margin-bottom: 2em;
     }
-    nav img {
-    }
+    nav img {}
     .card {
         padding: 1rem 0rem;
         /* border: 1px solid rgb(207, 207, 207); */
@@ -153,9 +151,9 @@
         margin: auto;
         width: 80%;
         max-width: 500px;
-        color: #3a3a3a;
+        color: #3A3A3A;
         margin-bottom: 1em;
-        /* box-shadow: 0px 0px 1px #c2c1c1; */
+        /* box-shadow: 0px 0px 1px #C2C1C1; */
     }
     .card-title {
         margin-bottom: 2em;
@@ -168,12 +166,11 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 2em;
-        color: #706e6e;
+        color: #706E6E;
     }
-    .card-body {
-    }
+    .card-body {}
     .card-item {
-        margin-bottom: 2em;
+        margin-bottom: 3em;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -183,11 +180,12 @@
         padding: 1.5em;
     }
     .card-item .card-item_title {
-        color: #172b4d;
+        color: #172B4D;
         font-weight: 600;
+        margin-bottom: 0.5rem;
     }
     .card-item .card-item_content {
-        color: #7a869a;
+        color: #7A869A;
     }
     .card-item-second {
         margin-bottom: 2em;
@@ -196,11 +194,11 @@
         justify-content: space-between;
     }
     .card-item-second .card-item_title {
-        color: #7a869a;
+        color: #7A869A;
         font-weight: 600;
     }
     .card-item-second .card-item_content {
-        color: #1b76bc;
+        color: #1B76BC;
         font-weight: 600;
     }
     .actions {
@@ -223,17 +221,21 @@
         cursor: pointer;
     }
     .actions button:first-child {
-        background-color: #0064b0;
-        border-color: #0064b0;
+        background-color: #0064B0;
+        border-color: #fff;
         color: #fff;
+    }
+    .actions button:first-child:hover {
+        background-color: #172B4D;
+        transition: 0.5s;
     }
     .actions button:last-child {
         background-color: #fff;
-        border-color: #0064b0;
-        color: #0064b0;
+        border-color: #0064B0;
+        color: #0064B0;
     }
     .welcome {
-        background-color: #ebf9f2;
+        background-color: #EBF9F2;
         padding: 1rem;
         margin: auto;
         margin-bottom: 1em;
@@ -260,8 +262,8 @@
         border: 1px solid;
         margin-bottom: 1em;
         cursor: pointer;
-        background-color: #1890ff;
-        border-color: #1890ff;
+        background-color: #1890FF;
+        border-color: #1890FF;
         color: #fff;
     }
     .check-wrapper {
@@ -282,22 +284,22 @@
     }
     .footer {
         border-top: 1px solid;
-        color: #706e6e;
+        color: #706E6E;
         padding: 3em 2em;
         margin: auto;
         width: 80%;
         max-width: 500px;
     }
     .footer a {
-        color: #706e6e;
+        color: #706E6E;
     }
     .text-center {
         text-align: center;
     }
     /* .border-bottom-grey {
-      border-bottom: 1px solid #c8c8c9;
-      padding-bottom: 1.5em;
-    } */
+  border-bottom: 1px solid #C8C8C9;
+  padding-bottom: 1.5em;
+} */
     .flex-dir-column {
         flex-direction: column;
         align-items: flex-start;
@@ -305,7 +307,6 @@
     .mb-2 {
         margin-bottom: 0.5em;
     }
-
     .mx-2 {
         margin: 0 5px;
     }
@@ -328,7 +329,21 @@
     .total .breakdown {
         margin-bottom: 1rem;
     }
-    .total .breakdown > div {
-        color: #7a869a;
+    .total .breakdown>div {
+        color: #7A869A;
+    }
+    .form-control {
+        padding: 10px 15px;
+        outline: none;
+        border-radius: 5px;
+        margin-bottom: 0.3rem;
+        width: 100%;
+        border: 1px solid #0064B0;
+    }
+    .form-control:active,
+    .form-control:focus,
+    .form-control:focus-visible {
+        border: 1px solid #0064B0;
+        outline: none;
     }
 </style>
