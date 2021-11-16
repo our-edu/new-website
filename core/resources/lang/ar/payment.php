@@ -41,6 +41,8 @@ return array(
         'bill_not_found'=>"الفاتورة غير موجودة",
         'child_id_required'=>"id الطفل مطلوب",
         'user_id_required'=>"id المستخدم مطلوب",
-        ]
+        'amountExceededBalance'=>"المبلغ المدفوع يتجاوز الرصيد"
+
+    ]
 
 );

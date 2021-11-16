@@ -38,6 +38,9 @@
                     <div class="card-item border-bottom-grey">
                         <div class="card-item_content">
                             <input type="text" name="amount" value="" class="form-control">
+
+                            <small style="display: block; font-size: 0.8rem; color: red;">{{$errorMessage}}</small>
+
                         </div>
 
                         <div class="card-item_title">{{__('payment.amountToPay',[],$language)}}</div>

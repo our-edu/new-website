@@ -131,6 +131,9 @@ return [
             'rule-name' => 'رسالة مخصصة',
         ],
     ],
+    'attributes' => [
+        'national_id'=>'الهوية الوطنية',
+    ],
 
 
 ];

@@ -26,8 +26,7 @@
                             <input type="text" class="form-control" name="national_id"
                                    placeholder="">
                             @error('national_id')
-                            <small style="display: block; font-size: 0.8rem; color: red;">*National id is
-                                required</small>
+                            <small style="display: block; font-size: 0.8rem; color: red;">{{$message}}</small>
                             @enderror
                         </label>
 

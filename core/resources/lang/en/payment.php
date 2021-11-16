@@ -15,7 +15,7 @@ return array(
     'parent_name' => 'Parent name',
     'register'=>'Sign Up In Our Education',
     'welcome'=>'Welcome to the Payment Portal',
-    'Login'=>'Sign In In Our Education',
+    'login'=>'Sign In In Our Education',
     'student_name' => 'Student name',
     'view_payment' => 'View Payment',
     'name' => 'Name',
@@ -41,5 +41,6 @@ return array(
         'bill_not_found'=>"Bill not found",
         'child_id_required'=>"Child id is required",
         'user_id_required'=>"User id is required",
+        'amountExceededBalance'=>"Paid Amount Exceeded Balance"
     ]
 );

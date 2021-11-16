@@ -32,16 +32,19 @@ class FrontController extends BaseController
     public function searchNationalId(Request $request)
     {
         $data = $request->validate([
-            'national_id' => 'required'
+            'national_id' => 'required|exists:parent_due_balances'
         ]);
+
+
+
         $NationalIdExistDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
 
         if ($NationalIdExistDatabase) {
             return redirect()->route('payments.getPaymentView', [
                 'national_id' => $data['national_id']
-            ]);
+            ])->withErrors($data);
         } else {
-            return redirect()->route('home')->with(['loginEnabled'=>true,'registerEnabled'=>true]);;
+            return redirect()->route('home')->with(['loginEnabled'=>true,'registerEnabled'=>true]);
 
         }
 
@@ -62,7 +65,7 @@ class FrontController extends BaseController
             'balance' => $parentDue->balance,
             'merchant_reference' => $random,
             'language' => app()->getLocale(),
-        ])->with(['loginEnabled'=>true,'registerEnabled'=>true]);
+        ])->with(['loginEnabled'=>true,'registerEnabled'=>true,'errorMessage'=>false]);
 
 
     }
@@ -74,7 +77,7 @@ class FrontController extends BaseController
         $parentDue = ParentDueBalance::find($parent_due_uuid);
         if (!$amount) {
             return view('error-page', [
-                'errorMessage' => __('payment.errors.amount_required', [], app()->getLocale())
+                'errorMessage' => __('payment.', [], app()->getLocale())
             ]);
         }
         if (!$parentDue) {
@@ -83,9 +86,13 @@ class FrontController extends BaseController
             ]);
         }
         if ($amount > $parentDue->balance) {
-            return view('error-page', [
-                'errorMessage' => __('payment.errors.amountExceededBalance', [], app()->getLocale())
-            ]);
+            return view('new_payment.new-payment-page', [
+                'url' => route('payments.getPaymentForm'),
+                'parentDue' => $parentDue,
+                'balance' => $parentDue->balance,
+                'merchant_reference' => $request->merchant_reference,
+                'language' => app()->getLocale(),
+            ])->with(['loginEnabled'=>true,'registerEnabled'=>true,'errorMessage'=>__('payment.errors.amountExceededBalance')]);
         }
         $parentTransactionPending = ParentPaymentTransaction::create([
             'parent_name' => $parentDue->parent_name,

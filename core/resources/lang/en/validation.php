@@ -145,6 +145,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'national_id'=>' National ID',
+    ],
+
 
 ];
