@@ -28,6 +28,9 @@
                             @error('national_id')
                             <small style="display: block; font-size: 0.8rem; color: red;">{{$message}}</small>
                             @enderror
+                            @error('balance')
+                            <small style="display: block; font-size: 0.8rem; color: red;">{{$message}}</small>
+                            @enderror
                         </label>
 
 

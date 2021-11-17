@@ -14,4 +14,5 @@ return [
     'deleted successfully' => 'deleted successfully',
     'cant update this item' => 'cant update this item',
     'cant delete this item' => 'cant delete this item',
+    'your due balance is zero'=>'your due balance is zero'
 ];

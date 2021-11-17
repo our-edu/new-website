@@ -36,9 +36,13 @@ class FrontController extends BaseController
         ]);
 
 
-        $NationalIdExistDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
+        $NationalIdExistDatabase = ParentDueBalance::where('national_id', $data['national_id']);
 
-        if ($NationalIdExistDatabase) {
+        if (!$NationalIdExistDatabase->where('balance', '>', 0)->count()) {
+            return redirect()->route('home', [
+                'national_id' => $data['national_id']
+            ])->withErrors(['balance' => trans('app.your due balance is zero')])->with(['loginEnabled' => true, 'registerEnabled' => true]);
+        } else if ($NationalIdExistDatabase->exists()) {
             return redirect()->route('payments.getPaymentView', [
                 'national_id' => $data['national_id']
             ])->withErrors($data);
@@ -131,6 +135,13 @@ class FrontController extends BaseController
         $parentDueTransactionUuid = $request->merchant_extra;
         if ($request->status == PayFortStatusEnum::SUCCESS) {
             $parentDueTransaction = ParentPaymentTransaction::find($parentDueTransactionUuid);
+            $validateSignature = $this->validateResponseSignature($request->except('signature'), $request->signature);
+            if (!$validateSignature) {
+                return view('error-page', [
+                    'errorMessage' => $request->response_message,
+                    'language' => app()->getLocale(),
+                ]);
+            }
             $response = $this->capture($parentDueTransaction->paid_amount, $request->merchant_reference, $request->fort_id);
             if ($response['status'] == PayFortStatusEnum::CAPTURE_SUCCESS) {
                 $parentDue = ParentDueBalance::where('national_id', $parentDueTransaction->national_id)->first();
@@ -149,6 +160,7 @@ class FrontController extends BaseController
                     ])
                 );
             }
+
         } else {
             return view('error-page', [
                 'errorMessage' => $request->response_message,
@@ -223,6 +235,14 @@ class FrontController extends BaseController
         $response = Http::post($this->endpointUrl, $arrData);
         $response = $response->json();
         return $response;
+    }
+
+
+    public function validateResponseSignature(array $requestPrams, string $responseSignature)
+    {
+        $calculateRequestSignature = $this->calcPayfortSignature($requestPrams, 'response');
+        return $calculateRequestSignature == $responseSignature;
+
     }
 
     //checked

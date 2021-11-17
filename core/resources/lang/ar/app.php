@@ -14,4 +14,6 @@ return [
     'deleted successfully' => 'تم الحذف بنجاح',
     'cant update this item' => 'لا يمكن تحديث هذا العنصر',
     'cant delete this item' => 'لا يمكن حذف هذا العنصر',
+    'your due balance is zero' => 'المدفوعات المتاخرة بصفر',
+    
 ];
