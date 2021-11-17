@@ -36,7 +36,6 @@ class FrontController extends BaseController
         ]);
 
 
-
         $NationalIdExistDatabase = ParentDueBalance::where('national_id', $data['national_id'])->exists();
 
         if ($NationalIdExistDatabase) {
@@ -44,7 +43,7 @@ class FrontController extends BaseController
                 'national_id' => $data['national_id']
             ])->withErrors($data);
         } else {
-            return redirect()->route('home')->with(['loginEnabled'=>true,'registerEnabled'=>true]);
+            return redirect()->route('home')->with(['loginEnabled' => true, 'registerEnabled' => true]);
 
         }
 
@@ -65,7 +64,7 @@ class FrontController extends BaseController
             'balance' => $parentDue->balance,
             'merchant_reference' => $random,
             'language' => app()->getLocale(),
-        ])->with(['loginEnabled'=>true,'registerEnabled'=>true,'errorMessage'=>false]);
+        ])->with(['loginEnabled' => true, 'registerEnabled' => true, 'errorMessage' => false]);
 
 
     }
@@ -92,7 +91,7 @@ class FrontController extends BaseController
                 'balance' => $parentDue->balance,
                 'merchant_reference' => $request->merchant_reference,
                 'language' => app()->getLocale(),
-            ])->with(['loginEnabled'=>true,'registerEnabled'=>true,'errorMessage'=>__('payment.errors.amountExceededBalance')]);
+            ])->with(['loginEnabled' => true, 'registerEnabled' => true, 'errorMessage' => __('payment.errors.amountExceededBalance')]);
         }
         $parentTransactionPending = ParentPaymentTransaction::create([
             'parent_name' => $parentDue->parent_name,
@@ -134,6 +133,11 @@ class FrontController extends BaseController
             $parentDueTransaction = ParentPaymentTransaction::find($parentDueTransactionUuid);
             $response = $this->capture($parentDueTransaction->paid_amount, $request->merchant_reference, $request->fort_id);
             if ($response['status'] == PayFortStatusEnum::CAPTURE_SUCCESS) {
+                $parentDue = ParentDueBalance::where('national_id', $parentDueTransaction->national_id)->first();
+                if ($parentDue) {
+                    $parentDue->balance = $parentDueTransaction->balance - $parentDueTransaction->paid_amount;
+                    $parentDue->save();
+                }
                 $parentDueTransaction->update([
                     'paid' => true,
                     'payfort_response' => json_encode($response)
