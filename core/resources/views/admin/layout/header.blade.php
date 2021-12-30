@@ -24,7 +24,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">الرئيسيه</a>
             </li>
 
         </ul>
@@ -50,10 +50,10 @@
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="{{route('parents.index')}}" class="nav-link">
+                        <a href="{{route('articles.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                list Parent Balance
+                                المقالات
                             </p>
                         </a>
                     </li>

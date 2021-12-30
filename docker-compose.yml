@@ -1,7 +1,7 @@
 version: '3.5'
 
 services:
-  automatic-payment:
+  new-website:
     env_file: .env
     build: .
     volumes:
@@ -11,7 +11,7 @@ services:
     networks:
       - ouredu-service-app
 
-  postgresql-payment:
+  postgresql-new-website:
     env_file: .env
     image: 'postgis/postgis:latest'
     container_name: ${MAIN_DB_CONTAINER_NAME}
@@ -19,7 +19,7 @@ services:
     ports:
       - ${MAIN_DB_PORT}:5432
     environment:
-      POSTGRES_DB: ouredu-automatic-payment
+      POSTGRES_DB: ouredu-new-website
       POSTGRES_USER: dbuser
       POSTGRES_PASSWORD: secret
     volumes:
@@ -28,7 +28,7 @@ services:
       - ".docker/postgres/pg_hba.conf:/usr/share/postgresql/13/pg_hba.conf"
     networks:
       - ouredu-service-app
-  automatic-payment-nginx:
+  new-website-nginx:
     env_file: .env
     build: ./.docker/nginx
     restart: always
@@ -38,7 +38,7 @@ services:
     volumes:
       - ./core:/var/www
     depends_on:
-      - automatic-payment
+      - new-website
     environment:
       - NGINX_HOST=oureducation.test
       - NGINX_PORT=80

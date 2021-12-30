@@ -14,17 +14,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group([
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function () {
-    //Front Routes goes here
-        require base_path('app/AutomaticPaymentApp/Front/Routes/routes.php');
-    });
+
+require base_path('app/AutomaticPaymentApp/Front/Routes/routes.php');
+
 Route::group(['prefix'=>'admin'], function () {
     Auth::routes(['register' => false]);
     //Admin Routes goes here
     Route::group(['middleware'=>'auth'], function () {
         require base_path('app/AutomaticPaymentApp/Admin/Routes/routes.php');
+        require base_path('app/AutomaticPaymentApp/Admin/Articles/Routes/web.php');
     });
 });

@@ -185,6 +185,8 @@ return [
         Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         // Kafka service providers
         \App\BaseApp\Providers\ProducerServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+
     ],
 
     /*
@@ -236,7 +238,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class
+        'PDF' => Meneses\LaravelMpdf\Facades\LaravelMpdf::class,
+        'Form' => Collective\Html\FormFacde::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
