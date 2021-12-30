@@ -42,6 +42,8 @@
                                         <th>الوصف</th>
                                         <th>المحتوي</th>
                                         <th>الصوره</th>
+                                        <th></th>
+
 
                                     </tr>
                                     </thead>
@@ -52,6 +54,22 @@
                                             <td>{{ Str::limit($row->description, 10) }}</td>
                                             <td>{{ Str::limit($row->article_content, 10) }}</td>
                                             <td>{{$row->post_img}}</td>
+                                            <td class="text-center">
+
+                                                @if(request('deleted') != 'yes')
+                                                    <a class="btn btn-success btn-xs" href="" title="تعديل">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <form  class="d-inline" method="POST" title="حذف" action="">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button  type="submit" class="btn btn-danger btn-xs" value="Delete celebrities"
+                                                                 data-confirm="{{trans('post.Are you sure you want to delete this item')}}?">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

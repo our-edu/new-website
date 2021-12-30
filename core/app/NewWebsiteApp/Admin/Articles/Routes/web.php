@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'articles','namespace' => '\App\AutomaticPaymentApp\Admin\Articles\Controllers'], function () {
+Route::group(['prefix' => 'articles','namespace' => '\App\NewWebsiteApp\Admin\Articles\Controllers'], function () {
     Route::get('/', 'ArticlesController@getIndex')->name('articles.index');
 
     Route::get('/create', 'ArticlesController@getCreate');
@@ -13,5 +13,5 @@ Route::group(['prefix' => 'articles','namespace' => '\App\AutomaticPaymentApp\Ad
     Route::get('/edit/{id}', 'ArticlesController@getEdit');
     Route::put('/edit/{id}', 'ArticlesController@postEdit');
 
-    Route::delete('/delete/{id}', 'ArticlesController@getDelete')->name('posts.delete');
+    Route::delete('/delete/{id}', 'ArticlesController@getDelete')->name('articles.delete');
 });
