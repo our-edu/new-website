@@ -15,13 +15,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-require base_path('app/AutomaticPaymentApp/Front/Routes/routes.php');
+require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
 
 Route::group(['prefix'=>'admin'], function () {
     Auth::routes(['register' => false]);
     //Admin Routes goes here
     Route::group(['middleware'=>'auth'], function () {
-        require base_path('app/AutomaticPaymentApp/Admin/Routes/routes.php');
-        require base_path('app/AutomaticPaymentApp/Admin/Articles/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Routes/routes.php');
+        require base_path('app/NewWebsiteApp/Admin/Articles/Routes/web.php');
     });
 });

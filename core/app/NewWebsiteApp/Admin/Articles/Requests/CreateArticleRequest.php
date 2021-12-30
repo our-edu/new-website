@@ -1,10 +1,10 @@
 <?php
 
-namespace App\AutomaticPaymentApp\Admin\Articles\Requests;
+namespace App\NewWebsiteApp\Admin\Articles\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateArticleRequest extends FormRequest
+class CreateArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,7 @@ class UpdateArticleRequest extends FormRequest
         return [
 //            'title' => 'required|max:250',
 //            'description' => 'required',
+//            'content' => 'required',
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AutomaticPaymentApp\Admin\Articles;
+namespace App\NewWebsiteApp\Admin\Articles;
 
 use App\BaseApp\BaseModel;
 use Illuminate\Database\Eloquent\Model;

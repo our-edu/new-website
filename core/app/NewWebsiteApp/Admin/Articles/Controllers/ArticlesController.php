@@ -1,9 +1,9 @@
 <?php
 
-namespace App\AutomaticPaymentApp\Admin\Articles\Controllers;
-use App\AutomaticPaymentApp\Admin\Articles\Article;
-use App\AutomaticPaymentApp\Admin\Articles\Requests\CreateArticleRequest;
-use App\AutomaticPaymentApp\Admin\Articles\Requests\UpdateArticleRequest;
+namespace App\NewWebsiteApp\Admin\Articles\Controllers;
+use App\NewWebsiteApp\Admin\Articles\Article;
+use App\NewWebsiteApp\Admin\Articles\Requests\CreateArticleRequest;
+use App\NewWebsiteApp\Admin\Articles\Requests\UpdateArticleRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -90,12 +90,11 @@ class ArticlesController extends Controller
 
 
 
-//    public function getDelete($id)
-//    {
-//        $row = $this->model->findOrFail($id);
-//        $row->delete();
-//        flash()->success(trans('app.Deleted Successfully'));
-//        return back();
-//    }
+    public function getDelete($id)
+    {
+        $row = $this->model->findOrFail($id);
+        $row->delete();
+        return back();
+    }
 
 }
