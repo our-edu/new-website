@@ -1,17 +1,15 @@
 <?php
 
 Route::group(['prefix' => 'articles','namespace' => '\App\NewWebsiteApp\Admin\Articles\Controllers'], function () {
-    Route::get('/', 'ArticlesController@getIndex')->name('articles.index');
+    Route::get('/', 'ArticlesController@index')->name('articles.index');
 
-    Route::get('/create', 'ArticlesController@getCreate');
-    Route::post('/create', 'ArticlesController@postCreate');
+    Route::get('/create', 'ArticlesController@create');
+    Route::post('/create', 'ArticlesController@store');
 
-//    Route::get('/post/{id}', 'ArticlesController@show')->name('posts.show');
-//
-//    Route::get('/all-posts', 'ArticlesController@all')->name('posts.all');
+    Route::get('/view/{id}', 'ArticlesController@show')->name('articles.show');
 
-    Route::get('/edit/{id}', 'ArticlesController@getEdit');
-    Route::put('/edit/{id}', 'ArticlesController@postEdit');
+    Route::get('/edit/{id}', 'ArticlesController@edit');
+    Route::put('/edit/{id}', 'ArticlesController@update');
 
-    Route::delete('/delete/{id}', 'ArticlesController@getDelete')->name('articles.delete');
+    Route::delete('/delete/{id}', 'ArticlesController@destroy')->name('articles.delete');
 });
