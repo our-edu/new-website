@@ -23,7 +23,7 @@ class ArticlesController extends Controller
         $this->title = 'Articles';
         $this->model = $model;
     }
-    public function getIndex()
+    public function index()
     {
         $data['module'] = $this->module;
         $data['page_title'] = 'List Articles';
@@ -31,7 +31,7 @@ class ArticlesController extends Controller
         return view('admin.'.$this->module . '.index', $data);
     }
 
-    public function getCreate()
+    public function create()
     {
         $data['module'] = $this->module;
         $data['page_title'] = 'Create' . " " . $this->title;
@@ -39,7 +39,7 @@ class ArticlesController extends Controller
         return view('admin.'.$this->module . '.create', $data);
 
     }
-    public function postCreate(CreateArticleRequest $request)
+    public function store(CreateArticleRequest $request)
     {
         $data['module'] = $this->module;
 
@@ -63,8 +63,16 @@ class ArticlesController extends Controller
     }
 
 
+    public function show($id)
+    {
+        $data['module'] = $this->module;
+        $data['page_title'] = 'View' . " " . $this->title;
+        $data['breadcrumb'] = [$this->title => $this->module];
+        $data['row'] = $this->model->findOrFail($id);
+        return view('admin.'.$this->module . '.view', $data);
+    }
 
-    public function getEdit($id) {
+    public function edit($id) {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
@@ -73,7 +81,7 @@ class ArticlesController extends Controller
     }
 
 
-    public function postEdit(UpdateArticleRequest $request , $id) {
+    public function update(UpdateArticleRequest $request , $id) {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
@@ -90,7 +98,7 @@ class ArticlesController extends Controller
 
 
 
-    public function getDelete($id)
+    public function destroy($id)
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
