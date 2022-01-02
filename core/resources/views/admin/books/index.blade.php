@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>قائمه المقالات</h1>
+                        <h1>قائمه الكتب</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">الرئيسيه</a></li>
-                            <li class="breadcrumb-item active">قائمه المقالات</li>
+                            <li class="breadcrumb-item active">قائمه الكتب</li>
                         </ol>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="p-2">
-                <a href="articles/create" class="btn btn-success">
-                    <i class="fa fa-plus"></i> انشاء مقاله
+                <a href="books/create" class="btn btn-success">
+                    <i class="fa fa-plus"></i> انشاء كتاب
                 </a>
             </div>
             <div class="container-fluid">
@@ -38,10 +38,11 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>العنوان</th>
+                                        <th>الاسم</th>
                                         <th>الوصف</th>
-                                        <th>المحتوي</th>
+                                        <th>تاريخ النشر</th>
                                         <th>الصوره</th>
+                                        <th>اسم المؤلف</th>
                                         <th></th>
 
 
@@ -50,10 +51,11 @@
                                     <tbody>
                                     @forelse($rows as $row)
                                         <tr>
-                                            <td>{{$row->title}}</td>
+                                            <td>{{$row->name}}</td>
                                             <td>{{ Str::limit($row->description, 10) }}</td>
-                                            <td>{{ Str::limit($row->article_content, 10) }}</td>
-                                            <td>{{$row->post_img}}</td>
+                                            <td>{{$row->publish_date}}</td>
+                                            <td>{{$row->book_img}}</td>
+                                            <td>{{$row->author}}</td>
                                             <td class="text-center">
 
                                                 @if(request('deleted') != 'yes')
@@ -63,7 +65,7 @@
                                                     <a class="btn btn-success btn-xs" href="{{$module}}/edit/{{$row->uuid}}" title="تعديل">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form  class="d-inline" method="POST" title="حذف" action="{{route('articles.delete' , $row->uuid)}}">
+                                                    <form  class="d-inline" method="POST" title="حذف" action="{{route('books.delete' , $row->uuid)}}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button  type="submit" class="btn btn-danger btn-xs" value="Delete celebrities"

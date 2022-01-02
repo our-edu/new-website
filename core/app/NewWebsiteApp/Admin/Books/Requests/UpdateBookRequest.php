@@ -1,10 +1,10 @@
 <?php
 
-namespace App\NewWebsiteApp\Admin\Articles\Requests;
+namespace App\NewWebsiteApp\Admin\Books\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateArticleRequest extends FormRequest
+class UpdateBookRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

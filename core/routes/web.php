@@ -23,5 +23,8 @@ Route::group(['prefix'=>'admin'], function () {
     Route::group(['middleware'=>'auth'], function () {
         require base_path('app/NewWebsiteApp/Admin/Routes/routes.php');
         require base_path('app/NewWebsiteApp/Admin/Articles/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/ContactUs/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Books/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Events/Routes/web.php');
     });
 });

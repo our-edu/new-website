@@ -58,6 +58,30 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('books.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الكتب
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('events.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الانشطه والفاعليات
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('ContactUs')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                اتصل بنا
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('import.view')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
