@@ -8,7 +8,7 @@ class CreateGalleriesTable extends Migration {
 	public function up()
 	{
 		Schema::create('galleries', function(Blueprint $table) {
-			$table->increments('id');
+            $table->uuid('uuid')->primary();
 			$table->string('title')->nullable();
 			$table->string('description')->nullable();
 			$table->string('slug');

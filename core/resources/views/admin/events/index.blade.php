@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>قائمه المقالات</h1>
+                        <h1>قائمه الانشطه</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">الرئيسيه</a></li>
-                            <li class="breadcrumb-item active">قائمه المقالات</li>
+                            <li class="breadcrumb-item active">قائمه الانشطه</li>
                         </ol>
                     </div>
                 </div>
@@ -24,8 +24,8 @@
         <!-- Main content -->
         <section class="content">
             <div class="p-2">
-                <a href="articles/create" class="btn btn-success">
-                    <i class="fa fa-plus"></i> انشاء مقاله
+                <a href="events/create" class="btn btn-success">
+                    <i class="fa fa-plus"></i> انشاء نشاط
                 </a>
             </div>
             <div class="container-fluid">
@@ -40,11 +40,11 @@
                                     <tr>
                                         <th>العنوان</th>
                                         <th>الوصف</th>
-                                        <th>المحتوي</th>
+                                        <th>تاريخ النشاط</th>
+                                        <th>وقت البدء</th>
+                                        <th>وقت الانتهاء</th>
                                         <th>الصوره</th>
                                         <th></th>
-
-
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -52,8 +52,10 @@
                                         <tr>
                                             <td>{{$row->title}}</td>
                                             <td>{{ Str::limit($row->description, 10) }}</td>
-                                            <td>{{ Str::limit($row->article_content, 10) }}</td>
-                                            <td>{{$row->post_img}}</td>
+                                            <td>{{$row->event_date}}</td>
+                                            <td>{{$row->start_time}}</td>
+                                            <td>{{$row->end_time}}</td>
+                                            <td>{{$row->event_img}}</td>
                                             <td class="text-center">
 
                                                 @if(request('deleted') != 'yes')
@@ -63,7 +65,7 @@
                                                     <a class="btn btn-success btn-xs" href="{{$module}}/edit/{{$row->uuid}}" title="تعديل">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form  class="d-inline" method="POST" title="حذف" action="{{route('articles.delete' , $row->uuid)}}">
+                                                    <form  class="d-inline" method="POST" title="حذف" action="{{route('events.delete' , $row->uuid)}}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button  type="submit" class="btn btn-danger btn-xs" value="Delete celebrities"
