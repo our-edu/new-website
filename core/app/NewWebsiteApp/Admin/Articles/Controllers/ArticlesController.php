@@ -49,6 +49,7 @@ class ArticlesController extends Controller
         $row->description = $request->description;
         $row->article_content = $request->article_content;
         $row->post_img = $request->post_img;
+        $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
         $row->save();
         return redirect( '/admin/' . $this->module );
@@ -88,6 +89,7 @@ class ArticlesController extends Controller
         $row->description = $request->description;
         $row->article_content = $request->article_content;
         $row->post_img = $request->post_img;
+        $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
         if ($request->hasFile('post_img')) {
             $row->post_img = $request->post_img;

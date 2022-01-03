@@ -33,6 +33,7 @@
     ]
 ])
 
+<br>
 @include('form.file',[
  'name'=>'post_img',
  'value'=> $row->post_img,
@@ -45,7 +46,7 @@
 
 
 @include('form.boolean',['value'=> $row->is_active ?? null,'name'=>'is_active','attributes'=>['label'=>'نشط' ,'required'=>1]])
-{{--@include('form.boolean',['value'=> $row->is_featured ?? null,'name'=>'is_featured','attributes'=>['label'=>'نشط' ,'required'=>1]])--}}
+@include('form.boolean',['value'=> $row->is_featured ?? null,'name'=>'is_featured','attributes'=>['label'=>'عرض' ,'required'=>1]])
 
 
 
