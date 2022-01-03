@@ -26,5 +26,7 @@ Route::group(['prefix'=>'admin'], function () {
         require base_path('app/NewWebsiteApp/Admin/ContactUs/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Books/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Events/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Videos/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Galleries/Routes/web.php');
     });
 });

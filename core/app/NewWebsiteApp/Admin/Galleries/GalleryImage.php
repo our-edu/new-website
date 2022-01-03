@@ -1,22 +1,24 @@
 <?php
 
-namespace App\NewWebsiteApp\Admin\ContactUs;
+namespace App\NewWebsiteApp\Admin\Galleries;
 
 use App\BaseApp\BaseModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Contact extends BaseModel
+class GalleryImage extends BaseModel
 {
-    protected $table = 'contacts';
+
+    protected $table = 'galleries';
     public $timestamps = true;
+
     protected $fillable =[
-        'email',
-        'name',
-        'message',
+        'image',
+
     ];
     public function getData()
     {
         return $this;
-
     }
+
 }
