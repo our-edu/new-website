@@ -48,6 +48,7 @@ class GalleriesController extends Controller
         $row->description = $request->description;
         $row->galleryImage->image = $request->galleryImage->image;
         $row->save();
+        toast('تم انشاء الصوره بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
 
     }
@@ -81,6 +82,7 @@ class GalleriesController extends Controller
             $row->galleryImage->image = $request->galleryImage->image;
         }
         $row->update();
+        toast('تم تعديل الصوره بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
     }
 
@@ -90,6 +92,7 @@ class GalleriesController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم حذف الصوره بنجاح', 'success');
         return back();
     }
 

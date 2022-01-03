@@ -66,7 +66,7 @@
                                                     <form  class="d-inline" method="POST" title="حذف" action="{{route('articles.delete' , $row->uuid)}}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
-                                                        <button  type="submit" class="btn btn-danger btn-xs" value="Delete celebrities"
+                                                        <button  type="submit" class="btn btn-danger btn-xs" value="Delete article"
                                                                  data-confirm="هل انت متاكد من حذف هذا العنصر ؟">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>

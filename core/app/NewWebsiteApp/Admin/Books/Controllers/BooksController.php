@@ -54,6 +54,7 @@ class BooksController extends Controller
         $row->publish_date = $request->publish_date;
         $row->is_active = $request->is_active;
         $row->save();
+        toast('تم انشاء المقاله بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
 
     }
@@ -80,6 +81,8 @@ class BooksController extends Controller
             $row->book_img = $request->book_img;
         }
         $row->update();
+        toast('تم تعديل الكتاب بنجاح', 'success');
+
         return redirect( '/admin/' . $this->module );
     }
 
@@ -89,6 +92,7 @@ class BooksController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم حذف الكتاب بنجاح', 'success');
         return back();
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-use function Illuminate\Support\Facades\Gate;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ArticlesController extends Controller
@@ -51,6 +51,7 @@ class ArticlesController extends Controller
         $row->post_img = $request->post_img;
         $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
+        toast('تم انشاء المقاله بنجاح', 'success');
         $row->save();
         return redirect( '/admin/' . $this->module );
 
@@ -95,6 +96,8 @@ class ArticlesController extends Controller
             $row->post_img = $request->post_img;
         }
         $row->update();
+        toast('تم تعديل المقاله بنجاح', 'success');
+
         return redirect( '/admin/' . $this->module );
     }
 
@@ -104,6 +107,7 @@ class ArticlesController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم حذف المقاله بنجاح', 'success');
         return back();
     }
 
