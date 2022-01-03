@@ -4,7 +4,7 @@
 
 @include('form.input',['name'=>'title','type'=>'text','attributes'=>$attributes])
 
-
+<br>
 
 @include('form.input',[
 'name'=>'description',
@@ -18,6 +18,19 @@
     ]
 ])
 
+<br>
+@include('form.input',[
+'name'=>'video_embed',
+'value'=>$row->video_embed,
+'type'=>'textarea',
+'attributes'=>[
+    'class'=>'form-control dateTimePicker',
+    'id'=>'summary-ckeditor',
+    'label'=>'video_embed',
+    'placeholder'=>'video_embed',
+    ]
+])
+<br>
 @php
     $attributes=['class'=>'form-control','label'=>'رابط الفيديو','placeholder'=>'رابط الفيديو'];
 @endphp

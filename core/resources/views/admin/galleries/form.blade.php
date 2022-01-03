@@ -5,7 +5,7 @@
 @include('form.input',['name'=>'title','type'=>'text','attributes'=>$attributes])
 
 
-
+<br>
 @include('form.input',[
 'name'=>'description',
 'value'=>$row->description,
@@ -17,7 +17,7 @@
     'placeholder'=>'الوصف',
     ]
 ])
-
+<br>
 @include('form.file',[
  'name'=>'image',
  'class' => 'form-control',
@@ -26,6 +26,4 @@
  'placeholder'=>'الصوره',
  ]])
 
-<script>
-    CKEDITOR.replace( 'description' );
-</script>
+

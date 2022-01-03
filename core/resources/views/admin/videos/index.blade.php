@@ -41,6 +41,7 @@
                                         <th>العنوان</th>
                                         <th>الوصف</th>
                                         <th>رابط الفيديو</th>
+                                        <th>video_embed</th>
                                         <th></th>
 
 
@@ -52,6 +53,7 @@
                                             <td>{{$row->title}}</td>
                                             <td>{{ Str::limit($row->description, 10) }}</td>
                                             <td>{{$row->video_url}}</td>
+                                            <td>{{$row->video_embed}}</td>
                                             <td class="text-center">
 
                                                 @if(request('deleted') != 'yes')
