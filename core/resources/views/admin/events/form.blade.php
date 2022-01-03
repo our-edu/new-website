@@ -4,7 +4,7 @@
 
 @include('form.input',['name'=>'title','type'=>'text','attributes'=>$attributes])
 
-
+<br>
 
 @include('form.input',[
 'name'=>'description',
@@ -17,6 +17,7 @@
     'placeholder'=>'الوصف',
     ]
 ])
+<br>
 @include('form.file',[
  'name'=>'post_img',
  'value'=> $row->event_img,
@@ -25,18 +26,19 @@
  'label'=>'الصوره',
  'placeholder'=>'الصوره',
  ]])
+<br>
 @php
     $attributes=['class'=>'form-control','label'=>'تاريخ النشاط','placeholder'=>'تاريخ النشاط'];
 @endphp
 
 @include('form.input',['name'=>'event_date','type'=>'date','attributes'=>$attributes])
-
+<br>
 @php
     $attributes=['class'=>'form-control','label'=>'وقت البدء','placeholder'=>'وقت البدء'];
 @endphp
 
 @include('form.input',['name'=>'start_time','type'=>'time','attributes'=>$attributes])
-
+<br>
 @php
     $attributes=['class'=>'form-control','label'=>'وقت الانتهاء','placeholder'=>'وقت الانتهاء'];
 @endphp
@@ -45,7 +47,3 @@
 
 
 
-
-<script>
-    CKEDITOR.replace( 'description' );
-</script>

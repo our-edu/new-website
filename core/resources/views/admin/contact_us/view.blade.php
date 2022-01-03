@@ -38,7 +38,7 @@
                             </tr>
                             <tr>
                                 <td width="25%" class="align-left">الرساله</td>
-                                <td width="75%"  class="align-left">{{$row->message}}</td>
+                                <td width="75%"  class="align-left" style="line-break: anywhere;">{{$row->message}}</td>
                             </tr>
 
                         </table>

@@ -33,7 +33,7 @@
                             </tr>
                             <tr>
                                 <td width="25%" class="align-left">الوصف</td>
-                                <td width="75%" class="align-left">{{@$row->description}}</td>
+                                <td width="75%" class="align-left"  style="line-break: anywhere;">{{@$row->description}}</td>
                             </tr>
                             <tr>
                                 <td width="25%" class="align-left">تاريخ النشاط</td>
