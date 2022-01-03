@@ -11,8 +11,8 @@ class CreateVideosTable extends Migration {
             $table->uuid('uuid')->primary();
 			$table->string('title');
 			$table->string('description');
-			$table->string('video_url');
-			$table->string('video_embed');
+			$table->string('video_url')->nullable();
+			$table->string('video_embed')->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		});

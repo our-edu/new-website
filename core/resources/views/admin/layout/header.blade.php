@@ -74,6 +74,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('videos.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الفيديوهات
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('galleries.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الصور
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('ContactUs')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
@@ -81,24 +97,6 @@
                             </p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('import.view')}}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Import Parent Balance
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{route('transactions.index')}}" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                list Transactions
-                            </p>
-                        </a>
-                    </li>
-
 
 
                     <br>
