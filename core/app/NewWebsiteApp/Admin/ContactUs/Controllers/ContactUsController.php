@@ -46,6 +46,7 @@ class ContactUsController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم الحذف بنجاح', 'success');
         return back();
     }
 }

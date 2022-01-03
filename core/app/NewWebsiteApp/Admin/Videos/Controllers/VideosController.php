@@ -49,15 +49,9 @@ class VideosController extends Controller
         $row->video_url = $request->video_url;
         $row->video_embed = $request->video_embed;
         $row->save();
+        toast('تم انشاء الفيديو بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
 
-//        $data['module'] = $this->module;
-//        if ($row = $this->model->create($request->except('slug'))) {
-//            flash()->success(trans('app.Created successfully'));
-//            return redirect( '/' . $this->module );
-//        }
-//        flash()->error(trans('app.failed to save'));
-//        return back();
     }
 
 
@@ -87,6 +81,7 @@ class VideosController extends Controller
         $row->video_url = $request->video_url;
         $row->video_embed = $request->video_embed;
         $row->update();
+        toast('تم تعديل الفيديو بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
     }
 
@@ -96,6 +91,7 @@ class VideosController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم حذف الفيديو بنجاح', 'success');
         return back();
     }
 

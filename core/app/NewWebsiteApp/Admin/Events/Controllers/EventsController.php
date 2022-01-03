@@ -55,8 +55,8 @@ class EventsController extends Controller
         $row->start_time = $request->start_time;
         $row->end_time = $request->end_time;
         $row->event_img = $request->event_img;
-
         $row->save();
+        toast('تم انشاء النشاط بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
 
 //        $data['module'] = $this->module;
@@ -98,6 +98,7 @@ class EventsController extends Controller
             $row->event_img = $request->event_img;
         }
         $row->update();
+        toast('تم تعديل النشاط بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
     }
 
@@ -107,6 +108,7 @@ class EventsController extends Controller
     {
         $row = $this->model->findOrFail($id);
         $row->delete();
+        toast('تم حذف النشاط بنجاح', 'success');
         return back();
     }
 

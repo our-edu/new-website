@@ -26,6 +26,7 @@
         "phpmd/phpmd": "^2.9",
         "prettus/l5-repository": "^2.7",
         "ramsey/uuid": "^4.1",
+        "realrashid/sweet-alert": "^4.1",
         "slevomat/coding-standard": "^7.0",
         "spatie/laravel-fractal": "^5.8",
         "spatie/laravel-permission": "^4.0",
