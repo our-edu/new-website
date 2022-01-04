@@ -14,5 +14,22 @@ return [
     'deleted successfully' => 'deleted successfully',
     'cant update this item' => 'cant update this item',
     'cant delete this item' => 'cant delete this item',
-    'your due balance is zero'=>'your due balance is zero'
+    'your due balance is zero' => 'your due balance is zero',
+    'Home' => 'Home',
+    'Our Education' => 'Our Education',
+    'list Parent Balance' => 'list Parent Balance',
+    'Import Parent Balance' => 'Import Parent Balance',
+    'list Transactions' => 'list Transactions',
+    'Log Out' => 'Log Out',
+    'List Parent Balance' => 'List Parent Balance',
+    'Import Parent Balance Data' => 'Import Parent Balance Data',
+    'download excel sheet' => 'download excel sheet',
+    'Name' => 'Name',
+    'Email' => 'Email',
+    'National Id' => 'National Id',
+    'Balance' => 'Balance',
+    'No Data Found' => 'No Data Found',
+    'Paid Amount' => 'Paid Amount',
+    'Date' => 'Date',
+    'Export Transactions Data'=>'Export Transactions Data'
 ];

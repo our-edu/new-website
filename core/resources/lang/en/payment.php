@@ -41,6 +41,7 @@ return array(
         'bill_not_found'=>"Bill not found",
         'child_id_required'=>"Child id is required",
         'user_id_required'=>"User id is required",
-        'amountExceededBalance'=>"Paid Amount Exceeded Balance"
+        'amountExceededBalance'=>"Paid Amount Exceeded Balance",
+        "national_id_not_exists"=>"National id not exists"
     ]
 );

@@ -133,6 +133,8 @@ return [
     ],
     'attributes' => [
         'national_id'=>'الهوية الوطنية',
+        'password'=>'كلمه السر',
+         'email' => 'بريد الالكتروني',
     ],
 
 
