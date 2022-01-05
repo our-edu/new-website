@@ -2654,6 +2654,7 @@ img {
   display: flex;
   margin-top: 35px;
 }
+
 @media (max-width: 750px) {
   .image_wrapper .parent {
     margin-top: 0px;

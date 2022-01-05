@@ -95,11 +95,12 @@ h1,
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 0;
 }
 .articlesDate {
   height: 30px;
   font-size: 14px;
-  line-height: 1px;
+  line-height: 5px;
   display: block;
   position: relative;
   color: #e3b26f;
@@ -110,7 +111,7 @@ h1,
   height: 89px;
   font-size: 18px;
   line-height: 29px;
-  margin-top: 4rem;
+  margin-top: 5rem;
   text-align: right;
   color: rgba(255, 255, 255, 0.9);
 }
@@ -157,7 +158,7 @@ h1,
     }
     .articlesDate {
       font-size: 12px;
-      line-height: 30px;
+      line-height: 15px;
       display: block;
       position: relative;
       color: #e3b26f;
@@ -172,6 +173,7 @@ h1,
   display: block;
   text-align: center;
 }
+
 .detailsTitle {
   font-weight: bold;
   font-size: 40px;
@@ -193,7 +195,7 @@ h1,
   display: block;
   position: relative;
   color: #e3b26f;
-  margin-right: 1rem;
+  margin-right: 5px;
 }
 .detailsViews {
   color: #e3b26f;
@@ -211,11 +213,23 @@ h1,
   line-height: 42px;
   text-align: right !important;
 }
-
+.detailsBtn {
+  background: transparent;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 29px;
+  text-align: left;
+  color: #fff;
+  float: right;
+  position: relative;
+  padding: 4px 20px;
+}
 @media (max-width: 800px) {
   .detailsDate {
     font-size: 12px;
-    line-height: 30px;
+    line-height: 10px;
     display: block;
     position: relative;
     color: #e3b26f;
@@ -235,22 +249,11 @@ h1,
     line-height: 30px;
     text-align: right;
   }
+  .detailsBtn{
+    margin-bottom: 4rem;
+  }
 }
-.detailsBtn {
-  background: transparent;
-  border: 1px solid #ffffff;
-  box-sizing: border-box;
-  border-radius: 5px;
-  border-radius: 5px;
-  font-size: 16px;
-  line-height: 29px;
-  text-align: left;
-  color: #fff;
-  float: right;
-  position: relative;
-  margin: 1.5rem;
-  padding: 4px 20px;
-}
+
 
 
 
@@ -3129,6 +3132,14 @@ button.download {
   position: relative;
   width: 100% auto;
 }
+.eventsDate {
+  height: 20px;
+  font-size: 16px;
+  line-height: 29px;
+  display: block;
+  position: relative;
+  color: #e3b26f;
+}
 .card-text{
   float: left;
   font-family: Cairo;
@@ -3141,19 +3152,31 @@ button.download {
   }
 
   .card-title{
-    margin-top: 5px;
+    margin-top: 15px;
     font-weight: bold;
     font-size: 24px;
     line-height: 49px;
     color: #578060;
+    margin-bottom: 4px;
   }
 @media (max-width:800px) {
   .eventImg img{
     width: 100%;
     object-fit: contain;
   }
+  .eventsDate {
+    font-size: 12px;
+    line-height: 29px;
+    display: block;
+    position: relative;
+    color: #e3b26f;
+  }
+  .card-title{
+   font-size: 20px;
+   line-height: 29px; 
+  }
   .card-text{
-     font-size: 16px;
+     font-size: 12px;
     }
 }
 .overlay {

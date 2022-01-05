@@ -8,12 +8,18 @@
 
   .slider_section {
     .slider_footer {
-      padding-block: 90px;
+      padding-block: 150px;
       background: #578060;
       width: 100%;
       position: relative;
       @media (max-width: 769px) {
-        display: none !important;
+        //display: none !important;
+      }
+      @media (max-width: 1280px) {
+        padding-block: 114px;
+      }
+      @media (max-width: 960px) {
+        padding-block: 50px;
       }
     }
   }

@@ -14,10 +14,10 @@
                             </a>
                         </div>
                         <ul>
-                            <li class="current-list-item"><a href="index.html">الرئيسية</a></li>
+                            <li class=""><a href="{{route('home')}}">الرئيسية</a></li>
                             <li><a href="events.html">الفاعليات و الانشطة</a></li>
                             <li><a href="articles.html">المقالات</a></li>
-                            <li><a href="books.html">الكتب</a></li>
+                            <li class="{{(request()->getRequestUri() == "/books")?"current-list-item":""}}"><a href="{{route('books')}}">الكتب</a></li>
                             <li><a href="images.html">صور </a></li>
                             <li><a href="videos.html">فيديو </a></li>
                             <li><a href="profile.html">الملف الشخصي</a></li>

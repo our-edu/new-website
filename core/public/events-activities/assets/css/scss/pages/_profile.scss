@@ -19,15 +19,15 @@
         width: 90% !important;
       }
       @media (max-width: 1424px) {
-        padding: 0;
+        padding-right: 1rem !important;
         .website-container {
           width: 96% !important;
         }
       }
-      @media (max-width: 1623px) {
-        padding: 0;
+      @media (max-width: 1624px) {
+        padding-right: 3rem;
         .website-container {
-          width: 90% !important;
+          //width: 75% !important;
         }
       }
       .section_info {

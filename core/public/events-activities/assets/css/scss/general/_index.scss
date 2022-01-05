@@ -5,6 +5,11 @@
  */
 
 /************* Tags **************/
+html {
+  @media screen and (max-width: 630px) {
+    overflow: hidden;
+  }
+}
 body {
   font-family: 'Cairo', sans-serif;
   font-weight: 400 !important;

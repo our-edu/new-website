@@ -18,17 +18,17 @@
                 </p>
                 <div class="row" class="justify-content-center">
                     <div class="mb-3 col-12">
-                        <img src="assets/img/tweetpng.png" />
+                        <img src="./events-activities/assets/img/tweetpng.png" />
                     </div>
                 </div>
                 <div class="row" class="justify-content-center">
                     <div class="mb-3 col-12">
-                        <img src="assets/img/tweetpng.png" />
+                        <img src="./events-activities/assets/img/tweetpng.png" />
                     </div>
                 </div>
                 <div class="row" class="justify-content-center">
                     <div class="mb-3 col-12">
-                        <img src="assets/img/tweetpng.png" />
+                        <img src="./events-activities/assets/img/tweetpng.png" />
                     </div>
                 </div>
             </div>

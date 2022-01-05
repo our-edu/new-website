@@ -1,7 +1,7 @@
 <!-- jquery -->
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="{{asset('events-activities')}}/assets/js/jquery-1.11.3.min.js"></script>
 <!-- bootstrap -->
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{asset('events-activities')}}/assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- count down -->
 
 <!-- JQuery Plugin -->
@@ -27,3 +27,10 @@
 <script src="{{asset('events-activities')}}/assets/js/sticker.js"></script>
 <!-- main js -->
 <script src="{{asset('events-activities')}}/assets/js/main.js"></script>
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<!-- slider -->
+<script src="{{asset('events-activities')}}/assets/js/home_slider.js"></script>
+
+
+
