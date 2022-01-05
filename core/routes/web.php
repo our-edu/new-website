@@ -15,7 +15,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
+//require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
 
 Route::group(['prefix'=>'admin'], function () {
     Auth::routes(['register' => false]);
@@ -30,3 +30,5 @@ Route::group(['prefix'=>'admin'], function () {
         require base_path('app/NewWebsiteApp/Admin/Galleries/Routes/web.php');
     });
 });
+require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
+

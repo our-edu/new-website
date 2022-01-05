@@ -1,0 +1,26 @@
+.video_wrapper {
+  position: relative;
+  overflow: hidden;
+  video {
+    width: 100%;
+    height: 336px;
+    position: relative;
+    background: blue;
+  }
+  p.video_text {
+    position: absolute;
+    bottom: 6px;
+    background: #69696A;
+    padding: 20px 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    color: rgba(255, 255, 255, 1);
+  }
+}
+.main_video {
+  video {
+    width: 100%;
+    height: 500px;
+  }
+}

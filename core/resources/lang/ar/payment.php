@@ -16,8 +16,8 @@ return array(
     'student_name' => 'اسم الطالب',
     'email'=>'البريد الإلكتروني',
     'total' => 'قيمة الفاتورة',
-    'register'=>'سجل في تعليمنا',
-    'login'=>' تسجيل الدخول في تعليمنا',
+    'register'=>'سجل في تطبيق تعليمنا',
+    'login'=>' تسجيل الدخول في تطبيق تعليمنا',
     'paid_amount' => 'القيمة المدفوعة',
     'view_payment' => 'اعرض',
     'show_student_application' => 'أظهر تفاصيل الطالب',
@@ -41,7 +41,8 @@ return array(
         'bill_not_found'=>"الفاتورة غير موجودة",
         'child_id_required'=>"id الطفل مطلوب",
         'user_id_required'=>"id المستخدم مطلوب",
-        'amountExceededBalance'=>"المبلغ المدفوع يتجاوز الرصيد"
+        'amountExceededBalance'=>"المبلغ المدفوع يتجاوز الرصيد المطلوب",
+        "national_id_not_exists"=>"الهوية الوطنية غير موجودة"
 
     ]
 
