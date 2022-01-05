@@ -1,0 +1,128 @@
+/**
+** 1- Tags
+** 2- Generally Classes
+** 3- Font Classes
+ */
+
+/************* Tags **************/
+body {
+  font-family: 'Cairo', sans-serif;
+  font-weight: 400 !important;
+  font-size: 16px;
+  padding: 0 !important;
+  @media screen and (max-width: 1042px) {
+    font-size: 13px;
+  }
+}
+
+p {
+  all: unset;
+  line-height: 1.7;
+  display: inline-block;
+}
+
+
+
+/************** General Classes *************/
+.main-menu {
+  display: flex !important;
+}
+
+.row {
+  margin: 0;
+}
+
+.web_site_wrapper {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: calc(100vh - 160px);
+  padding-top: 11rem;
+  @media (max-width: 981px) {
+    padding-top: 7rem;
+  }
+}
+
+.home_wrapper {
+  min-height: 100vh;
+  margin: 0 !important;
+  margin-left: 0 !important;
+}
+.website-container {
+  width: 77% !important;
+  margin: auto;
+  @media (max-width: 1623px) {
+    width: 90% !important;
+  }
+  @media (max-width: 1426px) {
+    width: 96% !important;
+  }
+}
+
+.section_wrapper {
+  padding-top: 15rem !important;
+  @media (max-width: 992px) {
+    padding-top: 11rem !important;
+  }
+}
+
+.card_wrapper {
+  img {
+    height: 337px;
+  }
+  .text_head {
+    margin-top: 20px;
+  }
+}
+
+/*************** Font Classes ****************************/
+
+.big_font {
+  font-size: 40px;
+}
+
+.font_30 {
+  font-size: 30px;
+}
+
+.font_18 {
+  font-size: 18px;
+}
+
+.font_19 {
+  font-size: 19px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.semi-bold {
+  font-weight: 400;
+}
+
+/**
+global colors
+ */
+.gold {
+  color: #d0a569;
+}
+
+.green {
+  color: rgba(87, 128, 96, 1);
+}
+
+.container {
+  width: inherit !important;
+}
+
+.green_nav {
+  background: rgba(87, 128, 96, 1) !important;
+  padding: 5px 0;
+
+  .website-logo {
+    img {
+      width: 105px;
+    }
+  }
+}

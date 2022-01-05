@@ -1,0 +1,10 @@
+@extends('Front.layouts.front.front')
+@section('header')
+    @include('Front.layouts.front.includes.header')
+@endsection
+@section('title')
+    {{$title}}
+@endsection
+@section('footer')
+    @include('Front.layouts.front.includes.footer')
+@endsection

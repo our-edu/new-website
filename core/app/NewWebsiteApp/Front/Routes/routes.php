@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 Route::group(['namespace'=>'\App\AutomaticPaymentApp\Front\Controllers'], function () {
     Route::get('/', function () {
-        return view('index');
+        return view('Front.index');
     })->name('home');
     Route::post('/', 'FrontController@searchNationalId')->name('searchNationalId');
     Route::group(['prefix'=>'payment' ,'as'=>'payments'], function () {
