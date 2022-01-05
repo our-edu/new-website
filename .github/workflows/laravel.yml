@@ -39,7 +39,7 @@ jobs:
       - name: Run Testsuite
         working-directory: ./core
 
-        run: vendor/bin/phpunit tests/
+#        run: vendor/bin/phpunit tests/
 #
       - name: check-style
         working-directory: ./core
