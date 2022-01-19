@@ -21,18 +21,16 @@
   </div>
   <!--PreLoader Ends-->
 {{--  {{> navigation transparent="transparent" inverse="inverse"}}--}}
-  @include('Front.partials.navigation')
+  @include('Front.partials.navigation',["transparent"=>"transparent", "inverse"=>"inverse"])
 
   <div class="" role="main">
 {{--    {{> body}}--}}
     @yield('content')
   </div>
-  @section('footer')
-    @include('Front.partials.footer')
-  @endsection
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  @include('Front.partials.footer')
   <script src="{{asset('front')}}/assets/js/main.js"></script>
   <script src="{{asset('front')}}/assets/js/home.js"></script>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 
 </html>

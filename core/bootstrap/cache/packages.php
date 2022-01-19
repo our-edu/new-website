@@ -31,6 +31,13 @@
       'PDF' => 'Meneses\\LaravelMpdf\\Facades\\LaravelMpdf',
     ),
   ),
+  'cviebrock/eloquent-sluggable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Cviebrock\\EloquentSluggable\\ServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -54,6 +61,17 @@
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    ),
+  ),
+  'intervention/image' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\ImageServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
   'laravel/tinker' => 

@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg {{transparent}} {{inverse}} green_nav " id="appNavbar">
+<nav class="navbar navbar-expand-lg {{$transparent}} {{$inverse}} green_nav " id="appNavbar">
   <div class="container p-0">
     <div class="container-fluid p-0">
       <a class="p-0 navbar-brand flex-grow-1" href="/">
-        <img src="{{asset('front')}}blog-dist/dist/assets/img/logo.png" alt="" />
+        <img src="{{asset('front')}}/assets/img/logo.png" alt="" />
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>

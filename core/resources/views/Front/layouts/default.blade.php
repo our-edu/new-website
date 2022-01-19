@@ -22,7 +22,7 @@
   </div>
   <!--PreLoader Ends-->
 {{--  {{> navigation}}--}}
-  @include('Front.partials.navigation')
+  @include('Front.partials.navigation',["transparent"=>"", "inverse"=>""])
 
   <main class="layout_wrapper" role="main">
 {{--    {{> body}}--}}
@@ -31,10 +31,8 @@
   </main>
 {{--  {{> footer}}--}}
   @include('Front.partials.footer')
-
-
   <script src="{{asset('front')}}/assets/js/main.js"></script>
-  <script src="{{asset('front')}}/assets/js/home.js"></script>
+  <script src="{{asset('front')}}/assets/js/default.js"></script>
 </body>
 
 </html>
