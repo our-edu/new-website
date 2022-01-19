@@ -1,6 +1,6 @@
 <div class="card_wrapper">
   <div class="the_image d-flex align-items-center justify-content-center">
-    <img class="w-100" src={{images}} />
+    <img class="w-100" src="{{asset('front')}}/assets/img/book.png" />
   </div>
   <div class="the_details text-center">
     <h2 class="fw-bold text_head text_black text-center">أنسانية ملك</h2>

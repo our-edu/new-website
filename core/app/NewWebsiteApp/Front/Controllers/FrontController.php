@@ -18,12 +18,12 @@ class FrontController extends BaseController
         $articles= Article::where('is_featured',true)->latest()->get();
         $books= Book::where('is_featured',true)->latest()->get();
         $importent_articles= Article::where('is_featured',true)->latest()->limit(1)->get();
-        return view('Front.layouts.home', compact('articles','books','importent_articles'));
+        return view('Front.pages.index', compact('articles','books','importent_articles'));
     }
 
     public function books() {
         $data = [];
         $books= Book::where('is_active',true)->latest()->get();
-        return view('Front.books', compact('books'));
+        return view('Front.pages.books_page', compact('books'));
     }
 }

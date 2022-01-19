@@ -48,8 +48,8 @@
   </div>
 </footer>
 <!-- build:js -->
-<script src="{{root}}assets/vendor/js/jquery.js"></script>
-<script src="{{root}}assets/vendor/js/bootstrap.bundle.js"></script>
+<script src="{{asset('front')}}/assets/vendor/js/jquery.js"></script>
+<script src="{{asset('front')}}/assets/vendor/js/bootstrap.bundle.js"></script>
 <!-- Animate on scroll JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <!-- Swiper JS -->

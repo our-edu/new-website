@@ -9,7 +9,7 @@
           </p>
         </div>
         <div class="slider-image">
-          <img src="{{root}}/assets/img/Taha.png">
+          <img src="{{asset('front')}}/assets/img/Taha.png">
         </div>
       </div>
       <div class="swiper-slide">
@@ -20,7 +20,7 @@
           </p>
         </div>
         <div class="slider-image">
-          <img src="{{root}}/assets/img/Motakaed.png">
+          <img src="{{asset('front')}}/assets/img/Motakaed.png">
         </div>
       </div>
       <div class="swiper-slide">
@@ -31,7 +31,7 @@
           </p>
         </div>
         <div class="slider-image">
-          <img src="{{root}}/assets/img/image 9.png">
+          <img src="{{asset('front')}}/assets/img/image 9.png">
         </div>
       </div>
     </div>
