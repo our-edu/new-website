@@ -1,0 +1,19 @@
+---
+layout: default
+title: activities
+---
+<div class="container">
+    <h1 class="pageDescription text-color-green">الفاعليات و الانشطة</h1>
+  <!-- main image page card -->
+  {{> activitiesMainCard textHead=data.activities.head textTitle=data.activities.title }}
+
+  <section class="activities_cards">
+    <div class="row">
+      {{#each data.activitesimages}}
+      <div class="col-sm-6" data-aos="fade">
+        {{> activitiesCards}}
+      </div>
+      {{/each}}
+    </div>
+  </section>
+</div>

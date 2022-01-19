@@ -1,0 +1,72 @@
+/**
+ * global class
+ */
+
+.home_wrapper {
+  padding-top: 9.188rem + 5.438rem;
+  @media screen and (max-width: 1024px) {
+    padding-top: 10.626rem
+  }
+}
+
+.container-fluid {
+  max-width: 1440px;
+  position: relative;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.container {
+  max-width: 1240px;
+  @media screen and (max-width: 1280px) {
+    padding: 0 33px !important;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 10px !important;
+  }
+}
+
+.row {
+  margin: 0 !important;
+}
+/**
+ * Use it for page name text
+ */
+.pageDescription {
+  font-weight: bold;
+  margin-bottom: 60px !important;
+  @media screen and (max-width: 1023px) {
+    margin-bottom: 40px !important;
+
+  }
+}
+
+/**
+ * padding top to website content
+**/
+
+.layout_wrapper {
+  padding-top: 14rem;
+  @media screen and (max-width: 1023px) {
+    padding-top: 11rem;
+  }
+}
+
+.new_section {
+  padding: 93px 0 73px !important;
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
+  }
+
+  .section_description {
+    margin-bottom: 93px !important;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 50px !important;
+    }
+  }
+}
+
+
+
+
+

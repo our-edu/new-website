@@ -1,0 +1,21 @@
+---
+layout: default
+title: books
+---
+<div class="container books_page">
+  <h1 class="pageDescription">الكتب</h1>
+  {{> booksSlider}}
+
+  <section class="fav_books">
+    <h2 class="section_title fw-bold">كتب انصح بقرائتها </h2>
+    <div class="row">
+      {{#each data.booksFav}}
+      <div class="col-sm-6 col-md-3">
+        {{> bookFavCard }}
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+</div>
+

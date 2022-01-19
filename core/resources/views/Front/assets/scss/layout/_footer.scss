@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+footer {
+  background: #578060;
+  padding: 29px 0!important;
+  .container {
+    border-bottom: 3px solid #ffffff;
+    padding-bottom: 20px;
+
+    .colm_wrapper {
+      .list_head {
+        color: #ffffff;
+      }
+
+      .list {
+        margin-bottom: 20px;
+
+        a, p {
+          color: rgba(255, 255, 255, 0.7);
+          margin: 5px 0;
+          cursor: pointer;
+          font-size: 14px;
+        }
+      }
+    }
+
+    i {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      background: #fff;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #578060;
+      text-align: center;
+      font-weight: 400;
+      margin-inline-end: 12px;
+      margin-bottom: 5px;
+      padding: 7px;
+    }
+  }
+
+  .copyright p {
+    color: #ffffff;
+  }
+}

@@ -1,0 +1,81 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
+
+# Header Styles
+
+----------------------------------------------------------------------------- */
+nav {
+  position: fixed !important;
+  z-index: 55;
+  width: 100%;
+  transition: 0.3s ease all;
+  padding-block: 33px !important;
+  &.green_nav {
+    background: $success;
+    a {
+      color: #FFFFFF !important;
+    }
+  }
+  &.transparent {
+    background-color: transparent;
+  }
+  @media screen and (max-width: 1023px) {
+    background-color: $success !important;
+    padding-block: 23px !important;
+    #navbarSupportedContent {
+      .navbar-nav {
+        padding: 20px !important;
+        li {
+          padding: 9px;
+          border-bottom: 1px solid;
+        }
+      }
+    }
+  }
+
+  ul {
+    li {
+      margin-inline-start: 30px;
+      @media screen and (max-width: 1030px) {
+        margin-inline-start: 20px;
+      }
+      a {
+        padding: 0 !important;
+        color: $body-color !important;
+        transition: 0.3s ease color;
+        &:hover {
+          color: $text-color-2 !important;
+        }
+        &.active {
+          color: $text-color-2 !important;
+        }
+      }
+    }
+  }
+
+  .container-fluid {
+    display: flex;
+    @media screen and (max-width: 1023px) {
+      display: inline-block;
+      position: relative;
+      button {
+        position: absolute;
+        left: 40px;
+        top: 32px;
+        transform: translate(-50%, -50%);
+        color: #ffffff !important;
+      }
+    }
+
+    .navbar-brand {
+      img {
+        @media screen and (max-width: 1023px) {
+          width: 100px;
+        }
+      }
+    }
+  }
+}
+

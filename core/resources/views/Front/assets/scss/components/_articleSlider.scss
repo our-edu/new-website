@@ -1,0 +1,151 @@
+.myArticleSwiper {
+  .sliderArrows {
+    padding-left: 2rem !important;
+    margin-bottom: 10px;
+    display: flex;
+    width: 58px;
+    position: absolute;
+    top: 60%;
+    left: 58%;
+    transform: translate(-50%, -50%);
+    z-index: 6666;
+    font-size: 30px;
+
+    @media screen and (min-device-width: 280px) and (max-device-width: 653px) {
+      top: 34%;
+      left: 20%;
+    }
+
+    @media screen and (min-device-width: 320px) and (max-device-width: 414px) {
+      top: 33%;
+      left: 20%;
+    }
+    @media screen and (min-device-width: 414px) and (max-device-width: 736px) {
+      top: 30%;
+      left: 20%;
+    }
+    @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+      top: 23%;
+      left: 15%;
+    }
+    @media screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+      top: 65%;
+      left: 60%;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #578060;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    border-radius: 5px !important;
+  }
+  .slider-image img {
+    display: block;
+    height: 395px !important;
+    width: 100% !important;
+  }
+  .text {
+    display: block;
+    text-align: right;
+    padding: 2rem !important;
+    margin-bottom: 3rem;
+  }
+  .articleSliderTitle {
+    z-index: 100;
+    text-align: right;
+    font-family: "Cairo";
+    -webkit-font-smoothing: auto;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+    text-align: right;
+  }
+  .articleSliderDate {
+    font-size: 14px;
+    line-height: 10px;
+    font-family: "Cairo";
+    display: block;
+    position: relative;
+    color: #e3b26f;
+    margin-top: 2rem;
+  }
+
+  .articleSliderText {
+    text-align: right;
+    font-style: normal;
+    font-weight: normal;
+    font-family: "Cairo";
+    font-size: 18px;
+    line-height: 29px;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.9);
+    padding-top: 8px !important;
+    padding-left: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  @media screen and (max-width: 1020px) {
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slider-image img {
+      @media screen and (max-width: 1024px) {
+        height: 380px !important;
+        object-fit: fill !important;
+      }
+      @media screen and (max-width: 600px) {
+        height: 280px !important;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100% !important;
+      height: 200px !important;
+      padding-left: 0 !important;
+      object-fit: cover;
+    }
+  }
+  @media screen and (max-width: 795px) {
+    .text {
+      padding: 1.5rem;
+    }
+    @media screen and (max-width: 950px) {
+      .text {
+        padding-top: 4rem;
+      }
+    }
+    .articleSliderTitle {
+      font-size: 20px !important;
+      line-height: 20px;
+    }
+    .articleSliderDate {
+      font-size: 12px;
+      line-height: 10px;
+      margin-top: 1rem;
+    }
+    .articleSliderText {
+      font-size: 12px !important;
+      line-height: 20px !important;
+    }
+  }
+}

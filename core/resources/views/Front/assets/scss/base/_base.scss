@@ -1,0 +1,52 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  background: #ffffff;
+}
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Basic styles for links
+ */
+a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+p, h1, h2 {
+  margin-bottom: 10px !important;
+  line-height: 1.7em !important;
+}
+
+label {
+  color: $text-color-1 !important;
+  font-weight: 700;
+   margin: 18px 0 !important;
+}
+
+textarea {
+  min-height: 240px !important;
+}
+
+
