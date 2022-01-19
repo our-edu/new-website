@@ -1,4 +1,4 @@
-@extends('Front.layouts.default',['title'=>"Home"])
+@extends('Front.layouts.default',['title'=>"Books"])
 @section('content')
 <div class="container books_page">
   <h1 class="pageDescription">الكتب</h1>

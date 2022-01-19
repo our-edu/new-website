@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-6 col-12">
           <div class="slider-image">
-            <img src="./assets/img/image 9.png">
+            <img src="{{asset('front')}}/assets/img/image 9.png">
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-lg-6 col-12">
           <div class="slider-image">
-            <img src="./assets/img/Motakaed.png">
+            <img src="{{asset('front')}}/assets/img/Motakaed.png">
           </div>
         </div>
       </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="col-lg-6 col-12">
           <div class="slider-image">
-            <img src="./assets/img/image14.png">
+            <img src="{{asset('front')}}/assets/img/image14.png">
           </div>
         </div>
       </div>

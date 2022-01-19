@@ -26,4 +26,9 @@ class FrontController extends BaseController
         $books= Book::where('is_active',true)->latest()->get();
         return view('Front.pages.books_page', compact('books'));
     }
+    public function articles() {
+        $data = [];
+        $articles= Article::where('is_active',true)->latest()->get();
+        return view('Front.pages.articles', compact('articles'));
+    }
 }

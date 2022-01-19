@@ -1,11 +1,9 @@
----
-layout: default
-title: articleDetails
----
+@extends('Front.layouts.default',['title'=>"المقالات"])
+@section('content')
   <div class="container">
       <div class="row mb-5">
         <div class="col-lg-12 mb-2 text-center mb-lg-0 pb-3 p-0">
-          <img src="./assets/img/Motakaed.png" class="img-fluid" alt="Responsive image" />
+          <img src="{{asset('front')}}/assets/img/Motakaed.png" class="img-fluid" alt="Responsive image" />
         </div>
         <div class="detailsContainer">
           <span class="detailsDate">بتاريخ 19-03-2020</span>
@@ -44,3 +42,4 @@ title: articleDetails
         </div>
       </div>
   </div>
+@endsection
