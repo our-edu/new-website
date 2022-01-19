@@ -8,14 +8,14 @@
     data-height="580">
     <div class="image_overlay"></div>
     <div class="image_wrapper">
-        <img src={{root}}/assets/img/image14.png>
+        <img src={{asset('front')}}/assets/img/image14.png>
       </div>
       <div class="text_overlay">
-        <p class="head text-size-24 fw-bold"> {{textHead}} </p>
-        <p class="title text-size-18 text-color-white"> {{textTitle}} </p>
+        <p class="head text-size-24 fw-bold">  زيارة الدكتور/ عبدالعزيز الثنيان الي جامعة التخرج </p>
+        <p class="title text-size-18 text-color-white"> كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري </p>
       </div>
       <div class="video_icon">
-        <img class="play_icon" src="{{root}}/assets/img/videoIcon.png">
+        <img class="play_icon" src="{{asset('front')}}/assets/img/videoIcon.png">
       </div>
   </a>
 </section>

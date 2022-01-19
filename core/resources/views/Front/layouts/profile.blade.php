@@ -7,9 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>@yield('title')</title>
   <!-- favicon -->
-@include('Front.partials.styles')
-@yield('styles')
-  <!-- endbuild -->
+  @include('Front.partials.styles')
+  @yield('styles')
+
 </head>
 
 <body>
@@ -20,17 +20,13 @@
     </div>
   </div>
   <!--PreLoader Ends-->
-{{--  {{> navigation transparent="transparent" inverse="inverse"}}--}}
-  @include('Front.partials.navigation',["transparent"=>"transparent", "inverse"=>"inverse"])
-
-  <div class="" role="main">
-{{--    {{> body}}--}}
+  @include('Front.partials.navigation',["transparent"=>"", "inverse"=>""])
+  <main class="" role="main">
     @yield('content')
-  </div>
+  </main>
   @include('Front.partials.footer')
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="{{asset('front')}}/assets/js/main.js"></script>
-  <script src="{{asset('front')}}/assets/js/home.js"></script>
+
 </body>
 
 </html>

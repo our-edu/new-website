@@ -1,7 +1,5 @@
----
-layout: default
-title: articles
----
+@extends('Front.layouts.default',['title'=>"contact"])
+@section('content')
 
 <div class="contact_us" data-aos="fade">
   <div class="row">
@@ -80,3 +78,4 @@ title: articles
     </div>
   </div>
 </div>
+@endsection

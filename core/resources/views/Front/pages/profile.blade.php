@@ -1,13 +1,11 @@
----
-layout: profile
-title: profile
----
+@extends('Front.layouts.profile',['title'=>"profile"])
+@section('content')
 <div class="profile" data-aos="fade">
     <section class="image_with_text position-relative">
       <div clas="row">
         <!-- profile image -->
         <div class="p-0 col-md-12 col-lg-6 profile_image">
-          <img src="assets/img/profile.png"/>
+          <img src="{{asset('front')}}/assets/img/profile.png"/>
         </div>
       </div>
       <div class="container">
@@ -142,3 +140,4 @@ title: profile
     </section>
 
 </div>
+@endsection

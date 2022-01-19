@@ -1,14 +1,12 @@
----
-layout: default
-title: images
----
+@extends('Front.layouts.default',['title'=>"contact"])
+@section('content')
 <section class="images container">
     <div class="d-flex justify-content-between toggle_images-videos">
       <h1 class="pageDescription toggle_active">
-        <a href="/images.html">الصور</a>
+        <a href="/gallery">الصور</a>
       </h1>
       <h1 class="pageDescription text-color-black">
-        <a href="/videos.html">الفيديوهات</a>
+        <a href="/videos">الفيديوهات</a>
       </h1>
     </div>
 
@@ -86,3 +84,4 @@ title: images
         </div>
     </div>
 </section>
+@endsection

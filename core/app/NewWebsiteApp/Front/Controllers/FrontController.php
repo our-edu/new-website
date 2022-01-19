@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\NewWebsiteApp\Front\Controllers;
 
 use App\BaseApp\Controllers\BaseController;
+use App\BaseApp\Models\User;
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Books\Book;
+use App\NewWebsiteApp\Admin\Events\Event;
 
 
 class FrontController extends BaseController
@@ -30,5 +32,34 @@ class FrontController extends BaseController
         $data = [];
         $articles= Article::where('is_active',true)->latest()->get();
         return view('Front.pages.articles', compact('articles'));
+    }
+    public function activities() {
+        $data = [];
+        $events= Event::get();
+        return view('Front.pages.activities', compact('events'));
+    }
+    public function profile()
+    {
+        $data = [];
+//        $profile= User::where('is_active',true)->latest()->get();
+        return view('Front.pages.profile');
+    }
+    public function contact()
+    {
+        $data = [];
+//        $profile= User::where('is_active',true)->latest()->get();
+        return view('Front.pages.contact_us');
+    }
+    public function gallery()
+    {
+        $data = [];
+//        $profile= User::where('is_active',true)->latest()->get();
+        return view('Front.pages.images');
+    }
+    public function videos()
+    {
+        $data = [];
+//        $profile= User::where('is_active',true)->latest()->get();
+        return view('Front.pages.videos');
     }
 }

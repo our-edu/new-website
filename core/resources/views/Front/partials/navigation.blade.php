@@ -15,27 +15,27 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/activities.html">
+            <a class="nav-link" href="{{route('activities')}}">
               الفاعليات و الانشطة
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/articles.html">
+            <a class="nav-link" href="{{route('articles')}}">
               المقالات
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/books_page.html">
+            <a class="nav-link" href="{{route('books')}}">
               كتب
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/images.html">
+            <a class="nav-link" href="{{route('gallery')}}">
             صور - فيديو
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/profile.html">
+            <a class="nav-link" href="{{route('profile')}}">
               الملف الشخصي
             </a>
           </li>
@@ -45,7 +45,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact_us.html">
+            <a class="nav-link" href="{{route('contact_us')}}">
               التواصل معنا
             </a>
           </li>
