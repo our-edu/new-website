@@ -1,4 +1,4 @@
-@extends('Front.layouts.default',['title'=>"Home"])
+@extends('Front.layouts.home',['title'=>"Home"])
 @section('content')
   <div class="home">
     <!-- home absloute image -->
