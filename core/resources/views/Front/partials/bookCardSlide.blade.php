@@ -12,7 +12,8 @@
           <p class="gold">تاريخ النشر: 01-01-1999</p>
         </div> -->
     <p class="text-size-18 text-color-black text-center">
-      {{$book->description}}
+      {{strip_tags($book->description)}}
+
     </p>
     <div class="the_button text-center">
       <a href="#">

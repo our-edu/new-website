@@ -26,7 +26,8 @@ class FrontController extends BaseController
     public function books() {
         $data = [];
         $books= Book::where('is_active',true)->latest()->get();
-        return view('Front.pages.books_page', compact('books'));
+        $recommended_books= Book::where('is_recommended',true)->get();
+        return view('Front.pages.books_page', compact('books','recommended_books'));
     }
     public function articles() {
         $data = [];

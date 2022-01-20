@@ -17,6 +17,7 @@ class Book extends BaseModel
         'description',
         'book_img',
         'is_featured',
+        'is_recommended',
         'publish_date',
         'author',
     ];

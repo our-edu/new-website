@@ -54,6 +54,7 @@ class BooksController extends Controller
         $row->publish_date = $request->publish_date;
         $row->is_active = $request->is_active;
         $row->is_featured = $request->is_featured;
+        $row->is_recommended = $request->is_recommended;
         $row->save();
         toast('تم انشاء المقاله بنجاح', 'success');
         return redirect( '/admin/' . $this->module );
@@ -79,6 +80,7 @@ class BooksController extends Controller
         $row->publish_date = $request->publish_date;
         $row->is_active = $request->is_active;
         $row->is_featured = $request->is_featured;
+        $row->is_recommended = $request->is_recommended;
         if ($request->hasFile('book_img')) {
             $row->book_img = $request->book_img;
         }

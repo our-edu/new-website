@@ -3,13 +3,13 @@
     <img class="w-100" src="{{asset('front')}}/assets/img/book.png" />
   </div>
   <div class="the_details">
-    <h2 class="fw-bold text_head text_black" style="margin-bottom: 0!important">أنسانية ملك</h2>
+    <h2 class="fw-bold text_head text_black" style="margin-bottom: 0!important">{{$book->name}}</h2>
     <div class="date">
       <span>تاريخ النشر: </span>
-      <span>1-10-2021</span>
+      <span>{{$book->publish_date}}</span>
     </div>
     <p class="text_clamb text-size-20 fw-bold text-color-black">
-      تأليف: دكتور عبد العزيز بن عبد الرحمن
+      {{strip_tags($book->description)}}
     </p>
   </div>
 </div>
