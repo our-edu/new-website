@@ -1,18 +1,19 @@
 <div class="container">
   <div class="swiper myArticleSwiper" style="border-radius: 5px; padding-bottom: 62px;">
     <div class="swiper-wrapper" style="display: flex; flex-direction: row;">
+      @foreach($articles as $article)
+
       <div class="swiper-slide">
         <div class="col-lg-6 col-12">
           <div class="text">
-            <span class="articleSliderTitle">دروس من مراكش</span>
-            <span class="articleSliderDate">اليوم 19-03-2021</span>
+            <span class="articleSliderTitle">{{$article->title}}</span>
+            <span class="articleSliderDate">{{$article->created_at}}</span>
             <p class="articleSliderText">
-              و فكرية من عدة دول اسلامية و يشارك فيه شيوخ و شباب رجال و نساء
-              الاسلامي كل اربع سنوات مؤتمرا عالميا يحضره شخصيات علمية تنظم
-              الندوة العالمية للشباب
+              {{strip_tags($article->description)}}
+
             </p>
             <div class="d-flex justify-content-between">
-              <a class="article slider_article_button" href="articleDetails.html">التفاصيل</a>
+              <a class="article slider_article_button" href="{{route('article_details',$article->uuid)}}">التفاصيل</a>
             </div>
           </div>
         </div>
@@ -22,48 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="swiper-slide">
-        <div class="col-lg-6 col-12">
-          <div class="text">
-            <span class="articleSliderTitle">دروس من مراكش</span>
-            <span class="articleSliderDate">اليوم 19-03-2021</span>
-            <p class="articleSliderText">
-              و فكرية من عدة دول اسلامية و يشارك فيه شيوخ و شباب رجال و نساء
-              الاسلامي كل اربع سنوات مؤتمرا عالميا يحضره شخصيات علمية تنظم
-              الندوة العالمية للشباب
-            </p>
-            <div class="d-flex justify-content-between">
-              <a class="article slider_article_button" href="articleDetails.html">التفاصيل</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12">
-          <div class="slider-image">
-            <img src="{{asset('front')}}/assets/img/Motakaed.png">
-          </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="col-lg-6 col-12">
-          <div class="text">
-            <span class="articleSliderTitle">دروس من مراكش</span>
-            <span class="articleSliderDate">اليوم 19-03-2021</span>
-            <p class="articleSliderText">
-              و فكرية من عدة دول اسلامية و يشارك فيه شيوخ و شباب رجال و نساء
-              الاسلامي كل اربع سنوات مؤتمرا عالميا يحضره شخصيات علمية تنظم
-              الندوة العالمية للشباب
-            </p>
-            <div class="d-flex justify-content-between">
-              <a class="article slider_article_button" href="articleDetails.html">التفاصيل</a>
-             </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12">
-          <div class="slider-image">
-            <img src="{{asset('front')}}/assets/img/image14.png">
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
     <div class="sliderArrows">
       <div class="next mx-2">

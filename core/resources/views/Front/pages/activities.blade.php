@@ -9,13 +9,13 @@
 
   <section class="activities_cards">
     <div class="row">
-{{--      {{#each data.activitesimages}}--}}
+      @foreach($events as $event)
       <div class="col-sm-6" data-aos="fade">
 {{--        {{> activitiesCards}}--}}
         @include('Front.partials.activitiesCards')
 
       </div>
-{{--      {{/each}}--}}
+      @endforeach
     </div>
   </section>
 </div>

@@ -5,13 +5,15 @@
     </div>
     <div class="card_infos">
       <div class="d-flex justify-content-between card_header">
-        <p>اليوم 20-21-2022</p>
-        <p class="text-color-black text-size-14">من 00:9  الي 11:00 <p>
+        <p>اليوم {{$event->event_date}}</p>
+        <p class="text-color-black text-size-14">من {{$event->start_time}}  الي {{$event->end_time}} <p>
       </div>
       <div class="card_body">
-        <p class="head text-size-24 fw-bold text-color-green">ندوة ثقافية</p>
+        <p class="head text-size-24 fw-bold text-color-green">{{$event->title}}</p>
         <p class="title text_clamb text-size-18 text-color-black">
-          كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري كورونا وﻣﺎ ادراك ما كورونا . ايه ﻣﻦ ايات الله ، معجزة ﻣﻦ معجزاته ، جنود مرعبة ﻟﺎ تري        </p>
+          {{strip_tags($event->description)}}
+
+        </p>
       </div>
     </div>
   </a>

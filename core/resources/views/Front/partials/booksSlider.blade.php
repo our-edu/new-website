@@ -1,10 +1,10 @@
 <div class="swiper booksSliderWrapper">
   <div class="swiper-wrapper">
-{{--    {{#each data.books}}--}}
+    @foreach($books as $book)
     <div class="swiper-slide">
       @include('Front.partials.bookCardSlide')
     </div>
-{{--    {{/each}}--}}
+    @endforeach
   </div>
   <div class="swiper-pagination"></div>
 </div>

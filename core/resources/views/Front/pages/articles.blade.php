@@ -12,13 +12,13 @@
 
   <div class="container">
           <div class="row mb-5" title="title" date="date" description="description">
-{{--            {{#each data.articles}}--}}
+              @foreach($articles as $article)
             <div class="col-lg-4">
 {{--              {{> articlePreview}}--}}
               @include('Front.partials.articlePreview')
 
             </div>
-{{--            {{/each}}--}}
+              @endforeach
           </div>
   </div>
 @endsection

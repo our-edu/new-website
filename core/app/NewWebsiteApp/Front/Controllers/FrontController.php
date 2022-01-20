@@ -33,10 +33,17 @@ class FrontController extends BaseController
         $articles= Article::where('is_active',true)->latest()->get();
         return view('Front.pages.articles', compact('articles'));
     }
+    public function articleDetails($uuid) {
+        $data = [];
+        $article= Article::findOrFail($uuid);
+        return view('Front.pages.articleDetails', compact('article'));
+    }
     public function activities() {
         $data = [];
         $events= Event::get();
-        return view('Front.pages.activities', compact('events'));
+        $last_event= Event::latest()->limit(1)->get();
+
+        return view('Front.pages.activities', compact('events','last_event'));
     }
     public function profile()
     {
