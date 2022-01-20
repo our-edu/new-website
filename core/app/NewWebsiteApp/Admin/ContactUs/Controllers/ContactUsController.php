@@ -41,6 +41,13 @@ class ContactUsController extends Controller
         $data['row'] = $this->model->findOrFail($id);
         return view('admin.'.$this->module . '.view', $data);
     }
+    public function store(Request $request)
+    {
+        $this->model->create($request->all());
+        toast('تم الارسال', 'success');
+
+        return back();
+    }
 
     public function destroy($id)
     {

@@ -6,4 +6,6 @@
     Route::get('/view/{id}', 'ContactUsController@show')->name('ContactUs.show');
     Route::delete('/delete/{id}', 'ContactUsController@destroy')
         ->name('contactUs.delete');
-});
+    Route::post('/', 'ContactUsController@store')->name('ContactUs.store');
+
+    });

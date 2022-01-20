@@ -11,32 +11,33 @@
           لديك استفسار معين يمكنك التواصل بالدكتور عبد العزيز عبر <br/>
           البريد الالكتروني او رقم الهاتف او ترك رسالة
         </p>
-        <form type="POST" class="needs-validation" novalidate>
+        <form type="POST" method="POST" title="حذف" action="{{route('ContactUs.store')}}" class="needs-validation" novalidate>
+          @csrf
           <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-4">
               <label for="email" class="form-label">البريد الالكتروني</label>
-              <input placeholder="ضع البريد الالكتروني هنا" type="email" class="form-control" id="email" required>
+              <input placeholder="ضع البريد الالكتروني هنا" type="email" class="form-control" id="email" name="email" required>
               <div class="invalid-feedback">
                 برجاء ادخال البريد الالكتروني
               </div>
             </div>
             <div class="col-sm-6 col-md-6 col-lg-4">
               <label for="firstName" class="form-label">الاسم الاول</label>
-              <input placeholder="ضع الاسم الاول هنا" type="text" class="form-control" id="firstName"  required>
+              <input placeholder="ضع الاسم الاول هنا" type="text" class="form-control" id="firstName" name="first_name"  required>
               <div class="invalid-feedback">
                برجاء ادخال الاسم الاول الخاص بك
               </div>
             </div>
             <div class="col-md-12 col-lg-4">
               <label for="secoundName" class="form-label">الاسم الثاني</label>
-              <input placeholder="ضع الاسم الثاني هنا " type="text" class="form-control" id="secoundName" required>
+              <input placeholder="ضع الاسم الثاني هنا " type="text" class="form-control" id="secoundName" name="last_name" required>
               <div class="invalid-feedback">
                 برجاء ادخال الاسم الثاني
               </div>
             </div>
             <div class="col-12">
               <label for="message" class="form-label">الرسالة</label>
-              <textarea placeholder="أكتب رسالتك هنا " type="email" class="form-control" id="message" required></textarea>
+              <textarea placeholder="أكتب رسالتك هنا " type="text" class="form-control" id="message" name="message" required></textarea>
               <div class="invalid-feedback">
                برجاء ترك رسالتك هنا
               </div>

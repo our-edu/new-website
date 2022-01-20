@@ -30,5 +30,6 @@ Route::group(['prefix'=>'admin'], function () {
         require base_path('app/NewWebsiteApp/Admin/Galleries/Routes/web.php');
     });
 });
+
 require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
 
