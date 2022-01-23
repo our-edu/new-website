@@ -16,10 +16,12 @@ class CreateBooksTable extends Migration {
 			$table->boolean('is_active')->nullable()->index()->default(0);
 			$table->boolean('is_recommended')->nullable()->index()->default(0);
 			$table->string('book_img')->nullable();
-			$table->timestamps();
+			$table->string('book_pdf')->nullable();
 			$table->date('publish_date');
 			$table->string('author')->nullable();
-		});
+            $table->timestamps();
+
+        });
 	}
 
 	public function down()

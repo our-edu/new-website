@@ -93,6 +93,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('researches.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الدراسات والبحوث
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('ContactUs')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>

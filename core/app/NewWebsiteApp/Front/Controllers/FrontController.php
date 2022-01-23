@@ -9,6 +9,8 @@ use App\BaseApp\Models\User;
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Books\Book;
 use App\NewWebsiteApp\Admin\Events\Event;
+use App\NewWebsiteApp\Admin\Galleries\GalleryImage;
+use App\NewWebsiteApp\Admin\Videos\Video;
 
 
 class FrontController extends BaseController
@@ -55,19 +57,19 @@ class FrontController extends BaseController
     public function contact()
     {
         $data = [];
-//        $profile= User::where('is_active',true)->latest()->get();
         return view('Front.pages.contact_us');
     }
     public function gallery()
     {
         $data = [];
-//        $profile= User::where('is_active',true)->latest()->get();
-        return view('Front.pages.images');
+        $images= GalleryImage::get();
+        return view('Front.pages.images', compact('images'));
     }
     public function videos()
     {
         $data = [];
-//        $profile= User::where('is_active',true)->latest()->get();
-        return view('Front.pages.videos');
+        $videos= Video::get();
+        return view('Front.pages.videos', compact('videos'));
+
     }
 }

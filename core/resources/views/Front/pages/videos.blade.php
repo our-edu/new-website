@@ -18,51 +18,21 @@
 
   <section class="more_videos">
     <div class="row">
+      @foreach($videos as $video)
       <div class="col-sm-12 mb-5 col-lg-6">
-        <a href="https://www.youtube.com/watch?v=govmXpDGLpo&ab_channel=AutomationStepbyStep"
+        <a href="{{$video->video_url}}"
           data-fancybox data-type="iframe" data-preload="false" data-width="740" data-height="580">
           <div class="video_wrapper">
             <img src="{{asset('front')}}/assets/img/image%203.png" />
             <img class="play_icon" src="{{asset('front')}}/assets/img/videoicon.png">
-            <p class="video_text">محاضرة قراه في تاريخنا الوطني</p>
+            <p class="video_text">{{$video->title}}</p>
             <div class="image_overlay"></div>
           </div>
         </a>
       </div>
-      <div class="col-sm-12 mb-5 col-lg-6">
-          <div class="video_wrapper">
-            <video width="320" height="240" controls>
-              <source src="movie.mp4" type="video/mp4">
-            </video>
-            <p class="video_text">محاضرة قراه في تاريخنا الوطني</p>
-            <div class="image_overlay"></div>
-          </div>
-      </div>
-      <div class="col-sm-12 mb-5 col-lg-6">
-        <a href="https://www.youtube.com/watch?v=govmXpDGLpo&ab_channel=AutomationStepbyStep"
-           data-fancybox data-type="iframe" data-preload="false" data-width="740" data-height="580">
-          <div class="video_wrapper">
-            <img src="{{asset('front')}}/assets/img/image%203.png" />
-            <img class="play_icon" src="{{asset('front')}}/assets/img/videoicon.png">
-            <p class="video_text">محاضرة قراه في تاريخنا الوطني</p>
-            <div class="image_overlay"></div>
-          </div>
-        </a>
-      </div>
-      <div class="col-sm-12 mb-5 col-lg-6">
-        <a href="https://www.youtube.com/watch?v=govmXpDGLpo&ab_channel=AutomationStepbyStep"
-           data-fancybox data-type="iframe" data-preload="false" data-width="740" data-height="580">
-          <div class="video_wrapper">
-            <img src="{{asset('front')}}/assets/img/image%203.png" />
-            <img class="play_icon" src="{{asset('front')}}/assets/img/videoicon.png">
-            <p class="video_text">محاضرة قراه في تاريخنا الوطني</p>
-            <div class="image_overlay"></div>
-          </div>
-        </a>
-      </div>
+      @endforeach
 
     </div>
   </section>
-</div>
 </div>
 @endsection
