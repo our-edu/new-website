@@ -40,7 +40,6 @@
                                     <tr>
                                         <th>العنوان</th>
                                         <th>الوصف</th>
-                                        <th>المحتوي</th>
                                         <th>الصوره</th>
                                         <th></th>
 
@@ -51,8 +50,7 @@
                                     @forelse($rows as $row)
                                         <tr>
                                             <td>{{$row->title}}</td>
-                                            <td>{{ Str::limit($row->description, 10) }}</td>
-                                            <td>{{ Str::limit($row->article_content, 10) }}</td>
+                                            <td>{{ Str::limit($row->description, 30) }}</td>
                                             <td>{{$row->post_img}}</td>
                                             <td class="text-center">
 

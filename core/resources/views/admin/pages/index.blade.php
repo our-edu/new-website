@@ -40,7 +40,6 @@
                                     <tr>
                                         <th>العنوان</th>
                                         <th>الوصف</th>
-                                        <th>المحتوي</th>
                                         <th></th>
 
 
@@ -50,8 +49,7 @@
                                     @forelse($rows as $row)
                                         <tr>
                                             <td>{{$row->title}}</td>
-                                            <td>{{ Str::limit($row->description, 10) }}</td>
-                                            <td>{{ Str::limit($row->body, 10) }}</td>
+                                            <td>{{ Str::limit($row->description, 30) }}</td>
                                             <td class="text-center">
 
                                                 @if(request('deleted') != 'yes')
