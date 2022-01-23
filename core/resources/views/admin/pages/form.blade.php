@@ -19,8 +19,8 @@
 ])
 <br>
 @include('form.input',[
-'name'=>'research_content',
-'value'=>$row->research_content,
+'name'=>'body',
+'value'=>$row->body,
 'type'=>'textarea',
 'attributes'=>[
     'class'=>'form-control dateTimePicker',
@@ -29,22 +29,6 @@
     'placeholder'=>'المحتوي',
     ]
 ])
-
-<br>
-@include('form.file',[
- 'name'=>'image',
- 'value'=> $row->image,
- 'class' => 'form-control',
- 'attributes'=>[
- 'label'=>'الصوره',
- 'placeholder'=>'الصوره',
- ]])
-
-<br>
-
-@include('form.boolean',['value'=> $row->is_active ?? null,'name'=>'is_active','attributes'=>['label'=>'نشط' ,'required'=>1]])
-<br>
-@include('form.boolean',['value'=> $row->is_featured ?? null,'name'=>'is_featured','attributes'=>['label'=>'عرض' ,'required'=>1]])
 
 
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>

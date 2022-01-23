@@ -101,6 +101,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{route('pages.index')}}" class="nav-link">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                                الملف الشخصي
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('ContactUs')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
