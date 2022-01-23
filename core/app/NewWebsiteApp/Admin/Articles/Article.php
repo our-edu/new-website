@@ -5,10 +5,12 @@ namespace App\NewWebsiteApp\Admin\Articles;
 use App\BaseApp\BaseModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+
 
 class Article extends BaseModel
 {
-
+    use Sluggable;
     protected $table = 'articles';
     public $timestamps = true;
 
@@ -20,6 +22,14 @@ class Article extends BaseModel
         'is_featured',
         'is_active',
     ];
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
     public function getData()
     {
         return $this;

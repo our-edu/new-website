@@ -7,8 +7,8 @@
         <div class="col-lg-6 col-12">
           <div class="text">
             <span class="articleSliderTitle">{{$article->title}}</span>
-            <span class="articleSliderDate">{{$article->created_at}}</span>
-            <p class="articleSliderText">
+            <span class="articleSliderDate"> <span>اليوم</span> {{$article->created_at->format('d-m-Y')}} </span>
+            <p class="articleSliderText">0
               {{strip_tags($article->description)}}
 
             </p>

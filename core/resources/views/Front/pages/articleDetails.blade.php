@@ -6,7 +6,7 @@
           <img src="{{asset('front')}}/assets/img/Motakaed.png" class="img-fluid" alt="Responsive image" />
         </div>
         <div class="detailsContainer">
-          <span class="detailsDate">بتاريخ {{$article->created_at}}</span>
+          <span class="detailsDate">بتاريخ {{$article->created_at->format('d-m-Y')}}</span>
           <div class="detailTitles">
             <h2 class="detailsParagraphTitle">
               {{$article->title}}
