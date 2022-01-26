@@ -116,6 +116,14 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('unisharp.lfm.show')."?type=image"}}"  class="nav-link" target="_blank">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>
+                             معرض الصور
+                            </p>
+                        </a>
+                    </li>
 
 
                     <br>

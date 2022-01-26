@@ -18,12 +18,14 @@
     ]
 ])
 <br>
-@include('form.file',[
- 'name'=>'image',
- 'class' => 'form-control',
+@include('form.select',[
+ 'name'=>'folder_name',
+
+  'options'=>$folders,
  'attributes'=>[
- 'label'=>'الصوره',
- 'placeholder'=>'الصوره',
+ 'label'=>'اختار الملف',
+ 'placeholder'=>'اختار الملف  الصور ',
+ 'class' => 'form-control',
  ]])
 
 
