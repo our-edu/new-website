@@ -23,9 +23,10 @@ class FrontController extends BaseController
     public function getIndex()
     {
         $data = [];
-        $articles= Article::where('is_featured', true)->latest()->get();
-        $books= Book::where('is_featured', true)->latest()->get();
         $importent_articles= Article::where('is_featured', true)->latest()->limit(1)->get();
+        $articles= Article::where('is_featured', true)->latest()->skip(1)->get();
+        $books= Book::where('is_featured', true)->latest()->get();
+
         return view('Front.pages.index', compact('articles', 'books', 'importent_articles'));
     }
 
