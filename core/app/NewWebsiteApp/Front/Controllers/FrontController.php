@@ -61,7 +61,7 @@ class FrontController extends BaseController
         $research->image = env('APP_URL')."/storage/photos/".$research->cover_image;
         $research->visits =  visits($research)->count();
         $article = $research;
-        return view('Front.pages.articleDetails', compact('article'));
+        return view('Front.pages.researchesDetails', compact('article'));
     }
     public function eventDetails(Event $event)
     {
