@@ -1,7 +1,7 @@
 <div class="card_wrapper_activities">
   <a href="">
     <div class="image_wrapper">
-      <img src="https://media.istockphoto.com/photos/panorama-of-cairo-picture-id1180786967?k=20&m=1180786967&s=612x612&w=0&h=-beRT5TLGlfeLmJP9m7Nv_8CKcM5kcrV-coR3fbvE_0=">
+      <img src="{{}}">{{env('APP_URL')."/storage/photos/".$event->event_img}}
     </div>
     <div class="card_infos">
       <div class="d-flex justify-content-between card_header">
