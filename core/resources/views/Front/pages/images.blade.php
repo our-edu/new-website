@@ -24,7 +24,7 @@
                         <div class="parent">
                             @foreach($gallery->images as $image)
                                 <img data-fancybox="gallery{{$gallery->uuid}}"
-                                     src="{{env('APP_URL')."/".$gallery->image}}"
+                                     src="{{env('APP_URL')."/".$image}}"
 
                                 />
                             @endforeach
