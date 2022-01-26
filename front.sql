@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.3 (Debian 13.3-1.pgdg100+1)
--- Dumped by pg_dump version 13.3 (Debian 13.3-1.pgdg100+1)
+-- Dumped from database version 13.4 (Debian 13.4-1.pgdg100+1)
+-- Dumped by pg_dump version 13.4 (Debian 13.4-1.pgdg100+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -297,7 +297,7 @@ CREATE TABLE public.researches (
     description character varying(255) NOT NULL,
     research_content text NOT NULL,
     slug character varying(255) NOT NULL,
-    image character varying(255),
+    cover_image character varying(255),
     is_active boolean DEFAULT false,
     is_featured boolean DEFAULT false,
     created_at timestamp(0) without time zone,
@@ -346,17 +346,64 @@ CREATE TABLE public.videos (
     video_embed character varying(255),
     created_at timestamp(0) without time zone,
     updated_at timestamp(0) without time zone,
-    deleted_at timestamp(0) without time zone
+    deleted_at timestamp(0) without time zone,
+    cover_image character varying(255)
 );
 
 
 ALTER TABLE public.videos OWNER TO dbuser;
 
 --
+-- Name: visits; Type: TABLE; Schema: public; Owner: dbuser
+--
+
+CREATE TABLE public.visits (
+    id bigint NOT NULL,
+    primary_key character varying(255) NOT NULL,
+    secondary_key character varying(255),
+    score bigint NOT NULL,
+    list json,
+    expired_at timestamp(0) without time zone,
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone
+);
+
+
+ALTER TABLE public.visits OWNER TO dbuser;
+
+--
+-- Name: visits_id_seq; Type: SEQUENCE; Schema: public; Owner: dbuser
+--
+
+CREATE SEQUENCE public.visits_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.visits_id_seq OWNER TO dbuser;
+
+--
+-- Name: visits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dbuser
+--
+
+ALTER SEQUENCE public.visits_id_seq OWNED BY public.visits.id;
+
+
+--
 -- Name: migrations id; Type: DEFAULT; Schema: public; Owner: dbuser
 --
 
 ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- Name: visits id; Type: DEFAULT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.visits ALTER COLUMN id SET DEFAULT nextval('public.visits_id_seq'::regclass);
 
 
 --
@@ -382,15 +429,16 @@ INSERT INTO public.articles (uuid, title, description, article_content, slug, po
 <p class="card-txt green text_clamb" style="box-sizing: inherit; margin-bottom: 36px; line-height: 24px; display: inline !important; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: Cairo; font-size: 18px; text-align: right; color: rgba(95, 141, 105, 0.9); margin-top: 1.5rem !important;">ﺗﻌﻠﻴﻤﻪ ﻋﺎﻟﻲ وﺻﺤﺘﻪ ﺟﻴﺪة .زرته ﻓﻲ استراحة ﻓﺎﺷﺘﻜﻰ الفراغ وﺗﻤﻨﻰ ﻟﻮ استمر ﻓﻲ وظيفته</p>
 <p class="card-txt green text_clamb" style="box-sizing: inherit; margin-bottom: 36px; line-height: 24px; display: inline !important; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: Cairo; font-size: 18px; text-align: right; color: rgba(95, 141, 105, 0.9); margin-top: 1.5rem !important;">ﺗﻌﻠﻴﻤﻪ ﻋﺎﻟﻲ وﺻﺤﺘﻪ ﺟﻴﺪة .زرته ﻓﻲ استراحة ﻓﺎﺷﺘﻜﻰ الفراغ وﺗﻤﻨﻰ ﻟﻮ استمر ﻓﻲ وظيفته</p>
 <p class="card-txt green text_clamb" style="box-sizing: inherit; margin-bottom: 36px; line-height: 24px; display: inline !important; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: Cairo; font-size: 18px; text-align: right; color: rgba(95, 141, 105, 0.9); margin-top: 1.5rem !important;">ﺗﻌﻠﻴﻤﻪ ﻋﺎﻟﻲ وﺻﺤﺘﻪ ﺟﻴﺪة .زرته ﻓﻲ استراحة ﻓﺎﺷﺘﻜﻰ الفراغ وﺗﻤﻨﻰ ﻟﻮ استمر ﻓﻲ وظيفته</p>
-<p class="card-txt green text_clamb" style="box-sizing: inherit; margin-top: 1.5rem !important; margin-bottom: 36px; line-height: 24px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: Cairo; font-style: normal; font-weight: normal; font-size: 18px; text-align: right; color: rgba(95, 141, 105, 0.9);"><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a>ﺗﻌﻠﻴﻤﻪ ﻋﺎﻟﻲ وﺻﺤﺘﻪ ﺟﻴﺪة .زرته ﻓﻲ استراحة ﻓﺎﺷﺘﻜﻰ الفراغ وﺗﻤﻨﻰ ﻟﻮ استمر ﻓﻲ وظيفته</p>', 'hyr-mtkaaad', NULL, true, true, '2022-01-23 14:55:05', '2022-01-23 14:55:54', NULL);
+<p class="card-txt green text_clamb" style="box-sizing: inherit; margin-top: 1.5rem !important; margin-bottom: 36px; line-height: 24px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-family: Cairo; font-style: normal; font-weight: normal; font-size: 18px; text-align: right; color: rgba(95, 141, 105, 0.9);"><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a><a href="https://bein-elhokol.web.app/articles.html#" style="box-sizing: inherit; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: #a68454; text-decoration-line: none; border: 0px; border-radius: 5px; transition: all 0.3s ease 0s; outline-width: 0px; font-family: Cairo, sans-serif; font-size: 16px; letter-spacing: 0.4px;"></a>ﺗﻌﻠﻴﻤﻪ ﻋﺎﻟﻲ وﺻﺤﺘﻪ ﺟﻴﺪة .زرته ﻓﻲ استراحة ﻓﺎﺷﺘﻜﻰ الفراغ وﺗﻤﻨﻰ ﻟﻮ استمر ﻓﻲ وظيفته</p>', 'hyr-mtkaaad', 'all/61f0dca504d97.png', true, true, '2022-01-23 14:55:05', '2022-01-26 06:00:59', NULL);
 
 
 --
 -- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-INSERT INTO public.books (uuid, name, description, slug, is_featured, is_active, is_recommended, book_img, book_pdf, publish_date, author, created_at, updated_at) VALUES ('d21c8a6f-5b1e-4515-8579-bfbfcd1b5f63', 'أنسانية ملك', 'سلسله مكونه من اثني واربعون قصه متسلسله بسلاسل', 'ansany-mlk', true, true, true, NULL, NULL, '2022-01-23', 'دكتور عبد العزيز بن عبد الرحمن', '2022-01-23 14:59:19', '2022-01-23 14:59:19');
 INSERT INTO public.books (uuid, name, description, slug, is_featured, is_active, is_recommended, book_img, book_pdf, publish_date, author, created_at, updated_at) VALUES ('98945cb2-0d78-4d45-9889-922616f40b14', 'حيره مفلس', 'سلسله مكونه من اثني واربعون قصه متسلسله بسلاسل', 'hyrh-mfls', true, true, true, NULL, NULL, '2022-01-23', 'انا', '2022-01-23 15:00:00', '2022-01-23 15:00:00');
+INSERT INTO public.books (uuid, name, description, slug, is_featured, is_active, is_recommended, book_img, book_pdf, publish_date, author, created_at, updated_at) VALUES ('700aa9f4-6332-413a-9b06-5454e8df81f2', 'Test', 'ewewweww', 'test', true, true, true, 'all/61f0d29026327.jpg', 'all/61f0d2c62f3f2.pdf', '2022-01-18', 'swswq', '2022-01-26 04:54:39', '2022-01-26 04:58:09');
+INSERT INTO public.books (uuid, name, description, slug, is_featured, is_active, is_recommended, book_img, book_pdf, publish_date, author, created_at, updated_at) VALUES ('d21c8a6f-5b1e-4515-8579-bfbfcd1b5f63', 'أنسانية ملك', 'سلسله مكونه من اثني واربعون قصه متسلسله بسلاسل', 'ansany-mlk', true, true, true, 'all/61f0d29026327.jpg', 'storage/files', '2022-01-23', 'دكتور عبد العزيز بن عبد الرحمن', '2022-01-23 14:59:19', '2022-01-26 06:04:56');
 
 
 --
@@ -434,6 +482,8 @@ INSERT INTO public.migrations (id, migration, batch) VALUES (8, '2021_12_28_1319
 INSERT INTO public.migrations (id, migration, batch) VALUES (9, '2021_12_28_131922_create_videos_table', 1);
 INSERT INTO public.migrations (id, migration, batch) VALUES (10, '2022_01_23_132307_create_researches_table', 1);
 INSERT INTO public.migrations (id, migration, batch) VALUES (11, '2022_01_23_141848_create_pages_table', 1);
+INSERT INTO public.migrations (id, migration, batch) VALUES (12, '2022_01_26_055157_add_image_to_videos_table', 2);
+INSERT INTO public.migrations (id, migration, batch) VALUES (13, '2022_01_26_065142_create_visits_table', 3);
 
 
 --
@@ -600,6 +650,7 @@ INSERT INTO public.pages (uuid, title, description, body, created_at, updated_at
 -- Data for Name: researches; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
+INSERT INTO public.researches (uuid, title, description, research_content, slug, cover_image, is_active, is_featured, created_at, updated_at, deleted_at) VALUES ('8a478bc7-d160-4360-a962-e403b8c55b7c', 'ytyt', 'trtrt', '<p>6456456456</p>', 'ytyt', 'all/61f0dca504d97.png', true, true, '2022-01-26 06:12:51', '2022-01-26 06:12:51', NULL);
 
 
 --
@@ -619,7 +670,49 @@ INSERT INTO public.users (uuid, first_name, last_name, username, mobile, email, 
 -- Data for Name: videos; Type: TABLE DATA; Schema: public; Owner: dbuser
 --
 
-INSERT INTO public.videos (uuid, title, description, video_url, video_embed, created_at, updated_at, deleted_at) VALUES ('c4fb2666-5fde-4d4e-b423-537d40f85818', 'احسنتي يارباب', 'احسنتي يارباب', 'https://www.youtube.com/watch?v=OT4BxeibB04&ab_channel=OscarSeries', '<iframe width="560" height="315" src="https://www.youtube.com/embed/OT4BxeibB04" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-23 15:05:19', '2022-01-23 15:05:19', NULL);
+INSERT INTO public.videos (uuid, title, description, video_url, video_embed, created_at, updated_at, deleted_at, cover_image) VALUES ('c4fb2666-5fde-4d4e-b423-537d40f85818', 'احسنتي يارباب', 'احسنتي يارباب', 'https://www.youtube.com/watch?v=OT4BxeibB04&ab_channel=OscarSeries', '<iframe width="560" height="315" src="https://www.youtube.com/embed/OT4BxeibB04" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', '2022-01-23 15:05:19', '2022-01-26 06:04:39', NULL, 'all/61f0d29026327.jpg');
+
+
+--
+-- Data for Name: visits; Type: TABLE DATA; Schema: public; Owner: dbuser
+--
+
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (27, 'visits:events_visits_recorded_ips:4493dbde-96b3-436c-8c36-a18a25f640e0:172.22.0.1', NULL, 1, NULL, '2022-01-26 07:16:29', '2022-01-26 07:01:29', '2022-01-26 07:01:29');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (9, 'visits:articles_visits_recorded_ips:9cc76d66-d131-47f1-bf52-e1bc3241b0bb:172.22.0.1', NULL, 1, NULL, '2022-01-26 07:11:17', '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (10, 'visits:articles_visits', '9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 1, NULL, NULL, '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (11, 'visits:articles_visits_total', NULL, 1, NULL, NULL, '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (12, 'visits:articles_visits_referers:9cc76d66-d131-47f1-bf52-e1bc3241b0bb', NULL, 1, NULL, NULL, '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (28, 'visits:events_visits', '4493dbde-96b3-436c-8c36-a18a25f640e0', 1, NULL, NULL, '2022-01-26 07:01:29', '2022-01-26 07:01:29');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (29, 'visits:events_visits_total', NULL, 1, NULL, NULL, '2022-01-26 07:01:29', '2022-01-26 07:01:29');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (30, 'visits:events_visits_referers:4493dbde-96b3-436c-8c36-a18a25f640e0', NULL, 1, NULL, NULL, '2022-01-26 07:01:29', '2022-01-26 07:01:29');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (17, 'visits:articles_visits_OSes:9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 'Linux', 1, NULL, NULL, '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (18, 'visits:articles_visits_languages:9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 'en', 1, NULL, NULL, '2022-01-26 06:56:17', '2022-01-26 06:56:17');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (35, 'visits:events_visits_OSes:4493dbde-96b3-436c-8c36-a18a25f640e0', 'Linux', 1, NULL, NULL, '2022-01-26 07:01:30', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (36, 'visits:events_visits_languages:4493dbde-96b3-436c-8c36-a18a25f640e0', 'en', 1, NULL, NULL, '2022-01-26 07:01:30', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (31, 'visits:events_visits_day', '4493dbde-96b3-436c-8c36-a18a25f640e0', 1, NULL, '2022-01-27 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (20, 'visits:events_visits_day', '0', 0, NULL, '2022-01-27 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (19, 'visits:events_visits_day_total', NULL, 1, NULL, '2022-01-27 00:00:00', '2022-01-26 07:01:28', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (32, 'visits:events_visits_week', '4493dbde-96b3-436c-8c36-a18a25f640e0', 1, NULL, '2022-01-31 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (2, 'visits:articles_visits_day', '0', 0, NULL, '2022-01-27 00:00:00', '2022-01-26 06:56:16', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (13, 'visits:articles_visits_day', '9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 1, NULL, '2022-01-27 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (1, 'visits:articles_visits_day_total', NULL, 1, NULL, '2022-01-27 00:00:00', '2022-01-26 06:56:16', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (4, 'visits:articles_visits_week', '0', 0, NULL, '2022-01-31 00:00:00', '2022-01-26 06:56:16', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (14, 'visits:articles_visits_week', '9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 1, NULL, '2022-01-31 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (3, 'visits:articles_visits_week_total', NULL, 1, NULL, '2022-01-31 00:00:00', '2022-01-26 06:56:16', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (6, 'visits:articles_visits_month', '0', 0, NULL, '2022-02-01 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (15, 'visits:articles_visits_month', '9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 1, NULL, '2022-02-01 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (5, 'visits:articles_visits_month_total', NULL, 1, NULL, '2022-02-01 00:00:00', '2022-01-26 06:56:16', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (8, 'visits:articles_visits_year', '0', 0, NULL, '2023-01-01 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (22, 'visits:events_visits_week', '0', 0, NULL, '2022-01-31 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (21, 'visits:events_visits_week_total', NULL, 1, NULL, '2022-01-31 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (24, 'visits:events_visits_month', '0', 0, NULL, '2022-02-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (33, 'visits:events_visits_month', '4493dbde-96b3-436c-8c36-a18a25f640e0', 1, NULL, '2022-02-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (23, 'visits:events_visits_month_total', NULL, 1, NULL, '2022-02-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (26, 'visits:events_visits_year', '0', 0, NULL, '2023-01-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (34, 'visits:events_visits_year', '4493dbde-96b3-436c-8c36-a18a25f640e0', 1, NULL, '2023-01-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (25, 'visits:events_visits_year_total', NULL, 1, NULL, '2023-01-01 00:00:00', '2022-01-26 07:01:29', '2022-01-26 07:01:30');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (16, 'visits:articles_visits_year', '9cc76d66-d131-47f1-bf52-e1bc3241b0bb', 1, NULL, '2023-01-01 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
+INSERT INTO public.visits (id, primary_key, secondary_key, score, list, expired_at, created_at, updated_at) VALUES (7, 'visits:articles_visits_year_total', NULL, 1, NULL, '2023-01-01 00:00:00', '2022-01-26 06:56:17', '2022-01-26 07:00:06');
 
 
 --
@@ -662,7 +755,14 @@ INSERT INTO public.videos (uuid, title, description, video_url, video_embed, cre
 -- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
 --
 
-SELECT pg_catalog.setval('public.migrations_id_seq', 11, true);
+SELECT pg_catalog.setval('public.migrations_id_seq', 13, true);
+
+
+--
+-- Name: visits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dbuser
+--
+
+SELECT pg_catalog.setval('public.visits_id_seq', 36, true);
 
 
 --
@@ -807,6 +907,22 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.videos
     ADD CONSTRAINT videos_pkey PRIMARY KEY (uuid);
+
+
+--
+-- Name: visits visits_pkey; Type: CONSTRAINT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.visits
+    ADD CONSTRAINT visits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: visits visits_primary_key_secondary_key_unique; Type: CONSTRAINT; Schema: public; Owner: dbuser
+--
+
+ALTER TABLE ONLY public.visits
+    ADD CONSTRAINT visits_primary_key_secondary_key_unique UNIQUE (primary_key, secondary_key);
 
 
 --

@@ -17,6 +17,7 @@ class Gallery extends BaseModel
     protected $fillable =[
         'title',
         'description',
+        'folder_name'
 
     ];
     public function getData()
