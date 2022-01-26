@@ -9,9 +9,12 @@ use App\BaseApp\Models\User;
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Books\Book;
 use App\NewWebsiteApp\Admin\Events\Event;
+use App\NewWebsiteApp\Admin\Galleries\Gallery;
 use App\NewWebsiteApp\Admin\Galleries\GalleryImage;
 use App\NewWebsiteApp\Admin\Researches\Research;
 use App\NewWebsiteApp\Admin\Videos\Video;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class FrontController extends BaseController
 {
@@ -89,8 +92,18 @@ class FrontController extends BaseController
     public function gallery()
     {
         $data = [];
-        $images= GalleryImage::get();
-        return view('Front.pages.images', compact('images'));
+        $galleries = Gallery::orderByDesc("created_at")->get();
+        foreach ($galleries as $gallery){
+            $images = Storage::files($gallery->folder_name);
+            $imagesNames = [];
+            foreach ($images as $image){
+                $imagesNames[] = Str::replace('public', 'storage', $image);
+            }
+
+
+            $gallery->images = $imagesNames;
+        }
+        return view('Front.pages.images', compact('galleries'));
     }
     public function videos()
     {
