@@ -11,7 +11,7 @@
         theme: 'silver',
         toolbar_mode: 'wrap',
         plugins: [
-            "link image","print preview   importcss tinydrive  autolink autosave save directionality  visualblocks visualchars fullscreen media  template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   textpattern noneditable help   charmap  quickbars  emoticons "
+            "link image","print preview   importcss tinydrive  code autolink autosave save directionality  visualblocks visualchars fullscreen media  template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists  wordcount   textpattern noneditable help   charmap  quickbars  emoticons "
         ],
         toolbar: 'undo redo | bold italic underline strikethrough | code insertfile image media pageembed template link anchor codesample |fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat  | fullscreen  preview   | a11ycheck ltr rtl ',
         relative_urls: false,
