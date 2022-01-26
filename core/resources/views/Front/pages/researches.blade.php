@@ -1,7 +1,7 @@
 @extends('Front.layouts.default',['title'=>"المقالات"])
 @section('content')
   <div class="container">
-    <h1 class="pageDescription text-color-green">المقالات</h1>
+    <h1 class="pageDescription text-color-green">دراسات وبحوث</h1>
   </div>
 
   <div class="">
