@@ -1,5 +1,5 @@
 <div class="card_wrapper_activities">
-  <a href="">
+  <a href="{{route('event_details',$event->slug)}}">
     <div class="image_wrapper">
       <img src="{{env('APP_URL')."/storage/photos/".$event->event_img}}">
     </div>
