@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>العنوان</th>
                                         <th>الوصف</th>
-                                        <th>الصوره</th>
+                                        <th>الملف</th>
                                         <th></th>
 
 
@@ -51,7 +51,7 @@
                                         <tr>
                                             <td>{{$row->title}}</td>
                                             <td>{{ Str::limit($row->description, 10) }}</td>
-                                            <td>{{$row->galleryImage->image}}</td>
+                                            <td>{{basename($row->folder_name)}}</td>
 
                                             <td class="text-center">
 

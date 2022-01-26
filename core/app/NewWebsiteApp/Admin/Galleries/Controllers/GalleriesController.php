@@ -37,6 +37,7 @@ class GalleriesController extends Controller
         $data['module'] = $this->module;
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
+        $data['folders'] =   $this->getDirs();
         return view('admin.'.$this->module . '.create', $data);
     }
     public function store(CreateGalleryRequest $request)
@@ -45,9 +46,8 @@ class GalleriesController extends Controller
 
         $row = new Gallery();
         $row->title = $request->title;
-        $row->slug = \Str::slug($request->title);
         $row->description = $request->description;
-        $row->galleryImage->image = $request->galleryImage->image;
+        $row->folder_name =  $request->folder_name;
         $row->save();
         toast('تم انشاء الصوره بنجاح', 'success');
         return redirect('/admin/' . $this->module);
@@ -69,6 +69,7 @@ class GalleriesController extends Controller
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
         $data['row'] = $this->model->findOrFail($id);
+        $data['folders'] =   $this->getDirs();
         return view('admin.'.$this->module . '.edit', $data);
     }
 
@@ -78,11 +79,8 @@ class GalleriesController extends Controller
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
-        $row->slug = \Str::slug($request->title);
+        $row->folder_name =  $request->folder_name;
         $row->description = $request->description;
-        if ($request->hasFile('image')) {
-            $row->galleryImage->image = $request->galleryImage->image;
-        }
         $row->update();
         toast('تم تعديل الصوره بنجاح', 'success');
         return redirect('/admin/' . $this->module);
@@ -96,5 +94,16 @@ class GalleriesController extends Controller
         $row->delete();
         toast('تم حذف الصوره بنجاح', 'success');
         return back();
+    }
+    private function getDirs()
+    {
+        $folders =  Storage::directories("public/photos/all");
+        $foldersArray = [];
+        foreach ($folders as $folder) {
+            if (basename($folder) != "thumbs") {
+                $foldersArray[$folder] = basename($folder);
+            }
+        }
+        return $foldersArray;
     }
 }

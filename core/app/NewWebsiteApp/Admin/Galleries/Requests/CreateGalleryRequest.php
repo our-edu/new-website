@@ -26,9 +26,10 @@ class CreateGalleryRequest extends FormRequest
     public function rules()
     {
         return [
-//            'title' => 'required|max:250',
-//            'description' => 'required',
-//            'content' => 'required',
+            'title' => 'required|max:250',
+            'description' => 'required',
+            'folder_name'=>'required'
+//
         ];
     }
 }

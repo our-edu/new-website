@@ -1,7 +1,7 @@
 <div class="card_wrapper_activities">
   <a href="">
     <div class="image_wrapper">
-      <img src="{{}}">{{env('APP_URL')."/storage/photos/".$event->event_img}}
+      <img src="{{env('APP_URL')."/storage/photos/".$event->event_img}}">
     </div>
     <div class="card_infos">
       <div class="d-flex justify-content-between card_header">
