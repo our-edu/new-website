@@ -15,7 +15,7 @@
           </div>
           <div class="detailsParagraph text_black">
 
-              {!! $article->article_content !!}
+              {!! $article->research_content !!}
 
           </div>
         </div>
