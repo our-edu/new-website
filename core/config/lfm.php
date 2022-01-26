@@ -54,7 +54,7 @@ return [
         'file'  => [
             'folder_name'  => 'files',
             'startup_view' => 'grid',
-            'max_size'     => 50000, // size in KB
+            'max_size'     => 50000000, // size in KB
             'valid_mime'   => [
                 'application/pdf',
             ],
@@ -62,7 +62,7 @@ return [
         'image' => [
             'folder_name'  => 'photos',
             'startup_view' => 'grid',
-            'max_size'     => 100000, // size in KB
+            'max_size'     => 1000000, // size in KB
             'valid_mime'   => [
                 'image/jpg',
                 'image/jpeg',
