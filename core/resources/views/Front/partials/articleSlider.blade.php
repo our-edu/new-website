@@ -8,7 +8,7 @@
           <div class="text">
             <span class="articleSliderTitle">{{$article->title}}</span>
             <span class="articleSliderDate"> <span>اليوم</span> {{$article->created_at->toDateString()}} </span>
-            <p class="articleSliderText">0
+            <p class="articleSliderText">
               {{strip_tags($article->description)}}
 
             </p>

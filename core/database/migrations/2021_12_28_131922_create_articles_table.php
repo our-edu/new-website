@@ -12,7 +12,7 @@ class CreateArticlesTable extends Migration {
 			$table->uuid('uuid')->primary();
 			$table->string('title', 255);
 			$table->string('description', 255);
-			$table->text('article_content');
+			$table->longText('article_content');
 			$table->string('slug')->unique();
 			$table->string('post_img')->nullable();
 			$table->boolean('is_active')->nullable()->index()->default(0);
