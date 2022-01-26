@@ -1,5 +1,5 @@
 <div class="row mg-t-20">
-    <label class="col-sm-4 form-control-label text-wrap ">{{ @$attributes['label'] }} <span class="tx-danger">{{ (@$attributes['required'])?'*':'' }}</span></label>
+    <label class="col-sm-2 form-control-label text-wrap ">{{ @$attributes['label'] }} <span class="tx-danger">{{ (@$attributes['required'])?'*':'' }}</span></label>
     <div class="col-sm-8 mg-t-10 mg-sm-t-0">
         <div class="tool">
             <input id="{{$name}}-pac-input" class="controls form-control" style="width: 40%" type="text" placeholder="Search Box">

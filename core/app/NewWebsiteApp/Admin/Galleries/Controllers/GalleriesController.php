@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Galleries\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\NewWebsiteApp\Admin\Galleries\Gallery;
 use App\NewWebsiteApp\Admin\Galleries\Requests\CreateGalleryRequest;
@@ -9,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
 
 class GalleriesController extends Controller
 {
@@ -36,7 +38,6 @@ class GalleriesController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(CreateGalleryRequest $request)
     {
@@ -49,8 +50,7 @@ class GalleriesController extends Controller
         $row->galleryImage->image = $request->galleryImage->image;
         $row->save();
         toast('تم انشاء الصوره بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
-
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -63,7 +63,8 @@ class GalleriesController extends Controller
         return view('admin.'.$this->module . '.view', $data);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
@@ -72,7 +73,8 @@ class GalleriesController extends Controller
     }
 
 
-    public function update(UpdateGalleryRequest $request , $id) {
+    public function update(UpdateGalleryRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
@@ -83,7 +85,7 @@ class GalleriesController extends Controller
         }
         $row->update();
         toast('تم تعديل الصوره بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -95,5 +97,4 @@ class GalleriesController extends Controller
         toast('تم حذف الصوره بنجاح', 'success');
         return back();
     }
-
 }

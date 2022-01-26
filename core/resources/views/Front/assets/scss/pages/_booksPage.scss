@@ -1,0 +1,15 @@
+.books_page {
+  .fav_books {
+    //margin-bottom: 90px;
+    @media screen and (max-width: 502px) {
+      .the_image {
+        justify-content: center;
+      }
+    }
+    margin-top: 61px;
+    h2.section_title {
+      font-size: 2.5rem;
+      margin-bottom: 90px !important;
+    }
+  }
+}

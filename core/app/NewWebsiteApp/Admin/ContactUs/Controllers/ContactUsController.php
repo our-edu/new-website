@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\ContactUs\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\NewWebsiteApp\Admin\ContactUs\Contact;
 use Illuminate\Http\Request;
-
 
 class ContactUsController extends Controller
 {
@@ -40,6 +41,13 @@ class ContactUsController extends Controller
         $data['breadcrumb'] = [$this->title => $this->module];
         $data['row'] = $this->model->findOrFail($id);
         return view('admin.'.$this->module . '.view', $data);
+    }
+    public function store(Request $request)
+    {
+        $this->model->create($request->all());
+        toast('تم الارسال', 'success');
+
+        return back();
     }
 
     public function destroy($id)

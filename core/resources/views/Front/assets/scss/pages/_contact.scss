@@ -1,0 +1,59 @@
+.contact_us {
+  @media screen and (max-width: 768px) {
+    margin: -3.5rem 0;
+  }
+
+  .contact_section {
+    @media screen and (max-width: 768px) {
+      order: 2;
+    }
+
+    .pageDescription {
+      margin-bottom: 24px !important;
+      font-size: 3rem;
+      @media screen and (max-width: 768px) {
+        margin-top: 48px !important;
+      }
+    }
+
+    .page_title {
+      color: rgba(79, 90, 104, 1);
+      font-weight: 200;
+      margin-bottom: 48px !important;
+      @media screen and (max-width: 1024px) {
+        margin-bottom: 30px !important;
+      }
+    }
+
+    form {
+      margin-bottom: 60px;
+      .the_button {
+        margin-top: 40px;
+        text-align: center;
+      }
+    }
+
+  }
+
+  .contact_map {
+    position: relative;
+    #over_map {
+      @media screen and (max-width: 768px) {
+        left: 50%;
+        bottom: 0%;
+        padding: 25px 12px 21px;
+      }
+      position: absolute;
+      top: 50%;
+      left: 27%;
+      transform: translate(-50%,-50%);
+      border-radius: 18px !important;
+      background-color: rgba(54, 109, 66, 0.9);
+      max-width: 421px;
+      padding: 25px 50px 30px;
+      .item {
+        margin-bottom: 16px !important;
+      }
+    }
+  }
+}

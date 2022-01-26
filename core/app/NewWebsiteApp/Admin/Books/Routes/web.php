@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'books','namespace' => '\App\NewWebsiteApp\Admin\Books\Controllers'], function () {
     Route::get('/', 'BooksController@index')->name('books.index');
 

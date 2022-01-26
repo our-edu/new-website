@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Videos;
 
 use App\BaseApp\BaseModel;
@@ -17,6 +19,7 @@ class Video extends BaseModel
         'description',
         'video_url',
         'video_embed',
+        'cover_image'
     ];
     public function getData()
     {

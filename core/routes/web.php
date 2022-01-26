@@ -23,12 +23,17 @@ Route::group(['prefix'=>'admin'], function () {
     Route::group(['middleware'=>'auth'], function () {
         require base_path('app/NewWebsiteApp/Admin/Routes/routes.php');
         require base_path('app/NewWebsiteApp/Admin/Articles/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Researches/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/ContactUs/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Books/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Events/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Videos/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Galleries/Routes/web.php');
+        require base_path('app/NewWebsiteApp/Admin/Pages/Routes/web.php');
+        Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+            \UniSharp\LaravelFilemanager\Lfm::routes();
+        });
     });
 });
-require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
 
+require base_path('app/NewWebsiteApp/Front/Routes/routes.php');

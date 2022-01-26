@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Events\Controllers;
+
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Articles\Requests\CreateArticleRequest;
 use App\NewWebsiteApp\Admin\Articles\Requests\UpdateArticleRequest;
@@ -10,11 +13,11 @@ use App\NewWebsiteApp\Admin\Books\Requests\CreateBookRequest;
 use App\NewWebsiteApp\Admin\Books\Requests\UpdateBookRequest;
 use App\NewWebsiteApp\Admin\Events\Event;
 use App\NewWebsiteApp\Admin\Events\Requests\CreateEventRequest;
+use App\NewWebsiteApp\Admin\Events\Requests\UpdateEventRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
 
 class EventsController extends Controller
 {
@@ -41,7 +44,6 @@ class EventsController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(CreateEventRequest $request)
     {
@@ -54,10 +56,12 @@ class EventsController extends Controller
         $row->event_date = $request->event_date;
         $row->start_time = $request->start_time;
         $row->end_time = $request->end_time;
-        $row->event_img = $request->event_img;
+        if ($request->getImageData()) {
+            $row->event_img = $request->getImageData();
+        }
         $row->save();
         toast('تم انشاء النشاط بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
 
 //        $data['module'] = $this->module;
 //        if ($row = $this->model->create($request->except('slug'))) {
@@ -76,16 +80,20 @@ class EventsController extends Controller
         $data['row'] = $this->model->findOrFail($id);
         return view('admin.'.$this->module . '.view', $data);
     }
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
-        $data['row'] = $this->model->findOrFail($id);
+        $event= $this->model->findOrFail($id);
+        $data['row'] = $event ;
+        $data['image'] = env('APP_URL')."/storage/photos/".$event->event_img;
         return view('admin.'.$this->module . '.edit', $data);
     }
 
 
-    public function update(UpdateBookRequest $request , $id) {
+    public function update(UpdateEventRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
@@ -94,12 +102,12 @@ class EventsController extends Controller
         $row->event_date = $request->event_date;
         $row->start_time = $request->start_time;
         $row->end_time = $request->end_time;
-        if ($request->hasFile('event_img')) {
-            $row->event_img = $request->event_img;
+        if ($request->getImageData()) {
+            $row->event_img = $request->getImageData();
         }
         $row->update();
         toast('تم تعديل النشاط بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -111,5 +119,4 @@ class EventsController extends Controller
         toast('تم حذف النشاط بنجاح', 'success');
         return back();
     }
-
 }

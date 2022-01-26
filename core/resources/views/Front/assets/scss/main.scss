@@ -1,0 +1,64 @@
+@charset 'UTF-8';
+
+// 0. Import Bourbon
+//@import 'bourbon';
+
+// 1. Configuration and helpers
+@import
+  'abstracts/variables',
+  'abstracts/functions',
+  'abstracts/mixins';
+
+// 2. Vendors
+@import
+  'vendors/normalize',
+  'vendors/bootstrap';
+
+// 3. Base stuff
+@import
+  'base/base',
+  'base/fonts',
+  'base/global',
+  'base/typography',
+  'base/helpers';
+
+// 4. Layout-related sections
+@import
+  'layout/header',
+  'layout/footer';
+
+// 5. Components
+@import
+  'components/button',
+  'components/articles',
+  'components/articleSlider',
+  'components/articleDetails',
+  'components/books',
+  'components/pageMainCard',
+  'components/activitiesCards',
+  'components/inputs',
+  'components/booksSliders',
+  'components/loading',
+  'components/homeSlider';
+
+// 6. Page-specific styles
+@import
+  'pages/activities',
+  'pages/images',
+  'pages/videos',
+  'pages/contact',
+  'pages/profile',
+  'pages/booksPage',
+  'pages/home';
+
+// 7. Themes
+@import
+  'themes/default';
+
+
+  nav ul li.activeLink a{
+    color: #d0a569 !important;
+  }
+  .swiper-button-disabled i{
+    opacity: 0.5;
+  }

@@ -24,13 +24,14 @@
         <!-- Main content -->
         <section class="content">
             <div class="section-wrapper">
-                <div class="form-layout form-layout-4">
+                <div class="form-layout form-layout-3">
                 {!! Form::model($row,['method' => 'post','files' => true ] ) !!}
                 {{ csrf_field() }}
+
                 @include('admin.'.$module.'.form',$row)
                 <!-- custom-file -->
-                    <div class="form-layout-footer mg-t-30">
-                        <button class="btn btn-primary bd-0">حفظ</button>
+                    <div class="form-layout-footer mg-t-50">
+                        <button class="btn btn-primary bd-5">حفظ</button>
                     </div>
                 {!! Form::close() !!}
                 <!-- form-layout-footer -->
@@ -40,6 +41,9 @@
         </section>
         <!-- /.content -->
     </div>
+<br>
+<br>
+<br>
     <!-- /.content-wrapper -->
 @include('admin.layout.footer')
 

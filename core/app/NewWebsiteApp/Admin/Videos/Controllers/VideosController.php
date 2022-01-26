@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Videos\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\NewWebsiteApp\Admin\Videos\Requests\CreateVideosRequest;
 use App\NewWebsiteApp\Admin\Videos\Requests\UpdateVideosRequest;
@@ -10,7 +13,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use function Illuminate\Support\Facades\Gate;
-
 
 class VideosController extends Controller
 {
@@ -37,7 +39,6 @@ class VideosController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(CreateVideosRequest $request)
     {
@@ -48,10 +49,12 @@ class VideosController extends Controller
         $row->description = $request->description;
         $row->video_url = $request->video_url;
         $row->video_embed = $request->video_embed;
+        if ($request->getImageData()) {
+            $row->cover_image = $request->getImageData();
+        }
         $row->save();
         toast('تم انشاء الفيديو بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
-
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -60,29 +63,39 @@ class VideosController extends Controller
         $data['module'] = $this->module;
         $data['page_title'] = 'View' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
+        $event= $this->model->findOrFail($id);
+        $data['image'] = env('APP_URL')."/storage/photos/".$event->cover_image;
         $data['row'] = $this->model->findOrFail($id);
         return view('admin.'.$this->module . '.view', $data);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
-        $data['row'] = $this->model->findOrFail($id);
+        $event= $this->model->findOrFail($id);
+        $data['row'] = $event ;
+        $data['image'] = env('APP_URL')."/storage/photos/".$event->cover_image;
+
         return view('admin.'.$this->module . '.edit', $data);
     }
 
 
-    public function update(UpdateVideosRequest $request , $id) {
+    public function update(UpdateVideosRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
         $row->description = $request->description;
         $row->video_url = $request->video_url;
         $row->video_embed = $request->video_embed;
+        if ($request->getImageData()) {
+            $row->cover_image = $request->getImageData();
+        }
         $row->update();
         toast('تم تعديل الفيديو بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -94,5 +107,4 @@ class VideosController extends Controller
         toast('تم حذف الفيديو بنجاح', 'success');
         return back();
     }
-
 }

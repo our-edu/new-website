@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Books\Controllers;
+
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Articles\Requests\CreateArticleRequest;
 use App\NewWebsiteApp\Admin\Articles\Requests\UpdateArticleRequest;
@@ -12,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
 
 class BooksController extends Controller
 {
@@ -39,7 +41,6 @@ class BooksController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(CreateBookRequest $request)
     {
@@ -50,27 +51,38 @@ class BooksController extends Controller
         $row->slug = \Str::slug($request->name);
         $row->description = $request->description;
         $row->author = $request->author;
-        $row->book_img = $request->book_img;
+        if ($request->getImageData()) {
+            $row->book_img = $request->getImageData();
+        }
+        if ($request->getFileData()) {
+            $row->book_pdf = $request->getFileData();
+        }
         $row->publish_date = $request->publish_date;
         $row->is_active = $request->is_active;
         $row->is_featured = $request->is_featured;
+        $row->is_recommended = $request->is_recommended;
         $row->save();
         toast('تم انشاء المقاله بنجاح', 'success');
-        return redirect( '/admin/' . $this->module );
-
+        return redirect('/admin/' . $this->module);
     }
 
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
-        $data['row'] = $this->model->findOrFail($id);
+        $book = $this->model->findOrFail($id);
+        $data['row'] = $book ;
+        $data['image'] = env('APP_URL')."/storage/photos/".$book->book_img;
+        $data['file'] = env('APP_URL')."/storage/files/".$book->book_pdf;
+
         return view('admin.'.$this->module . '.edit', $data);
     }
 
 
-    public function update(UpdateBookRequest $request , $id) {
+    public function update(UpdateBookRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->name = $request->name;
@@ -79,13 +91,17 @@ class BooksController extends Controller
         $row->publish_date = $request->publish_date;
         $row->is_active = $request->is_active;
         $row->is_featured = $request->is_featured;
-        if ($request->hasFile('book_img')) {
-            $row->book_img = $request->book_img;
+        $row->is_recommended = $request->is_recommended;
+        if ($request->getImageData()) {
+            $row->book_img = $request->getImageData();
+        }
+        if ($request->getFileData()) {
+            $row->book_pdf = $request->getFileData();
         }
         $row->update();
         toast('تم تعديل الكتاب بنجاح', 'success');
 
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -97,5 +113,4 @@ class BooksController extends Controller
         toast('تم حذف الكتاب بنجاح', 'success');
         return back();
     }
-
 }

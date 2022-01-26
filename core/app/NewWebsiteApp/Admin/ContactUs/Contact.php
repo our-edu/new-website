@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\ContactUs;
 
 use App\BaseApp\BaseModel;
@@ -11,12 +13,17 @@ class Contact extends BaseModel
     public $timestamps = true;
     protected $fillable =[
         'email',
-        'name',
+        'first_name',
+        'last_name',
         'message',
     ];
     public function getData()
     {
         return $this;
+    }
 
+    public function getNameAttribute(): string
+    {
+        return "{$this->getAttributeValue('first_name')} {$this->getAttributeValue('last_name')}";
     }
 }

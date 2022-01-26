@@ -17,15 +17,9 @@
     'placeholder'=>'الوصف',
     ]
 ])
+
 <br>
-@include('form.file',[
- 'name'=>'post_img',
- 'value'=> $row->event_img,
- 'class' => 'form-control',
- 'attributes'=>[
- 'label'=>'الصوره',
- 'placeholder'=>'الصوره',
- ]])
+@include("admin.layout.select_image")
 <br>
 @php
     $attributes=['class'=>'form-control','label'=>'تاريخ النشاط','placeholder'=>'تاريخ النشاط'];
@@ -44,6 +38,11 @@
 @endphp
 
 @include('form.input',['name'=>'end_time','type'=>'time','attributes'=>$attributes])
+@section('scripts')
+
+    @include('admin.layout.tinyMCE_config')
+    @include("admin.layout.filemanger_scripts");
+@endsection
 
 
 
