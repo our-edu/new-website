@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'events','namespace' => '\App\NewWebsiteApp\Admin\Events\Controllers'], function () {
     Route::get('/', 'EventsController@index')->name('events.index');
 

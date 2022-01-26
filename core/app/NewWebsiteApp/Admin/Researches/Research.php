@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Researches;
 
 use App\BaseApp\BaseModel;
+use App\BaseApp\Traits\ResolveRouteBinding;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-
 class Research extends BaseModel
 {
-    use Sluggable;
+    use Sluggable , ResolveRouteBinding;
     protected $table = 'researches';
     public $timestamps = true;
 
@@ -18,7 +20,7 @@ class Research extends BaseModel
         'title',
         'description',
         'research_content',
-        'image',
+        'cover_image',
         'is_featured',
         'is_active',
     ];

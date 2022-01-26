@@ -9,7 +9,9 @@ RUN set -ex \
   && apk --no-cache add \
     postgresql-dev \
     imagemagick-dev
-RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql bcmath  zip pdo_sqlite
+RUN docker-php-ext-install pdo pdo_pgsql pdo_mysql bcmath  zip pdo_sqlite exif fileinfo
+
+
 RUN docker-php-ext-install iconv
 RUN docker-php-ext-install gd
 RUN yes | pecl install \

@@ -31,15 +31,7 @@
 ])
 
 <br>
-@include('form.file',[
- 'name'=>'image',
- 'value'=> $row->image,
- 'class' => 'form-control',
- 'attributes'=>[
- 'label'=>'الصوره',
- 'placeholder'=>'الصوره',
- ]])
-
+@include("admin.layout.select_image")
 <br>
 
 @include('form.boolean',['value'=> $row->is_active ?? null,'name'=>'is_active','attributes'=>['label'=>'نشط' ,'required'=>1]])
@@ -47,5 +39,9 @@
 @include('form.boolean',['value'=> $row->is_featured ?? null,'name'=>'is_featured','attributes'=>['label'=>'عرض' ,'required'=>1]])
 
 
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-@include('admin.layout.tinyMCE_config')
+<@section('scripts')
+
+    @include('admin.layout.tinyMCE_config')
+    @include("admin.layout.filemanger_scripts");
+@endsection
+

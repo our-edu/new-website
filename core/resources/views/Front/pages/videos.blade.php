@@ -3,11 +3,11 @@
 <div class="videos container">
   <div class="d-flex justify-content-between toggle_images-videos">
     <h1 class="pageDescription">
-      <a href="/gallery">الصور</a>
+      <a href="{{route('gallery')}}">الصور</a>
     </h1>
     </h1>
     <h1 class="toggle_active pageDescription">
-      <a href="/videos">الفيديوهات</a>
+      <a href="{{route('videos')}}">الفيديوهات</a>
     </h1>
   </div>
 
@@ -18,12 +18,12 @@
 
   <section class="more_videos">
     <div class="row">
-      @foreach($videos as $video)
+      @foreach($videos->skip(1) as $video)
       <div class="col-sm-12 mb-5 col-lg-6">
         <a href="{{$video->video_url}}"
           data-fancybox data-type="iframe" data-preload="false" data-width="740" data-height="580">
           <div class="video_wrapper">
-            <img src="{{asset('front')}}/assets/img/image%203.png" />
+            <img src="{{env('APP_URL')."/storage/photos/".$video->cover_image}}" />
             <img class="play_icon" src="{{asset('front')}}/assets/img/videoicon.png">
             <p class="video_text">{{$video->title}}</p>
             <div class="image_overlay"></div>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'galleries','namespace' => '\App\NewWebsiteApp\Admin\Galleries\Controllers'], function () {
     Route::get('/', 'GalleriesController@index')->name('galleries.index');
 

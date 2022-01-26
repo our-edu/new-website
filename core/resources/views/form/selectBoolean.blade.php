@@ -4,7 +4,7 @@
           @php
            $attributes['style']=@$attributes['style'].'width: 100%;';
            @endphp
-            {!! Form::select($name, ['1'=>trans('app.Yes'),'0'=>trans('app.No')],(@$row->$name)?:(@$value), $attributes) !!}   
+            {!! Form::select($name, ['1'=>__('app.Yes'),'0'=>__('app.No')],(@$row->$name)?:(@$value), $attributes) !!}
             @php
             $name=(isset($error_name))?$error_name:$name;     
            @endphp

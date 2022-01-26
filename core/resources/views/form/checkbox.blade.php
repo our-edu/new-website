@@ -1,5 +1,5 @@
 <div class="row mg-t-20">
-    <label class="col-sm-4 form-control-label">{{ @$attributes['label'] }} <span class="tx-danger">{{ (@$attributes['required'])?'*':'' }}</span></label>
+    <label class="col-sm-2 form-control-label">{{ @$attributes['label'] }} <span class="tx-danger">{{ (@$attributes['required'])?'*':'' }}</span></label>
     <div class="col-sm-8 mg-t-10 mg-sm-t-0">
         <label class="ckbox">
             {!! Form::checkbox($name,1,(@$value)?:NULL,$attributes) !!}

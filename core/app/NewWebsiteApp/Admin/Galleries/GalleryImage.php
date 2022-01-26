@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Galleries;
 
 use App\BaseApp\BaseModel;
@@ -20,5 +22,4 @@ class GalleryImage extends BaseModel
     {
         return $this;
     }
-
 }

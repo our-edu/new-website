@@ -10,7 +10,7 @@
           </p>
         </div>
         <div class="slider-image">
-          <img src="{{asset('front')}}/assets/img/Taha.png">
+          <img src="{{env('APP_URL')."/storage/photos/".$article->post_img}}">
         </div>
       </div>
       @endforeach

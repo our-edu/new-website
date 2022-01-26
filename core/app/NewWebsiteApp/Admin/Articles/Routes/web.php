@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'articles','namespace' => '\App\NewWebsiteApp\Admin\Articles\Controllers'], function () {
     Route::get('/', 'ArticlesController@index')->name('articles.index');
 

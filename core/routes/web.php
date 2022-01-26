@@ -30,8 +30,10 @@ Route::group(['prefix'=>'admin'], function () {
         require base_path('app/NewWebsiteApp/Admin/Videos/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Galleries/Routes/web.php');
         require base_path('app/NewWebsiteApp/Admin/Pages/Routes/web.php');
+        Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+            \UniSharp\LaravelFilemanager\Lfm::routes();
+        });
     });
 });
 
 require base_path('app/NewWebsiteApp/Front/Routes/routes.php');
-

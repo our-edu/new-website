@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Articles\Controllers;
+
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Articles\Requests\CreateArticleRequest;
 use App\NewWebsiteApp\Admin\Articles\Requests\UpdateArticleRequest;
@@ -10,7 +13,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class ArticlesController extends Controller
 {
@@ -37,11 +39,11 @@ class ArticlesController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(CreateArticleRequest $request)
     {
         $data['module'] = $this->module;
+
 
         $row = new Article();
         $row->title = $request->title;
@@ -51,9 +53,10 @@ class ArticlesController extends Controller
         $row->post_img = $request->post_img;
         $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
+        $row->post_img = $request->getImageData();
         toast('تم انشاء المقاله بنجاح', 'success');
         $row->save();
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
 
 //        $data['module'] = $this->module;
 //        if ($row = $this->model->create($request->except('slug'))) {
@@ -70,20 +73,26 @@ class ArticlesController extends Controller
         $data['module'] = $this->module;
         $data['page_title'] = 'View' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
-        $data['row'] = $this->model->findOrFail($id);
+        $artical = $this->model->findOrFail($id);
+        $data['row'] = $artical ;
+        $data['image'] = env('APP_URL')."/storage/photos/".$artical->post_img;
         return view('admin.'.$this->module . '.view', $data);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
-        $data['row'] = $this->model->findOrFail($id);
+        $artical = $this->model->findOrFail($id);
+        $data['row'] = $artical ;
+        $data['image'] = env('APP_URL')."/storage/photos/".$artical->post_img;
         return view('admin.'.$this->module . '.edit', $data);
     }
 
 
-    public function update(UpdateArticleRequest $request , $id) {
+    public function update(UpdateArticleRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
@@ -92,13 +101,13 @@ class ArticlesController extends Controller
         $row->post_img = $request->post_img;
         $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
-        if ($request->hasFile('post_img')) {
-            $row->post_img = $request->post_img;
+        if ($request->getImageData()) {
+            $row->post_img = $request->getImageData();
         }
         $row->update();
         toast('تم تعديل المقاله بنجاح', 'success');
 
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -110,5 +119,4 @@ class ArticlesController extends Controller
         toast('تم حذف المقاله بنجاح', 'success');
         return back();
     }
-
 }

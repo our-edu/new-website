@@ -3,10 +3,10 @@
 <section class="images container">
     <div class="d-flex justify-content-between toggle_images-videos">
       <h1 class="pageDescription toggle_active">
-        <a href="/gallery">الصور</a>
+        <a href="{{route('gallery')}}">الصور</a>
       </h1>
       <h1 class="pageDescription text-color-black">
-        <a href="/videos">الفيديوهات</a>
+        <a href="{{route('videos')}}">الفيديوهات</a>
       </h1>
     </div>
 

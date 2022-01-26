@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Exports;
 
 use App\AutomaticPaymentApp\Models\ParentPaymentTransaction;
@@ -33,6 +35,5 @@ class ParentPaymentTransactionExport implements FromCollection, WithHeadings
             'Paid_amount'
 
         ];
-
     }
 }

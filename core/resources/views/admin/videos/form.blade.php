@@ -35,10 +35,15 @@
     $attributes=['class'=>'form-control','label'=>'رابط الفيديو','placeholder'=>'رابط الفيديو'];
 @endphp
 
+<br>
+@include("admin.layout.select_image")
+<br>
 @include('form.input',['name'=>'video_url','type'=>'url','attributes'=>$attributes])
 
+<@section('scripts')
+    @include("admin.layout.filemanger_scripts");
+
+@endsection
 
 
-<script>
-    CKEDITOR.replace( 'description' );
-</script>
+

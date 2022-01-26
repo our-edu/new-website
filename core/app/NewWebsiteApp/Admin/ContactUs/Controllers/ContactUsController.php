@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\ContactUs\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\NewWebsiteApp\Admin\ContactUs\Contact;
 use Illuminate\Http\Request;
-
 
 class ContactUsController extends Controller
 {

@@ -29,15 +29,11 @@
 ])
 
 <br>
-@include('form.file',[
- 'name'=>'post_img',
- 'value'=> $row->book_img,
- 'class' => 'form-control',
- 'attributes'=>[
- 'label'=>'الصوره',
- 'placeholder'=>'الصوره',
- ]])
+@include("admin.layout.select_image")
+<br>
 
+<br>
+@include("admin.layout.select_file")
 <br>
 
 @include('form.boolean',['value'=> $row->is_active ?? null,'name'=>'is_active','attributes'=>['label'=>'نشط' ,'required'=>1]])
@@ -45,6 +41,13 @@
 @include('form.boolean',['value'=> $row->is_featured ?? null,'name'=>'is_featured','attributes'=>['label'=>'عرض' ,'required'=>1]])
 <br>
 @include('form.boolean',['value'=> $row->is_recommended ?? null,'name'=>'is_recommended','attributes'=>['label'=>'مفضله' ,'required'=>1]])
+
+
+@section('scripts')
+
+    @include('admin.layout.tinyMCE_config')
+    @include("admin.layout.filemanger_scripts");
+@endsection
 
 
 

@@ -1,6 +1,6 @@
 <div class="card_wrapper">
   <div class="the_image d-flex">
-    <img class="w-100" src="{{asset('front')}}/assets/img/book.png" />
+    <img class="w-100" src="{{env('APP_URL')."/storage/photos/".$book->book_img}}" />
   </div>
   <div class="the_details">
     <h2 class="fw-bold text_head text_black" style="margin-bottom: 0!important">{{$book->name}}</h2>

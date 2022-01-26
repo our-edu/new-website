@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'pages','namespace' => '\App\NewWebsiteApp\Admin\Pages\Controllers'], function () {
     Route::get('/', 'PagesController@index')->name('pages.index');
 

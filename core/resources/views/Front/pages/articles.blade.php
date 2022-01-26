@@ -12,7 +12,7 @@
 
   <div class="container">
           <div class="row mb-5" title="title" date="date" description="description">
-              @foreach($articles as $article)
+              @foreach($articles->skip(3) as $article)
             <div class="col-lg-4">
 {{--              {{> articlePreview}}--}}
               @include('Front.partials.articlePreview')

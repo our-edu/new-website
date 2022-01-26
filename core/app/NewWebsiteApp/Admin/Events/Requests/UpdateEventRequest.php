@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Events\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -27,5 +29,10 @@ class UpdateEventRequest extends FormRequest
             'end_time.required' => 'هذا الحقل مطلوب',
             'end_time.after' => 'هذا الحقل يجب ان يكون لاحقا لوقت البدء',
         ];
+    }
+    public function getImageData()
+    {
+        $directory_path = explode('/' . basename($this->input('image_url')), $this->input('image_url'))[0];
+        return  basename($directory_path)."/".basename($this->input('image_url'));
     }
 }

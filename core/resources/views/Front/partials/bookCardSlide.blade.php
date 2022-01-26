@@ -1,6 +1,6 @@
 <div class="card_wrapper">
   <div class="the_image d-flex align-items-center justify-content-center">
-    <img class="w-100" src="{{asset('front')}}/assets/img/book.png" />
+    <img class="w-100" src="{{env('APP_URL')."/storage/photos/".$book->book_img}}" />
   </div>
   <div class="the_details text-center">
     <h2 class="fw-bold text_head text_black text-center">{{$book->name}}</h2>
@@ -16,7 +16,7 @@
 
     </p>
     <div class="the_button text-center">
-      <a href="#">
+      <a href="{{env('APP_URL')."/storage/files/".$book->book_pdf}}" target="_blank">
         <button class="green">تحميل</button>
       </a>
     </div>

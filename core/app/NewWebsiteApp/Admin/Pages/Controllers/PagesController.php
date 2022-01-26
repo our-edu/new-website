@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Pages\Controllers;
+
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Articles\Requests\CreateArticleRequest;
 use App\NewWebsiteApp\Admin\Articles\Requests\UpdateArticleRequest;
@@ -12,7 +15,6 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
-
 
 class PagesController extends Controller
 {
@@ -39,7 +41,6 @@ class PagesController extends Controller
         $data['page_title'] = 'Create' . " " . $this->title;
         $data['row'] = $this->model;
         return view('admin.'.$this->module . '.create', $data);
-
     }
     public function store(PagesRequest $request)
     {
@@ -51,8 +52,7 @@ class PagesController extends Controller
         $row->body = $request->body;
         toast('تم الانشاء بنجاح', 'success');
         $row->save();
-        return redirect( '/admin/' . $this->module );
-
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -65,7 +65,8 @@ class PagesController extends Controller
         return view('admin.'.$this->module . '.view', $data);
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $data['module'] = $this->module;
         $data['page_title'] = 'Edit' . " " . $this->title;
         $data['breadcrumb'] = [$this->title => $this->module];
@@ -74,7 +75,8 @@ class PagesController extends Controller
     }
 
 
-    public function update(PagesRequest $request , $id) {
+    public function update(PagesRequest $request, $id)
+    {
         $data['module'] = $this->module;
         $row = $this->model->findOrFail($id);
         $row->title = $request->title;
@@ -83,7 +85,7 @@ class PagesController extends Controller
         $row->update();
         toast('تم التعديل  بنجاح', 'success');
 
-        return redirect( '/admin/' . $this->module );
+        return redirect('/admin/' . $this->module);
     }
 
 
@@ -95,5 +97,4 @@ class PagesController extends Controller
         toast('تم الحذف بنجاح', 'success');
         return back();
     }
-
 }

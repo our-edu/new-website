@@ -29,18 +29,18 @@
               كتب
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('gallery')}}">
+         <li class="nav-item">
+            <a class="nav-link" href="{{route('videos')}}">
             صور - فيديو
             </a>
-          </li>
+          </li>-
           <li class="nav-item">
             <a class="nav-link" href="{{route('profile')}}">
               الملف الشخصي
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('articles')}}">
               درسات و بحوث
             </a>
           </li>

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 Route::group(['prefix' => 'videos','namespace' => '\App\NewWebsiteApp\Admin\Videos\Controllers'], function () {
     Route::get('/', 'VideosController@index')->name('videos.index');
 

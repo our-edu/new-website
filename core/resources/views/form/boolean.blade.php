@@ -5,13 +5,13 @@
             <div class="col-lg-4">
                 <label class="rdiobox">
                     {!! Form::radio($name,1,null,$attributes) !!}
-                    <span>Yes </span>
+                    <span>{{__("app.Yes")}} </span>
                 </label>
             </div><!-- col-3 -->
             <div class="col-lg-4">
                 <label class="rdiobox">
                     {!! Form::radio($name,0,null,$attributes) !!}
-                    <span> No </span>
+                    <span>{{__("app.No")}} </span>
                 </label>
             </div><!-- col-3 -->
 

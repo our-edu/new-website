@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Articles;
 
 use App\BaseApp\BaseModel;
+use App\BaseApp\Traits\ResolveRouteBinding;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-
 class Article extends BaseModel
 {
-    use Sluggable;
+    use Sluggable , ResolveRouteBinding;
     protected $table = 'articles';
     public $timestamps = true;
 

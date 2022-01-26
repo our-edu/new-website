@@ -27,7 +27,7 @@
                   {{$importent_article->description}}
                 </p>
                 <div class="the_button">
-                  <a href="/articles" class="text-size-18 main">المزيد...</a>
+                  <a href="{{route('articles')}}" class="text-size-18 main">المزيد...</a>
                 </div>
               </div>
               @endforeach

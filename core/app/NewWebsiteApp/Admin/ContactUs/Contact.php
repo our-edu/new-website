@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\ContactUs;
 
 use App\BaseApp\BaseModel;
@@ -18,7 +20,6 @@ class Contact extends BaseModel
     public function getData()
     {
         return $this;
-
     }
 
     public function getNameAttribute(): string

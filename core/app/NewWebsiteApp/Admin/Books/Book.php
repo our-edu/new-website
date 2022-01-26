@@ -1,14 +1,18 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\NewWebsiteApp\Admin\Books;
 
 use App\BaseApp\BaseModel;
+use App\BaseApp\Traits\ResolveRouteBinding;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Book extends BaseModel
 {
-
+    use Sluggable , ResolveRouteBinding;
     protected $table = 'books';
     public $timestamps = true;
 
@@ -20,7 +24,17 @@ class Book extends BaseModel
         'is_recommended',
         'publish_date',
         'author',
+        'book_pdf'
     ];
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
     public function getData()
     {
         return $this;

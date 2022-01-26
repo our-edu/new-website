@@ -8,8 +8,9 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "astrotomic/laravel-translatable": "^11.9",
+        "awssat/laravel-visits": "^3.0",
         "barryvdh/laravel-translation-manager": "^0.5.9",
         "carlos-meneses/laravel-mpdf": "^2.1",
         "cviebrock/eloquent-sluggable": "^8.0",
@@ -34,7 +35,7 @@
         "spatie/laravel-sluggable": "^2.6",
         "squizlabs/php_codesniffer": "^3.6",
         "tymon/jwt-auth": "^1.0",
-        "unisharp/laravel-filemanager": "^1.8"
+        "unisharp/laravel-filemanager": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

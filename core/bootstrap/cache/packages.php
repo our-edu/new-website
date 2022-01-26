@@ -6,6 +6,17 @@
       0 => 'Astrotomic\\Translatable\\TranslatableServiceProvider',
     ),
   ),
+  'awssat/laravel-visits' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Awssat\\Visits\\VisitsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Visits' => 'Awssat\\Visits\\Visits',
+    ),
+  ),
   'barryvdh/laravel-ide-helper' => 
   array (
     'providers' => 
@@ -179,11 +190,29 @@
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
     ),
   ),
+  'spatie/laravel-referer' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Referer\\RefererServiceProvider',
+    ),
+  ),
   'tanmuhittin/laravel-google-translate' => 
   array (
     'providers' => 
     array (
       0 => 'Tanmuhittin\\LaravelGoogleTranslate\\LaravelGoogleTranslateServiceProvider',
+    ),
+  ),
+  'torann/geoip' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Torann\\GeoIP\\GeoIPServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'GeoIP' => 'Torann\\GeoIP\\Facades\\GeoIP',
     ),
   ),
   'tymon/jwt-auth' => 
@@ -196,6 +225,16 @@
     'providers' => 
     array (
       0 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
+    ),
+  ),
+  'unisharp/laravel-filemanager' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
+    ),
+    'aliases' => 
+    array (
     ),
   ),
 );
