@@ -40,7 +40,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('articles')}}">
+            <a class="nav-link" href="{{route('researches')}}">
               درسات و بحوث
             </a>
           </li>
