@@ -11,6 +11,7 @@ use App\NewWebsiteApp\Admin\Books\Book;
 use App\NewWebsiteApp\Admin\Events\Event;
 use App\NewWebsiteApp\Admin\Galleries\Gallery;
 use App\NewWebsiteApp\Admin\Galleries\GalleryImage;
+use App\NewWebsiteApp\Admin\Pages\Page;
 use App\NewWebsiteApp\Admin\Researches\Research;
 use App\NewWebsiteApp\Admin\Videos\Video;
 use Illuminate\Support\Facades\Storage;
@@ -82,8 +83,8 @@ class FrontController extends BaseController
     public function profile()
     {
         $data = [];
-//        $profile= User::where('is_active',true)->latest()->get();
-        return view('Front.pages.profile');
+       $profile = Page::all()->first();
+        return view('Front.pages.profile', compact('profile'));
     }
     public function contact()
     {
