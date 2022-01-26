@@ -92,7 +92,6 @@ class ResearchesController extends Controller
         $row->title = $request->title;
         $row->description = $request->description;
         $row->research_content = $request->research_content;
-        $row->image = $request->image;
         $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
         if ($request->getImageData()) {
