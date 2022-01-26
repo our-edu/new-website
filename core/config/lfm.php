@@ -54,7 +54,7 @@ return [
         'file'  => [
             'folder_name'  => 'files',
             'startup_view' => 'grid',
-            'max_size'     => 50000000, // size in KB
+            'max_size'     => 500000000000000000, // size in KB
             'valid_mime'   => [
                 'application/pdf',
             ],
@@ -154,6 +154,9 @@ return [
     | directives are not supported.
      */
     'php_ini_overrides'        => [
-        'memory_limit' => '-1',
+        'memory_limit' => '5000M',
+        'post_max_size'=>"5000M",
+        'upload_max_filesize'=>"5000M"
+
     ],
 ];
