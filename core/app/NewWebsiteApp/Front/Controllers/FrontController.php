@@ -8,6 +8,7 @@ use App\BaseApp\Controllers\BaseController;
 use App\BaseApp\Models\User;
 use App\NewWebsiteApp\Admin\Articles\Article;
 use App\NewWebsiteApp\Admin\Books\Book;
+use App\NewWebsiteApp\Admin\ContactUs\Contact;
 use App\NewWebsiteApp\Admin\Events\Event;
 use App\NewWebsiteApp\Admin\Galleries\Gallery;
 use App\NewWebsiteApp\Admin\Galleries\GalleryImage;
@@ -118,7 +119,7 @@ class FrontController extends BaseController
 
     public function contactStore(Request $request)
     {
-        $this->model->create($request->all());
+        Contact::create($request->all());
         toast('تم الارسال', 'success');
         return route('contact_us');
     }
