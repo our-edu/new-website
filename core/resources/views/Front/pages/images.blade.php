@@ -21,7 +21,7 @@
                 @if(!empty($gallery->images))
                     <div class="image_wrapper" data-aos="fade">
                         <div class="main_image_wrapper">
-                            <img  {{$loop->iteration == 2 ? "no_has_child" : ""}} data-fancybox="gallery1"
+                            <img  class="{{$loop->iteration == 2 ? "no_has_child" : ""}}" data-fancybox="gallery1"
                                  src="{{env('APP_URL')."/".$gallery->images[0]}}"/>
                             <div class=" image_text">{{$gallery->title}}
                             </div>
