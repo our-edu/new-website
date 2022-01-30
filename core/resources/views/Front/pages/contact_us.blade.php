@@ -72,10 +72,6 @@
           </div>
           <div class="item">
             <span> هاتف المكتب</span>
-            <span>:  <a href="tel: 55484">554848</a> </span>
-          </div>
-          <div class="item">
-            <span>  الهاتف المحمول</span>
             <span>:  <a href="tel: 009660114801943">009660114801943</a> </span>
           </div>
           <div class="item">
