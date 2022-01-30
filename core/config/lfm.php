@@ -69,8 +69,7 @@ return [
                 'image/png',
                 'image/gif',
                 'image/svg+xml',
-                'image/svg',
-                'text/plain',
+                'image/svg'
             ],
         ],
     ],
@@ -91,7 +90,7 @@ return [
 
     'should_validate_size'     => false,
 
-    'should_validate_mime'     => true,
+    'should_validate_mime'     => false,
 
     // behavior on files with identical name
     // setting it to true cause old file replace with new one
@@ -105,15 +104,19 @@ return [
      */
 
     // If true, image thumbnails would be created during upload
-    'should_create_thumbnails' => true,
+    'should_create_thumbnails' => false,
 
     'thumb_folder_name'        => 'thumbs',
 
     // Create thumbnails automatically only for listed types.
-    'raster_mimetypes'         => [
+    'raster_mimetypes' => [
         'image/jpg',
         'image/jpeg',
         'image/png',
+        'image/gif',
+        'image/svg+xml',
+        'image/svg',
+        'text/plain',
     ],
 
     'thumb_img_width'          => 200, // px
