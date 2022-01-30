@@ -4,9 +4,9 @@
       <div class="col-sm-6 mb-xs-4 col-lg-6 colm_wrapper">
         <p class="mb-3 list_head font-weight-semibold">روابط سريعة</p>
         <div class="d-flex flex-column list">
-          <a href="index.html">الرئيسية</a>
-          <a href="articles.html">المدونه</a>
-          <a href="articles.html">اهم المقالات</a>
+          <a href="{{route('home')}}">الرئيسية</a>
+          <a href="{{route('books')}}">المدونه</a>
+          <a href="{{route('articles')}}">اهم المقالات</a>
         </div>
       </div>
       <div class="col-sm-6 col-lg-6 colm_wrapper">

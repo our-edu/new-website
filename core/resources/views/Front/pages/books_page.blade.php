@@ -15,7 +15,7 @@
             <h2 class="section_title fw-bold">كتب انصح بقرائتها </h2>
             <div class="row">
                 {{--      {{#each data.booksFav}}--}}
-                @foreach($recommended_books->skip(4) as $book)
+                @foreach($recommended_books as $book)
                     <div class="col-sm-6 col-md-3">
                         {{--        {{> bookFavCard }}--}}
                         @include('Front.partials.bookFavCard')
