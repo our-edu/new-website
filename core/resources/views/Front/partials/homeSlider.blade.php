@@ -1,19 +1,39 @@
 <section class="slider_section">
   <div class="swiper-container two">
     <div class="swiper-wrapper">
-      @foreach($articles as $article)
       <div class="swiper-slide">
         <div class="text">
-          <p class="text-size-30 mb-3 fw-bold">{{$article->title}}</p>
+          <p class="text-size-30 mb-3 fw-bold">دروس111</p>
           <p class="text-size-18 mb-3">
-            {{\Illuminate\Support\Str::limit(strip_tags($article->description), 150)}}
+            ﺗﻨﻈﻢ اﻟﻨﺪوﺔ اﻟﻌﺎﻟﻤﻴﺔ ﻟﻠﺸﺒﺎب اﻟﺎﺳﻠﺎﻣﻲ ﻛﻞ أﺭﺑﻊ ﺳﻨﻮﺎﺗ ﻣﺆﺗﻤﺮا ﻋﺎﻟﻤﻴﺎ ﻳﺤﻀﺮه ﺷﺨﺼﻴﺎت ﻋﻠﻤﻴﺔ وﻓﻜﺮﻳﺔ ﻣﻦ ﻋﺪة دﻮﻟ اﺳﻠﺎﻣﻴﺔ
           </p>
         </div>
         <div class="slider-image">
-          <img src="{{env('APP_URL')."/storage/photos/".$article->post_img}}">
+          <img src="{{asset('Front')}}/assets/img/Taha.png">
         </div>
       </div>
-      @endforeach
+      <div class="swiper-slide">
+        <div class="text">
+          <p class="text-size-30 mb-3 fw-bold">دروس111</p>
+          <p class="text-size-18 mb-3">
+            ﺗﻨﻈﻢ اﻟﻨﺪوﺔ اﻟﻌﺎﻟﻤﻴﺔ ﻟﻠﺸﺒﺎب اﻟﺎﺳﻠﺎﻣﻲ ﻛﻞ أﺭﺑﻊ ﺳﻨﻮﺎﺗ ﻣﺆﺗﻤﺮا ﻋﺎﻟﻤﻴﺎ ﻳﺤﻀﺮه ﺷﺨﺼﻴﺎت ﻋﻠﻤﻴﺔ وﻓﻜﺮﻳﺔ ﻣﻦ ﻋﺪة دﻮﻟ اﺳﻠﺎﻣﻴﺔ
+          </p>
+        </div>
+        <div class="slider-image">
+          <img src="{{asset('Front')}}/assets/img/Motakaed.png">
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="text">
+          <p class="text-size-30 mb-3 fw-bold">دروس111</p>
+          <p class="text-size-18 mb-3">
+            ﺗﻨﻈﻢ اﻟﻨﺪوﺔ اﻟﻌﺎﻟﻤﻴﺔ ﻟﻠﺸﺒﺎب اﻟﺎﺳﻠﺎﻣﻲ ﻛﻞ أﺭﺑﻊ ﺳﻨﻮﺎﺗ ﻣﺆﺗﻤﺮا ﻋﺎﻟﻤﻴﺎ ﻳﺤﻀﺮه ﺷﺨﺼﻴﺎت ﻋﻠﻤﻴﺔ وﻓﻜﺮﻳﺔ ﻣﻦ ﻋﺪة دﻮﻟ اﺳﻠﺎﻣﻴﺔ
+          </p>
+        </div>
+        <div class="slider-image">
+          <img src="{{asset('Front')}}/assets/img/image 9.png">
+        </div>
+      </div>
     </div>
   </div>
   <div class="slider_footer">
