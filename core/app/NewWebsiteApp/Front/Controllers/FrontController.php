@@ -58,14 +58,14 @@ class FrontController extends BaseController
     }
     public function articleDetails(Article $article)
     {
-        visits($article)->increment();
+        visits($article)->increment(1,true);
         $article->image = env('APP_URL')."/storage/photos/".$article->post_img;
         $article->visits =  visits($article)->count();
         return view('Front.pages.articleDetails', compact('article'));
     }
     public function researchesDetails(Research $research)
     {
-        visits($research)->increment();
+        visits($research)->increment(1 ,true);
         $research->image = env('APP_URL')."/storage/photos/".$research->cover_image;
         $research->visits =  visits($research)->count();
         $article = $research;
@@ -73,7 +73,7 @@ class FrontController extends BaseController
     }
     public function eventDetails(Event $event)
     {
-        visits($event)->increment();
+        visits($event)->increment(1 ,true);
         $event->image = env('APP_URL')."/storage/photos/".$event->event_img;
         $event->visits =  visits($event)->count();
         return view('Front.pages.eventDetails', compact('event'));
