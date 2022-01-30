@@ -28,11 +28,12 @@
                         </div>
                         <div class="parent">
                             @foreach($gallery->images as $image)
+                                @if($loop->iteration  < 2)
+                                    <img data-fancybox="gallery1"
+                                         src="{{env('APP_URL')."/".$image}}"
 
-                                <img data-fancybox="gallery1"
-                                     src="{{env('APP_URL')."/".$image}}"
-
-                                />
+                                    />
+                                @endif
                             @endforeach
 
                         </div>
