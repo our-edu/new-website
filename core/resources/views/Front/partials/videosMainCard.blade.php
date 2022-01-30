@@ -1,3 +1,4 @@
+@if($videos)
 <section class="page_main_card">
   <a
     href="{{$videos->first()->video_url}}"
@@ -19,3 +20,4 @@
       </div>
   </a>
 </section>
+@endif
