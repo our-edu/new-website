@@ -121,6 +121,6 @@ class FrontController extends BaseController
     {
         Contact::create($request->all());
         toast('تم الارسال', 'success');
-        return route('contact_us');
+        return redirect()->route('contact_us');
     }
 }
