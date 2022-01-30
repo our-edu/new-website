@@ -14,6 +14,7 @@ use App\NewWebsiteApp\Admin\Galleries\GalleryImage;
 use App\NewWebsiteApp\Admin\Pages\Page;
 use App\NewWebsiteApp\Admin\Researches\Research;
 use App\NewWebsiteApp\Admin\Videos\Video;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -113,5 +114,12 @@ class FrontController extends BaseController
         $data = [];
         $videos= Video::get();
         return view('Front.pages.videos', compact('videos'));
+    }
+
+    public function contactStore(Request $request)
+    {
+        $this->model->create($request->all());
+        toast('تم الارسال', 'success');
+        return route('contact_us');
     }
 }
