@@ -77,7 +77,7 @@
           </div>
           <div class="item">
             <span>فاكس المكتب</span>
-            <span>: 480245  </span>
+            <span>: <a href="fax:+480245">480245  </a> </span>
           </div>
         </div>
       </section>
