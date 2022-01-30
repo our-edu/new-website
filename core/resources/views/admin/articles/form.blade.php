@@ -45,6 +45,7 @@
     'placeholder'=>'المحتوي',
     ]
 ])
+<p> </p>
 
 <br>
 @include("admin.layout.select_image")

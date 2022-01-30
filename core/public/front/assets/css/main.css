@@ -15233,30 +15233,54 @@ h6, .h6,
   overflow: hidden;
 }
 
+/* line 54, src/assets/scss/base/_helpers.scss */
+.text_clamp_1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* line 61, src/assets/scss/base/_helpers.scss */
+.text_clamp_2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* line 68, src/assets/scss/base/_helpers.scss */
+.text_clamp_3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /**
  * Global fonts size for text
  */
-/* line 56, src/assets/scss/base/_helpers.scss */
+/* line 78, src/assets/scss/base/_helpers.scss */
 .text-size-30 {
   font-size: 1.875rem;
 }
 
-/* line 60, src/assets/scss/base/_helpers.scss */
+/* line 82, src/assets/scss/base/_helpers.scss */
 .text-size-24 {
   font-size: 1.5rem;
 }
 
-/* line 64, src/assets/scss/base/_helpers.scss */
+/* line 86, src/assets/scss/base/_helpers.scss */
 .text-size-18 {
   font-size: 1.125rem;
 }
 
-/* line 68, src/assets/scss/base/_helpers.scss */
+/* line 90, src/assets/scss/base/_helpers.scss */
 .text-size-14 {
   font-size: 0.875rem;
 }
 
-/* line 72, src/assets/scss/base/_helpers.scss */
+/* line 94, src/assets/scss/base/_helpers.scss */
 .text-size-20 {
   font-size: 1.25rem;
 }
@@ -15264,22 +15288,22 @@ h6, .h6,
 /**
  * Global Colors
  */
-/* line 80, src/assets/scss/base/_helpers.scss */
+/* line 102, src/assets/scss/base/_helpers.scss */
 .text-color-black {
   color: rgba(0, 0, 0, 0.7);
 }
 
-/* line 83, src/assets/scss/base/_helpers.scss */
+/* line 105, src/assets/scss/base/_helpers.scss */
 .text-color-gold {
   color: #d0a569;
 }
 
-/* line 87, src/assets/scss/base/_helpers.scss */
+/* line 109, src/assets/scss/base/_helpers.scss */
 .text-color-white {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* line 91, src/assets/scss/base/_helpers.scss */
+/* line 113, src/assets/scss/base/_helpers.scss */
 .text-color-green {
   color: #578060;
 }
@@ -15288,7 +15312,7 @@ h6, .h6,
  ** Use this class at video play image
  ** make icon be center
  */
-/* line 100, src/assets/scss/base/_helpers.scss */
+/* line 122, src/assets/scss/base/_helpers.scss */
 .play_icon {
   width: 100px !important;
   height: 100px;
@@ -15309,6 +15333,8 @@ h6, .h6,
 /* line 9, src/assets/scss/layout/_header.scss */
 nav {
   position: fixed !important;
+  top: 0;
+  left: 0;
   z-index: 55;
   width: 100%;
   -webkit-transition: 0.3s ease all;
@@ -15316,17 +15342,17 @@ nav {
   padding-block: 33px !important;
 }
 
-/* line 15, src/assets/scss/layout/_header.scss */
+/* line 17, src/assets/scss/layout/_header.scss */
 nav.green_nav {
   background: #578060;
 }
 
-/* line 17, src/assets/scss/layout/_header.scss */
+/* line 19, src/assets/scss/layout/_header.scss */
 nav.green_nav a {
   color: #FFFFFF !important;
 }
 
-/* line 21, src/assets/scss/layout/_header.scss */
+/* line 23, src/assets/scss/layout/_header.scss */
 nav.transparent {
   background-color: transparent;
 }
@@ -15337,32 +15363,32 @@ nav.transparent {
     background-color: #578060 !important;
     padding-block: 23px !important;
   }
-  /* line 28, src/assets/scss/layout/_header.scss */
+  /* line 30, src/assets/scss/layout/_header.scss */
   nav #navbarSupportedContent .navbar-nav {
     padding: 20px !important;
   }
-  /* line 30, src/assets/scss/layout/_header.scss */
+  /* line 32, src/assets/scss/layout/_header.scss */
   nav #navbarSupportedContent .navbar-nav li {
     padding: 9px;
     border-bottom: 1px solid;
   }
 }
 
-/* line 39, src/assets/scss/layout/_header.scss */
+/* line 41, src/assets/scss/layout/_header.scss */
 nav ul li {
   -webkit-margin-start: 30px;
           margin-inline-start: 30px;
 }
 
 @media screen and (max-width: 1030px) {
-  /* line 39, src/assets/scss/layout/_header.scss */
+  /* line 41, src/assets/scss/layout/_header.scss */
   nav ul li {
     -webkit-margin-start: 20px;
             margin-inline-start: 20px;
   }
 }
 
-/* line 44, src/assets/scss/layout/_header.scss */
+/* line 46, src/assets/scss/layout/_header.scss */
 nav ul li a {
   padding: 0 !important;
   color: #30302e !important;
@@ -15370,17 +15396,17 @@ nav ul li a {
   transition: 0.3s ease color;
 }
 
-/* line 48, src/assets/scss/layout/_header.scss */
+/* line 50, src/assets/scss/layout/_header.scss */
 nav ul li a:hover {
   color: #d0a569 !important;
 }
 
-/* line 51, src/assets/scss/layout/_header.scss */
+/* line 53, src/assets/scss/layout/_header.scss */
 nav ul li a.active {
   color: #d0a569 !important;
 }
 
-/* line 58, src/assets/scss/layout/_header.scss */
+/* line 60, src/assets/scss/layout/_header.scss */
 nav .container-fluid, nav .container-sm, nav .container-md, nav .container-lg, nav .container-xl, nav .container-xxl {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15388,12 +15414,12 @@ nav .container-fluid, nav .container-sm, nav .container-md, nav .container-lg, n
 }
 
 @media screen and (max-width: 1023px) {
-  /* line 58, src/assets/scss/layout/_header.scss */
+  /* line 60, src/assets/scss/layout/_header.scss */
   nav .container-fluid, nav .container-sm, nav .container-md, nav .container-lg, nav .container-xl, nav .container-xxl {
     display: inline-block;
     position: relative;
   }
-  /* line 63, src/assets/scss/layout/_header.scss */
+  /* line 65, src/assets/scss/layout/_header.scss */
   nav .container-fluid button, nav .container-sm button, nav .container-md button, nav .container-lg button, nav .container-xl button, nav .container-xxl button {
     position: absolute;
     left: 40px;
@@ -15405,7 +15431,7 @@ nav .container-fluid, nav .container-sm, nav .container-md, nav .container-lg, n
 }
 
 @media screen and (max-width: 1023px) {
-  /* line 73, src/assets/scss/layout/_header.scss */
+  /* line 75, src/assets/scss/layout/_header.scss */
   nav .container-fluid .navbar-brand img, nav .container-sm .navbar-brand img, nav .container-md .navbar-brand img, nav .container-lg .navbar-brand img, nav .container-xl .navbar-brand img, nav .container-xxl .navbar-brand img {
     width: 100px;
   }
@@ -15466,6 +15492,20 @@ footer .container i {
 /* line 45, src/assets/scss/layout/_footer.scss */
 footer .copyright p {
   color: #ffffff;
+}
+
+/* line 49, src/assets/scss/layout/_footer.scss */
+footer .emailOne span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+/* line 53, src/assets/scss/layout/_footer.scss */
+footer .emailOne a {
+  direction: ltr;
+  text-align: end;
+  margin-right: 5px !important;
+  margin-top: 1px !important;
 }
 
 /* line 5, src/assets/scss/components/_button.scss */
@@ -15553,8 +15593,8 @@ button.form_submit:hover, a.form_submit:hover {
 .card-img-top {
   width: 100%;
   height: 269px;
-  -o-object-fit: fill;
-     object-fit: fill;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* line 11, src/assets/scss/components/_articles.scss */
@@ -15572,13 +15612,13 @@ button.form_submit:hover, a.form_submit:hover {
 
 /* line 23, src/assets/scss/components/_articles.scss */
 .card-title {
-  font-family: "Cairo";
-  margin-top: 15px;
+  padding: 4px 0;
+  margin-top: 10px;
   font-weight: bold;
   font-size: 24px;
-  line-height: 8px;
   color: #578060;
   text-align: right !important;
+  line-height: 1.7em;
 }
 
 /* line 33, src/assets/scss/components/_articles.scss */
@@ -15587,22 +15627,21 @@ button.form_submit:hover, a.form_submit:hover {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  line-height: 24px;
   text-align: right;
   color: rgba(95, 141, 105, 0.9);
   margin-top: 1.5rem !important;
 }
 
 @media (max-width: 800px) {
-  /* line 46, src/assets/scss/components/_articles.scss */
+  /* line 45, src/assets/scss/components/_articles.scss */
   .card-img-top {
     padding: 0;
   }
-  /* line 49, src/assets/scss/components/_articles.scss */
+  /* line 48, src/assets/scss/components/_articles.scss */
   .card-title {
     font-size: 20px;
   }
-  /* line 52, src/assets/scss/components/_articles.scss */
+  /* line 51, src/assets/scss/components/_articles.scss */
   .articlesDate {
     font-size: 12px;
     line-height: 8px;
@@ -15610,7 +15649,7 @@ button.form_submit:hover, a.form_submit:hover {
     position: relative;
     color: #e3b26f;
   }
-  /* line 60, src/assets/scss/components/_articles.scss */
+  /* line 59, src/assets/scss/components/_articles.scss */
   .card-txt {
     font-size: 16px;
   }
@@ -15701,9 +15740,11 @@ button.form_submit:hover, a.form_submit:hover {
   display: block;
   height: 395px !important;
   width: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
-/* line 64, src/assets/scss/components/_articleSlider.scss */
+/* line 65, src/assets/scss/components/_articleSlider.scss */
 .myArticleSwiper .text {
   display: block;
   text-align: right;
@@ -15711,7 +15752,7 @@ button.form_submit:hover, a.form_submit:hover {
   margin-bottom: 3rem;
 }
 
-/* line 70, src/assets/scss/components/_articleSlider.scss */
+/* line 71, src/assets/scss/components/_articleSlider.scss */
 .myArticleSwiper .articleSliderTitle {
   z-index: 100;
   text-align: right;
@@ -15724,7 +15765,7 @@ button.form_submit:hover, a.form_submit:hover {
   text-align: right;
 }
 
-/* line 81, src/assets/scss/components/_articleSlider.scss */
+/* line 82, src/assets/scss/components/_articleSlider.scss */
 .myArticleSwiper .articleSliderDate {
   font-size: 14px;
   line-height: 10px;
@@ -15735,7 +15776,7 @@ button.form_submit:hover, a.form_submit:hover {
   margin-top: 2rem;
 }
 
-/* line 91, src/assets/scss/components/_articleSlider.scss */
+/* line 92, src/assets/scss/components/_articleSlider.scss */
 .myArticleSwiper .articleSliderText {
   text-align: right;
   font-style: normal;
@@ -15751,7 +15792,7 @@ button.form_submit:hover, a.form_submit:hover {
 }
 
 @media screen and (max-width: 1020px) {
-  /* line 106, src/assets/scss/components/_articleSlider.scss */
+  /* line 107, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .swiper-slide {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -15761,7 +15802,7 @@ button.form_submit:hover, a.form_submit:hover {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  /* line 111, src/assets/scss/components/_articleSlider.scss */
+  /* line 112, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .slider-image img {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -15781,7 +15822,7 @@ button.form_submit:hover, a.form_submit:hover {
 }
 
 @media screen and (max-width: 1020px) and (max-width: 1024px) {
-  /* line 111, src/assets/scss/components/_articleSlider.scss */
+  /* line 112, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .slider-image img {
     height: 380px !important;
     -o-object-fit: fill !important;
@@ -15790,39 +15831,39 @@ button.form_submit:hover, a.form_submit:hover {
 }
 
 @media screen and (max-width: 1020px) and (max-width: 600px) {
-  /* line 111, src/assets/scss/components/_articleSlider.scss */
+  /* line 112, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .slider-image img {
     height: 280px !important;
   }
 }
 
 @media screen and (max-width: 795px) {
-  /* line 129, src/assets/scss/components/_articleSlider.scss */
+  /* line 130, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .text {
     padding: 1.5rem;
   }
 }
 
 @media screen and (max-width: 795px) and (max-width: 950px) {
-  /* line 133, src/assets/scss/components/_articleSlider.scss */
+  /* line 134, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .text {
     padding-top: 4rem;
   }
 }
 
 @media screen and (max-width: 795px) {
-  /* line 137, src/assets/scss/components/_articleSlider.scss */
+  /* line 138, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .articleSliderTitle {
     font-size: 20px !important;
     line-height: 20px;
   }
-  /* line 141, src/assets/scss/components/_articleSlider.scss */
+  /* line 142, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .articleSliderDate {
     font-size: 12px;
     line-height: 10px;
     margin-top: 1rem;
   }
-  /* line 146, src/assets/scss/components/_articleSlider.scss */
+  /* line 147, src/assets/scss/components/_articleSlider.scss */
   .myArticleSwiper .articleSliderText {
     font-size: 12px !important;
     line-height: 20px !important;
@@ -16134,6 +16175,37 @@ input {
 /* line 2, src/assets/scss/components/_booksSliders.scss */
 .booksSliderWrapper .swiper-pagination-bullet-active {
   background-color: #848484 !important;
+}
+
+/* line 6, src/assets/scss/components/_booksSliders.scss */
+.setMinH {
+  min-height: 50px;
+}
+
+@media screen and (min-width: 1024px) {
+  /* line 11, src/assets/scss/components/_booksSliders.scss */
+  .setTheight {
+    min-height: 80px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  /* line 16, src/assets/scss/components/_booksSliders.scss */
+  .setMinH {
+    min-height: 120px !important;
+  }
+}
+
+@media screen and (min-width: 1110px) {
+  /* line 21, src/assets/scss/components/_booksSliders.scss */
+  .setMinH {
+    min-height: 165px !important;
+  }
+}
+
+/* line 26, src/assets/scss/components/_booksSliders.scss */
+.swiper-button-next, .swiper-button-prev {
+  color: #578060;
 }
 
 /* line 2, src/assets/scss/components/_loading.scss */
@@ -17554,7 +17626,7 @@ input {
 /* line 62, src/assets/scss/pages/_profile.scss */
 .profile .image_with_text .right_side .section_info .about, .profile .image_with_text .right_side .section_info .details {
   padding: 0 !important;
-  margin-bottom: 43px !important;
+  margin-bottom: 30px !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -17641,13 +17713,13 @@ input {
 /* line 128, src/assets/scss/pages/_profile.scss */
 .profile .about p {
   font-weight: bold;
-  font-size: 1.875rem;
+  font-size: 1.375rem;
   margin-bottom: 25px;
 }
 
 /* line 137, src/assets/scss/pages/_profile.scss */
 .profile .details p {
-  font-size: 1.125rem;
+  font-size: 1rem;
   color: rgba(18, 18, 18, 0.7);
   font-weight: 500;
   display: block;
@@ -17699,14 +17771,15 @@ input {
 
 @media screen and (max-width: 502px) {
   /* line 5, src/assets/scss/pages/_booksPage.scss */
-  .books_page .fav_books .the_image {
+  .books_page .fav_books .the_image, .books_page .fav_books .the_details {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    text-align: center;
   }
 }
 
-/* line 10, src/assets/scss/pages/_booksPage.scss */
+/* line 11, src/assets/scss/pages/_booksPage.scss */
 .books_page .fav_books h2.section_title, .books_page .fav_books .section_title.h2 {
   font-size: 2.5rem;
   margin-bottom: 90px !important;

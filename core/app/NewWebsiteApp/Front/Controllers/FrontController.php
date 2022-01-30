@@ -31,7 +31,7 @@ class FrontController extends BaseController
         $articles= Article::where('is_featured', true)->latest()->skip(1)->get()->take(9);
         $books= Book::where('is_featured', true)->latest()->get();
 
-        return view('Front.pages.index', compact('articles', 'page','books', 'importent_articles'));
+        return view('Front.pages.index', compact('articles', 'page', 'books', 'importent_articles'));
     }
 
     public function books()
@@ -54,18 +54,18 @@ class FrontController extends BaseController
         $data = [];
         $page = Page::whereSlug('researches')->first();
         $articles= Research::where('is_active', true)->orderByDesc('created_at')->get();
-        return view('Front.pages.researches', compact('articles','page'));
+        return view('Front.pages.researches', compact('articles', 'page'));
     }
     public function articleDetails(Article $article)
     {
-        visits($article)->increment(1,true);
+        visits($article)->increment(1, true);
         $article->image = env('APP_URL')."/storage/photos/".$article->post_img;
         $article->visits =  visits($article)->count();
         return view('Front.pages.articleDetails', compact('article'));
     }
     public function researchesDetails(Research $research)
     {
-        visits($research)->increment(1 ,true);
+        visits($research)->increment(1, true);
         $research->image = env('APP_URL')."/storage/photos/".$research->cover_image;
         $research->visits =  visits($research)->count();
         $article = $research;
@@ -73,7 +73,7 @@ class FrontController extends BaseController
     }
     public function eventDetails(Event $event)
     {
-        visits($event)->increment(1 ,true);
+        visits($event)->increment(1, true);
         $event->image = env('APP_URL')."/storage/photos/".$event->event_img;
         $event->visits =  visits($event)->count();
         return view('Front.pages.eventDetails', compact('event'));
@@ -83,7 +83,7 @@ class FrontController extends BaseController
         $page = Page::whereSlug('activities')->first();
         $events= Event::get();
         $last_event= Event::latest()->limit(1)->get();
-        return view('Front.pages.activities', compact('events','page', 'last_event'));
+        return view('Front.pages.activities', compact('events', 'page', 'last_event'));
     }
     public function profile()
     {
@@ -110,7 +110,7 @@ class FrontController extends BaseController
 
             $gallery->images = $imagesNames;
         }
-        return view('Front.pages.images', compact('galleries','page'));
+        return view('Front.pages.images', compact('galleries', 'page'));
     }
     public function videos()
     {

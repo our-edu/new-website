@@ -3,7 +3,7 @@
     <img class="w-100" src="{{env('APP_URL')."/storage/photos/".$book->book_img}}" />
   </div>
   <div class="the_details text-center">
-    <h2 class="fw-bold text_head text_black text-center">{{$book->name}}</h2>
+    <h3 class="fw-bold text_head text_black text-center setTheight">{{$book->name}}</h3>
     <div class="date">
       <span>تاريخ النشر: </span>
       <span>{{$book->publish_date}}</span>

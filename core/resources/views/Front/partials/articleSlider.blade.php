@@ -6,9 +6,9 @@
       <div class="swiper-slide">
         <div class="col-lg-6 col-12">
           <div class="text">
-            <span class="articleSliderTitle">{{$article->title}}</span>
+            <span class="articleSliderTitle text_clamp_1">{{$article->title}}</span>
             <span class="articleSliderDate"> <span>اليوم</span> {{$article->created_at->toDateString()}} </span>
-            <p class="articleSliderText">
+            <p class="articleSliderText text_clamp_3">
               {{\Illuminate\Support\Str::limit(strip_tags($article->description , 200))}}
 
             </p>
