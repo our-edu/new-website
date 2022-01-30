@@ -16,4 +16,5 @@ Route::group(['namespace'=>'\App\NewWebsiteApp\Front\Controllers'], function () 
     Route::get('/معرض-الصور', 'FrontController@gallery')->name('gallery');
     Route::get('/فيديوهات', 'FrontController@videos')->name('videos');
     Route::get('/الأبحاث', 'FrontController@researches')->name('researches');
+    Route::post('/contactUs', 'FrontController@contactStore')->name('contact_us.store');
 });

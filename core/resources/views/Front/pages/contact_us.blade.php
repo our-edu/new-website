@@ -16,7 +16,7 @@
           لديك استفسار معين يمكنك التواصل بالدكتور عبد العزيز عبر <br/>
           البريد الالكتروني او رقم الهاتف او ترك رسالة
         </p>
-        <form type="POST" method="POST" title="حذف" action="{{route('ContactUs.store')}}" class="needs-validation" novalidate>
+        <form type="POST" method="POST" title="حذف" action="{{route('contact_us.store')}}" class="needs-validation" novalidate>
           @csrf
           <div class="row">
             <div class="col-sm-6 col-md-6 col-lg-4">
