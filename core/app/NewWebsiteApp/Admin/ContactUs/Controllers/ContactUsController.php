@@ -46,8 +46,7 @@ class ContactUsController extends Controller
     {
         $this->model->create($request->all());
         toast('تم الارسال', 'success');
-
-        return back();
+        return route('contact_us');
     }
 
     public function destroy($id)
