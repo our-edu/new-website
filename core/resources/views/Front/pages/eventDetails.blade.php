@@ -1,4 +1,7 @@
-@extends('Front.layouts.default',['title'=>"المقالات"])
+@extends('Front.layouts.default',['title'=>$event->title])
+@section('meta')
+  @include('Front.partials.meta',['row'=>$event,'route'=>route('event_details',$event->slug)])
+@endsection
 @section('content')
   <div class="container">
       <div class="row mb-5">

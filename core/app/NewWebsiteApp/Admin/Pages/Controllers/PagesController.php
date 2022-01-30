@@ -50,8 +50,11 @@ class PagesController extends Controller
         $row->title = $request->title;
         $row->description = $request->description;
         $row->body = $request->body;
-        toast('تم الانشاء بنجاح', 'success');
         $row->save();
+        if (!empty($request->meta)) {
+            $row->meta()->create($request['meta']);
+        }
+        toast('تم الانشاء بنجاح', 'success');
         return redirect('/admin/' . $this->module);
     }
 
@@ -83,6 +86,13 @@ class PagesController extends Controller
         $row->description = $request->description;
         $row->body = $request->body;
         $row->update();
+        if (!empty($request->meta)) {
+            if ($row->meta()->exists()) {
+                $row->meta()->update($request['meta']);
+            } else {
+                $row->meta()->create($request['meta']);
+            }
+        }
         toast('تم التعديل  بنجاح', 'success');
 
         return redirect('/admin/' . $this->module);

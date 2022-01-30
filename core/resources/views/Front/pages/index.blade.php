@@ -1,4 +1,9 @@
-@extends('Front.layouts.home',['title'=>"Home"])
+@extends('Front.layouts.home',['title'=>"الصفحة الرئيسية"])
+@section('meta')
+  @if(!empty($page))
+    @include('Front.partials.meta',['row'=>$page,'route'=>route('home')])
+  @endif
+@endsection
 @section('content')
   <div class="home">
     <!-- home absloute image -->

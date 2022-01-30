@@ -60,6 +60,9 @@ class EventsController extends Controller
             $row->event_img = $request->getImageData();
         }
         $row->save();
+        if (!empty($request->meta)) {
+            $row->meta()->create($request['meta']);
+        }
         toast('تم انشاء النشاط بنجاح', 'success');
         return redirect('/admin/' . $this->module);
 
@@ -106,6 +109,13 @@ class EventsController extends Controller
             $row->event_img = $request->getImageData();
         }
         $row->update();
+        if (!empty($request->meta)) {
+            if ($row->meta()->exists()) {
+                $row->meta()->update($request['meta']);
+            } else {
+                $row->meta()->create($request['meta']);
+            }
+        }
         toast('تم تعديل النشاط بنجاح', 'success');
         return redirect('/admin/' . $this->module);
     }

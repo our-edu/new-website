@@ -16,6 +16,8 @@ class CreateMetasTable extends Migration
         Schema::create('metas', function (Blueprint $table) {
             $table->uuid('uuid')->primary();
             $table->nullableUuidMorphs('metable');
+            $table->text('meta_keys')->nullable();
+            $table->text("meta_description")->nullable();
             $table->timestamps();
         });
     }

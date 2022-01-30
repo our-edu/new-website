@@ -29,6 +29,25 @@
 ])
 
 <br>
+
+<br>
+@include('form.input',['name'=>"meta[meta_keys]",'type'=>'text','attributes'=>[
+    "label"=>"كلمات دلالية", 'placeholder'=>'كلمات دلالية','class'=>'form-control'
+]])
+
+<br>
+@include('form.input',[
+'name'=>'meta[meta_description]',
+'value'=>null,
+'type'=>'textarea',
+'attributes'=>[
+    'class'=>'form-control',
+    'id'=>'description',
+    'label'=>'الوصف التعريفي للمحرك البحث',
+    'placeholder'=>'الوصف التعريفي للمحرك البحث',
+    ]
+])
+<br>
 @include("admin.layout.select_image")
 <br>
 

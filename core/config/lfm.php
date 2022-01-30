@@ -154,9 +154,6 @@ return [
     | directives are not supported.
      */
     'php_ini_overrides'        => [
-        'memory_limit' => '5000M',
-        'post_max_size'=>"5000M",
-        'upload_max_filesize'=>"5000M"
 
     ],
 ];
