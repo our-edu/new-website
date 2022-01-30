@@ -14,11 +14,11 @@
               الرئيسية
             </a>
           </li>
-          <li class="nav-item">
+         {{-- <li class="nav-item">
             <a class="nav-link" href="{{route('activities')}}">
               الفاعليات و الانشطة
             </a>
-          </li>
+          </li>--}}
           <li class="nav-item">
             <a class="nav-link" href="{{route('articles')}}">
               المقالات
@@ -39,11 +39,11 @@
               الملف الشخصي
             </a>
           </li>
-          <li class="nav-item">
+        {{--  <li class="nav-item">
             <a class="nav-link" href="{{route('researches')}}">
               درسات و بحوث
             </a>
-          </li>
+          </li>--}}
           <li class="nav-item">
             <a class="nav-link" href="{{route('contact_us')}}">
               التواصل معنا
