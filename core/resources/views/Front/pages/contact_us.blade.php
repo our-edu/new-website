@@ -69,11 +69,11 @@
           </div>
           <div class="item">
             <span>البريد الالكروني :  </span>
-            <span>net@ink.com</span>
+            <span><a href="mailto: 1@ikiu.net" target="_blank">1@ikiu.net</a></span>
           </div>
           <div class="item">
             <span> هاتف المكتب</span>
-            <span>: 4801943 </span>
+            <span>:  <a href="tel: 55484">554848</a> </span>
           </div>
           <div class="item">
             <span>فاكس المكتب</span>

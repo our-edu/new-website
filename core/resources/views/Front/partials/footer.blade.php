@@ -44,7 +44,7 @@
     </div>
   </div>
   <div class="col-lg-12 text-center pt-4">
-    <p class="text-center text-white">جميع الحقوق محفوظه 2021@</p>
+    <p class="text-center text-white"><a href="https://our-education.net/" target="_blank"> تم تطويرها بشركه تعليمنا</a> @2022</p>
   </div>
 </footer>
 <!-- build:js -->
