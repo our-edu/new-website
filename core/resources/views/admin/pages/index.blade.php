@@ -59,14 +59,14 @@
                                                     <a class="btn btn-success btn-xs" href="{{$module}}/edit/{{$row->uuid}}" title="تعديل">
                                                         <i class="fa fa-edit"></i>
                                                     </a>
-                                                    <form  class="d-inline" method="POST" title="حذف" action="{{route('pages.delete' , $row->uuid)}}">
+                                                    {{--<form  class="d-inline" method="POST" title="حذف" action="{{route('pages.delete' , $row->uuid)}}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('DELETE') }}
                                                         <button  type="submit" class="btn btn-danger btn-xs" value="Delete article"
                                                                  data-confirm="هل انت متاكد من حذف هذا العنصر ؟">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>
-                                                    </form>
+                                                    </form>--}}
                                                 @endif
                                             </td>
                                         </tr>

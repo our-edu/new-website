@@ -104,7 +104,7 @@
                         <a href="{{route('pages.index')}}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                الملف الشخصي
+                               الصفحات
                             </p>
                         </a>
                     </li>
@@ -124,12 +124,7 @@
                             </p>
                         </a>
                     </li>
-
-
                     <br>
-
-
-
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
