@@ -21,14 +21,15 @@
                 @if(!empty($gallery->images))
                     <div class="image_wrapper" data-aos="fade">
                         <div class="main_image_wrapper">
-                            <img data-fancybox="gallery{{$gallery->uuid}}"
+                            <img data-fancybox="gallery1"
                                  src="{{env('APP_URL')."/".$gallery->images[0]}}"/>
                             <div class=" image_text">{{$gallery->title}}
                             </div>
                         </div>
                         <div class="parent">
                             @foreach($gallery->images as $image)
-                                <img data-fancybox="gallery{{$gallery->uuid}}"
+
+                                <img data-fancybox="gallery1"
                                      src="{{env('APP_URL')."/".$image}}"
 
                                 />
