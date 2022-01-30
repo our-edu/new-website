@@ -6,7 +6,7 @@
         <div class="text">
           <p class="text-size-30 mb-3 fw-bold">{{$article->title}}</p>
           <p class="text-size-18 mb-3">
-            {{strip_tags($article->description)}}
+            {{\Illuminate\Support\Str::limit(strip_tags($article->description), 150)}}
           </p>
         </div>
         <div class="slider-image">
