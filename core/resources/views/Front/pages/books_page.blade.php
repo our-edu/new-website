@@ -1,4 +1,4 @@
-@extends('Front.layouts.default',['title'=>"Books"])
+@extends('Front.layouts.default',['title'=>"الكتب"])
 @section('meta')
     @if(!empty($page))
         @include('Front.partials.meta',['row'=>$page,'route'=>route('books')])
