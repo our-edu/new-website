@@ -9,7 +9,7 @@
             <span class="articleSliderTitle">{{$article->title}}</span>
             <span class="articleSliderDate"> <span>اليوم</span> {{$article->created_at->toDateString()}} </span>
             <p class="articleSliderText">
-              {{strip_tags($article->description)}}
+              {{\Illuminate\Support\Str::limit(strip_tags($article->description , 200))}}
 
             </p>
             <div class="d-flex justify-content-between">

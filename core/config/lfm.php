@@ -104,7 +104,7 @@ return [
      */
 
     // If true, image thumbnails would be created during upload
-    'should_create_thumbnails' => false,
+    'should_create_thumbnails' => true,
 
     'thumb_folder_name'        => 'thumbs',
 
