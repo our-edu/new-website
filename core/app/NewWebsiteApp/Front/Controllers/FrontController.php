@@ -38,8 +38,8 @@ class FrontController extends BaseController
     {
         $data = [];
         $page = Page::whereSlug('books')->first();
-        $books= Book::where('is_active', true)->latest()->get();
-        $recommended_books= Book::where('is_recommended', true)->get();
+        $books= Book::where('is_active', true)->where('is_recommended', false)->latest()->get();
+        $recommended_books= Book::where('is_active', true)->where('is_recommended', true)->get();
         return view('Front.pages.books_page', compact('books', 'page', 'recommended_books'));
     }
     public function articles()
