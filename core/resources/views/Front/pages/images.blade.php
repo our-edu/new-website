@@ -21,21 +21,10 @@
                 @if(!empty($gallery->images))
                     <div class="image_wrapper" data-aos="fade">
                         <div class="main_image_wrapper">
-                            <img data-fancybox="gallery1"
+                            <img  {{$loop->iteration == 2 ? "no_has_child" : ""}} data-fancybox="gallery1"
                                  src="{{env('APP_URL')."/".$gallery->images[0]}}"/>
                             <div class=" image_text">{{$gallery->title}}
                             </div>
-                        </div>
-                        <div class="parent">
-                            @foreach($gallery->images as $image)
-                                @if($loop->iteration  < 2)
-                                    <img data-fancybox="gallery1"
-                                         src="{{env('APP_URL')."/".$image}}"
-
-                                    />
-                                @endif
-                            @endforeach
-
                         </div>
                     </div>
 
