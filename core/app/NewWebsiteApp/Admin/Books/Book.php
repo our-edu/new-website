@@ -32,7 +32,8 @@ class Book extends BaseModel
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'title',
+                'onUpdate'=>true
             ]
         ];
     }
