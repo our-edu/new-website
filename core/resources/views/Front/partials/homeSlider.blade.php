@@ -4,7 +4,7 @@
       @foreach($articles as $article)
       <div class="swiper-slide">
         <div class="text">
-          <p class="text-size-30 mb-3 fw-bold">{{$article->title}}</p>
+          <p class="text-size-30 mb-3 fw-bold"><a href="{{route('article_details',$article->slug}}">{{$article->title}}</a></p>
           <p class="text-size-18 mb-3">
             {{\Illuminate\Support\Str::limit(strip_tags($article->description), 150)}}
           </p>
