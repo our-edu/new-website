@@ -26,11 +26,12 @@ class FrontController extends BaseController
     public function getIndex()
     {
         $data = [];
+        $page = Page::whereSlug('home')->first();
         $importent_articles= Article::where('is_featured', true)->latest()->limit(1)->get();
         $articles= Article::where('is_featured', true)->latest()->skip(1)->get()->take(9);
         $books= Book::where('is_featured', true)->latest()->get();
 
-        return view('Front.pages.index', compact('articles', 'books', 'importent_articles'));
+        return view('Front.pages.index', compact('articles', 'page','books', 'importent_articles'));
     }
 
     public function books()
@@ -44,14 +45,16 @@ class FrontController extends BaseController
     public function articles()
     {
         $data = [];
+        $page = Page::whereSlug('articles')->first();
         $articles= Article::where('is_active', true)->orderByDesc('created_at')->get();
-        return view('Front.pages.articles', compact('articles'));
+        return view('Front.pages.articles', compact('articles', 'page'));
     }
     public function researches()
     {
         $data = [];
+        $page = Page::whereSlug('researches')->first();
         $articles= Research::where('is_active', true)->orderByDesc('created_at')->get();
-        return view('Front.pages.researches', compact('articles'));
+        return view('Front.pages.researches', compact('articles','page'));
     }
     public function articleDetails(Article $article)
     {
@@ -77,11 +80,10 @@ class FrontController extends BaseController
     }
     public function activities()
     {
-        $data = [];
+        $page = Page::whereSlug('activities')->first();
         $events= Event::get();
         $last_event= Event::latest()->limit(1)->get();
-
-        return view('Front.pages.activities', compact('events', 'last_event'));
+        return view('Front.pages.activities', compact('events','page', 'last_event'));
     }
     public function profile()
     {
@@ -97,6 +99,7 @@ class FrontController extends BaseController
     public function gallery()
     {
         $data = [];
+        $page = Page::whereSlug('gallery')->first();
         $galleries = Gallery::orderByDesc("created_at")->get();
         foreach ($galleries as $gallery) {
             $images = Storage::files($gallery->folder_name);
@@ -105,10 +108,9 @@ class FrontController extends BaseController
                 $imagesNames[] = Str::replace('public', 'storage', $image);
             }
 
-
             $gallery->images = $imagesNames;
         }
-        return view('Front.pages.images', compact('galleries'));
+        return view('Front.pages.images', compact('galleries','page'));
     }
     public function videos()
     {
