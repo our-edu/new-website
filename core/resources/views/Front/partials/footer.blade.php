@@ -5,7 +5,7 @@
                 <p class="mb-3 list_head font-weight-semibold">روابط سريعة</p>
                 <div class="d-flex flex-column list">
                     <a href="{{route('home')}}">الرئيسية</a>
-                    <a href="{{route('books')}}">المدونه</a>
+                    <a href="{{route('books')}}">الكتب</a>
                     <a href="{{route('articles')}}">اهم المقالات</a>
                 </div>
             </div>
