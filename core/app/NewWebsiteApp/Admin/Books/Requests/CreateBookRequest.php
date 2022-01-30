@@ -29,12 +29,17 @@ class CreateBookRequest extends FormRequest
 
     public function getImageData()
     {
-        $directory_path = explode('/' . basename($this->input('image_url')), $this->input('image_url'))[0];
-        return  basename($directory_path)."/".basename($this->input('image_url'));
+        if ($this->has('image_url') && !empty($this->input('image_url')))  {
+            $directory_path = explode('/' . basename($this->input('image_url')), $this->input('image_url'))[0];
+            return basename($directory_path) . "/" . basename($this->input('image_url'));
+        }
     }
     public function getFileData()
     {
-        $directory_path = explode('/' . basename($this->input('bookpdf')), $this->input('bookpdf'))[0];
-        return  basename($directory_path)."/".basename($this->input('bookpdf'));
+        if ($this->has('bookpdf') && !empty($this->input('bookpdf'))) {
+            $directory_path = explode('/' . basename($this->input('bookpdf')), $this->input('bookpdf'))[0];
+            return basename($directory_path) . "/" . basename($this->input('bookpdf'));
+        }
+
     }
 }
