@@ -25,7 +25,7 @@ class FrontController extends BaseController
     {
         $data = [];
         $importent_articles= Article::where('is_featured', true)->latest()->limit(1)->get();
-        $articles= Article::where('is_featured', true)->latest()->skip(1)->get();
+        $articles= Article::where('is_featured', true)->latest()->skip(1)->get()->take(9);
         $books= Book::where('is_featured', true)->latest()->get();
 
         return view('Front.pages.index', compact('articles', 'books', 'importent_articles'));
