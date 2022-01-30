@@ -42,9 +42,8 @@ class ArticlesController extends Controller
     }
     public function store(CreateArticleRequest $request)
     {
+
         $data['module'] = $this->module;
-
-
         $row = new Article();
         $row->title = $request->title;
         $row->slug = \Str::slug($request->title);
@@ -56,6 +55,9 @@ class ArticlesController extends Controller
         $row->post_img = $request->getImageData();
         toast('تم انشاء المقاله بنجاح', 'success');
         $row->save();
+        if (!empty($request->meta)) {
+            $row->meta()->create($request['meta']);
+        }
         return redirect('/admin/' . $this->module);
 
 //        $data['module'] = $this->module;
@@ -105,6 +107,13 @@ class ArticlesController extends Controller
             $row->post_img = $request->getImageData();
         }
         $row->update();
+        if (!empty($request->meta)) {
+            if ($row->meta()->exists()) {
+                $row->meta()->update($request['meta']);
+            } else {
+                $row->meta()->create($request['meta']);
+            }
+        }
         toast('تم تعديل المقاله بنجاح', 'success');
 
         return redirect('/admin/' . $this->module);

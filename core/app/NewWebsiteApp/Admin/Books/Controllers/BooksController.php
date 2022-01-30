@@ -62,6 +62,9 @@ class BooksController extends Controller
         $row->is_featured = $request->is_featured;
         $row->is_recommended = $request->is_recommended;
         $row->save();
+        if (!empty($request->meta)) {
+            $row->meta()->create($request['meta']);
+        }
         toast('تم انشاء المقاله بنجاح', 'success');
         return redirect('/admin/' . $this->module);
     }
@@ -99,6 +102,13 @@ class BooksController extends Controller
             $row->book_pdf = $request->getFileData();
         }
         $row->update();
+        if (!empty($request->meta)) {
+            if ($row->meta()->exists()) {
+                $row->meta()->update($request['meta']);
+            } else {
+                $row->meta()->create($request['meta']);
+            }
+        }
         toast('تم تعديل الكتاب بنجاح', 'success');
 
         return redirect('/admin/' . $this->module);

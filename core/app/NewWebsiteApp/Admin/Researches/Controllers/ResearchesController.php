@@ -56,8 +56,12 @@ class ResearchesController extends Controller
         }
         $row->is_featured = $request->is_featured;
         $row->is_active = $request->is_active;
-        toast('تم انشاء البحث بنجاح', 'success');
+
         $row->save();
+        if (!empty($request->meta)) {
+            $row->meta()->create($request['meta']);
+        }
+        toast('تم انشاء البحث بنجاح', 'success');
         return redirect('/admin/' . $this->module);
     }
 
@@ -96,6 +100,13 @@ class ResearchesController extends Controller
         $row->is_active = $request->is_active;
         if ($request->getImageData()) {
             $row->cover_image = $request->getImageData();
+        }
+        if (!empty($request->meta)) {
+            if ($row->meta()->exists()) {
+                $row->meta()->update($request['meta']);
+            } else {
+                $row->meta()->create($request['meta']);
+            }
         }
         $row->update();
         toast('تم تعديل البحث بنجاح', 'success');

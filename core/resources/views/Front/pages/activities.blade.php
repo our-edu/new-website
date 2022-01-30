@@ -1,4 +1,9 @@
-@extends('Front.layouts.default',['title'=>"activities"])
+@extends('Front.layouts.default',['title'=>"الفاعليات و الانشطة"])
+@section('meta')
+  @if(!empty($page))
+    @include('Front.partials.meta',['row'=>$page,'route'=>route('activities')])
+  @endif
+@endsection
 @section('content')
 <div class="container">
     <h1 class="pageDescription text-color-green">الفاعليات و الانشطة</h1>

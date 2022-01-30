@@ -1,4 +1,9 @@
 @extends('Front.layouts.default',['title'=>"contact"])
+@section('meta')
+  @if(!empty($page))
+    @include('Front.partials.meta',['row'=>$page,'route'=>route('contact_us')])
+  @endif
+@endsection
 @section('content')
 
 <div class="contact_us" data-aos="fade">

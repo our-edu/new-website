@@ -1,4 +1,9 @@
 @extends('Front.layouts.default',['title'=>"المقالات"])
+@section('meta')
+    @if(!empty($page))
+        @include('Front.partials.meta',['row'=>$page,'route'=>route('articles')])
+    @endif
+@endsection
 @section('content')
   <div class="container">
     <h1 class="pageDescription text-color-green">المقالات</h1>

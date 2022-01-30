@@ -1,10 +1,15 @@
 on: [push, pull_request]
-name: Run Tests
+#on:
+#  push:
+#    branches: [ dev ]
+#  pull_request:
+#    branches: [ dev ]
+name: CI
 jobs:
   phpunit:
     runs-on: ubuntu-latest
     container:
-      image: kirschbaumdevelopment/laravel-test-runner:8.0
+      image: kirschbaumdevelopment/laravel-test-runner:7.4
 
     services:
       postgres:
@@ -27,33 +32,30 @@ jobs:
         run: |
           composer install --no-scripts
 
-      - name: Prepare Laravel Applications
+      - name: Prepare Laravel Application
         working-directory: ./core
 
         run: |
           cp .env.ci .env
-          rm .env.testing
           cp .env.ci .env.testing
           php artisan key:generate
+      
 
-      - name: Run Testsuite
-        working-directory: ./core
+      # - name: Run Testsuite
+      # working-directory: ./core
 
-#        run: vendor/bin/phpunit tests/
-#
+      #  run: vendor/bin/phpunit tests/
+
       - name: check-style
         working-directory: ./core
 
         run:  composer check-style
 
-#      - name: psalm
-#        working-directory: ./core
-#        run:  ./vendor/bin/psalm
+      - name: psalm
+        working-directory: ./core
+        run:  ./vendor/bin/psalm --no-cache --php-version=8.0 # this php-version argument for the ParseError Issue
 
       - name: code sniffer
         working-directory: ./core
+        # --warning-severity=6 to ignore the unwanted warnings in the CI server
         run: ./vendor/bin/phpcs --warning-severity=6
-
-      - name: psalm
-        working-directory: ./core
-        run: ./vendor/bin/psalm --no-cache --php-version=8.0 # this php-version argument for the ParseError Issue

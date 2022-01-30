@@ -1,4 +1,9 @@
-@extends('Front.layouts.default',['title'=>"contact"])
+@extends('Front.layouts.default',['title'=>"معرض الصور"])
+@section('meta')
+    @if(!empty($page))
+        @include('Front.partials.meta',['row'=>$page,'route'=>route('gallery')])
+    @endif
+@endsection
 @section('content')
     <section class="images container">
         <div class="d-flex justify-content-between toggle_images-videos">

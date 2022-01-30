@@ -3,12 +3,6 @@
 @endphp
 
 @include('form.input',['name'=>'title','type'=>'text','attributes'=>$attributes])
-
-{{--@php--}}
-{{--    $attributes=['class'=>'form-control','label'=>'سمعل','placeholder'=>'سمعل'];--}}
-{{--@endphp--}}
-
-{{--@include('form.input',['name'=>'slug','type'=>'text','attributes'=>$attributes])--}}
 <br>
 @include('form.input',[
 'name'=>'description',
@@ -19,6 +13,24 @@
     'id'=>'description',
     'label'=>'الوصف',
     'placeholder'=>'الوصف',
+    ]
+])
+<br>
+<br>
+@include('form.input',['name'=>"meta[meta_keys]",'type'=>'text','attributes'=>[
+    "label"=>"كلمات دلالية", 'placeholder'=>'كلمات دلالية','class'=>'form-control'
+]])
+
+<br>
+@include('form.input',[
+'name'=>'meta[meta_description]',
+'value'=>null,
+'type'=>'textarea',
+'attributes'=>[
+    'class'=>'form-control',
+    'id'=>'description',
+    'label'=>'الوصف التعريفي للمحرك البحث',
+    'placeholder'=>'الوصف التعريفي للمحرك البحث',
     ]
 ])
 <br>

@@ -34,9 +34,10 @@ class FrontController extends BaseController
     public function books()
     {
         $data = [];
+        $page = Page::whereSlug('books')->first();
         $books= Book::where('is_active', true)->latest()->get();
         $recommended_books= Book::where('is_recommended', true)->get();
-        return view('Front.pages.books_page', compact('books', 'recommended_books'));
+        return view('Front.pages.books_page', compact('books', 'page', 'recommended_books'));
     }
     public function articles()
     {
@@ -83,7 +84,7 @@ class FrontController extends BaseController
     public function profile()
     {
         $data = [];
-       $profile = Page::all()->first();
+        $profile = Page::all()->first();
         return view('Front.pages.profile', compact('profile'));
     }
     public function contact()
@@ -95,10 +96,10 @@ class FrontController extends BaseController
     {
         $data = [];
         $galleries = Gallery::orderByDesc("created_at")->get();
-        foreach ($galleries as $gallery){
+        foreach ($galleries as $gallery) {
             $images = Storage::files($gallery->folder_name);
             $imagesNames = [];
-            foreach ($images as $image){
+            foreach ($images as $image) {
                 $imagesNames[] = Str::replace('public', 'storage', $image);
             }
 
