@@ -11,7 +11,7 @@
     <!-- <div class="my-1 text-center">
           <p class="gold">تاريخ النشر: 01-01-1999</p>
         </div> -->
-    <p class="text-size-18 text-color-black text-center">
+    <p class="text-size-16 text-color-black text-center setMinH">
       {{strip_tags($book->description)}}
 
     </p>
