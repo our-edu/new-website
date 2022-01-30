@@ -17533,6 +17533,12 @@ input {
   margin-bottom: 16px !important;
 }
 
+/* line 60, src/assets/scss/pages/_contact.scss */
+.emailO {
+  direction: ltr;
+  display: inline-block;
+}
+
 @media screen and (max-width: 1023px) {
   /* line 1, src/assets/scss/pages/_profile.scss */
   .profile {
