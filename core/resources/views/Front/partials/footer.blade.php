@@ -1,7 +1,7 @@
 <footer class="">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 mb-xs-4 col-lg-4 colm_wrapper">
+      <div class="col-sm-6 mb-xs-4 col-lg-6 colm_wrapper">
         <p class="mb-3 list_head font-weight-semibold">روابط سريعة</p>
         <div class="d-flex flex-column list">
           <a href="index.html">الرئيسية</a>
@@ -9,7 +9,7 @@
           <a href="articles.html">اهم المقالات</a>
         </div>
       </div>
-      <div class="col-sm-6 col-lg-4 colm_wrapper">
+      <div class="col-sm-6 col-lg-6 colm_wrapper">
         <p class="mb-3 list_head font-weight-semibold">أتصل بنا</p>
         <div class="d-flex flex-column list">
           <p>العنوان: 4028 الامير مشعل ابن عبد العزيز - الرياض</p>
@@ -18,7 +18,7 @@
           <p>فاكس المكتب: 4054548</p>
         </div>
       </div>
-      <div class="col-lg-4 mb-xs-4 colm_wrapper">
+      {{--<div class="col-lg-4 mb-xs-4 colm_wrapper">
         <p class="mb-3 list_head font-weight-semibold">
           للتواصل مع الدكتور/ عبد العزيز الثنيان <br />عبر مواقع التواصل
           الاجتماعي
@@ -40,7 +40,7 @@
             <i class="fab fa-dribbble"></i>
           </a>
         </div>
-      </div>
+      </div>--}}
     </div>
   </div>
   <div class="col-lg-12 text-center pt-4">

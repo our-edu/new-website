@@ -80,7 +80,7 @@
       </div>
     </section>
 
-    <!-- tweet section -->
+    {{--<!-- tweet section -->
     <section class="tweet_section new_section">
       <div class="container">
         <h1 class="
@@ -98,6 +98,6 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>--}}
   </div>
 @endsection
