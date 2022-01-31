@@ -12,11 +12,11 @@
             <div class="col-sm-6 col-lg-6 colm_wrapper">
                 <p class="mb-3 list_head font-weight-semibold">أتصل بنا</p>
                 <div class="d-flex flex-column list">
-                    <p>العنوان: 4028 الامير مشعل ابن عبد العزيز - الرياض</p>
+                    <p>العنوان:  الرياض   ص.ب :230310</p>
                     <div class="d-flex emailOne    color: rgba(255, 255, 255, 0.7);
     margin: 5px 0;
     cursor: pointer;
-    font-size: 14px;"><span>البريد الالكتروني: </span><a href="mailto:1@ikiu.net">1@ikiu.net</a></div>
+    font-size: 14px;"><span>البريد الالكتروني: </span><a href="mailto:1@ikcedu.net">1@ikcedu.net</a></div>
                     <a href="tel: 009660114801943">هاتف المكتب: 009660114801943</a>
                     <p><a href="fax:+009660114802457"> فاكس المكتب: 009660114802457 </a></p>
                 </div>
