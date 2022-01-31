@@ -68,7 +68,7 @@
           </div>
           <div class="item">
             <span>البريد الالكروني :  </span>
-            <span class="emailO"><a href="mailto: 1@ikcedu.net" target="_blank">1@ikiu.net</a></span>
+            <span class="emailO"><a href="mailto:1@ikcedu.net" target="_blank">1@ikcedu.net</a></span>
           </div>
           <div class="item">
             <span> هاتف المكتب</span>
