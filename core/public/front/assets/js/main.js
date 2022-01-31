@@ -7,9 +7,9 @@ $(function () {
   $(".loader").fadeOut(1000);
   /****  Setting nav bar active class ****/
 
-  var pathname = window.location.pathname;
+  /*var pathname = window.location.pathname;
   $('#appNavbar .navbar-nav').find('li.activeLink').removeClass('activeLink');
-  $('.navbar-nav > li > a[href="' + pathname + '"]').parent().addClass('activeLink');
+  $('.navbar-nav > li > a[href="' + pathname + '"]').parent().addClass('activeLink');*/
   /****  AOS Settings ****/
 
   AOS.init({

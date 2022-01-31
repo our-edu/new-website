@@ -9,8 +9,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav p-0">
-          <li class="nav-item activeLink">
-            <a class="nav-link" aria-current="page" href="/">
+          <li class="nav-item  {{request()->routeIs('home') ? "activeLink" :  ""}}">
+            <a class="nav-link" aria-current="page" href="{{route('home')}}">
               الرئيسية
             </a>
           </li>
@@ -19,22 +19,23 @@
               الفاعليات و الانشطة
             </a>
           </li>--}}
-          <li class="nav-item">
+          <li class="nav-item {{request()->routeIs('articles') ? "activeLink" :  ""}}">
             <a class="nav-link" href="{{route('articles')}}">
               المقالات
             </a>
           </li>
-          <li class="nav-item">
+
+          <li class="nav-item  {{(request()->routeIs('books')) ? "activeLink" :  ""}}">
             <a class="nav-link" href="{{route('books')}}">
               كتب
             </a>
           </li>
-         <li class="nav-item">
+         <li class="nav-item {{(request()->routeIs('videos') || request()->routeIs('gallery')) ? "activeLink" :  ""}}">
             <a class="nav-link" href="{{route('videos')}}">
             صور - فيديو
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  {{(request()->routeIs('profile')) ? "activeLink" :  ""}}">
             <a class="nav-link" href="{{route('profile')}}">
               الملف الشخصي
             </a>
@@ -44,7 +45,7 @@
               درسات و بحوث
             </a>
           </li>--}}
-          <li class="nav-item">
+          <li class="nav-item  {{(request()->routeIs('contact_us')) ? "activeLink" :  ""}}">
             <a class="nav-link" href="{{route('contact_us')}}">
               التواصل معنا
             </a>
